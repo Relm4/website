@@ -11,7 +11,7 @@
   <link rel="stylesheet" type="text/css" href="css/main.css" />
   <link rel="stylesheet" type="text/css" href="css/animations.css" />
   <link rel="stylesheet" type="text/css" href="css/rotation_animation.css" />
-  <!--<script src="main.js"></script>-->
+  <script src="main.js"></script>
 </head>
 <body>
   <section class="hero is-fullheight bg-gradient-moving">
@@ -20,12 +20,16 @@
         <div class="container px-1">
           <div class="navbar-brand">
             <h1 class="title is-2 m-2 has-text-white">Relm4</h1>
-            <span class="navbar-burger burger" data-target="navbarMenu"></span>
+            <span class="navbar-burger burger has-text-white" data-target="navbarMenu" onclick="toggle_menu()">
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </span>
           </div>
-          <div id="navbarMenu" class="navbar-menu">
+          <div id="navbarMenu" class="navbar-menu" style="background: transparent;">
             <div class="navbar-end">
               <span class="navbar-item">
-                <a class="button is-white is-outlined" href="https://crates.io/crates/relm4" target="_blank" rel="noopener">
+                <a class="button is-white is-outlined is-fullwidth" href="https://crates.io/crates/relm4" target="_blank" rel="noopener">
                   <span class="icon">
                     <i class="mdi mdi-package-variant-closed"></i>
                   </span>
@@ -33,7 +37,7 @@
                 </a>
               </span>
               <span class="navbar-item">
-                <a class="button is-white is-outlined" href="https://aaronerhardt.github.io/docs/relm4/relm4" target="_blank" rel="noopener">
+                <a class="button is-white is-outlined is-fullwidth" href="https://aaronerhardt.github.io/docs/relm4/relm4" target="_blank" rel="noopener">
                   <span class="icon">
                     <i class="mdi mdi-file-document"></i>
                   </span>
@@ -41,7 +45,7 @@
                 </a>
               </span>
               <span class="navbar-item">
-                <a class="button is-white is-outlined" href="https://aaronerhardt.github.io/relm4-book/book/" target="_blank" rel="noopener">
+                <a class="button is-white is-outlined is-fullwidth" href="https://aaronerhardt.github.io/relm4-book/book/" target="_blank" rel="noopener">
                   <span class="icon">
                     <i class="mdi mdi-book-open-page-variant"></i>
                   </span>
@@ -49,7 +53,7 @@
                 </a>
               </span>
               <span class="navbar-item">
-                <a class="button is-white is-outlined" href="https://github.com/Relm4" target="_blank" rel="noopener">
+                <a class="button is-white is-outlined is-fullwidth" href="https://github.com/Relm4" target="_blank" rel="noopener">
                   <span class="icon">
                     <i class="mdi mdi-star"></i>
                   </span>
