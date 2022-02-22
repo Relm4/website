@@ -6,8 +6,15 @@
   --light: 255;
   --percent: 80%;  
   --blue-bg: #73A0D0;
+
   --first-bg: #FFFFFF;
   --second-bg: #0D1117;
+  --third-bg: #1D1E2C;
+
+  --accent-bg-1: #2A7F62;
+  --accent-bg-2: #9B1D20;
+  --accent-bg-3: #2C497F;
+  --accent-bg-4: #E08E45;
 }
 
 .bg-gradient {
@@ -58,154 +65,81 @@
 .second-bg {
   background: var(--second-bg);
 }
+
+.third-bg {
+  background: var(--third-bg);
+}
           
 * {
   font-family: 'Fira Sans';
 }
-          
-@keyframes pulse {
+
+.feature-box {
+  height: 100%;
+}
+
+.column > .feature-box {
+  animation: feature-color 64s linear infinite;
+}
+
+.column:nth-child(1) > .feature-box {
+  animation-delay: -60s;
+}
+
+.column:nth-child(2) > .feature-box {
+  animation-delay: -24s;
+}
+
+.column:nth-child(3) > .feature-box {
+  animation-delay: -4s;
+}
+
+.column:nth-child(4) > .feature-box {
+  animation-delay: -36s;
+}
+
+.column:nth-child(5) > .feature-box {
+  animation-delay: -48s;
+}
+
+.column:nth-child(6) > .feature-box {
+  animation-delay: -40s;
+}
+
+.column:nth-child(7) > .feature-box {
+  animation-delay: -16s;
+}
+
+.column:nth-child(8) > .feature-box {
+  animation-delay: -12s;
+}
+
+@keyframes feature-color {
   0% {
-    border-color: white;
-    border-width: 0.5rem;
+    background-color: var(--accent-bg-1);
   }
-  8% {
-    border-color: transparent;
-    border-width: 0.5rem;
+  23% {
+    background-color: var(--accent-bg-1);
   }
-  9% {
-    border-color: transparent;
-    border-width: 0.5rem;
+  25% {
+    background-color: var(--accent-bg-2);
   }
-  19% {
-    border-color: white;
-    border-width: 0.5rem;
+  48% {
+    background-color: var(--accent-bg-2);
   }
-  20% {
-    border-color: white;
-    border-width: 0;
+  50% {
+    background-color: var(--accent-bg-3);
+  }
+  73% {
+    background-color: var(--accent-bg-3);
+  }
+  75% {
+    background-color: var(--accent-bg-4);
+  }
+  98% {
+    background-color: var(--accent-bg-4);
   }
   100% {
-    border-color: white;
-    border-width: 0;
+    background-color: var(--accent-bg-1);
   }
-}
-
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes move-bg {
-  0% {
-    background:
-      radial-gradient(circle at 50% 0,
-        rgba(var(--dark-red), 0, 0, var(--blend)),
-        rgba(var(--dark-red), 0 ,0, 0) var(--percent)),
-      radial-gradient(circle at 6.7% 75%,
-        rgba(0, var(--dark-green), 0, var(--blend)),
-        rgba(0, var(--dark-green), 0, 0) var(--percent)),
-      radial-gradient(circle at 93.3% 75%,
-        rgba(0, 0, var(--dark-blue), var(--blend)),
-        rgba(0, 0, var(--dark-blue), 0) var(--percent)),
-          linear-gradient(#000, #000);
-    box-shadow: inset 100rem 100rem black;
-  }
-  3% {
-    background:
-      radial-gradient(circle at 50% 0,
-        rgba(var(--dark-red), 0, 0, var(--blend)),
-        rgba(var(--dark-red), 0 ,0, 0) var(--percent)),
-      radial-gradient(circle at 6.7% 75%,
-        rgba(0, var(--dark-green), 0, var(--blend)),
-        rgba(0, var(--dark-green), 0, 0) var(--percent)),
-      radial-gradient(circle at 93.3% 75%,
-        rgba(0, 0, var(--dark-blue), var(--blend)),
-        rgba(0, 0, var(--dark-blue), 0) var(--percent)),
-          linear-gradient(#000, #000);
-    box-shadow: inset 100rem 100rem transparent;
-  }
-  30.3% {
-    background:
-      radial-gradient(circle at 50% 0,
-        rgba(var(--dark-red), 0, 0, var(--blend)),
-        rgba(var(--dark-red), 0 ,0, 0) var(--percent)),
-      radial-gradient(circle at 6.7% 75%,
-        rgba(0, var(--dark-green), 0, var(--blend)),
-        rgba(0, var(--dark-green), 0, 0) var(--percent)),
-      radial-gradient(circle at 93.3% 75%,
-        rgba(0, 0, var(--dark-blue), var(--blend)),
-        rgba(0, 0, var(--dark-blue), 0) var(--percent)),
-          linear-gradient(#000, #000);
-    box-shadow: inset 100rem 100rem transparent;
-  }
-  33.3% {
-    box-shadow: inset 100rem 100rem black;
-  }
-  36.3% {
-    background:
-      radial-gradient(circle at 50% 0,
-        rgba(0, 0, var(--dark-blue), var(--blend)),
-        rgba(0, 0, var(--dark-blue), 0) var(--percent)),
-      radial-gradient(circle at 6.7% 75%,
-        rgba(var(--dark-red), 0, 0, var(--blend)),
-        rgba(var(--dark-red), 0 ,0, 0) var(--percent)),
-      radial-gradient(circle at 93.3% 75%,
-        rgba(0, var(--dark-green), 0, var(--blend)),
-        rgba(0, var(--dark-green), 0, 0) var(--percent)),
-          linear-gradient(#000, #000);
-    box-shadow: inset 100rem 100rem transparent;
-  }
-  63.6% {
-    background:
-      radial-gradient(circle at 50% 0,
-        rgba(0, 0, var(--dark-blue), var(--blend)),
-        rgba(0, 0, var(--dark-blue), 0) var(--percent)),
-      radial-gradient(circle at 6.7% 75%,
-        rgba(var(--dark-red), 0, 0, var(--blend)),
-        rgba(var(--dark-red), 0 ,0, 0) var(--percent)),
-      radial-gradient(circle at 93.3% 75%,
-        rgba(0, var(--dark-green), 0, var(--blend)),
-        rgba(0, var(--dark-green), 0, 0) var(--percent)),
-          linear-gradient(#000, #000);
-    box-shadow: inset 100rem 100rem transparent;
-  }
-  66.6% {
-    box-shadow: inset 100rem 100rem black;
-  }
-  69.6% {
-    background:
-      radial-gradient(circle at 50% 0,
-        rgba(0, var(--dark-green), 0, var(--blend)),
-        rgba(0, var(--dark-green), 0, 0) var(--percent)),
-      radial-gradient(circle at 6.7% 75%,
-        rgba(0, 0, var(--dark-blue), var(--blend)),
-        rgba(0, 0, var(--dark-blue), 0) var(--percent)),
-      radial-gradient(circle at 93.3% 75%,
-        rgba(var(--dark-red), 0, 0, var(--blend)),
-        rgba(var(--dark-red), 0 ,0, 0) var(--percent)),
-          linear-gradient(#000, #000);
-    box-shadow: inset 100rem 100rem transparent;
-  }
-  97% {
-    box-shadow: inset 100rem 100rem transparent;
-  }
-  100% {
-    background:
-      radial-gradient(circle at 50% 0,
-        rgba(0, var(--dark-green), 0, var(--blend)),
-        rgba(0, var(--dark-green), 0, 0) var(--percent)),
-      radial-gradient(circle at 6.7% 75%,
-        rgba(0, 0, var(--dark-blue), var(--blend)),
-        rgba(0, 0, var(--dark-blue), 0) var(--percent)),
-      radial-gradient(circle at 93.3% 75%,
-        rgba(var(--dark-red), 0, 0, var(--blend)),
-        rgba(var(--dark-red), 0 ,0, 0) var(--percent)),
-          linear-gradient(#000, #000);
-    box-shadow: inset 100rem 100rem black;
-  }
-}
+};

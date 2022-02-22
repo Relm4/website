@@ -57,7 +57,7 @@
   left: 69.98%;
 }
 
-.img-spinner > #tokio-img {
+.img-spinner > #gtk-rs-img {
   top: 56.25%;
   left: 5.02%;
 }
@@ -187,6 +187,6 @@
   opacity: 1;
 }
 
-#tokio-img:hover ~ #tokio-text {
+#gtk-rs-img:hover ~ #gtk-rs-text {
   opacity: 1;
 }
