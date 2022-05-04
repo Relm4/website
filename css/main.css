@@ -120,8 +120,7 @@
 }
 
 .spinner-img img {
-  width: 5rem;
+  height: 6rem;
   z-index: 10;
-  padding: 3%;
   object-fit: contain;
 }
