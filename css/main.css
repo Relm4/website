@@ -7,14 +7,19 @@
   --percent: 80%;  
   --blue-bg: #73A0D0;
 
-  --first-bg: #FFFFFF;
-  --second-bg: #0D1117;
+  --first-bg: #0D1117;
+  --second-bg: #FFFFFF;
   --third-bg: #1D1E2C;
 
   --accent-bg-1: #2A7F62;
   --accent-bg-2: #9B1D20;
   --accent-bg-3: #2C497F;
   --accent-bg-4: #E08E45;
+
+  --accent-bg-5: #226951;
+  --accent-bg-6: #791618;
+  --accent-bg-7: #1d3158;
+  --accent-bg-8: #ba763a;
 }
 
 .bg-gradient {
@@ -78,68 +83,45 @@
   height: 100%;
 }
 
-.column > .feature-box {
-  animation: feature-color 64s linear infinite;
-}
-
 .column:nth-child(1) > .feature-box {
-  animation-delay: -60s;
+  background-color: var(--accent-bg-1);
 }
 
 .column:nth-child(2) > .feature-box {
-  animation-delay: -24s;
+  background-color: var(--accent-bg-2);
 }
 
 .column:nth-child(3) > .feature-box {
-  animation-delay: -4s;
+  background-color: var(--accent-bg-3);
 }
 
 .column:nth-child(4) > .feature-box {
-  animation-delay: -36s;
+  background-color: var(--accent-bg-4);
 }
 
 .column:nth-child(5) > .feature-box {
-  animation-delay: -48s;
+  background-color: var(--accent-bg-5);
 }
 
 .column:nth-child(6) > .feature-box {
-  animation-delay: -40s;
+  background-color: var(--accent-bg-6);
 }
 
 .column:nth-child(7) > .feature-box {
-  animation-delay: -16s;
+  background-color: var(--accent-bg-7);
 }
 
 .column:nth-child(8) > .feature-box {
-  animation-delay: -12s;
+  background-color: var(--accent-bg-8);
 }
 
-@keyframes feature-color {
-  0% {
-    background-color: var(--accent-bg-1);
-  }
-  23% {
-    background-color: var(--accent-bg-1);
-  }
-  25% {
-    background-color: var(--accent-bg-2);
-  }
-  48% {
-    background-color: var(--accent-bg-2);
-  }
-  50% {
-    background-color: var(--accent-bg-3);
-  }
-  73% {
-    background-color: var(--accent-bg-3);
-  }
-  75% {
-    background-color: var(--accent-bg-4);
-  }
-  98% {
-    background-color: var(--accent-bg-4);
-  }
-  100% {
-    background-color: var(--accent-bg-1);
-  }
-};
+.spinner-img a {
+  display: contents;
+}
+
+.spinner-img img {
+  width: 5rem;
+  z-index: 10;
+  padding: 3%;
+  object-fit: contain;
+}
