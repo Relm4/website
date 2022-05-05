@@ -1,8 +1,8 @@
 :root {
   --blend: 0.5;
-  --dark-red: 100;
-  --dark-blue: 100;
-  --dark-green: 80;
+  --dark-red: 106;
+  --dark-blue: 105;
+  --dark-green: 85;
   --light: 255;
   --percent: 80%;  
   --blue-bg: #73A0D0;
@@ -76,38 +76,8 @@
 
 .feature-box {
   height: 100%;
-}
-
-.column:nth-child(1) > .feature-box {
-  background-color: var(--accent-bg-1);
-}
-
-.column:nth-child(2) > .feature-box {
-  background-color: var(--accent-bg-1);
-}
-
-.column:nth-child(3) > .feature-box {
-  background-color: var(--accent-bg-1);
-}
-
-.column:nth-child(4) > .feature-box {
-  background-color: var(--accent-bg-1);
-}
-
-.column:nth-child(5) > .feature-box {
-  background-color: var(--accent-bg-3);
-}
-
-.column:nth-child(6) > .feature-box {
-  background-color: var(--accent-bg-3);
-}
-
-.column:nth-child(7) > .feature-box {
-  background-color: var(--accent-bg-3);
-}
-
-.column:nth-child(8) > .feature-box {
-  background-color: var(--accent-bg-3);
+  background-color: transparent;
+  text-align: left;
 }
 
 .spinner-img a {
