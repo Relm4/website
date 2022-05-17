@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["or","Returns the result of `left` or `right` future, preferring `left` if both are ready."],["zip","Zips two futures, waiting for both to complete."]]});

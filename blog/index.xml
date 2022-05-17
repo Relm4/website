@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Relm4 blog</title><link>https://relm4.org/blog/</link><description>Recent content on Relm4 blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 17 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://relm4.org/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>A new Relm 4 you: announcing Relm4 v0.4!</title><link>https://relm4.org/blog/posts/announcing_relm4_v0.4/</link><pubDate>Mon, 17 Jan 2022 00:00:00 +0000</pubDate><guid>https://relm4.org/blog/posts/announcing_relm4_v0.4/</guid><description>A new realm is here for you to explore! I&amp;rsquo;m happy to announce Relm4 v0.4, our biggest release so far!
+About Relm4 Relm4 is an idiomatic GUI library inspired by Elm and based on gtk4-rs.
+We believe that GUI development should be easy, productive and delightful.
+The gtk4-rs crate already provides everything you need to write modern, beautiful and cross-platform applications. Built on top of this foundation, Relm4 makes developing more idiomatic, simpler and faster and enables you to become productive in just a few hours.</description><content:encoded><![CDATA[<p>A new realm is here for you to explore! I&rsquo;m happy to announce Relm4 v0.4, our biggest release so far!</p>
+<blockquote>
+<h2 id="about-relm4">About Relm4</h2>
+<p>Relm4 is an idiomatic GUI library inspired by <a href="https://elm-lang.org/">Elm</a> and based on <a href="https://crates.io/crates/gtk4">gtk4-rs</a>.</p>
+<p>We believe that GUI development should be easy, productive and delightful.<br>
+The <a href="https://crates.io/crates/gtk4">gtk4-rs</a> crate already provides everything you need to write modern, beautiful and cross-platform applications.
+Built on top of this foundation, Relm4 makes developing more idiomatic, simpler and faster and enables you to become productive in just a few hours.</p>
+</blockquote>
+<h1 id="whats-new">What&rsquo;s new?</h1>
+<p>Relm4 v0.4 brings a lot of new features and improvements. I&rsquo;m excited to present to you the highlights of this release!</p>
+<h2 id="macros-for-everyone">Macros for everyone!</h2>
+<p>In recent Relm4 releases, the macros were tightly integrated into the library itself. This limitation is now removed! Most importantly, users of gtk4-rs will be able to use the <code>view!</code> macro by only pulling in <code>relm4-macros</code> as dependency without the rest of Relm4. This gives you even more freedom to choose how much of Relm4&rsquo;s features you want to use.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#75715e">// Creating a box with a button inside.
+</span><span style="color:#75715e"></span>relm4_macros::view<span style="color:#f92672">!</span> {
+    vbox <span style="color:#f92672">=</span> gtk::Box {
+        append <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>gtk::Button {
+            set_label: <span style="color:#e6db74">&#34;Click me!&#34;</span>,
+            connect_clicked <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">|</span>_<span style="color:#f92672">|</span> {
+                println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Hello world!&#34;</span>);
+            }
+        },
+    }
+}
+
+<span style="color:#75715e">// You can simply use the vbox created in the macro.
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> spacing <span style="color:#f92672">=</span> vbox.spacing();
+</code></pre></div><p>And there&rsquo;s even more. The <code>view!</code> macro isn&rsquo;t limited to gtk4-rs. You can use it for regular Rust structures, too!</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#66d9ef">use</span> std::process::Command;
+
+<span style="color:#66d9ef">let</span> path <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;/&#34;</span>;
+
+relm4_macros::view<span style="color:#f92672">!</span> {
+    <span style="color:#66d9ef">mut</span> process <span style="color:#f92672">=</span> Command::new(<span style="color:#e6db74">&#34;ls&#34;</span>) {
+        args: [<span style="color:#e6db74">&#34;-la&#34;</span>],
+        current_dir <span style="color:#f92672">=</span> <span style="color:#66d9ef">mut</span> <span style="color:#f92672">&amp;</span>String {
+            push_str: <span style="color:#a6e22e">path</span>,
+        },
+        env: <span style="color:#a6e22e">args</span><span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;HOME&#34;</span>, <span style="color:#e6db74">&#34;/home/relm4&#34;</span>),
+    }
+}
+
+<span style="color:#75715e">// Output of &#34;ls -la&#34; at &#34;/&#34;
+</span><span style="color:#75715e"></span>dbg<span style="color:#f92672">!</span>(process.output());
+</code></pre></div><h2 id="micro-components-for-flexibility-at-runtime">Micro components for flexibility at runtime</h2>
+<p>Regular components are relatively static, which gives you strong compile time guarantees, among other benefits. They cover most use cases, but they cannot be initialized or destructed manually at runtime.</p>
+<p>This is where micro components have their strength. They are simpler variants of components that require a bit more manual work, with the advantage of being fully dynamic at runtime.</p>
+<p>A code example can be found <a href="https://github.com/AaronErhardt/Relm4/blob/main/relm4-examples/examples/micro_components.rs#L7">here</a>.</p>
+<h2 id="type-safe-actions">Type-safe actions</h2>
+<p><a href="https://gtk-rs.org/gtk4-rs/git/book/actions.html">Actions</a> are used in GTK4 to simplify the handling of user interactions. Since you can always mix in as much pure gtk4-rs code into Relm4 applications as you want, actions were never a real problem. Yet, they lived outside of Rust&rsquo;s type checking.</p>
+<p>With the help of some traits and macros, it&rsquo;s now quite convenient to define wrapper types for actions that enable a lot of compile time guarantees for actions. Even typos for action names are eliminated as a source of errors.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#75715e">// Defines a new action group
+</span><span style="color:#75715e"></span>new_action_group<span style="color:#f92672">!</span>(ActionGroup, <span style="color:#e6db74">&#34;win&#34;</span>);
+
+<span style="color:#75715e">// A new stateless action type that belongs to `ActionGroup`
+</span><span style="color:#75715e"></span>new_stateless_action<span style="color:#f92672">!</span>(Action, ActionGroup, <span style="color:#e6db74">&#34;action&#34;</span>);
+
+<span style="color:#75715e">// A new action type with a `u8` as state and `u8` as target type
+</span><span style="color:#75715e"></span>new_stateful_action<span style="color:#f92672">!</span>(U8Action, ActionGroup, <span style="color:#e6db74">&#34;u8_action&#34;</span>, <span style="color:#66d9ef">u8</span>, <span style="color:#66d9ef">u8</span>);
+
+<span style="color:#75715e">/* ... */</span>
+
+<span style="color:#75715e">// This only works because `Action` is actually stateless
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> action: <span style="color:#a6e22e">RelmAction</span><span style="color:#f92672">&lt;</span>Action<span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span> RelmAction::new_stateless(<span style="color:#66d9ef">move</span> <span style="color:#f92672">|</span>_<span style="color:#f92672">|</span> {
+    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Action called!&#34;</span>);
+});
+</code></pre></div><h2 id="menu-macro">Menu macro</h2>
+<p>Often, actions are used for menus, where each entry is connected to an action. The new <code>menu!</code> macro allows you to create menus conveniently with all the benefits of type-safe actions.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#75715e">// Create a `MenuModel` called `menu_model`
+</span><span style="color:#75715e"></span>menu<span style="color:#f92672">!</span> {
+    main_menu: {
+        <span style="color:#e6db74">&#34;action&#34;</span> <span style="color:#f92672">=&gt;</span> Action,
+        <span style="color:#e6db74">&#34;stateful action&#34;</span> <span style="color:#f92672">=&gt;</span> U8Action(<span style="color:#ae81ff">1_</span><span style="color:#66d9ef">u8</span>),
+        section<span style="color:#f92672">!</span> {
+            <span style="color:#e6db74">&#34;nested action&#34;</span> <span style="color:#f92672">=&gt;</span> Action,
+            <span style="color:#e6db74">&#34;nested stateful action&#34;</span> <span style="color:#f92672">=&gt;</span> U8Action(<span style="color:#ae81ff">1_</span><span style="color:#66d9ef">u8</span>),
+        },
+    }
+}
+</code></pre></div><h2 id="more-macro-magic">More macro magic</h2>
+<p>The <code>widget</code> macro has been very helpful in creating readable and elegant UI definitions for regular components since the first release of Relm4.
+Now, factories and micro components have received their own variants of the <code>widget</code> macro!</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#75715e">// A simple `FactoryPrototype` implementation
+</span><span style="color:#75715e"></span><span style="color:#75715e">#[relm4::factory_prototype]</span>
+<span style="color:#66d9ef">impl</span> FactoryPrototype <span style="color:#66d9ef">for</span> Counter {
+    <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Factory</span> <span style="color:#f92672">=</span> FactoryVec<span style="color:#f92672">&lt;</span>Self<span style="color:#f92672">&gt;</span>;
+    <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Widgets</span> <span style="color:#f92672">=</span> FactoryWidgets;
+    <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">View</span> <span style="color:#f92672">=</span> gtk::Box;
+    <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Msg</span> <span style="color:#f92672">=</span> AppMsg;
+
+    view<span style="color:#f92672">!</span> {
+        gtk::Button {
+            set_label: <span style="color:#a6e22e">watch</span><span style="color:#f92672">!</span>(<span style="color:#f92672">&amp;</span>self.value.to_string()),
+            connect_clicked(key) <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">move</span> <span style="color:#f92672">|</span>_<span style="color:#f92672">|</span> {
+                sender.send(AppMsg::Clicked(key)).unwrap();
+            }
+        }
+    }
+
+    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">position</span>(<span style="color:#f92672">&amp;</span>self, _index: <span style="color:#66d9ef">&amp;</span><span style="color:#66d9ef">usize</span>) {}
+}
+</code></pre></div><h2 id="better-support-for-stack-and-tabview">Better support for Stack and TabView</h2>
+<p>Widgets such as <code>Stack</code> or <code>TabView</code> have methods that return a new widget, such as <code>StackPage</code>. The returned widget was previously inaccessibly in the <code>widget</code> macro and required manual code. This was addressed with <a href="https://github.com/AaronErhardt/Relm4/blob/main/relm4-examples/libadwaita/examples/view-switcher.rs#L93">a new syntax</a>.</p>
+<h2 id="cleaner-dependencies">Cleaner dependencies</h2>
+<p>Relm4 now re-exports more crates and has more feature flags. This means you don&rsquo;t have to include <code>gtk4</code>, <code>libadwaita</code> or <code>relm4-macros</code> anymore, if you have the correct feature flags set.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml"><span style="color:#a6e22e">relm4</span> = { <span style="color:#a6e22e">version</span> = <span style="color:#e6db74">&#34;0.4&#34;</span>, <span style="color:#a6e22e">features</span> = [<span style="color:#e6db74">&#34;tokio-rt&#34;</span>, <span style="color:#e6db74">&#34;macros&#34;</span>] }
+</code></pre></div><h2 id="miscellaneous">Miscellaneous</h2>
+<ul>
+<li>Several book improvements</li>
+<li>Reworked initialization process</li>
+<li>Some trait adjustments</li>
+<li>Many bug fixes, better error messages and other improvements</li>
+</ul>
+<p>The full change log can be found <a href="https://github.com/AaronErhardt/Relm4/blob/main/CHANGES.md#040---2022-1-16">here</a>.</p>
+<h1 id="where-to-get-started">Where to get started</h1>
+<ul>
+<li>
+<p>⬆️ <strong><a href="https://aaronerhardt.github.io/relm4-book/book/0_2_to_0_4.html">Migration guide</a></strong></p>
+</li>
+<li>
+<p>⭐ <strong><a href="https://github.com/AaronErhardt/relm4">Repository</a></strong></p>
+</li>
+<li>
+<p>📖 <strong><a href="https://aaronerhardt.github.io/relm4-book/book/">Book</a></strong></p>
+</li>
+<li>
+<p>📜 <strong><a href="https://aaronerhardt.github.io/docs/relm4/relm4/">Rust documentation</a></strong></p>
+</li>
+</ul>
+<blockquote>
+<p>Note: As of writing this, the book isn&rsquo;t fully ported to v0.4, but the examples in the repository are always up to date.</p>
+</blockquote>
+<h1 id="special-thanks">Special thanks</h1>
+<p>I highly appreciate feedback and contributions to Relm4 and thank those who helped me with this release:</p>
+<ul>
+<li><a href="https://github.com/euclio">@euclio</a> who contributed many fixes and features</li>
+<li><a href="https://github.com/mskorkowski">@mskorkowski</a> for his contributions and work on <a href="https://github.com/mskorkowski/relm4-store">relm4-store</a></li>
+<li><a href="https://github.com/tronta">@tronta</a> who contributed a lot to the examples and book improvements</li>
+<li>everyone else who gave feedback in the Matrix room or on GitHub</li>
+<li>the whole gtk-rs team for providing awesome Rust bindings for GTK and always being helpful</li>
+</ul>
+]]></content:encoded></item><item><title>Speedrunning GUI development in Rust</title><link>https://relm4.org/blog/posts/gui_speedrun/</link><pubDate>Sun, 05 Dec 2021 00:00:00 +0000</pubDate><guid>https://relm4.org/blog/posts/gui_speedrun/</guid><description>On the evening of the 30th November, I had a few hours to spare and came up with the idea to write a small advent calendar example application for Relm4. There wasn&amp;rsquo;t much time left before the first door of the calendar could be opened and I wanted to stay on schedule, so I had to be very quick with the implementation. That gave me the idea to use this opportunity for a GUI implementation speedrun using Rust.</description><content:encoded><![CDATA[<p>On the evening of the 30th November, I had a few hours to spare and came up with the idea to write a small advent calendar example application for <a href="https://github.com/AaronErhardt/relm4">Relm4</a>.
+There wasn&rsquo;t much time left before the first door of the calendar could be opened and I wanted to stay on schedule, so I had to be very quick with the implementation.
+That gave me the idea to use this opportunity for a GUI implementation speedrun using Rust.
+After all, many wouldn&rsquo;t consider Rust as a good choice for rapid GUI development.</p>
+<blockquote>
+<p>For those who are unfamiliar with advent calendars: Advent is the time before Christmas and during this time, or more precisely from the first of December until Christmas, an advent calendar has a door for each day. Behind each door there&rsquo;s usually a small gift, a quote or something similar. They are quite popular in many countries (at least in Germany) and most often contain sweets or toys. <a href="https://duckduckgo.com/?q=advent+calendar&amp;t=newext&amp;atb=v236-1&amp;iar=images&amp;iax=images&amp;ia=images">Pictures on DuckDuckGo</a>.</p>
+</blockquote>
+<h1 id="figuring-out-the-best-strategy">Figuring out the best strategy</h1>
+<p>Speedrunning is mostly about having the best strategy.
+Being mechanically or physically superior definitely helps in speedruns, too, but strategy has by far the greatest impact.</p>
+<p>I found that looking at GUI development from the perspective of speedrunning is very interesting.
+It made me more aware of the parts where I lost time and also the parts where I was really quick.
+Learning from my mistakes, I think I can improve my strategy in future project and with it my productivity.</p>
+<h2 id="the-plan">The plan</h2>
+<p>Before starting to work on a GUI application, you need to have an idea how the UI should look like. The more precise you know what you want, the easier it will be to implement the UI later.</p>
+<p>For me, it saves a lot of time to have a look at the layout of other applications instead of coming up with with something completely new. In this case I chose a layout from the libadwaita &ldquo;flap&rdquo; demo that has an simple expandable sidebar that allows you to choose the active page, similar to tabs in browser but in a vertical layout.</p>
+<p><img loading="lazy" src="./flap-example.png" alt="libadwaita demo flap example"  />
+</p>
+<h2 id="finding-the-bests-widgets">Finding the bests widgets</h2>
+<p>As I wanted to save time, I made the mistake to just pick widgets that sounded like they were doing the right thing.
+However, I&rsquo;ve realized over the course of the speedrun that there were better and simpler widgets that I could have used.</p>
+<p>For example, I tried using a <a href="https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.ViewSwitcherBar.html">ViewSwitcherBar</a> widget as part of my sidebar.
+Yet, as the name and the documentation suggest, it&rsquo;s only horizontal and not meant to be used in a sidebar.
+This caused me to refactor some part of my UI several times, which cost some time, even though Relm4 makes refactoring the UI very easy and quick.</p>
+<p>This image shows an early version, that has a working side bar, yet it doesn&rsquo;t look properly and isn&rsquo;t really recognizable as sidebar. If I knew before that there was a <a href="https://gtk-rs.org/gtk4-rs/git/docs/gtk4/struct.StackSidebar.html">StackSidebar</a> widget just for this purpose, I had saved a lot of time.</p>
+<p><img loading="lazy" src="./wip-1.png" alt="Work in progress image 1"  />
+</p>
+<p>What I learned from this is to spend a bit more time for selecting the best widget.
+The documentation is always a excellent resource and also the demo applications for GTK4 and libadwaita would have helped me if I had a closer look at them.
+Of course more experience will also help a lot and trying out new things during a speedrun unsurprisingly didn&rsquo;t turn out to be extremely fast.</p>
+<h1 id="shortcuts">Shortcuts</h1>
+<p>Shortcuts are an important part of almost every speedrun in games.
+They can save time from a few milliseconds to several hours.
+The same is true for GUI development.
+Knowing the right tools can significantly speed up your workflow by skipping parts that would usually take more time to complete.</p>
+<h2 id="compiler-errors">Compiler errors</h2>
+<p>A benefit of using Rust I often take for granted is the type system and ownership rules that prevent a lot of bugs at compile time.
+When using VSCode or GNOME Builder, those errors appear almost instantly in the editor before having to compile the code manually.
+This creates a very short feedback loop that allows you to catch and fix errors quickly.</p>
+<h2 id="writing-the-ui-in-pure-rust">Writing the UI in pure Rust</h2>
+<p>Many UI frameworks come with their own UI description language that allows you to specify the UI layout.
+Most commonly, they use a XML-based syntax.</p>
+<p>A feature I really love about Relm4 is that you don&rsquo;t need that. Of course you can use GTK&rsquo;s .ui files if you want, but you can also implement the UI using only Rust code.
+With the <code>relm4-macros</code> crate, you can even use a quite idiomatic syntax for writing your UI that looks very similar to struct definitions.
+This allows a faster and more straight forward connection between UI and application logic and eliminates bugs as everything is checked by the compiler.</p>
+<h2 id="using-the-inspector">Using the inspector</h2>
+<p>This shortcut is a really powerful feature of GTK. By setting the environment variable <code>GTK_DEBUG</code> to <code>interactive</code>, GTK will open programs with the built-in inspector.
+In Bash, for example, this can be done like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export GTK_DEBUG<span style="color:#f92672">=</span>interactive
+</code></pre></div><p>The inspector works very similar to the dev tools in browsers and allows you to find out conveniently why your UI isn&rsquo;t working as expected. You can also modify your UI directly to find the properties you need to adjust in your code.</p>
+<p><img loading="lazy" src="inspector.png" alt="GTK inspector in the libadwaita demo application"  />
+</p>
+<p>Also, you can use this to analyse other GTK programs, especially the GTK4 and libadwaita demo applications.
+If you find an interesting widget there, just open the inspector from their menu and select the widget you want to know more about.
+This makes it easy to find suitable widgets for your applications.</p>
+<h2 id="using-pre-built-components">Using pre-built components</h2>
+<p>The core of Relm4 can be extended with the <code>relm4-components</code> crate.
+It has several pre-built components that integrate nicely into Relm4 and save a lot of time compared to a manual implementation.</p>
+<p>Also <a href="https://gitlab.gnome.org/GNOME/libadwaita">libadwaita</a> provides a lot of really powerful widgets on top GTK4 which saved me a lot of time in my speedrun. And the best part is, that Relm4 and libadwaita work really well together.</p>
+<h2 id="examples">Examples</h2>
+<p>If a game had the option to start with a pre-defined save state that skips the whole intro with all the unnecessary dialogues, I doubt speedrunners wouldn&rsquo;t use that.
+As a developer you wouldn&rsquo;t start from scratch either, but use examples (or code from Stack Overflow 😉) if available.</p>
+<p>Relm4 has over 35 examples to choose from.
+You can use them either as a starting point or to get inspiration for a certain problem.
+In any case, they really save a lot of time.</p>
+<h2 id="faster-builds-with-mold">Faster builds with mold</h2>
+<p>I&rsquo;ve realized that the Rust compiler is actually very fast, especially for incremental builds. Yet every time I recompiled my application, it took roughly 8 seconds to finish because the linker consumed a lot of time.</p>
+<p>With <a href="https://github.com/rui314/mold">mold</a> I was able to reduce my incremental compile times by factor 7 to only about 1.2 second. With this, it&rsquo;s really fun to play with the code of the UI as you can see the result of your changes almost immediately.</p>
+<p>After installing mold, all you need to do is add the prefix <code>mold -run</code> to the command you want to run. Most likely this will be</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mold -run cargo run
+</code></pre></div><h1 id="summary">Summary</h1>
+<p>For me, this was a really fun experience.
+Of course, I was doing this mostly for fun and not for being competitive, but there were a lot of things I learned and I hope you can, too, learn from my experience.</p>
+<p>I think that Rust doesn&rsquo;t deserve its reputation of not being a good choice for UI code.
+Not everything in this post was Rust specific, yet I&rsquo;m confident to say that I was more productive than I would have been in any other language.</p>
+<p>Obligatory, the time of my speedrun was 1 hour and 52 minutes (I didn&rsquo;t mentioned every feature in this article though).</p>
+<h3 id="the-final-result">The final result</h3>
+<p>This is how the result looks like.</p>
+<p><img loading="lazy" src="final.gif" alt="GIF of the final result"  />
+</p>
+<p>If you want to see the code, you can find it <a href="https://github.com/AaronErhardt/relm4/blob/main/relm4-examples/libadwaita/examples/advent_calendar.rs">here</a>. To run it, you can type</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd relm4-examples/libadwaita/
+cargo run --example advent_calendar
+</code></pre></div>]]></content:encoded></item><item><title>Announcing Relm4 v0.2</title><link>https://relm4.org/blog/posts/announcing_relm4_v0.2/</link><pubDate>Sat, 09 Oct 2021 00:00:00 +0000</pubDate><guid>https://relm4.org/blog/posts/announcing_relm4_v0.2/</guid><description>Roughly one month after the first stable release a I&amp;rsquo;m happy to announce the second stable release of Relm4! 🚀🚀🚀
+About Relm4 We believe that GUI development should be easy, productive and delightful.
+The gtk4-rs crate already provides everything you need to write modern, beautiful and cross-platform applications. Built on top of this foundation, Relm4 makes developing more idiomatic, simpler and faster and enables you to become productive in just a few hours.</description><content:encoded><![CDATA[<p>Roughly one month after the first stable release a I&rsquo;m happy to announce the second stable release of Relm4! 🚀🚀🚀</p>
+<h2 id="about-relm4">About Relm4</h2>
+<p>We believe that GUI development should be easy, productive and delightful.<br>
+The <a href="https://github.com/gtk-rs/gtk4-rs">gtk4-rs</a> crate already provides everything you need to write modern, beautiful and cross-platform applications. Built on top of this foundation, Relm4 makes developing more idiomatic, simpler and faster and enables you to become productive in just a few hours.</p>
+<h3 id="whats-new">What&rsquo;s new?</h3>
+<p>Overall there have been a lot of fixes and improvements, most importantly:</p>
+<ul>
+<li>
+<p>Better error messages in the widget macro</p>
+</li>
+<li>
+<p>Widgets and components are now always added in the correct order by the widget macro (<a href="https://github.com/AaronErhardt/relm4/issues/20">#20</a>)</p>
+</li>
+<li>
+<p>Reusable components can now be used multiple times in the same application (thanks to <a href="https://github.com/mskorkowski">mskorkowski</a>)</p>
+</li>
+<li>
+<p>Factories were reworked to better handle TabViews in libadwaita</p>
+</li>
+</ul>
+<p>The full change log can be found <a href="https://github.com/AaronErhardt/relm4/blob/main/CHANGES.md">here</a>. Even though there are a few breaking changes, existing projects should be able to update with no or only minor changes.</p>
+<h2 id="where-to-get-started">Where to get started</h2>
+<p>Relm4 has an outstanding documentation. The official book covers every aspect of Relm4 and is made for everyone from beginners to experts. Also, there a lots of examples that can be found in the repository.</p>
+<ul>
+<li>⭐ <strong><a href="https://github.com/AaronErhardt/relm4">Repository</a></strong></li>
+<li>📖 <strong><a href="https://aaronerhardt.github.io/relm4-book/book/">The Relm4 book</a></strong></li>
+<li>📜 <strong><a href="https://aaronerhardt.github.io/docs/relm4/relm4/">Rust documentation</a></strong></li>
+</ul>
+<h2 id="special-thanks">Special thanks</h2>
+<p>Maintaining an open-source library next to a full time job is quite challenging. All the more I appreciate feedback and contributions to Relm4 and thank those who helped me with this release:</p>
+<ul>
+<li><a href="https://github.com/mskorkowski">mskorkowski</a> who pointed out several issues and also fixed them :)</li>
+<li><a href="https://github.com/tronta">tronta</a> who again contributed a lot to the book and added examples</li>
+<li><a href="https://github.com/maruns">maruns</a>, <a href="https://github.com/bunnegirl">bunnegirl</a> and <a href="https://github.com/a-kenji">a-kenji</a> who provided helpful feedback</li>
+<li>the whole gtk-rs team for providing awesome Rust bindings for GTK and always being helpful</li>
+</ul>
+]]></content:encoded></item><item><title>Announcing Relm4 v0.1</title><link>https://relm4.org/blog/posts/announcing_relm4/</link><pubDate>Mon, 06 Sep 2021 00:00:00 +0000</pubDate><guid>https://relm4.org/blog/posts/announcing_relm4/</guid><description>Roughly one month after the first beta release and countless hours of work I&amp;rsquo;m happy to announce the first stable release of Relm4! 🎉🎉🎉
+About Relm4 Relm4 is an idiomatic GUI library inspired by Elm and based on gtk4-rs. It is a new version of relm that&amp;rsquo;s built from scratch and is compatible with GTK4 and libadwaita. The main goals are productivity, flexibility, simplicity and maintainability.
+Over the last beta releases, the development slowly calmed down up to a point where I&amp;rsquo;m comfortable releasing the first stable version.</description><content:encoded><![CDATA[<p>Roughly one month after the first beta release and countless hours of work I&rsquo;m happy to announce the first stable release of Relm4! 🎉🎉🎉</p>
+<h2 id="about-relm4">About Relm4</h2>
+<p>Relm4 is an idiomatic GUI library inspired by <a href="https://elm-lang.org/">Elm</a> and based on <a href="https://crates.io/crates/gtk4">gtk4-rs</a>.
+It is a new version of <a href="https://github.com/antoyo/relm">relm</a> that&rsquo;s built from scratch and is compatible with <a href="https://www.gtk.org/">GTK4</a> and <a href="https://gitlab.gnome.org/GNOME/libadwaita">libadwaita</a>. The main goals are productivity, flexibility, simplicity and maintainability.</p>
+<p>Over the last beta releases, the development slowly calmed down up to a point where I&rsquo;m comfortable releasing the first stable version. I&rsquo;ve already started porting my existing app I wrote with GTK3 and relm to use GTK4, libadwaita and Relm4 and I was very pleased with the productivity I was able to archive. I believe Relm4 offers a truly outstanding experience for GUI development in Rust.</p>
+<h3 id="whats-new">What&rsquo;s new?</h3>
+<ul>
+<li>Support for <a href="https://gitlab.gnome.org/GNOME/libadwaita">libadwaita</a> was added</li>
+<li>The book is now complete 🎉</li>
+<li>There&rsquo;s a new message handler type for non-blocking IO and other use-cases</li>
+<li>Many reusable components were added</li>
+<li>Lots of other improvements and fixes</li>
+</ul>
+<p>The full change log can be found <a href="https://github.com/AaronErhardt/relm4/blob/main/CHANGES.md">here</a>.</p>
+<h2 id="where-to-get-started">Where to get started</h2>
+<p>Relm4 has an outstanding documentation. The official book covers every aspect of Relm4 and is made for everyone from beginners to experts. Also, there a lots of examples that can be found in the repository.</p>
+<ul>
+<li>⭐ <strong><a href="https://github.com/AaronErhardt/relm4">Repository</a></strong></li>
+<li>📖 <strong><a href="https://aaronerhardt.github.io/relm4-book/book/">Book</a></strong></li>
+<li>📜 <strong><a href="https://aaronerhardt.github.io/docs/relm4/relm4/">Rust documentation</a></strong></li>
+</ul>
+<h2 id="special-thanks">Special thanks</h2>
+<p>I highly appreciate feedback and contributions to Relm4 and thank those who helped me with this release:</p>
+<ul>
+<li><a href="https://github.com/tronta">tronta</a> who contributed <strong>a lot</strong> to the book</li>
+<li><a href="https://github.com/overlisted">overlisted</a>, <a href="https://github.com/bunnegirl">bunnegirl</a> and <a href="https://github.com/maruns">maruns</a> who provided helpful feedback</li>
+<li>the whole gtk-rs team for providing awesome Rust bindings for GTK and always being helpful</li>
+</ul>
+]]></content:encoded></item><item><title>Relm4 beta released 🎉</title><link>https://relm4.org/blog/posts/relm_beta/</link><pubDate>Wed, 11 Aug 2021 00:00:00 +0000</pubDate><guid>https://relm4.org/blog/posts/relm_beta/</guid><description>What&amp;rsquo;s relm? Relm is described on its repository as an &amp;ldquo;idiomatic, GTK+-based, GUI library, inspired by Elm, written in Rust&amp;rdquo; and has more than 2000 GitHub stars and over 36.000 downloads on crates.io.
+When I first started with GUI development in Rust and experimented with gtk-rs I had a rough time because I was completely new to GUI development and GTK. Relm on the other side provided me the examples and structure I needed to get productive in just a couple of hours.</description><content:encoded><![CDATA[<h2 id="whats-relmhttpsgithubcomantoyorelm">What&rsquo;s <a href="https://github.com/antoyo/relm">relm</a>?</h2>
+<p>Relm is described on its repository as an &ldquo;idiomatic, GTK+-based, GUI library, inspired by Elm, written in Rust&rdquo; and has more than 2000 GitHub stars and over 36.000 downloads on <a href="https://crates.io/crates/relm">crates.io</a>.</p>
+<p>When I first started with GUI development in Rust and experimented with <a href="https://github.com/gtk-rs/gtk3-rs">gtk-rs</a> I had a rough time because I was completely new to GUI development and GTK. Relm on the other side provided me the examples and structure I needed to get productive in just a couple of hours. Over the next weeks I continued using relm to work on an application I write at my job and was very pleased with the productivity I was able to archive.</p>
+<p>When GTK4 and a few weeks later <a href="https://github.com/gtk-rs/gtk4-rs">gtk4-rs</a> were released I was eager to use relm with this latest version of GTK to quickly update the dependencies of my application. However, it turned out that relm was not easy to port but it relied on features - most importantly the <a href="https://gtk-rs.org/gtk3-rs/stable/latest/docs/gtk/prelude/trait.ContainerExt.html">ContainerExt trait</a> - that were removed with GTK4.</p>
+<h2 id="the-story-of-relm4">The story of Relm4</h2>
+<p>Naturally, I started thinking about how to solve this issue and get relm working with GTK4. I quickly came up with several ideas and reached out for feedback by the community. Yet while hacking on relm I was quickly overwhelmed by its complexity but slowly realized how the underlying mechanisms worked. With this knowledge I started from scratch with a minimal version of Relm4.</p>
+<p>Over time I added many features and rewrote the core of the library dozens of times to fit all requirements. Many examples were added to test out the new features and to expose limitations.</p>
+<p>Now finally after weeks of work, I&rsquo;m satisfied with the result and released the first beta version of Relm4.</p>
+<h2 id="where-to-get-started">Where to get started</h2>
+<p>I&rsquo;m not going into depth about the changes and the new API in this post but there&rsquo;s a new book I&rsquo;m working on, the docs and a many examples to get started.</p>
+<ul>
+<li><strong><a href="https://github.com/AaronErhardt/relm4">Repository</a></strong></li>
+<li>📖 <strong><a href="https://aaronerhardt.github.io/relm4-book/book/">Book</a></strong></li>
+<li><strong><a href="https://aaronerhardt.github.io/docs/relm4/relm4/">Rust documenation</a></strong></li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>I hope that Relm4 can offer a pleasant experience for new users and those who want to port their existing relm apps to GTK4. I believe that gtk4-rs offers the most complete and mature GUI experience for Rust programmers right now and that Relm4 will help new and experienced users to productively write efficient GUI applications.</p>
+<p>I highly appreciate feedback and contributions on Relm4 and thank those who helped me so far, most importantly <a href="https://github.com/antoyo">antoyo</a>, <a href="https://github.com/MGlolenstine">MGlolenstine</a> and the whole gtk-rs team for providing awesome Rust bindings for GTK.</p>
+]]></content:encoded></item></channel></rss>

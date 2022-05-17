@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["channel","Creates a broadcasting shutdown channel."]],"struct":[["AttachedShutdown","A future attached to a shutdown receiver."],["ShutdownReceiver","Listens to shutdown signals and constructs shutdown futures."],["ShutdownSender","Sends shutdown signals to receivers."]]});

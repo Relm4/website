@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["BufferedRng","A buffered wrapper for any [Rng] implementation. It will keep unused bytes from the last call to [`Rng::rand`], and use them for subsequent randomness if needed, rather than throwing them away."]]});

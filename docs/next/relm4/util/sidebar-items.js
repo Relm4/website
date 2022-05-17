@@ -1,0 +1,1 @@
+initSidebarItems({"trait":[["WidgetPlus","Trait that extends [`gtk::prelude::WidgetExt`]."],["WidgetRef","Get a reference to a widget."]]});
