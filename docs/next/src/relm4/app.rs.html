@@ -5,7 +5,9 @@
     <nav class="sidebar"><a class="sidebar-logo" href="../../relm4/index.html"><div class="logo-container">
                     <img src="https://raw.githubusercontent.com/AaronErhardt/relm4/main/assets/Relm_logo.svg" alt="logo"></div>
         </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../relm4/index.html">
-                        <img src="https://raw.githubusercontent.com/AaronErhardt/relm4/main/assets/Relm_logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+                        <img src="https://raw.githubusercontent.com/AaronErhardt/relm4/main/assets/Relm_logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><div id="settings-menu" tabindex="-1">
+                                <a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div>
+                        </div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -72,10 +74,17 @@
 <span id="65">65</span>
 <span id="66">66</span>
 <span id="67">67</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">gtk::prelude</span>::{<span class="ident">ApplicationExt</span>, <span class="ident">ApplicationExtManual</span>, <span class="ident">GtkApplicationExt</span>, <span class="ident">IsA</span>, <span class="ident">WidgetExt</span>};
+<span id="68">68</span>
+<span id="69">69</span>
+<span id="70">70</span>
+<span id="71">71</span>
+<span id="72">72</span>
+<span id="73">73</span>
+</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">gtk::prelude</span>::{<span class="ident">ApplicationExt</span>, <span class="ident">ApplicationExtManual</span>, <span class="ident">Cast</span>, <span class="ident">GtkApplicationExt</span>, <span class="ident">IsA</span>, <span class="ident">WidgetExt</span>};
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::component::Component</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::component::ComponentController</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Application</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ComponentBuilder</span>;
 
 <span class="doccomment">/// An app that runs the main application.</span>
@@ -83,9 +92,12 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">RelmApp</span><span class="op">&lt;</span><span class="ident">C</span>: <span class="ident">Component</span><span class="op">&gt;</span> {
     <span class="ident">bridge</span>: <span class="ident">ComponentBuilder</span><span class="op">&lt;</span><span class="ident">C</span><span class="op">&gt;</span>,
 
-    <span class="doccomment">/// The [`gtk::Application`] that&#39;s used internally to setup</span>
+    <span class="doccomment">/// The application that&#39;s used internally to setup</span>
     <span class="doccomment">/// and run the application.</span>
-    <span class="kw">pub</span> <span class="ident">app</span>: <span class="ident">gtk::Application</span>,
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Depending on your feature flag this is either</span>
+    <span class="doccomment">/// [`gtk::Application`] or [`adw::Application`].</span>
+    <span class="kw">pub</span> <span class="ident">app</span>: <span class="ident">Application</span>,
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">C</span>: <span class="ident">Component</span><span class="op">&gt;</span> <span class="ident">RelmApp</span><span class="op">&lt;</span><span class="ident">C</span><span class="op">&gt;</span>
@@ -94,31 +106,33 @@
 {
     <span class="doccomment">/// Create a Relm4 application.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">app_id</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident">gtk::init</span>().<span class="ident">expect</span>(<span class="string">&quot;Couldn&#39;t initialize GTK&quot;</span>);
+        <span class="kw">let</span> <span class="ident">app</span> <span class="op">=</span> <span class="ident">Application::builder</span>().<span class="ident">application_id</span>(<span class="ident">app_id</span>).<span class="ident">build</span>();
 
-        <span class="kw">let</span> <span class="ident">app</span> <span class="op">=</span> <span class="ident">gtk::Application::builder</span>().<span class="ident">application_id</span>(<span class="ident">app_id</span>).<span class="ident">build</span>();
+        <span class="ident"><span class="self">Self</span>::with_app</span>(<span class="ident">app</span>)
+    }
+
+    <span class="doccomment">/// Create a Relm4 application.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_app</span>(<span class="ident">app</span>: <span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Application</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Cast</span>) -&gt; <span class="self">Self</span> {
+        <span class="ident">gtk::init</span>().<span class="ident">unwrap</span>();
+
+        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;libadwaita&quot;</span>)]</span>
+        <span class="ident">adw::init</span>();
 
         <span class="kw">let</span> <span class="ident">bridge</span> <span class="op">=</span> <span class="ident">ComponentBuilder</span>::<span class="op">&lt;</span><span class="ident">C</span><span class="op">&gt;</span><span class="ident">::new</span>();
 
-        <span class="self">Self</span> { <span class="ident">bridge</span>, <span class="ident">app</span> }
+        <span class="self">Self</span> {
+            <span class="ident">bridge</span>,
+            <span class="ident">app</span>: <span class="ident">app</span>.<span class="ident">upcast</span>(),
+        }
     }
 
     <span class="doccomment">/// Runs the application, returns once the application is closed.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Unlike [`gtk::Application::run`], this function</span>
+    <span class="doccomment">/// Unlike [`gtk::prelude::ApplicationExtManual::run`], this function</span>
     <span class="doccomment">/// does not handle command-line arguments. To pass arguments to GTK, use</span>
     <span class="doccomment">/// [`RelmApp::run_with_args`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">run</span>(<span class="self">self</span>, <span class="ident">payload</span>: <span class="ident">C::InitParams</span>) {
-        <span class="kw">let</span> <span class="ident">RelmApp</span> { <span class="ident">bridge</span>, <span class="ident">app</span> } <span class="op">=</span> <span class="self">self</span>;
-        <span class="kw">let</span> <span class="ident">controller</span> <span class="op">=</span> <span class="ident">bridge</span>.<span class="ident">launch</span>(<span class="ident">payload</span>).<span class="ident">detach</span>();
-        <span class="kw">let</span> <span class="ident">window</span> <span class="op">=</span> <span class="ident">controller</span>.<span class="ident">widget</span>().<span class="ident">clone</span>();
-
-        <span class="ident">app</span>.<span class="ident">connect_activate</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">app</span><span class="op">|</span> {
-            <span class="ident">app</span>.<span class="ident">add_window</span>(<span class="kw-2">&amp;</span><span class="ident">window</span>);
-            <span class="ident">window</span>.<span class="ident">show</span>();
-        });
-
-        <span class="ident">app</span>.<span class="ident">run_with_args</span>::<span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span>[]);
+        <span class="self">self</span>.<span class="ident">run_with_args</span>::<span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>(<span class="ident">payload</span>, <span class="kw-2">&amp;</span>[]);
     }
 
     <span class="doccomment">/// Runs the application with the provided command-line arguments, returns once the application</span>
@@ -132,7 +146,7 @@
         <span class="kw">let</span> <span class="ident">window</span> <span class="op">=</span> <span class="ident">controller</span>.<span class="ident">widget</span>().<span class="ident">clone</span>();
 
         <span class="ident">app</span>.<span class="ident">connect_activate</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">app</span><span class="op">|</span> {
-            <span class="ident">app</span>.<span class="ident">add_window</span>(<span class="kw-2">&amp;</span><span class="ident">window</span>);
+            <span class="ident">app</span>.<span class="ident">add_window</span>(<span class="ident">window</span>.<span class="ident">as_ref</span>());
             <span class="ident">window</span>.<span class="ident">show</span>();
         });
 
@@ -140,5 +154,5 @@
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="relm4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (30f386087 2022-05-05)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="relm4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (c06728704 2022-05-19)" ></div>
 </body></html>

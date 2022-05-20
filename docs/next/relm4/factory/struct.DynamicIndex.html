@@ -1,87 +1,29 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="A dynamic index that updates automatically when items are shifted inside a [`Factory`]."><meta name="keywords" content="rust, rustlang, rust-lang, DynamicIndex"><title>DynamicIndex in relm4::factory - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../scrape-examples.js"></script>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="A dynamic index that updates automatically when items are shifted inside a factory container."><meta name="keywords" content="rust, rustlang, rust-lang, DynamicIndex"><title>DynamicIndex in relm4::factory - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../scrape-examples.js"></script>
     <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" href="https://raw.githubusercontent.com/AaronErhardt/relm4/main/assets/Relm_logo.svg"></head><body class="rustdoc struct"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../relm4/index.html"><div class="logo-container"><img src="https://raw.githubusercontent.com/AaronErhardt/relm4/main/assets/Relm_logo.svg" alt="logo"></div>
         </a><h2 class="location"></h2>
     </nav>
     <nav class="sidebar"><a class="sidebar-logo" href="../../relm4/index.html"><div class="logo-container">
                     <img src="https://raw.githubusercontent.com/AaronErhardt/relm4/main/assets/Relm_logo.svg" alt="logo"></div>
         </a><h2 class="location"><a href="#">DynamicIndex</a></h2><div class="sidebar-elems"><section><div class="block"><h3 class="sidebar-title"><a href="#implementations">Methods</a></h3><ul><li><a href="#method.current_index">current_index</a></li></ul></div><div class="block"><h3 class="sidebar-title"><a href="#trait-implementations">Trait Implementations</a></h3><ul><li><a href="#impl-Clone">Clone</a></li><li><a href="#impl-Debug">Debug</a></li><li><a href="#impl-Eq">Eq</a></li><li><a href="#impl-PartialEq%3CDynamicIndex%3E">PartialEq&lt;DynamicIndex&gt;</a></li></ul></div><div class="block"><h3 class="sidebar-title"><a href="#synthetic-implementations">Auto Trait Implementations</a></h3><ul><li><a href="#impl-RefUnwindSafe">RefUnwindSafe</a></li><li><a href="#impl-Send">Send</a></li><li><a href="#impl-Sync">Sync</a></li><li><a href="#impl-Unpin">Unpin</a></li><li><a href="#impl-UnwindSafe">UnwindSafe</a></li></ul></div><div class="block"><h3 class="sidebar-title"><a href="#blanket-implementations">Blanket Implementations</a></h3><ul><li><a href="#impl-Any">Any</a></li><li><a href="#impl-Borrow%3CT%3E">Borrow&lt;T&gt;</a></li><li><a href="#impl-BorrowMut%3CT%3E">BorrowMut&lt;T&gt;</a></li><li><a href="#impl-From%3CT%3E">From&lt;T&gt;</a></li><li><a href="#impl-Into%3CU%3E">Into&lt;U&gt;</a></li><li><a href="#impl-Position%3C()%3E">Position&lt;()&gt;</a></li><li><a href="#impl-ToOwned">ToOwned</a></li><li><a href="#impl-TryFrom%3CU%3E">TryFrom&lt;U&gt;</a></li><li><a href="#impl-TryInto%3CU%3E">TryInto&lt;U&gt;</a></li></ul></div></section><h2 class="location"><a href="index.html">In relm4::factory</a></h2><div id="sidebar-vars" data-name="DynamicIndex" data-ty="struct" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../relm4/index.html">
-                        <img src="https://raw.githubusercontent.com/AaronErhardt/relm4/main/assets/Relm_logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
-    <h1 class="fqn"><span class="in-band">Struct <a href="../index.html">relm4</a>::<wbr><a href="index.html">factory</a>::<wbr><a class="struct" href="#">DynamicIndex</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../../src/relm4/factory/dynamic_index.rs.html#22-24">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><div class="docblock item-decl"><pre class="rust struct"><code>pub struct DynamicIndex { /* private fields */ }</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>A dynamic index that updates automatically when items are shifted inside a [<code>Factory</code>].</p>
-<p>For example a <a href="struct.FactoryVecDeque.html"><code>FactoryVecDeque</code></a> has an <a href="struct.FactoryVecDeque.html#method.insert"><code>insert</code></a>
+                        <img src="https://raw.githubusercontent.com/AaronErhardt/relm4/main/assets/Relm_logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><div id="settings-menu" tabindex="-1">
+                                <a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div>
+                        </div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
+    <h1 class="fqn"><span class="in-band">Struct <a href="../index.html">relm4</a>::<wbr><a href="index.html">factory</a>::<wbr><a class="struct" href="#">DynamicIndex</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../../src/relm4/factory/dynamic_index.rs.html#22-24">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><div class="docblock item-decl"><pre class="rust struct"><code>pub struct DynamicIndex { /* private fields */ }</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>A dynamic index that updates automatically when items are shifted inside a factory container.</p>
+<p>For example a <a href="collections/struct.FactoryVecDeque.html"><code>FactoryVecDeque</code></a> has an <a href="collections/struct.FactoryVecDeque.html#method.insert"><code>insert</code></a>
 method that allows users to insert data at arbitrary positions.
 If we insert at the front all following widgets will be moved by one which would
 invalidate their indices.
-To allow widgets in a [<code>Factory</code>] to still send messages with valid indices
+To allow widgets in a factory container to send messages with valid indices
 this type ensures that the indices is always up to date.</p>
 <p>Never send an index as <a href="https://doc.rust-lang.org/nightly/std/primitive.usize.html" title="usize"><code>usize</code></a> but always as <a href="struct.DynamicIndex.html" title="DynamicIndex"><code>DynamicIndex</code></a>
 to the update function because messages can be queued up and stale by the time they are handled.</p>
-<p><a href="struct.DynamicIndex.html" title="DynamicIndex"><code>DynamicIndex</code></a> is a smart pointer so cloning will work similar to [<code>Rc</code>] and will create
+<p><a href="struct.DynamicIndex.html" title="DynamicIndex"><code>DynamicIndex</code></a> is a smart pointer so cloning will work similar to <a href="https://doc.rust-lang.org/nightly/alloc/rc/struct.Rc.html" title="std::rc::Rc"><code>std::rc::Rc</code></a> and will create
 a pointer to the same data.</p>
 <p>In short: only call <a href="struct.DynamicIndex.html#method.current_index"><code>current_index</code></a> from the update function
 where you actually need the index as <a href="https://doc.rust-lang.org/nightly/std/primitive.usize.html" title="usize"><code>usize</code></a>.</p>
 </div></details><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><div id="implementations-list"><details class="rustdoc-toggle implementors-toggle" open><summary><section id="impl" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../../src/relm4/factory/dynamic_index.rs.html#42-74">source</a></span><a href="#impl" class="anchor"></a><h3 class="code-header in-band">impl <a class="struct" href="struct.DynamicIndex.html" title="struct relm4::factory::DynamicIndex">DynamicIndex</a></h3></section></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><section id="method.current_index" class="method has-srclink"><span class="rightside"><a class="srclink" href="../../src/relm4/factory/dynamic_index.rs.html#46-48">source</a></span><a href="#method.current_index" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.current_index" class="fnname">current_index</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a></h4></section></summary><div class="docblock"><p>Get the current index number.</p>
-<p>This value is updated by the [<code>Factory</code>] and might change after each update function.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[10,10],&quot;../../src/factory/factory.rs.html#248&quot;,&quot;line 248&quot;],[[13,13],&quot;../../src/factory/factory.rs.html#251&quot;,&quot;line 251&quot;],[[21,21],&quot;../../src/factory/factory.rs.html#259&quot;,&quot;line 259&quot;]]"><div class="scraped-example-title">examples/factory.rs (<a href="../../src/factory/factory.rs.html#248">line 248</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>238</span>
-<span>239</span>
-<span>240</span>
-<span>241</span>
-<span>242</span>
-<span>243</span>
-<span>244</span>
-<span>245</span>
-<span>246</span>
-<span>247</span>
-<span>248</span>
-<span>249</span>
-<span>250</span>
-<span>251</span>
-<span>252</span>
-<span>253</span>
-<span>254</span>
-<span>255</span>
-<span>256</span>
-<span>257</span>
-<span>258</span>
-<span>259</span>
-<span>260</span>
-<span>261</span>
-<span>262</span>
-<span>263</span>
-<span>264</span>
-<span>265</span>
-<span>266</span>
-<span>267</span>
-</pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident"><span class="self">Self</span>::Input</span>, <span class="ident">_sender</span>: <span class="kw-2">&amp;</span><span class="ident">ComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
-        <span class="kw">match</span> <span class="ident">msg</span> {
-            <span class="ident">AppMsg::AddCounter</span> =&gt; {
-                <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">push_back</span>(<span class="self">self</span>.<span class="ident">created_widgets</span>);
-                <span class="self">self</span>.<span class="ident">created_widgets</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">created_widgets</span>.<span class="ident">wrapping_add</span>(<span class="number">1</span>);
-            }
-            <span class="ident">AppMsg::RemoveCounter</span> =&gt; {
-                <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">pop_back</span>();
-            }
-            <span class="ident">AppMsg::SendFront</span>(<span class="ident">index</span>) =&gt; {
-                <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">move_front</span>(<span class="ident">index</span>.<span class="highlight focus"><span class="ident">current_index</span></span>());
-            }
-            <span class="ident">AppMsg::MoveDown</span>(<span class="ident">index</span>) =&gt; {
-                <span class="kw">let</span> <span class="ident">index</span> <span class="op">=</span> <span class="ident">index</span>.<span class="highlight"><span class="ident">current_index</span></span>();
-                <span class="kw">let</span> <span class="ident">new_index</span> <span class="op">=</span> <span class="ident">index</span> <span class="op">+</span> <span class="number">1</span>;
-                <span class="comment">// Already at the end?</span>
-                <span class="kw">if</span> <span class="ident">new_index</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">len</span>() {
-                    <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">move_to</span>(<span class="ident">index</span>, <span class="ident">new_index</span>);
-                }
-            }
-            <span class="ident">AppMsg::MoveUp</span>(<span class="ident">index</span>) =&gt; {
-                <span class="kw">let</span> <span class="ident">index</span> <span class="op">=</span> <span class="ident">index</span>.<span class="highlight"><span class="ident">current_index</span></span>();
-                <span class="comment">// Already at the start?</span>
-                <span class="kw">if</span> <span class="ident">index</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-                    <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">move_to</span>(<span class="ident">index</span>, <span class="ident">index</span> <span class="op">-</span> <span class="number">1</span>);
-                }
-            }
-        }
-        <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">render_changes</span>();
-    }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[10,10],&quot;../../src/grid_factory/grid_factory.rs.html#262&quot;,&quot;line 262&quot;],[[13,13],&quot;../../src/grid_factory/grid_factory.rs.html#265&quot;,&quot;line 265&quot;],[[21,21],&quot;../../src/grid_factory/grid_factory.rs.html#273&quot;,&quot;line 273&quot;]]"><div class="scraped-example-title">examples/grid_factory.rs (<a href="../../src/grid_factory/grid_factory.rs.html#262">line 262</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>252</span>
+<p>This value is updated by the factory container and might change after each update function.</p>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[10,10],&quot;../../src/grid_factory/grid_factory.rs.html#262&quot;,&quot;line 262&quot;],[[13,13],&quot;../../src/grid_factory/grid_factory.rs.html#265&quot;,&quot;line 265&quot;],[[21,21],&quot;../../src/grid_factory/grid_factory.rs.html#273&quot;,&quot;line 273&quot;]]"><div class="scraped-example-title">examples/grid_factory.rs (<a href="../../src/grid_factory/grid_factory.rs.html#262">line 262</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>252</span>
 <span>253</span>
 <span>254</span>
 <span>255</span>
@@ -139,6 +81,68 @@ where you actually need the index as <a href="https://doc.rust-lang.org/nightly/
                 }
             }
         }
+        <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">render_changes</span>();
+    }</code></pre></div>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[10,10],&quot;../../src/factory/factory.rs.html#248&quot;,&quot;line 248&quot;],[[13,13],&quot;../../src/factory/factory.rs.html#251&quot;,&quot;line 251&quot;],[[21,21],&quot;../../src/factory/factory.rs.html#259&quot;,&quot;line 259&quot;]]"><div class="scraped-example-title">examples/factory.rs (<a href="../../src/factory/factory.rs.html#248">line 248</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>238</span>
+<span>239</span>
+<span>240</span>
+<span>241</span>
+<span>242</span>
+<span>243</span>
+<span>244</span>
+<span>245</span>
+<span>246</span>
+<span>247</span>
+<span>248</span>
+<span>249</span>
+<span>250</span>
+<span>251</span>
+<span>252</span>
+<span>253</span>
+<span>254</span>
+<span>255</span>
+<span>256</span>
+<span>257</span>
+<span>258</span>
+<span>259</span>
+<span>260</span>
+<span>261</span>
+<span>262</span>
+<span>263</span>
+<span>264</span>
+<span>265</span>
+<span>266</span>
+<span>267</span>
+<span>268</span>
+</pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident"><span class="self">Self</span>::Input</span>, <span class="ident">_sender</span>: <span class="kw-2">&amp;</span><span class="ident">ComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
+        <span class="kw">match</span> <span class="ident">msg</span> {
+            <span class="ident">AppMsg::AddCounter</span> =&gt; {
+                <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">push_back</span>(<span class="self">self</span>.<span class="ident">created_widgets</span>);
+                <span class="self">self</span>.<span class="ident">created_widgets</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">created_widgets</span>.<span class="ident">wrapping_add</span>(<span class="number">1</span>);
+            }
+            <span class="ident">AppMsg::RemoveCounter</span> =&gt; {
+                <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">pop_back</span>();
+            }
+            <span class="ident">AppMsg::SendFront</span>(<span class="ident">index</span>) =&gt; {
+                <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">move_front</span>(<span class="ident">index</span>.<span class="highlight focus"><span class="ident">current_index</span></span>());
+            }
+            <span class="ident">AppMsg::MoveDown</span>(<span class="ident">index</span>) =&gt; {
+                <span class="kw">let</span> <span class="ident">index</span> <span class="op">=</span> <span class="ident">index</span>.<span class="highlight"><span class="ident">current_index</span></span>();
+                <span class="kw">let</span> <span class="ident">new_index</span> <span class="op">=</span> <span class="ident">index</span> <span class="op">+</span> <span class="number">1</span>;
+                <span class="comment">// Already at the end?</span>
+                <span class="kw">if</span> <span class="ident">new_index</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">len</span>() {
+                    <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">move_to</span>(<span class="ident">index</span>, <span class="ident">new_index</span>);
+                }
+            }
+            <span class="ident">AppMsg::MoveUp</span>(<span class="ident">index</span>) =&gt; {
+                <span class="kw">let</span> <span class="ident">index</span> <span class="op">=</span> <span class="ident">index</span>.<span class="highlight"><span class="ident">current_index</span></span>();
+                <span class="comment">// Already at the start?</span>
+                <span class="kw">if</span> <span class="ident">index</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
+                    <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">move_to</span>(<span class="ident">index</span>, <span class="ident">index</span> <span class="op">-</span> <span class="number">1</span>);
+                }
+            }
+        }
+
         <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">render_changes</span>();
     }</code></pre></div>
 </div></div><div class="scraped-example " data-locs="[[[11,11],&quot;../../src/tab_factory/tab_factory.rs.html#255&quot;,&quot;line 255&quot;],[[14,14],&quot;../../src/tab_factory/tab_factory.rs.html#258&quot;,&quot;line 258&quot;],[[22,22],&quot;../../src/tab_factory/tab_factory.rs.html#266&quot;,&quot;line 266&quot;]]"><div class="scraped-example-title">examples/libadwaita/tab_factory.rs (<a href="../../src/tab_factory/tab_factory.rs.html#255">line 255</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>244</span>
@@ -236,5 +240,5 @@ by <code>==</code>. <a href="https://doc.rust-lang.org/nightly/core/cmp/trait.Pa
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.try_from" class="method trait-impl has-srclink"><span class="rightside"><span class="since" title="const unstable">const: <a href="https://github.com/rust-lang/rust/issues/88674" title="Tracking issue for const_convert">unstable</a></span> · <a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#604">source</a></span><a href="#method.try_from" class="anchor"></a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#tymethod.try_from" class="fnname">try_from</a>(value: U) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;T, &lt;T as <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;U&gt;&gt;::<a class="associatedtype" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#associatedtype.Error" title="type core::convert::TryFrom::Error">Error</a>&gt;</h4></section></summary><div class='docblock'><p>Performs the conversion.</p>
 </div></details></div></details><details class="rustdoc-toggle implementors-toggle"><summary><section id="impl-TryInto%3CU%3E" class="impl has-srclink"><span class="rightside"><a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#583-592">source</a></span><a href="#impl-TryInto%3CU%3E" class="anchor"></a><h3 class="code-header in-band">impl&lt;T, U&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryInto.html" title="trait core::convert::TryInto">TryInto</a>&lt;U&gt; for T <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;U: <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;T&gt;,&nbsp;</span></h3></section></summary><div class="impl-items"><details class="rustdoc-toggle" open><summary><section id="associatedtype.Error-1" class="associatedtype trait-impl has-srclink"><a href="#associatedtype.Error-1" class="anchor"></a><h4 class="code-header">type <a href="https://doc.rust-lang.org/nightly/core/convert/trait.TryInto.html#associatedtype.Error" class="associatedtype">Error</a> = &lt;U as <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;T&gt;&gt;::<a class="associatedtype" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#associatedtype.Error" title="type core::convert::TryFrom::Error">Error</a></h4></section></summary><div class='docblock'><p>The type returned in the event of a conversion error.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.try_into" class="method trait-impl has-srclink"><span class="rightside"><span class="since" title="const unstable">const: <a href="https://github.com/rust-lang/rust/issues/88674" title="Tracking issue for const_convert">unstable</a></span> · <a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#589">source</a></span><a href="#method.try_into" class="anchor"></a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/convert/trait.TryInto.html#tymethod.try_into" class="fnname">try_into</a>(self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;U, &lt;U as <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;T&gt;&gt;::<a class="associatedtype" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#associatedtype.Error" title="type core::convert::TryFrom::Error">Error</a>&gt;</h4></section></summary><div class='docblock'><p>Performs the conversion.</p>
-</div></details></div></details></div></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="relm4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (30f386087 2022-05-05)" ></div>
+</div></details></div></details></div></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="relm4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (c06728704 2022-05-19)" ></div>
 </body></html>

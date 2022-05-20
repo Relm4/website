@@ -3,7 +3,9 @@
         </a><h2 class="location"></h2>
     </nav>
     <nav class="sidebar"><a class="sidebar-logo" href="../../factory/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
-        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../factory/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../factory/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><div id="settings-menu" tabindex="-1">
+                                <a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div>
+                        </div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -276,6 +278,7 @@
 <span id="271">271</span>
 <span id="272">272</span>
 <span id="273">273</span>
+<span id="274">274</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">gtk::prelude</span>::{<span class="ident">BoxExt</span>, <span class="ident">ButtonExt</span>, <span class="ident">GtkWindowExt</span>, <span class="ident">OrientableExt</span>};
 <span class="kw">use</span> <span class="ident">relm4</span>::{
     <span class="ident">factory</span>::{<span class="ident">DynamicIndex</span>, <span class="ident">FactoryComponent</span>, <span class="ident">FactoryVecDeque</span>},
@@ -323,7 +326,7 @@
         })
     }
 
-    <span class="kw">fn</span> <span class="ident">init_root</span>() -&gt; <span class="ident"><span class="self">Self</span>::Root</span> {
+    <span class="kw">fn</span> <span class="ident">init_root</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident"><span class="self">Self</span>::Root</span> {
         <span class="macro">relm4::view!</span> {
             <span class="ident">root</span> <span class="op">=</span> <span class="ident">gtk::Box</span> {
                 <span class="ident">set_orientation</span>: <span class="ident">gtk::Orientation::Horizontal</span>,
@@ -541,6 +544,7 @@
                 }
             }
         }
+
         <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">render_changes</span>();
     }
 }
@@ -550,5 +554,5 @@
     <span class="ident">app</span>.<span class="ident">run</span>(<span class="number">0</span>);
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="factory" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (30f386087 2022-05-05)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="factory" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (c06728704 2022-05-19)" ></div>
 </body></html>

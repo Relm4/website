@@ -1,9 +1,11 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/github/home/.cargo/git/checkouts/gtk-rs-core-7be42ca38bd6361c/cde38a9/cairo/src/font/font_face.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>font_face.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/github/home/.cargo/git/checkouts/gtk-rs-core-7be42ca38bd6361c/47aba36/cairo/src/font/font_face.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>font_face.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script>
     <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../cairo/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
         </a><h2 class="location"></h2>
     </nav>
     <nav class="sidebar"><a class="sidebar-logo" href="../../../cairo/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
-        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../cairo/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../cairo/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><div id="settings-menu" tabindex="-1">
+                                <a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div>
+                        </div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -219,6 +221,15 @@
 <span id="214">214</span>
 <span id="215">215</span>
 <span id="216">216</span>
+<span id="217">217</span>
+<span id="218">218</span>
+<span id="219">219</span>
+<span id="220">220</span>
+<span id="221">221</span>
+<span id="222">222</span>
+<span id="223">223</span>
+<span id="224">224</span>
+<span id="225">225</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;use_glib&quot;</span>)]</span>
@@ -226,6 +237,8 @@
 <span class="kw">use</span> <span class="ident">std::ffi</span>::{<span class="ident">CStr</span>, <span class="ident">CString</span>};
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;use_glib&quot;</span>))]</span>
 <span class="kw">use</span> <span class="ident">std::ptr</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;freetype&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+<span class="kw">use</span> <span class="ident">std::rc::Rc</span>;
 
 <span class="kw">use</span> <span class="kw">crate</span>::{
     <span class="ident">enums</span>::{<span class="ident">FontSlant</span>, <span class="ident">FontType</span>, <span class="ident">FontWeight</span>},
@@ -236,6 +249,9 @@
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::enums::FtSynthesize</span>;
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::utils::status_to_result</span>;
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;freetype&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+<span class="kw">static</span> <span class="ident">FT_FACE_KEY</span>: <span class="ident"><span class="kw">crate</span>::UserDataKey</span><span class="op">&lt;</span><span class="ident">freetype::face::Face</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::UserDataKey::new</span>();
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;use_glib&quot;</span>)]</span>
 <span class="macro">glib::wrapper!</span> {
@@ -278,21 +294,22 @@
 
     <span class="comment">// rustdoc-stripper-ignore-next</span>
     <span class="doccomment">/// Creates a new font face for the FreeType backend from an already opened FreeType face.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Safety</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The`FT_Face` must be valid and not be freed until the last reference to the</span>
-    <span class="doccomment">/// `FontFace` is dropped.</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;freetype&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;cairo_ft_font_face_create_for_ft_face&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">create_from_ft</span>(
-        <span class="ident">face</span>: <span class="ident">freetype_crate::freetype::FT_Face</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">FontFace</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">font_face</span> <span class="op">=</span> <span class="ident">FontFace::from_raw_full</span>(<span class="ident">ffi::cairo_ft_font_face_create_for_ft_face</span>(
-            <span class="ident">face</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>,
-            <span class="number">0</span>,
-        ));
-        <span class="kw">let</span> <span class="ident">status</span> <span class="op">=</span> <span class="ident">ffi::cairo_font_face_status</span>(<span class="ident">font_face</span>.<span class="ident">to_raw_none</span>());
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_from_ft</span>(<span class="ident">face</span>: <span class="kw-2">&amp;</span><span class="ident">freetype::face::Face</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">FontFace</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+        <span class="comment">// Increase reference count of `FT_Face`.</span>
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">face</span> <span class="op">=</span> <span class="ident">face</span>.<span class="ident">clone</span>();
+
+        <span class="comment">// SAFETY: The user data entry keeps `freetype::face::Face` alive</span>
+        <span class="comment">// until the FontFace is dropped.</span>
+        <span class="kw">let</span> <span class="ident">font_face</span> <span class="op">=</span> <span class="kw">unsafe</span> {
+            <span class="ident">FontFace::from_raw_full</span>(<span class="ident">ffi::cairo_ft_font_face_create_for_ft_face</span>(
+                <span class="ident">face</span>.<span class="ident">raw_mut</span>() <span class="kw">as</span> <span class="ident">freetype::ffi::FT_Face</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>,
+                <span class="number">0</span>,
+            ))
+        };
+        <span class="ident">font_face</span>.<span class="ident">set_user_data</span>(<span class="kw-2">&amp;</span><span class="ident">FT_FACE_KEY</span>, <span class="ident">Rc::new</span>(<span class="ident">face</span>))<span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="ident">status</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">ffi::cairo_font_face_status</span>(<span class="ident">font_face</span>.<span class="ident">to_raw_none</span>()) };
         <span class="ident">status_to_result</span>(<span class="ident">status</span>)<span class="question-mark">?</span>;
 
         <span class="prelude-val">Ok</span>(<span class="ident">font_face</span>)
@@ -301,22 +318,25 @@
     <span class="comment">// rustdoc-stripper-ignore-next</span>
     <span class="doccomment">/// Creates a new font face for the FreeType backend from an already opened FreeType face,</span>
     <span class="doccomment">/// additionally allowing you to pass flags to the underlying C API.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Safety</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The `FT_Face` must be valid and not be freed until the last reference to the</span>
-    <span class="doccomment">/// `FontFace` is dropped.</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;freetype&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;cairo_ft_font_face_create_for_ft_face&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">create_from_ft_with_flags</span>(
-        <span class="ident">face</span>: <span class="ident">freetype_crate::freetype::FT_Face</span>,
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_from_ft_with_flags</span>(
+        <span class="ident">face</span>: <span class="kw-2">&amp;</span><span class="ident">freetype::face::Face</span>,
         <span class="ident">load_flags</span>: <span class="ident">libc::c_int</span>,
     ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">FontFace</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">font_face</span> <span class="op">=</span> <span class="ident">FontFace::from_raw_full</span>(<span class="ident">ffi::cairo_ft_font_face_create_for_ft_face</span>(
-            <span class="ident">face</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>,
-            <span class="ident">load_flags</span>,
-        ));
-        <span class="kw">let</span> <span class="ident">status</span> <span class="op">=</span> <span class="ident">ffi::cairo_font_face_status</span>(<span class="ident">font_face</span>.<span class="ident">to_raw_none</span>());
+        <span class="comment">// Increase reference count of `FT_Face`.</span>
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">face</span> <span class="op">=</span> <span class="ident">face</span>.<span class="ident">clone</span>();
+
+        <span class="comment">// SAFETY: The user data entry keeps `freetype::face::Face` alive</span>
+        <span class="comment">// until the FontFace is dropped.</span>
+        <span class="kw">let</span> <span class="ident">font_face</span> <span class="op">=</span> <span class="kw">unsafe</span> {
+            <span class="ident">FontFace::from_raw_full</span>(<span class="ident">ffi::cairo_ft_font_face_create_for_ft_face</span>(
+                <span class="ident">face</span>.<span class="ident">raw_mut</span>() <span class="kw">as</span> <span class="ident">freetype::ffi::FT_Face</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>,
+                <span class="ident">load_flags</span>,
+            ))
+        };
+        <span class="ident">font_face</span>.<span class="ident">set_user_data</span>(<span class="kw-2">&amp;</span><span class="ident">FT_FACE_KEY</span>, <span class="ident">Rc::new</span>(<span class="ident">face</span>))<span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="ident">status</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">ffi::cairo_font_face_status</span>(<span class="ident">font_face</span>.<span class="ident">to_raw_none</span>()) };
         <span class="ident">status_to_result</span>(<span class="ident">status</span>)<span class="question-mark">?</span>;
 
         <span class="prelude-val">Ok</span>(<span class="ident">font_face</span>)
@@ -436,5 +456,5 @@
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="cairo" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (30f386087 2022-05-05)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="cairo" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (c06728704 2022-05-19)" ></div>
 </body></html>

@@ -1,9 +1,11 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/github/home/.cargo/git/checkouts/gtk-rs-core-7be42ca38bd6361c/cde38a9/glib/src/variant_type.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>variant_type.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/github/home/.cargo/git/checkouts/gtk-rs-core-7be42ca38bd6361c/47aba36/glib/src/variant_type.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>variant_type.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
     <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../glib/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
         </a><h2 class="location"></h2>
     </nav>
     <nav class="sidebar"><a class="sidebar-logo" href="../../glib/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
-        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../glib/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../glib/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><div id="settings-menu" tabindex="-1">
+                                <a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div>
+                        </div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -1026,6 +1028,16 @@
 <span id="1021">1021</span>
 <span id="1022">1022</span>
 <span id="1023">1023</span>
+<span id="1024">1024</span>
+<span id="1025">1025</span>
+<span id="1026">1026</span>
+<span id="1027">1027</span>
+<span id="1028">1028</span>
+<span id="1029">1029</span>
+<span id="1030">1030</span>
+<span id="1031">1031</span>
+<span id="1032">1032</span>
+<span id="1033">1033</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::translate</span>::<span class="kw-2">*</span>;
@@ -1053,7 +1065,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">VariantType</span> {
     <span class="comment">// GVariantType* essentially is a char*, that always is valid UTF-8 but</span>
     <span class="comment">// isn&#39;t NUL-terminated.</span>
-    <span class="ident">ptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GVariantType</span>,
+    <span class="ident">ptr</span>: <span class="ident">ptr::NonNull</span><span class="op">&lt;</span><span class="ident">ffi::GVariantType</span><span class="op">&gt;</span>,
     <span class="comment">// We query the length on creation assuming it&#39;s cheap (because type strings</span>
     <span class="comment">// are short) and likely to happen anyway.</span>
     <span class="ident">len</span>: <span class="ident">usize</span>,
@@ -1118,12 +1130,14 @@
         <span class="ident">VariantTy::new</span>(<span class="kw-2">&amp;</span><span class="ident">type_string</span>)<span class="question-mark">?</span>;
 
         <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="ident">type_string</span>.<span class="ident">len</span>();
-        <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="ident">type_string</span>.<span class="ident">into_raw</span>();
+        <span class="kw">unsafe</span> {
+            <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="ident">type_string</span>.<span class="ident">into_glib_ptr</span>();
 
-        <span class="prelude-val">Ok</span>(<span class="ident">VariantType</span> {
-            <span class="ident">ptr</span>: <span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ffi::GVariantType</span>,
-            <span class="ident">len</span>,
-        })
+            <span class="prelude-val">Ok</span>(<span class="ident">VariantType</span> {
+                <span class="ident">ptr</span>: <span class="ident">ptr::NonNull::new_unchecked</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ffi::GVariantType</span>),
+                <span class="ident">len</span>,
+            })
+        }
     }
 }
 
@@ -1132,7 +1146,7 @@
 
 <span class="kw">impl</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">VariantType</span> {
     <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="kw">unsafe</span> { <span class="ident">ffi::g_variant_type_free</span>(<span class="self">self</span>.<span class="ident">ptr</span>) }
+        <span class="kw">unsafe</span> { <span class="ident">ffi::g_variant_type_free</span>(<span class="self">self</span>.<span class="ident">ptr</span>.<span class="ident">as_ptr</span>()) }
     }
 }
 
@@ -1152,7 +1166,7 @@
     <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">VariantType</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">VariantType</span> {
-                <span class="ident">ptr</span>: <span class="ident">ffi::g_variant_type_copy</span>(<span class="self">self</span>.<span class="ident">ptr</span>),
+                <span class="ident">ptr</span>: <span class="ident">ptr::NonNull::new_unchecked</span>(<span class="ident">ffi::g_variant_type_copy</span>(<span class="self">self</span>.<span class="ident">ptr</span>.<span class="ident">as_ptr</span>())),
                 <span class="ident">len</span>: <span class="self">self</span>.<span class="ident">len</span>,
             }
         }
@@ -1163,8 +1177,7 @@
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">VariantTy</span>;
     <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">VariantTy</span> {
         <span class="kw">unsafe</span> {
-            <span class="macro">assert!</span>(<span class="self">self</span>.<span class="ident">len</span> <span class="op">&gt;</span> <span class="number">0</span>);
-            <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">slice::from_raw_parts</span>(<span class="self">self</span>.<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="self">self</span>.<span class="ident">len</span>) <span class="kw">as</span> <span class="kw-2">*const</span> [<span class="ident">u8</span>]
+            <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">slice::from_raw_parts</span>(<span class="self">self</span>.<span class="ident">ptr</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="self">self</span>.<span class="ident">len</span>) <span class="kw">as</span> <span class="kw-2">*const</span> [<span class="ident">u8</span>]
                 <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">VariantTy</span>)
         }
     }
@@ -1207,11 +1220,11 @@
     <span class="kw">type</span> <span class="ident">Storage</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="self">Self</span>;
 
     <span class="kw">fn</span> <span class="ident">to_glib_none</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="self">self</span>) -&gt; <span class="ident">Stash</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="kw-2">*const</span> <span class="ident">ffi::GVariantType</span>, <span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="ident">Stash</span>(<span class="self">self</span>.<span class="ident">ptr</span>, <span class="self">self</span>)
+        <span class="ident">Stash</span>(<span class="self">self</span>.<span class="ident">ptr</span>.<span class="ident">as_ptr</span>(), <span class="self">self</span>)
     }
 
     <span class="kw">fn</span> <span class="ident">to_glib_full</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*const</span> <span class="ident">ffi::GVariantType</span> {
-        <span class="kw">unsafe</span> { <span class="ident">ffi::g_variant_type_copy</span>(<span class="self">self</span>.<span class="ident">ptr</span>) }
+        <span class="kw">unsafe</span> { <span class="ident">ffi::g_variant_type_copy</span>(<span class="self">self</span>.<span class="ident">ptr</span>.<span class="ident">as_ptr</span>()) }
     }
 }
 
@@ -1220,11 +1233,11 @@
     <span class="kw">type</span> <span class="ident">Storage</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="self">Self</span>;
 
     <span class="kw">fn</span> <span class="ident">to_glib_none</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="self">self</span>) -&gt; <span class="ident">Stash</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="kw-2">*mut</span> <span class="ident">ffi::GVariantType</span>, <span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="ident">Stash</span>(<span class="self">self</span>.<span class="ident">ptr</span>, <span class="self">self</span>)
+        <span class="ident">Stash</span>(<span class="self">self</span>.<span class="ident">ptr</span>.<span class="ident">as_ptr</span>(), <span class="self">self</span>)
     }
 
     <span class="kw">fn</span> <span class="ident">to_glib_full</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">ffi::GVariantType</span> {
-        <span class="kw">unsafe</span> { <span class="ident">ffi::g_variant_type_copy</span>(<span class="self">self</span>.<span class="ident">ptr</span>) }
+        <span class="kw">unsafe</span> { <span class="ident">ffi::g_variant_type_copy</span>(<span class="self">self</span>.<span class="ident">ptr</span>.<span class="ident">as_ptr</span>()) }
     }
 }
 
@@ -1233,7 +1246,7 @@
     <span class="kw">type</span> <span class="ident">Storage</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="kw-2">mut</span> <span class="self">Self</span>;
 
     <span class="kw">fn</span> <span class="ident">to_glib_none_mut</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="kw-2">mut</span> <span class="self">self</span>) -&gt; <span class="ident">StashMut</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="kw-2">*mut</span> <span class="ident">ffi::GVariantType</span>, <span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="ident">StashMut</span>(<span class="self">self</span>.<span class="ident">ptr</span>, <span class="self">self</span>)
+        <span class="ident">StashMut</span>(<span class="self">self</span>.<span class="ident">ptr</span>.<span class="ident">as_ptr</span>(), <span class="self">self</span>)
     }
 }
 
@@ -1256,8 +1269,12 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlibPtrFull</span><span class="op">&lt;</span><span class="kw-2">*mut</span> <span class="ident">ffi::GVariantType</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">VariantType</span> {
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib_full</span>(<span class="ident">ptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GVariantType</span>) -&gt; <span class="ident">VariantType</span> {
+        <span class="macro">assert!</span>(<span class="op">!</span><span class="ident">ptr</span>.<span class="ident">is_null</span>());
         <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="ident">ffi::g_variant_type_get_string_length</span>(<span class="ident">ptr</span>) <span class="kw">as</span> <span class="ident">usize</span>;
-        <span class="ident">VariantType</span> { <span class="ident">ptr</span>, <span class="ident">len</span> }
+        <span class="ident">VariantType</span> {
+            <span class="ident">ptr</span>: <span class="ident">ptr::NonNull::new_unchecked</span>(<span class="ident">ptr</span>),
+            <span class="ident">len</span>,
+        }
     }
 }
 
@@ -1473,6 +1490,7 @@
     <span class="doccomment">/// pointer.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
     <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_ptr</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="ident">ptr</span>: <span class="kw-2">*const</span> <span class="ident">ffi::GVariantType</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">VariantTy</span> {
+        <span class="macro">assert!</span>(<span class="op">!</span><span class="ident">ptr</span>.<span class="ident">is_null</span>());
         <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="ident">ffi::g_variant_type_get_string_length</span>(<span class="ident">ptr</span>) <span class="kw">as</span> <span class="ident">usize</span>;
         <span class="macro">assert!</span>(<span class="ident">len</span> <span class="op">&gt;</span> <span class="number">0</span>);
         <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">slice::from_raw_parts</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="ident">len</span>) <span class="kw">as</span> <span class="kw-2">*const</span> [<span class="ident">u8</span>] <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">VariantTy</span>)
@@ -1712,7 +1730,7 @@
     <span class="kw">fn</span> <span class="ident">to_owned</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">VariantType</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">VariantType</span> {
-                <span class="ident">ptr</span>: <span class="ident">ffi::g_variant_type_copy</span>(<span class="self">self</span>.<span class="ident">as_ptr</span>()),
+                <span class="ident">ptr</span>: <span class="ident">ptr::NonNull::new_unchecked</span>(<span class="ident">ffi::g_variant_type_copy</span>(<span class="self">self</span>.<span class="ident">as_ptr</span>())),
                 <span class="ident">len</span>: <span class="self">self</span>.<span class="ident">inner</span>.<span class="ident">len</span>(),
             }
         }
@@ -1847,6 +1865,7 @@
 
 <span class="macro">macro_rules!</span> <span class="ident">impl_eq</span> {
     (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">lhs</span>:<span class="ident">ty</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rhs</span>: <span class="ident">ty</span>) =&gt; {
+        <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::extra_unused_lifetimes</span>)]</span>
         <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span><span class="op">&gt;</span> <span class="ident">PartialEq</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">rhs</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">lhs</span> {
             <span class="attribute">#[<span class="ident">inline</span>]</span>
             <span class="kw">fn</span> <span class="ident">eq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">rhs</span>) -&gt; <span class="ident">bool</span> {
@@ -1854,6 +1873,7 @@
             }
         }
 
+        <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::extra_unused_lifetimes</span>)]</span>
         <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span><span class="op">&gt;</span> <span class="ident">PartialEq</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">lhs</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rhs</span> {
             <span class="attribute">#[<span class="ident">inline</span>]</span>
             <span class="kw">fn</span> <span class="ident">eq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">lhs</span>) -&gt; <span class="ident">bool</span> {
@@ -1871,6 +1891,7 @@
 <span class="macro">macro_rules!</span> <span class="ident">impl_str_eq</span> {
     (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">lhs</span>:<span class="ident">ty</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rhs</span>: <span class="ident">ty</span>) =&gt; {
         <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::redundant_slicing</span>)]</span>
+        <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::extra_unused_lifetimes</span>)]</span>
         <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span><span class="op">&gt;</span> <span class="ident">PartialEq</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">rhs</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">lhs</span> {
             <span class="attribute">#[<span class="ident">inline</span>]</span>
             <span class="kw">fn</span> <span class="ident">eq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">rhs</span>) -&gt; <span class="ident">bool</span> {
@@ -1878,6 +1899,7 @@
             }
         }
 
+        <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::extra_unused_lifetimes</span>)]</span>
         <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span><span class="op">&gt;</span> <span class="ident">PartialEq</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">lhs</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rhs</span> {
             <span class="attribute">#[<span class="ident">inline</span>]</span>
             <span class="kw">fn</span> <span class="ident">eq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">lhs</span>) -&gt; <span class="ident">bool</span> {
@@ -2050,5 +2072,5 @@
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="glib" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (30f386087 2022-05-05)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="glib" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (c06728704 2022-05-19)" ></div>
 </body></html>

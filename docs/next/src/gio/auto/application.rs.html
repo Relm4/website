@@ -1,9 +1,11 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/github/home/.cargo/git/checkouts/gtk-rs-core-7be42ca38bd6361c/cde38a9/gio/src/auto/application.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>application.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/github/home/.cargo/git/checkouts/gtk-rs-core-7be42ca38bd6361c/47aba36/gio/src/auto/application.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>application.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script>
     <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../gio/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
         </a><h2 class="location"></h2>
     </nav>
     <nav class="sidebar"><a class="sidebar-logo" href="../../../gio/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
-        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../gio/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../gio/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><div id="settings-menu" tabindex="-1">
+                                <a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div>
+                        </div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -903,42 +905,6 @@
 <span id="898">898</span>
 <span id="899">899</span>
 <span id="900">900</span>
-<span id="901">901</span>
-<span id="902">902</span>
-<span id="903">903</span>
-<span id="904">904</span>
-<span id="905">905</span>
-<span id="906">906</span>
-<span id="907">907</span>
-<span id="908">908</span>
-<span id="909">909</span>
-<span id="910">910</span>
-<span id="911">911</span>
-<span id="912">912</span>
-<span id="913">913</span>
-<span id="914">914</span>
-<span id="915">915</span>
-<span id="916">916</span>
-<span id="917">917</span>
-<span id="918">918</span>
-<span id="919">919</span>
-<span id="920">920</span>
-<span id="921">921</span>
-<span id="922">922</span>
-<span id="923">923</span>
-<span id="924">924</span>
-<span id="925">925</span>
-<span id="926">926</span>
-<span id="927">927</span>
-<span id="928">928</span>
-<span id="929">929</span>
-<span id="930">930</span>
-<span id="931">931</span>
-<span id="932">932</span>
-<span id="933">933</span>
-<span id="934">934</span>
-<span id="935">935</span>
-<span id="936">936</span>
 </pre><pre class="rust"><code><span class="comment">// This file was generated by gir (https://github.com/gtk-rs/gir)</span>
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files)</span>
 <span class="comment">// DO NOT EDIT</span>
@@ -1147,12 +1113,6 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_resource_base_path&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">resource_base_path</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span>;
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;g_application_hold&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">hold</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
-
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;g_application_mark_busy&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">mark_busy</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
-
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;g_application_open&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">open</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">files</span>: <span class="kw-2">&amp;</span>[<span class="ident">File</span>], <span class="ident">hint</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>);
 
@@ -1161,9 +1121,6 @@
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;g_application_register&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">register</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cancellable</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Cancellable</span><span class="op">&gt;</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">glib::Error</span><span class="op">&gt;</span>;
-
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;g_application_release&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">release</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;g_application_send_notification&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">send_notification</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>, <span class="ident">notification</span>: <span class="kw-2">&amp;</span><span class="ident">Notification</span>);
@@ -1194,9 +1151,6 @@
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;g_application_unbind_busy_property&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">unbind_busy_property</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">object</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">glib::Object</span><span class="op">&gt;</span>, <span class="ident">property</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>);
-
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;g_application_unmark_busy&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">unmark_busy</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;g_application_withdraw_notification&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">withdraw_notification</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>);
@@ -1366,18 +1320,6 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">hold</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw">unsafe</span> {
-            <span class="ident">ffi::g_application_hold</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>);
-        }
-    }
-
-    <span class="kw">fn</span> <span class="ident">mark_busy</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw">unsafe</span> {
-            <span class="ident">ffi::g_application_mark_busy</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>);
-        }
-    }
-
     <span class="kw">fn</span> <span class="ident">open</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">files</span>: <span class="kw-2">&amp;</span>[<span class="ident">File</span>], <span class="ident">hint</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) {
         <span class="kw">let</span> <span class="ident">n_files</span> <span class="op">=</span> <span class="ident">files</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">i32</span>;
         <span class="kw">unsafe</span> {
@@ -1410,12 +1352,6 @@
             } <span class="kw">else</span> {
                 <span class="prelude-val">Err</span>(<span class="ident">from_glib_full</span>(<span class="ident">error</span>))
             }
-        }
-    }
-
-    <span class="kw">fn</span> <span class="ident">release</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw">unsafe</span> {
-            <span class="ident">ffi::g_application_release</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>);
         }
     }
 
@@ -1502,12 +1438,6 @@
                 <span class="ident">object</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">property</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             );
-        }
-    }
-
-    <span class="kw">fn</span> <span class="ident">unmark_busy</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw">unsafe</span> {
-            <span class="ident">ffi::g_application_unmark_busy</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>);
         }
     }
 
@@ -1876,5 +1806,5 @@
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gio" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (30f386087 2022-05-05)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gio" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (c06728704 2022-05-19)" ></div>
 </body></html>

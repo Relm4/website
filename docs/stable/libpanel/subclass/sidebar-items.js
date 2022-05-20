@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["dock",""],["frame",""],["frame_header",""],["prelude",""],["widget",""]]});
+initSidebarItems({"mod":[["dock",""],["frame",""],["frame_header",""],["grid",""],["omni_bar",""],["prelude",""],["save_delegate",""],["widget",""]]});
