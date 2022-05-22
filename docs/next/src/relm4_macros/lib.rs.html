@@ -304,10 +304,75 @@
 <span id="295">295</span>
 <span id="296">296</span>
 <span id="297">297</span>
+<span id="298">298</span>
+<span id="299">299</span>
+<span id="300">300</span>
+<span id="301">301</span>
+<span id="302">302</span>
+<span id="303">303</span>
+<span id="304">304</span>
+<span id="305">305</span>
+<span id="306">306</span>
+<span id="307">307</span>
+<span id="308">308</span>
+<span id="309">309</span>
+<span id="310">310</span>
+<span id="311">311</span>
+<span id="312">312</span>
+<span id="313">313</span>
+<span id="314">314</span>
+<span id="315">315</span>
+<span id="316">316</span>
+<span id="317">317</span>
+<span id="318">318</span>
+<span id="319">319</span>
+<span id="320">320</span>
+<span id="321">321</span>
+<span id="322">322</span>
+<span id="323">323</span>
+<span id="324">324</span>
+<span id="325">325</span>
+<span id="326">326</span>
+<span id="327">327</span>
+<span id="328">328</span>
+<span id="329">329</span>
+<span id="330">330</span>
+<span id="331">331</span>
+<span id="332">332</span>
+<span id="333">333</span>
+<span id="334">334</span>
+<span id="335">335</span>
+<span id="336">336</span>
+<span id="337">337</span>
+<span id="338">338</span>
+<span id="339">339</span>
+<span id="340">340</span>
+<span id="341">341</span>
+<span id="342">342</span>
+<span id="343">343</span>
+<span id="344">344</span>
+<span id="345">345</span>
+<span id="346">346</span>
+<span id="347">347</span>
+<span id="348">348</span>
+<span id="349">349</span>
+<span id="350">350</span>
+<span id="351">351</span>
+<span id="352">352</span>
+<span id="353">353</span>
+<span id="354">354</span>
+<span id="355">355</span>
+<span id="356">356</span>
+<span id="357">357</span>
+<span id="358">358</span>
+<span id="359">359</span>
+<span id="360">360</span>
+<span id="361">361</span>
+<span id="362">362</span>
 </pre><pre class="rust"><code><span class="attribute">#![<span class="ident">doc</span>(<span class="ident">html_logo_url</span> <span class="op">=</span> <span class="string">&quot;https://relm4.org/icons/relm4_logo.svg&quot;</span>)]</span>
 <span class="attribute">#![<span class="ident">doc</span>(<span class="ident">html_favicon_url</span> <span class="op">=</span> <span class="string">&quot;https://relm4.org/icons/relm4_org.svg&quot;</span>)]</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! *This document was built at Sunday May 22, 17:07 UTC.*</span>
+<span class="doccomment">//! *This document was built at Sunday May 22, 17:46 UTC.*</span>
 
 <span class="kw">use</span> <span class="ident">proc_macro::TokenStream</span>;
 <span class="kw">use</span> <span class="ident">syn::parse_macro_input</span>;
@@ -482,6 +547,71 @@
 <span class="doccomment">///     }</span>
 <span class="doccomment">/// };</span>
 <span class="doccomment">/// ```</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// # Macro expansion</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// The code generation for the example above looks like this (plus comments):</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// ```</span>
+<span class="doccomment">/// struct WindowActionGroup;</span>
+<span class="doccomment">/// impl relm4::actions::ActionGroupName for WindowActionGroup {</span>
+<span class="doccomment">///     const NAME: &amp;&#39;static str = &quot;win&quot;;</span>
+<span class="doccomment">/// }</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// struct TestAction;</span>
+<span class="doccomment">/// impl relm4::actions::ActionName for TestAction {</span>
+<span class="doccomment">///     type Group = WindowActionGroup;</span>
+<span class="doccomment">///     type State = ();</span>
+<span class="doccomment">///     type Target = ();</span>
+<span class="doccomment">///</span>
+<span class="doccomment">///     const NAME: &amp;&#39;static str = &quot;test&quot;;</span>
+<span class="doccomment">/// }</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// struct TestU8Action;</span>
+<span class="doccomment">/// impl relm4::actions::ActionName for TestU8Action {</span>
+<span class="doccomment">///     type Group = WindowActionGroup;</span>
+<span class="doccomment">///     type State = u8;</span>
+<span class="doccomment">///     type Target = u8;</span>
+<span class="doccomment">///</span>
+<span class="doccomment">///     const NAME: &amp;&#39;static str = &quot;test2&quot;;</span>
+<span class="doccomment">/// }</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// // Main menu</span>
+<span class="doccomment">/// let main_menu = ::relm4::gtk::gio::Menu::new();</span>
+<span class="doccomment">/// let new_entry = ::relm4::actions::RelmAction::&lt;TestAction&gt;::to_menu_item(&quot;Test&quot;);</span>
+<span class="doccomment">/// main_menu.append_item(&amp;new_entry);</span>
+<span class="doccomment">/// let new_entry = ::relm4::actions::RelmAction::&lt;TestAction&gt;::to_menu_item(&quot;Test2&quot;);</span>
+<span class="doccomment">/// main_menu.append_item(&amp;new_entry);</span>
+<span class="doccomment">/// let new_entry = ::relm4::actions::RelmAction::&lt;TestU8Action&gt;::to_menu_item_with_target_value(</span>
+<span class="doccomment">///     &quot;Test toggle&quot;,</span>
+<span class="doccomment">///     &amp;1_u8,</span>
+<span class="doccomment">/// );</span>
+<span class="doccomment">/// main_menu.append_item(&amp;new_entry);</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// // Section 0</span>
+<span class="doccomment">/// let _section_0 = ::relm4::gtk::gio::Menu::new();</span>
+<span class="doccomment">/// main_menu.append_section(None, &amp;_section_0);</span>
+<span class="doccomment">/// let new_entry = ::relm4::actions::RelmAction::&lt;TestAction&gt;::to_menu_item(&quot;Section test&quot;);</span>
+<span class="doccomment">/// _section_0.append_item(&amp;new_entry);</span>
+<span class="doccomment">/// let new_entry = ::relm4::actions::RelmAction::&lt;TestU8Action&gt;::to_menu_item_with_target_value(</span>
+<span class="doccomment">///     &quot;Test toggle&quot;,</span>
+<span class="doccomment">///     &amp;1_u8,</span>
+<span class="doccomment">/// );</span>
+<span class="doccomment">/// _section_0.append_item(&amp;new_entry);</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// // Section 1</span>
+<span class="doccomment">/// let _section_1 = ::relm4::gtk::gio::Menu::new();</span>
+<span class="doccomment">/// main_menu.append_section(None, &amp;_section_1);</span>
+<span class="doccomment">/// let new_entry = ::relm4::actions::RelmAction::&lt;TestAction&gt;::to_menu_item(&quot;Test&quot;);</span>
+<span class="doccomment">/// _section_1.append_item(&amp;new_entry);</span>
+<span class="doccomment">/// let new_entry = ::relm4::actions::RelmAction::&lt;TestAction&gt;::to_menu_item(&quot;Test2&quot;);</span>
+<span class="doccomment">/// _section_1.append_item(&amp;new_entry);</span>
+<span class="doccomment">/// let new_entry = ::relm4::actions::RelmAction::&lt;TestU8Action&gt;::to_menu_item_with_target_value(</span>
+<span class="doccomment">///     &quot;Test Value&quot;,</span>
+<span class="doccomment">///     &amp;1_u8,</span>
+<span class="doccomment">/// );</span>
+<span class="doccomment">/// _section_1.append_item(&amp;new_entry);</span>
+<span class="doccomment">/// ```</span>
 <span class="attribute">#[<span class="ident">proc_macro</span>]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">menu</span>(<span class="ident">input</span>: <span class="ident">TokenStream</span>) -&gt; <span class="ident">TokenStream</span> {
     <span class="kw">let</span> <span class="ident">menus</span> <span class="op">=</span> <span class="macro">parse_macro_input!</span>(<span class="ident">input</span> <span class="kw">as</span> <span class="ident">Menus</span>);
@@ -492,7 +622,7 @@
 
 <span class="doccomment">/// The [`view!`] macro allows you to construct your UI easily and cleanly.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// It does the same as inside the [`component`] attribute macro,</span>
+<span class="doccomment">/// It does the same as inside the [`macro@component`] attribute macro,</span>
 <span class="doccomment">/// but with less features.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// You can even use the `relm4-macros` crate independently from Relm4 to build your GTK4 UI.</span>
