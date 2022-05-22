@@ -283,10 +283,31 @@
 <span id="274">274</span>
 <span id="275">275</span>
 <span id="276">276</span>
+<span id="277">277</span>
+<span id="278">278</span>
+<span id="279">279</span>
+<span id="280">280</span>
+<span id="281">281</span>
+<span id="282">282</span>
+<span id="283">283</span>
+<span id="284">284</span>
+<span id="285">285</span>
+<span id="286">286</span>
+<span id="287">287</span>
+<span id="288">288</span>
+<span id="289">289</span>
+<span id="290">290</span>
+<span id="291">291</span>
+<span id="292">292</span>
+<span id="293">293</span>
+<span id="294">294</span>
+<span id="295">295</span>
+<span id="296">296</span>
+<span id="297">297</span>
 </pre><pre class="rust"><code><span class="attribute">#![<span class="ident">doc</span>(<span class="ident">html_logo_url</span> <span class="op">=</span> <span class="string">&quot;https://relm4.org/icons/relm4_logo.svg&quot;</span>)]</span>
 <span class="attribute">#![<span class="ident">doc</span>(<span class="ident">html_favicon_url</span> <span class="op">=</span> <span class="string">&quot;https://relm4.org/icons/relm4_org.svg&quot;</span>)]</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! *This document was built at Sunday May 22, 16:35 UTC.*</span>
+<span class="doccomment">//! *This document was built at Sunday May 22, 17:07 UTC.*</span>
 
 <span class="kw">use</span> <span class="ident">proc_macro::TokenStream</span>;
 <span class="kw">use</span> <span class="ident">syn::parse_macro_input</span>;
@@ -471,8 +492,8 @@
 
 <span class="doccomment">/// The [`view!`] macro allows you to construct your UI easily and cleanly.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// It does the same as inside the [`macro@widget`] attribute macro,</span>
-<span class="doccomment">/// but with less features (no factories, components, etc).</span>
+<span class="doccomment">/// It does the same as inside the [`component`] attribute macro,</span>
+<span class="doccomment">/// but with less features.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// You can even use the `relm4-macros` crate independently from Relm4 to build your GTK4 UI.</span>
 <span class="doccomment">///</span>
@@ -524,7 +545,28 @@
 <span class="doccomment">/// ```</span>
 <span class="doccomment">/// # Macro expansion</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// The code generation from the first example looks like this (plus comments):</span>
+<span class="doccomment">/// Let&#39;s have a look the this example:</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// ```no_run</span>
+<span class="doccomment">/// # use gtk::prelude::{BoxExt, ButtonExt};</span>
+<span class="doccomment">/// # use relm4::gtk;</span>
+<span class="doccomment">/// // Creating a box with a button inside.</span>
+<span class="doccomment">/// relm4_macros::view! {</span>
+<span class="doccomment">///     vbox = gtk::Box {</span>
+<span class="doccomment">///         gtk::Button {</span>
+<span class="doccomment">///             set_label: &quot;Click me!&quot;,</span>
+<span class="doccomment">///             connect_clicked =&gt; |_| {</span>
+<span class="doccomment">///                 println!(&quot;Hello world!&quot;);</span>
+<span class="doccomment">///             }</span>
+<span class="doccomment">///         },</span>
+<span class="doccomment">///         prepend: my_label = &amp;gtk::Label::builder()</span>
+<span class="doccomment">///             .label(&quot;The view macro works!&quot;)</span>
+<span class="doccomment">///             .build(),</span>
+<span class="doccomment">///     }</span>
+<span class="doccomment">/// }</span>
+<span class="doccomment">/// ```</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// The code generation for this example looks like this (plus comments):</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// ```no_run</span>
 <span class="doccomment">/// # use gtk::prelude::{BoxExt, ButtonExt};</span>
