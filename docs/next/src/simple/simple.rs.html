@@ -91,6 +91,7 @@
 <span id="84">84</span>
 <span id="85">85</span>
 <span id="86">86</span>
+<span id="87">87</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">gtk::prelude</span>::{<span class="ident">BoxExt</span>, <span class="ident">ButtonExt</span>, <span class="ident">GtkWindowExt</span>, <span class="ident">OrientableExt</span>};
 <span class="kw">use</span> <span class="ident">relm4</span>::{<span class="ident">gtk</span>, <span class="ident">ComponentParts</span>, <span class="ident">ComponentSender</span>, <span class="ident">RelmApp</span>, <span class="ident">SimpleComponent</span>, <span class="ident">WidgetPlus</span>};
 
@@ -127,20 +128,21 @@
 
                 <span class="ident">gtk::Button</span> {
                     <span class="ident">set_label</span>: <span class="string">&quot;Increment&quot;</span>,
-                    <span class="ident">connect_clicked</span>(<span class="ident">sender</span>) =&gt; <span class="kw">move</span> <span class="op">|</span><span class="kw">_</span><span class="op">|</span> {
+                    <span class="ident">connect_clicked</span>[<span class="ident">sender</span>] =&gt; <span class="kw">move</span> <span class="op">|</span><span class="kw">_</span><span class="op">|</span> {
                         <span class="ident">sender</span>.<span class="ident">input</span>(<span class="ident">AppMsg::Increment</span>);
                     }
                 },
 
                 <span class="ident">gtk::Button</span> {
                     <span class="ident">set_label</span>: <span class="string">&quot;Decrement&quot;</span>,
-                    <span class="ident">connect_clicked</span>(<span class="ident">sender</span>) =&gt; <span class="kw">move</span> <span class="op">|</span><span class="kw">_</span><span class="op">|</span> {
+                    <span class="ident">connect_clicked</span>[<span class="ident">sender</span>] =&gt; <span class="kw">move</span> <span class="op">|</span><span class="kw">_</span><span class="op">|</span> {
                         <span class="ident">sender</span>.<span class="ident">input</span>(<span class="ident">AppMsg::Decrement</span>);
                     }
                 },
 
                 <span class="ident">gtk::Label</span> {
-                    <span class="ident">set_label</span>: <span class="macro">watch!</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;Counter: {}&quot;</span>, <span class="ident">model</span>.<span class="ident">counter</span>)),
+                    <span class="attribute">#[<span class="ident">watch</span>]</span>
+                    <span class="ident">set_label</span>: <span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;Counter: {}&quot;</span>, <span class="ident">model</span>.<span class="ident">counter</span>),
                     <span class="ident">set_margin_all</span>: <span class="number">5</span>,
                 }
             }
@@ -155,7 +157,7 @@
     ) -&gt; <span class="ident">ComponentParts</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">model</span> <span class="op">=</span> <span class="ident">AppModel</span> { <span class="ident">counter</span> };
 
-        <span class="comment">// Insert the macro codegen here</span>
+        <span class="comment">// Insert the macro code generation here</span>
         <span class="kw">let</span> <span class="ident">widgets</span> <span class="op">=</span> <span class="macro">view_output!</span>();
 
         <span class="ident">ComponentParts</span> { <span class="ident">model</span>, <span class="ident">widgets</span> }
@@ -178,5 +180,5 @@
     <span class="ident">app</span>.<span class="ident">run</span>(<span class="number">0</span>);
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="simple" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (e6a4afc3a 2022-05-20)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="simple" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (9257f5aad 2022-05-21)" ></div>
 </body></html>

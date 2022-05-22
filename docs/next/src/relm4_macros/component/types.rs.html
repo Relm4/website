@@ -1,11 +1,11 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `relm4-macros/src/component/types.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>types.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" href="https://raw.githubusercontent.com/AaronErhardt/relm4/main/assets/Relm_logo.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../relm4_macros/index.html"><div class="logo-container"><img src="https://raw.githubusercontent.com/AaronErhardt/relm4/main/assets/Relm_logo.svg" alt="logo"></div>
+    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" href="https://relm4.org/icons/relm4_org.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../relm4_macros/index.html"><div class="logo-container"><img src="https://relm4.org/icons/relm4_logo.svg" alt="logo"></div>
         </a><h2 class="location"></h2>
     </nav>
     <nav class="sidebar"><a class="sidebar-logo" href="../../../relm4_macros/index.html"><div class="logo-container">
-                    <img src="https://raw.githubusercontent.com/AaronErhardt/relm4/main/assets/Relm_logo.svg" alt="logo"></div>
+                    <img src="https://relm4.org/icons/relm4_logo.svg" alt="logo"></div>
         </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../relm4_macros/index.html">
-                        <img src="https://raw.githubusercontent.com/AaronErhardt/relm4/main/assets/Relm_logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><div id="settings-menu" tabindex="-1">
+                        <img src="https://relm4.org/icons/relm4_logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><div id="settings-menu" tabindex="-1">
                                 <a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div>
                         </div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
@@ -86,14 +86,22 @@
 <span id="77">77</span>
 <span id="78">78</span>
 <span id="79">79</span>
+<span id="80">80</span>
+<span id="81">81</span>
+<span id="82">82</span>
+<span id="83">83</span>
+<span id="84">84</span>
+<span id="85">85</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">proc_macro2::Span</span> <span class="kw">as</span> <span class="ident">Span2</span>;
-<span class="kw">use</span> <span class="ident">syn</span>::{<span class="ident">spanned::Spanned</span>, <span class="ident">Error</span>, <span class="ident">Ident</span>, <span class="ident">ImplItemType</span>, <span class="prelude-ty">Result</span>, <span class="ident">Type</span>};
+<span class="kw">use</span> <span class="ident">syn::spanned::Spanned</span>;
+<span class="kw">use</span> <span class="ident">syn</span>::{<span class="ident">Error</span>, <span class="ident">Ident</span>, <span class="ident">ImplItemType</span>, <span class="prelude-ty">Result</span>, <span class="ident">Type</span>};
 
 <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">struct</span> <span class="ident">Types</span> {
     <span class="kw">pub</span> <span class="ident">widgets</span>: <span class="ident">Ident</span>,
     <span class="kw">pub</span> <span class="ident">init_params</span>: <span class="ident">ImplItemType</span>,
     <span class="kw">pub</span> <span class="ident">input</span>: <span class="ident">ImplItemType</span>,
     <span class="kw">pub</span> <span class="ident">output</span>: <span class="ident">ImplItemType</span>,
+    <span class="kw">pub</span> <span class="ident">other_types</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">ImplItemType</span><span class="op">&gt;</span>,
 }
 
 <span class="macro">macro_rules!</span> <span class="ident">parse_type</span> {
@@ -113,6 +121,7 @@
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">init_params</span> <span class="op">=</span> <span class="prelude-val">None</span>;
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">input</span> <span class="op">=</span> <span class="prelude-val">None</span>;
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">output</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">other_types</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
 
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">widgets</span> <span class="op">=</span> <span class="prelude-val">None</span>;
 
@@ -140,11 +149,13 @@
                 } <span class="kw">else</span> {
                     <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::new</span>(<span class="ident">ty</span>.<span class="ident">span</span>(), <span class="string">&quot;Expected an Identfier&quot;</span>));
                 }
-            } <span class="kw">else</span> {
+            } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">ident</span> <span class="op">==</span> <span class="string">&quot;Root&quot;</span> {
                 <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::new</span>(
                     <span class="ident">ident</span>.<span class="ident">span</span>(),
-                    <span class="string">&quot;Expected a type called `Widgets`, `InitParams`, `Input` or `Output`&quot;</span>,
+                    <span class="string">&quot;The root is already defined by the view! macro&quot;</span>,
                 ));
+            } <span class="kw">else</span> {
+                <span class="ident">other_types</span>.<span class="ident">push</span>(<span class="ident">ty</span>);
             }
         }
 
@@ -153,7 +164,7 @@
         <span class="kw">let</span> <span class="ident">init_params</span> <span class="op">=</span> <span class="ident">init_params</span>
             .<span class="ident">ok_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">Error::new</span>(<span class="ident">Span2::call_site</span>(), <span class="string">&quot;Did not find type `InitParams&quot;</span>))<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">output</span> <span class="op">=</span>
-            <span class="ident">output</span>.<span class="ident">ok_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">Error::new</span>(<span class="ident">Span2::call_site</span>(), <span class="string">&quot;Did not find type `Ouput`&quot;</span>))<span class="question-mark">?</span>;
+            <span class="ident">output</span>.<span class="ident">ok_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">Error::new</span>(<span class="ident">Span2::call_site</span>(), <span class="string">&quot;Did not find type `Output`&quot;</span>))<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">input</span> <span class="op">=</span>
             <span class="ident">input</span>.<span class="ident">ok_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">Error::new</span>(<span class="ident">Span2::call_site</span>(), <span class="string">&quot;Did not find type `Input`&quot;</span>))<span class="question-mark">?</span>;
 
@@ -162,9 +173,10 @@
             <span class="ident">init_params</span>,
             <span class="ident">output</span>,
             <span class="ident">input</span>,
+            <span class="ident">other_types</span>,
         })
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="relm4_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (e6a4afc3a 2022-05-20)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="relm4_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (9257f5aad 2022-05-21)" ></div>
 </body></html>

@@ -454,7 +454,7 @@
                             <span class="ident">set_label</span>: <span class="ident">button_label</span>,
                             <span class="ident">set_size_group</span>: <span class="kw-2">&amp;</span><span class="ident">widgets</span>.<span class="ident">button_sg</span>,
 
-                            <span class="ident">connect_clicked</span>(<span class="ident">sender</span>) =&gt; <span class="kw">move</span> <span class="op">|</span><span class="kw">_</span><span class="op">|</span> {
+                            <span class="ident">connect_clicked</span>[<span class="ident">sender</span>] =&gt; <span class="kw">move</span> <span class="op">|</span><span class="kw">_</span><span class="op">|</span> {
                                 <span class="ident">sender</span>.<span class="ident">output</span>(<span class="ident">Output::Clicked</span>(<span class="ident">id</span>));
                             }
                         }
@@ -474,5 +474,5 @@
     });
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="settings_list" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (e6a4afc3a 2022-05-20)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="settings_list" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (9257f5aad 2022-05-21)" ></div>
 </body></html>
