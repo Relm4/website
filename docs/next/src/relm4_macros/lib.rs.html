@@ -240,11 +240,53 @@
 <span id="231">231</span>
 <span id="232">232</span>
 <span id="233">233</span>
+<span id="234">234</span>
+<span id="235">235</span>
+<span id="236">236</span>
+<span id="237">237</span>
+<span id="238">238</span>
+<span id="239">239</span>
+<span id="240">240</span>
+<span id="241">241</span>
+<span id="242">242</span>
+<span id="243">243</span>
+<span id="244">244</span>
+<span id="245">245</span>
+<span id="246">246</span>
+<span id="247">247</span>
+<span id="248">248</span>
+<span id="249">249</span>
+<span id="250">250</span>
+<span id="251">251</span>
+<span id="252">252</span>
+<span id="253">253</span>
+<span id="254">254</span>
+<span id="255">255</span>
+<span id="256">256</span>
+<span id="257">257</span>
+<span id="258">258</span>
+<span id="259">259</span>
+<span id="260">260</span>
+<span id="261">261</span>
+<span id="262">262</span>
+<span id="263">263</span>
+<span id="264">264</span>
+<span id="265">265</span>
+<span id="266">266</span>
+<span id="267">267</span>
+<span id="268">268</span>
+<span id="269">269</span>
+<span id="270">270</span>
+<span id="271">271</span>
+<span id="272">272</span>
+<span id="273">273</span>
+<span id="274">274</span>
+<span id="275">275</span>
+<span id="276">276</span>
 </pre><pre class="rust"><code><span class="attribute">#![<span class="ident">doc</span>(<span class="ident">html_logo_url</span> <span class="op">=</span> <span class="string">&quot;https://relm4.org/icons/relm4_logo.svg&quot;</span>)]</span>
 <span class="attribute">#![<span class="ident">doc</span>(<span class="ident">html_favicon_url</span> <span class="op">=</span> <span class="string">&quot;https://relm4.org/icons/relm4_org.svg&quot;</span>)]</span>
-<span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::single_component_path_imports</span>)]</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! *This document was built at Sunday May 22, 13:33 UTC.*</span>
+<span class="doccomment">//! *This document was built at Sunday May 22, 16:35 UTC.*</span>
 
 <span class="kw">use</span> <span class="ident">proc_macro::TokenStream</span>;
 <span class="kw">use</span> <span class="ident">syn::parse_macro_input</span>;
@@ -253,7 +295,6 @@
 <span class="kw">mod</span> <span class="ident">args</span>;
 <span class="kw">mod</span> <span class="ident">attrs</span>;
 <span class="kw">mod</span> <span class="ident">component</span>;
-<span class="comment">// mod factory_prototype;</span>
 <span class="kw">mod</span> <span class="ident">item_impl</span>;
 <span class="kw">mod</span> <span class="ident">macros</span>;
 <span class="kw">mod</span> <span class="ident">menu</span>;
@@ -268,19 +309,19 @@
 <span class="kw">use</span> <span class="ident">item_impl::ItemImpl</span>;
 <span class="kw">use</span> <span class="ident">menu::Menus</span>;
 
-<span class="doccomment">/// Macro that implements [`relm4::Widgets`](https://aaronerhardt.github.io/docs/relm4/relm4/trait.Widgets.html) and generates the corresponding struct.</span>
+<span class="doccomment">/// Macro that implements [`relm4::Component`](https://relm4.org/docs/next/relm4/trait.Component.html) and generates the corresponding struct.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Attributes</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// To create public struct use `#[widget(pub)]` or `#[widget(visibility = pub)]`.</span>
+<span class="doccomment">/// To create public struct use `#[component(pub)]` or `#[component(visibility = pub)]`.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// If you use reexports to provide relm4, then you can use `#[widget(relm4= ::myreexports::my_relm)]` to override relm4 used during generating struct.</span>
+<span class="doccomment">/// If you use reexports to provide relm4, then you can use `#[widget(relm4 = ::myreexports::my_relm)]` to override relm4 used during generating struct.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Example</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// ```</span>
 <span class="doccomment">/// use gtk::prelude::{BoxExt, ButtonExt, GtkWindowExt, OrientableExt};</span>
-<span class="doccomment">/// use relm4::{gtk, send, AppUpdate, Model, RelmApp, Sender, WidgetPlus, Widgets};</span>
+<span class="doccomment">/// use relm4::{gtk, ComponentParts, ComponentSender, SimpleComponent, WidgetPlus};</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// #[derive(Default)]</span>
 <span class="doccomment">/// struct AppModel {</span>
@@ -292,30 +333,15 @@
 <span class="doccomment">///     Decrement,</span>
 <span class="doccomment">/// }</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// impl Model for AppModel {</span>
-<span class="doccomment">///     type Components = ();</span>
-<span class="doccomment">///     type Msg = AppMsg;</span>
+<span class="doccomment">/// #[relm4_macros::component]</span>
+<span class="doccomment">/// impl SimpleComponent for AppModel {</span>
+<span class="doccomment">///     type InitParams = u8;</span>
+<span class="doccomment">///     type Input = AppMsg;</span>
+<span class="doccomment">///     type Output = ();</span>
 <span class="doccomment">///     type Widgets = AppWidgets;</span>
-<span class="doccomment">/// }</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// impl AppUpdate for AppModel {</span>
-<span class="doccomment">///     fn update(&amp;mut self, msg: AppMsg, _components: &amp;(), _sender: Sender&lt;AppMsg&gt;) -&gt; bool {</span>
-<span class="doccomment">///         match msg {</span>
-<span class="doccomment">///             AppMsg::Increment =&gt; {</span>
-<span class="doccomment">///                 self.counter = self.counter.wrapping_add(1);</span>
-<span class="doccomment">///             }</span>
-<span class="doccomment">///             AppMsg::Decrement =&gt; {</span>
-<span class="doccomment">///                 self.counter = self.counter.wrapping_sub(1);</span>
-<span class="doccomment">///             }</span>
-<span class="doccomment">///         }</span>
-<span class="doccomment">///         true</span>
-<span class="doccomment">///     }</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// #[relm4_macros::widget]</span>
-<span class="doccomment">/// impl Widgets&lt;AppModel, ()&gt; for AppWidgets {</span>
 <span class="doccomment">///     view! {</span>
-<span class="doccomment">///         gtk::ApplicationWindow {</span>
+<span class="doccomment">///         gtk::Window {</span>
 <span class="doccomment">///             set_title: Some(&quot;Simple app&quot;),</span>
 <span class="doccomment">///             set_default_width: 300,</span>
 <span class="doccomment">///             set_default_height: 100,</span>
@@ -326,21 +352,45 @@
 <span class="doccomment">///</span>
 <span class="doccomment">///                 append = &amp;gtk::Button {</span>
 <span class="doccomment">///                     set_label: &quot;Increment&quot;,</span>
-<span class="doccomment">///                     connect_clicked(sender) =&gt; move |_| {</span>
-<span class="doccomment">///                         send!(sender, AppMsg::Increment);</span>
+<span class="doccomment">///                     connect_clicked[sender] =&gt; move |_| {</span>
+<span class="doccomment">///                         sender.input(AppMsg::Increment);</span>
 <span class="doccomment">///                     },</span>
 <span class="doccomment">///                 },</span>
 <span class="doccomment">///                 append = &amp;gtk::Button {</span>
 <span class="doccomment">///                     set_label: &quot;Decrement&quot;,</span>
-<span class="doccomment">///                     connect_clicked(sender) =&gt; move |_| {</span>
-<span class="doccomment">///                         send!(sender, AppMsg::Decrement);</span>
+<span class="doccomment">///                     connect_clicked[sender] =&gt; move |_| {</span>
+<span class="doccomment">///                         sender.input(AppMsg::Decrement);</span>
 <span class="doccomment">///                     },</span>
 <span class="doccomment">///                 },</span>
 <span class="doccomment">///                 append = &amp;gtk::Label {</span>
 <span class="doccomment">///                     set_margin_all: 5,</span>
-<span class="doccomment">///                     set_label: watch! { &amp;format!(&quot;Counter: {}&quot;, model.counter) },</span>
+<span class="doccomment">///                     #[watch]</span>
+<span class="doccomment">///                     set_label: &amp;format!(&quot;Counter: {}&quot;, model.counter),</span>
 <span class="doccomment">///                 }</span>
 <span class="doccomment">///             },</span>
+<span class="doccomment">///         }</span>
+<span class="doccomment">///     }</span>
+<span class="doccomment">///</span>
+<span class="doccomment">///     fn init(</span>
+<span class="doccomment">///         counter: Self::InitParams,</span>
+<span class="doccomment">///         root: &amp;Self::Root,</span>
+<span class="doccomment">///         sender: &amp;ComponentSender&lt;Self&gt;,</span>
+<span class="doccomment">///     ) -&gt; ComponentParts&lt;Self&gt; {</span>
+<span class="doccomment">///         let model = Self { counter };</span>
+<span class="doccomment">///</span>
+<span class="doccomment">///         let widgets = view_output!();</span>
+<span class="doccomment">///</span>
+<span class="doccomment">///         ComponentParts { model, widgets }</span>
+<span class="doccomment">///     }</span>
+<span class="doccomment">///</span>
+<span class="doccomment">///     fn update(&amp;mut self, msg: AppMsg, _sender: &amp;ComponentSender&lt;Self&gt;) {</span>
+<span class="doccomment">///         match msg {</span>
+<span class="doccomment">///             AppMsg::Increment =&gt; {</span>
+<span class="doccomment">///                 self.counter = self.counter.wrapping_add(1);</span>
+<span class="doccomment">///             }</span>
+<span class="doccomment">///             AppMsg::Decrement =&gt; {</span>
+<span class="doccomment">///                 self.counter = self.counter.wrapping_sub(1);</span>
+<span class="doccomment">///             }</span>
 <span class="doccomment">///         }</span>
 <span class="doccomment">///     }</span>
 <span class="doccomment">/// }</span>
@@ -433,12 +483,15 @@
 <span class="doccomment">/// // Creating a box with a button inside.</span>
 <span class="doccomment">/// relm4_macros::view! {</span>
 <span class="doccomment">///     vbox = gtk::Box {</span>
-<span class="doccomment">///         append = &amp;gtk::Button {</span>
+<span class="doccomment">///         gtk::Button {</span>
 <span class="doccomment">///             set_label: &quot;Click me!&quot;,</span>
 <span class="doccomment">///             connect_clicked =&gt; |_| {</span>
 <span class="doccomment">///                 println!(&quot;Hello world!&quot;);</span>
 <span class="doccomment">///             }</span>
 <span class="doccomment">///         },</span>
+<span class="doccomment">///         prepend: my_label = &amp;gtk::Label::builder()</span>
+<span class="doccomment">///             .label(&quot;The view macro works!&quot;)</span>
+<span class="doccomment">///             .build(),</span>
 <span class="doccomment">///     }</span>
 <span class="doccomment">/// }</span>
 <span class="doccomment">///</span>
@@ -469,6 +522,39 @@
 <span class="doccomment">/// // Output of &quot;ls -la&quot; at &quot;/&quot;</span>
 <span class="doccomment">/// dbg!(process.output());</span>
 <span class="doccomment">/// ```</span>
+<span class="doccomment">/// # Macro expansion</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// The code generation from the first example looks like this (plus comments):</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// ```no_run</span>
+<span class="doccomment">/// # use gtk::prelude::{BoxExt, ButtonExt};</span>
+<span class="doccomment">/// # use relm4::gtk;</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// // We&#39;ve just used `gtk::Box` so we assume it has a `default()` method</span>
+<span class="doccomment">/// let vbox = gtk::Box::default();</span>
+<span class="doccomment">/// // `vbox` was named, yet the button doesn&#39;t have an explicit name and get&#39;s a generated one instead.</span>
+<span class="doccomment">/// let _gtk_button_5 = gtk::Button::default();</span>
+<span class="doccomment">/// // For the label, we used a manual constructor method, so no `default()` method is required.</span>
+<span class="doccomment">/// let my_label = gtk::Label::builder().label(&quot;The view macro works!&quot;).build();</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// // Connect the signal</span>
+<span class="doccomment">/// {</span>
+<span class="doccomment">///     _gtk_button_5.connect_clicked(|_| {</span>
+<span class="doccomment">///         println!(&quot;Hello world!&quot;);</span>
+<span class="doccomment">///     });</span>
+<span class="doccomment">/// }</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// // The button was added without any further instructions, so we assume `container_add()` will work.</span>
+<span class="doccomment">/// ::relm4::RelmContainerExt::container_add(&amp;vbox, &amp;_gtk_button_5);</span>
+<span class="doccomment">/// _gtk_button_5.set_label(&quot;Click me!&quot;);</span>
+<span class="doccomment">/// // For the label, we used the `prepend` method, so we don&#39;t need `container_add()` here.</span>
+<span class="doccomment">/// vbox.prepend(&amp;my_label);</span>
+<span class="doccomment">/// ```</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// The widgets are first initialized, then signals are connected and then</span>
+<span class="doccomment">/// properties and widgets are assigned to each other.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// The nested structure of the UI is translated into regular Rust code.</span>
 <span class="attribute">#[<span class="ident">proc_macro</span>]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">view</span>(<span class="ident">input</span>: <span class="ident">TokenStream</span>) -&gt; <span class="ident">TokenStream</span> {
     <span class="ident">view::generate_tokens</span>(<span class="ident">input</span>)

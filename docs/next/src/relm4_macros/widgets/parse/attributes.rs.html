@@ -216,11 +216,11 @@
                         <span class="ident">Attr::Track</span>(<span class="ident">ident</span>.<span class="ident">clone</span>(), <span class="prelude-val">Some</span>(<span class="ident">Box::new</span>(<span class="ident">expr</span>.<span class="ident">clone</span>())))
                     } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">ident</span> <span class="op">==</span> <span class="string">&quot;transition&quot;</span> {
                         <span class="kw">let</span> <span class="ident">expr</span> <span class="op">=</span> <span class="ident">expect_one_nested_expr</span>(<span class="kw-2">&amp;</span><span class="ident">nested</span>)<span class="question-mark">?</span>;
-                        <span class="kw">let</span> <span class="ident">ident</span> <span class="op">=</span> <span class="ident">expect_ident_from_expr</span>(<span class="kw-2">&amp;</span><span class="ident">expr</span>)<span class="question-mark">?</span>;
+                        <span class="kw">let</span> <span class="ident">ident</span> <span class="op">=</span> <span class="ident">expect_ident_from_expr</span>(<span class="ident">expr</span>)<span class="question-mark">?</span>;
                         <span class="ident">Attr::Transition</span>(<span class="ident">ident</span>.<span class="ident">clone</span>(), <span class="ident">ident</span>)
                     } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">ident</span> <span class="op">==</span> <span class="string">&quot;name&quot;</span> {
                         <span class="kw">let</span> <span class="ident">expr</span> <span class="op">=</span> <span class="ident">expect_one_nested_expr</span>(<span class="kw-2">&amp;</span><span class="ident">nested</span>)<span class="question-mark">?</span>;
-                        <span class="kw">let</span> <span class="ident">ident</span> <span class="op">=</span> <span class="ident">expect_ident_from_expr</span>(<span class="kw-2">&amp;</span><span class="ident">expr</span>)<span class="question-mark">?</span>;
+                        <span class="kw">let</span> <span class="ident">ident</span> <span class="op">=</span> <span class="ident">expect_ident_from_expr</span>(<span class="ident">expr</span>)<span class="question-mark">?</span>;
                         <span class="ident">Attr::Name</span>(<span class="ident">ident</span>.<span class="ident">clone</span>(), <span class="ident">ident</span>)
                     } <span class="kw">else</span> {
                         <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">unexpected_attr_name</span>(<span class="ident">ident</span>));
@@ -300,7 +300,7 @@
 
 <span class="kw">fn</span> <span class="ident">expect_one_nested_expr</span>(<span class="ident">nested</span>: <span class="kw-2">&amp;</span><span class="ident">Punctuated</span><span class="op">&lt;</span><span class="ident">Expr</span>, <span class="ident">token::Comma</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Expr</span><span class="op">&gt;</span> {
     <span class="kw">if</span> <span class="ident">nested</span>.<span class="ident">len</span>() <span class="op">!</span><span class="op">=</span> <span class="number">1</span> {
-        <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::new</span>(<span class="ident">nested</span>.<span class="ident">span</span>(), <span class="string">&quot;Expected only one expression.&quot;</span>));
+        <span class="prelude-val">Err</span>(<span class="ident">Error::new</span>(<span class="ident">nested</span>.<span class="ident">span</span>(), <span class="string">&quot;Expected only one expression.&quot;</span>))
     } <span class="kw">else</span> {
         <span class="prelude-val">Ok</span>(<span class="ident">nested</span>.<span class="ident">first</span>().<span class="ident">unwrap</span>())
     }

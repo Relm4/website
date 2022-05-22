@@ -8,7 +8,7 @@
                         <img src="https://raw.githubusercontent.com/AaronErhardt/relm4/main/assets/Relm_logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><div id="settings-menu" tabindex="-1">
                                 <a href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../wheel.svg"></a></div>
                         </div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
-    <h1 class="fqn"><span class="in-band">Macro <a href="index.html">relm4</a>::<wbr><a class="macro" href="#">view</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../src/relm4_macros/lib.rs.html#231">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><div class="docblock item-decl"><pre class="rust macro"><code>view!() { /* proc-macro */ }</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>The <a href="macro.view.html" title="view!"><code>view!</code></a> macro allows you to construct your UI easily and cleanly.</p>
+    <h1 class="fqn"><span class="in-band">Macro <a href="index.html">relm4</a>::<wbr><a class="macro" href="#">view</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../src/relm4_macros/lib.rs.html#274">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><div class="docblock item-decl"><pre class="rust macro"><code>view!() { /* proc-macro */ }</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>The <a href="macro.view.html" title="view!"><code>view!</code></a> macro allows you to construct your UI easily and cleanly.</p>
 <p>It does the same as inside the [<code>macro@widget</code>] attribute macro,
 but with less features (no factories, components, etc).</p>
 <p>You can even use the <code>relm4-macros</code> crate independently from Relm4 to build your GTK4 UI.</p>
@@ -19,12 +19,15 @@ but with less features (no factories, components, etc).</p>
 <span class="comment">// Creating a box with a button inside.</span>
 <span class="macro">relm4_macros::view!</span> {
     <span class="ident">vbox</span> <span class="op">=</span> <span class="ident">gtk::Box</span> {
-        <span class="ident">append</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">gtk::Button</span> {
+        <span class="ident">gtk::Button</span> {
             <span class="ident">set_label</span>: <span class="string">&quot;Click me!&quot;</span>,
             <span class="ident">connect_clicked</span> =&gt; <span class="op">|</span><span class="kw">_</span><span class="op">|</span> {
                 <span class="macro">println!</span>(<span class="string">&quot;Hello world!&quot;</span>);
             }
         },
+        <span class="ident">prepend</span>: <span class="ident">my_label</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">gtk::Label::builder</span>()
+            .<span class="ident">label</span>(<span class="string">&quot;The view macro works!&quot;</span>)
+            .<span class="ident">build</span>(),
     }
 }
 
@@ -50,5 +53,31 @@ so you can even use the macro for other purposes.</p>
 
 <span class="comment">// Output of &quot;ls -la&quot; at &quot;/&quot;</span>
 <span class="macro">dbg!</span>(<span class="ident">process</span>.<span class="ident">output</span>());</code></pre></div>
+<h2 id="macro-expansion"><a href="#macro-expansion">Macro expansion</a></h2>
+<p>The code generation from the first example looks like this (plus comments):</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code>
+<span class="comment">// We&#39;ve just used `gtk::Box` so we assume it has a `default()` method</span>
+<span class="kw">let</span> <span class="ident">vbox</span> <span class="op">=</span> <span class="ident">gtk::Box::default</span>();
+<span class="comment">// `vbox` was named, yet the button doesn&#39;t have an explicit name and get&#39;s a generated one instead.</span>
+<span class="kw">let</span> <span class="ident">_gtk_button_5</span> <span class="op">=</span> <span class="ident">gtk::Button::default</span>();
+<span class="comment">// For the label, we used a manual constructor method, so no `default()` method is required.</span>
+<span class="kw">let</span> <span class="ident">my_label</span> <span class="op">=</span> <span class="ident">gtk::Label::builder</span>().<span class="ident">label</span>(<span class="string">&quot;The view macro works!&quot;</span>).<span class="ident">build</span>();
+
+<span class="comment">// Connect the signal</span>
+{
+    <span class="ident">_gtk_button_5</span>.<span class="ident">connect_clicked</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> {
+        <span class="macro">println!</span>(<span class="string">&quot;Hello world!&quot;</span>);
+    });
+}
+
+<span class="comment">// The button was added without any further instructions, so we assume `container_add()` will work.</span>
+<span class="ident">::relm4::RelmContainerExt::container_add</span>(<span class="kw-2">&amp;</span><span class="ident">vbox</span>, <span class="kw-2">&amp;</span><span class="ident">_gtk_button_5</span>);
+<span class="ident">_gtk_button_5</span>.<span class="ident">set_label</span>(<span class="string">&quot;Click me!&quot;</span>);
+<span class="comment">// For the label, we used the `prepend` method, so we don&#39;t need `container_add()` here.</span>
+<span class="ident">vbox</span>.<span class="ident">prepend</span>(<span class="kw-2">&amp;</span><span class="ident">my_label</span>);</code></pre></div>
+<p>The widgets are first initialized, then signals are connected and then
+properties and widgets are assigned to each other.</p>
+<p>The nested structure of the UI is translated into regular Rust code.</p>
 </div></details></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="relm4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (9257f5aad 2022-05-21)" ></div>
 </body></html>
