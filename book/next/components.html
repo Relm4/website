@@ -150,7 +150,7 @@
 <p>Components are mainly useful for separating parts of the UI into smaller, more manageable parts. They are not necessary but for larger applications, they can be very helpful.</p>
 <h2 id="message-handling"><a class="header" href="#message-handling">Message handling</a></h2>
 <p>Simple components store their child components inside the <code>Model</code> as a <code>Controller&lt;ChildModel&gt;</code> and handle output messages in the <code>init</code> function by calling the <code>forward</code> method.</p>
-<pre><code class="language-rust no_run noplayground">enum Model {
+<pre><code class="language-rust no_run noplayground">struct Model {
     child: Controller&lt;ChildModel&gt;,
 }
 
