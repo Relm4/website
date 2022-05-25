@@ -77,7 +77,7 @@
 <span class="kw">use</span> <span class="ident">syn::spanned::Spanned</span>;
 <span class="kw">use</span> <span class="ident">syn</span>::{<span class="ident">Error</span>, <span class="ident">Expr</span>, <span class="ident">ImplItemMethod</span>, <span class="ident">Pat</span>, <span class="prelude-ty">Result</span>, <span class="ident">Stmt</span>};
 
-<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">inject_view_code</span>(
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">inject_view_code</span>(
     <span class="kw-2">mut</span> <span class="ident">func</span>: <span class="ident">ImplItemMethod</span>,
     <span class="ident">view_code</span>: <span class="ident">TokenStream2</span>,
     <span class="ident">widgets_return_code</span>: <span class="ident">TokenStream2</span>,

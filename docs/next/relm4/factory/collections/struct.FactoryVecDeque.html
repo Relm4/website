@@ -41,21 +41,21 @@ data associated with components that implement <a href="../traits/trait.FactoryC
 
         <span class="ident">ComponentParts</span> { <span class="ident">model</span>, <span class="ident">widgets</span> }
     }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[10,10],&quot;../../../src/factory/factory.rs.html#209&quot;,&quot;line 209&quot;]]"><div class="scraped-example-title">examples/factory.rs (<a href="../../../src/factory/factory.rs.html#209">line 209</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>199</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[10,10],&quot;../../../src/factory/factory.rs.html#196&quot;,&quot;line 196&quot;]]"><div class="scraped-example-title">examples/factory.rs (<a href="../../../src/factory/factory.rs.html#196">line 196</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>186</span>
+<span>187</span>
+<span>188</span>
+<span>189</span>
+<span>190</span>
+<span>191</span>
+<span>192</span>
+<span>193</span>
+<span>194</span>
+<span>195</span>
+<span>196</span>
+<span>197</span>
+<span>198</span>
+<span>199</span>
 <span>200</span>
-<span>201</span>
-<span>202</span>
-<span>203</span>
-<span>204</span>
-<span>205</span>
-<span>206</span>
-<span>207</span>
-<span>208</span>
-<span>209</span>
-<span>210</span>
-<span>211</span>
-<span>212</span>
-<span>213</span>
 </pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">init</span>(
         <span class="ident">counter</span>: <span class="ident"><span class="self">Self</span>::InitParams</span>,
         <span class="ident">root</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Root</span>,
@@ -167,7 +167,20 @@ but won’t cause any UI updates.</p>
         }
         <span class="self">self</span>.<span class="ident">counters</span>.<span class="highlight focus"><span class="ident">render_changes</span></span>();
     }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[29,29],&quot;../../../src/factory/factory.rs.html#244&quot;,&quot;line 244&quot;]]"><div class="scraped-example-title">examples/factory.rs (<a href="../../../src/factory/factory.rs.html#244">line 244</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>215</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[29,29],&quot;../../../src/factory/factory.rs.html#231&quot;,&quot;line 231&quot;]]"><div class="scraped-example-title">examples/factory.rs (<a href="../../../src/factory/factory.rs.html#231">line 231</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>202</span>
+<span>203</span>
+<span>204</span>
+<span>205</span>
+<span>206</span>
+<span>207</span>
+<span>208</span>
+<span>209</span>
+<span>210</span>
+<span>211</span>
+<span>212</span>
+<span>213</span>
+<span>214</span>
+<span>215</span>
 <span>216</span>
 <span>217</span>
 <span>218</span>
@@ -185,19 +198,6 @@ but won’t cause any UI updates.</p>
 <span>230</span>
 <span>231</span>
 <span>232</span>
-<span>233</span>
-<span>234</span>
-<span>235</span>
-<span>236</span>
-<span>237</span>
-<span>238</span>
-<span>239</span>
-<span>240</span>
-<span>241</span>
-<span>242</span>
-<span>243</span>
-<span>244</span>
-<span>245</span>
 </pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident"><span class="self">Self</span>::Input</span>, <span class="ident">_sender</span>: <span class="kw-2">&amp;</span><span class="ident">ComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="kw">match</span> <span class="ident">msg</span> {
             <span class="ident">AppMsg::AddCounter</span> =&gt; {
@@ -364,7 +364,20 @@ but won’t cause any UI updates.</p>
         }
         <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">render_changes</span>();
     }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[16,16],&quot;../../../src/factory/factory.rs.html#231&quot;,&quot;line 231&quot;]]"><div class="scraped-example-title">examples/factory.rs (<a href="../../../src/factory/factory.rs.html#231">line 231</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>215</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[16,16],&quot;../../../src/factory/factory.rs.html#218&quot;,&quot;line 218&quot;]]"><div class="scraped-example-title">examples/factory.rs (<a href="../../../src/factory/factory.rs.html#218">line 218</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>202</span>
+<span>203</span>
+<span>204</span>
+<span>205</span>
+<span>206</span>
+<span>207</span>
+<span>208</span>
+<span>209</span>
+<span>210</span>
+<span>211</span>
+<span>212</span>
+<span>213</span>
+<span>214</span>
+<span>215</span>
 <span>216</span>
 <span>217</span>
 <span>218</span>
@@ -382,19 +395,6 @@ but won’t cause any UI updates.</p>
 <span>230</span>
 <span>231</span>
 <span>232</span>
-<span>233</span>
-<span>234</span>
-<span>235</span>
-<span>236</span>
-<span>237</span>
-<span>238</span>
-<span>239</span>
-<span>240</span>
-<span>241</span>
-<span>242</span>
-<span>243</span>
-<span>244</span>
-<span>245</span>
 </pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident"><span class="self">Self</span>::Input</span>, <span class="ident">_sender</span>: <span class="kw-2">&amp;</span><span class="ident">ComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="kw">match</span> <span class="ident">msg</span> {
             <span class="ident">AppMsg::AddCounter</span> =&gt; {
@@ -594,7 +594,20 @@ or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#varia
         }
         <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">render_changes</span>();
     }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[7,7],&quot;../../../src/factory/factory.rs.html#222&quot;,&quot;line 222&quot;]]"><div class="scraped-example-title">examples/factory.rs (<a href="../../../src/factory/factory.rs.html#222">line 222</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>215</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[7,7],&quot;../../../src/factory/factory.rs.html#209&quot;,&quot;line 209&quot;]]"><div class="scraped-example-title">examples/factory.rs (<a href="../../../src/factory/factory.rs.html#209">line 209</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>202</span>
+<span>203</span>
+<span>204</span>
+<span>205</span>
+<span>206</span>
+<span>207</span>
+<span>208</span>
+<span>209</span>
+<span>210</span>
+<span>211</span>
+<span>212</span>
+<span>213</span>
+<span>214</span>
+<span>215</span>
 <span>216</span>
 <span>217</span>
 <span>218</span>
@@ -612,19 +625,6 @@ or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#varia
 <span>230</span>
 <span>231</span>
 <span>232</span>
-<span>233</span>
-<span>234</span>
-<span>235</span>
-<span>236</span>
-<span>237</span>
-<span>238</span>
-<span>239</span>
-<span>240</span>
-<span>241</span>
-<span>242</span>
-<span>243</span>
-<span>244</span>
-<span>245</span>
 </pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident"><span class="self">Self</span>::Input</span>, <span class="ident">_sender</span>: <span class="kw-2">&amp;</span><span class="ident">ComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="kw">match</span> <span class="ident">msg</span> {
             <span class="ident">AppMsg::AddCounter</span> =&gt; {
@@ -797,7 +797,20 @@ Returns <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#
         }
         <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">render_changes</span>();
     }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[3,3],&quot;../../../src/factory/factory.rs.html#218&quot;,&quot;line 218&quot;]]"><div class="scraped-example-title">examples/factory.rs (<a href="../../../src/factory/factory.rs.html#218">line 218</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>215</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[3,3],&quot;../../../src/factory/factory.rs.html#205&quot;,&quot;line 205&quot;]]"><div class="scraped-example-title">examples/factory.rs (<a href="../../../src/factory/factory.rs.html#205">line 205</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>202</span>
+<span>203</span>
+<span>204</span>
+<span>205</span>
+<span>206</span>
+<span>207</span>
+<span>208</span>
+<span>209</span>
+<span>210</span>
+<span>211</span>
+<span>212</span>
+<span>213</span>
+<span>214</span>
+<span>215</span>
 <span>216</span>
 <span>217</span>
 <span>218</span>
@@ -815,19 +828,6 @@ Returns <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#
 <span>230</span>
 <span>231</span>
 <span>232</span>
-<span>233</span>
-<span>234</span>
-<span>235</span>
-<span>236</span>
-<span>237</span>
-<span>238</span>
-<span>239</span>
-<span>240</span>
-<span>241</span>
-<span>242</span>
-<span>243</span>
-<span>244</span>
-<span>245</span>
 </pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident"><span class="self">Self</span>::Input</span>, <span class="ident">_sender</span>: <span class="kw-2">&amp;</span><span class="ident">ComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="kw">match</span> <span class="ident">msg</span> {
             <span class="ident">AppMsg::AddCounter</span> =&gt; {
@@ -1011,7 +1011,20 @@ shifting all elements between these positions.</p>
         }
         <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">render_changes</span>();
     }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[17,17],&quot;../../../src/factory/factory.rs.html#232&quot;,&quot;line 232&quot;],[[24,24],&quot;../../../src/factory/factory.rs.html#239&quot;,&quot;line 239&quot;]]"><div class="scraped-example-title">examples/factory.rs (<a href="../../../src/factory/factory.rs.html#232">line 232</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>215</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[17,17],&quot;../../../src/factory/factory.rs.html#219&quot;,&quot;line 219&quot;],[[24,24],&quot;../../../src/factory/factory.rs.html#226&quot;,&quot;line 226&quot;]]"><div class="scraped-example-title">examples/factory.rs (<a href="../../../src/factory/factory.rs.html#219">line 219</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>202</span>
+<span>203</span>
+<span>204</span>
+<span>205</span>
+<span>206</span>
+<span>207</span>
+<span>208</span>
+<span>209</span>
+<span>210</span>
+<span>211</span>
+<span>212</span>
+<span>213</span>
+<span>214</span>
+<span>215</span>
 <span>216</span>
 <span>217</span>
 <span>218</span>
@@ -1029,19 +1042,6 @@ shifting all elements between these positions.</p>
 <span>230</span>
 <span>231</span>
 <span>232</span>
-<span>233</span>
-<span>234</span>
-<span>235</span>
-<span>236</span>
-<span>237</span>
-<span>238</span>
-<span>239</span>
-<span>240</span>
-<span>241</span>
-<span>242</span>
-<span>243</span>
-<span>244</span>
-<span>245</span>
 </pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident"><span class="self">Self</span>::Input</span>, <span class="ident">_sender</span>: <span class="kw-2">&amp;</span><span class="ident">ComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="kw">match</span> <span class="ident">msg</span> {
             <span class="ident">AppMsg::AddCounter</span> =&gt; {
@@ -1211,7 +1211,20 @@ shifting all elements between these positions.</p>
         }
         <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">render_changes</span>();
     }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[10,10],&quot;../../../src/factory/factory.rs.html#225&quot;,&quot;line 225&quot;]]"><div class="scraped-example-title">examples/factory.rs (<a href="../../../src/factory/factory.rs.html#225">line 225</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>215</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[10,10],&quot;../../../src/factory/factory.rs.html#212&quot;,&quot;line 212&quot;]]"><div class="scraped-example-title">examples/factory.rs (<a href="../../../src/factory/factory.rs.html#212">line 212</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>202</span>
+<span>203</span>
+<span>204</span>
+<span>205</span>
+<span>206</span>
+<span>207</span>
+<span>208</span>
+<span>209</span>
+<span>210</span>
+<span>211</span>
+<span>212</span>
+<span>213</span>
+<span>214</span>
+<span>215</span>
 <span>216</span>
 <span>217</span>
 <span>218</span>
@@ -1229,19 +1242,6 @@ shifting all elements between these positions.</p>
 <span>230</span>
 <span>231</span>
 <span>232</span>
-<span>233</span>
-<span>234</span>
-<span>235</span>
-<span>236</span>
-<span>237</span>
-<span>238</span>
-<span>239</span>
-<span>240</span>
-<span>241</span>
-<span>242</span>
-<span>243</span>
-<span>244</span>
-<span>245</span>
 </pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident"><span class="self">Self</span>::Input</span>, <span class="ident">_sender</span>: <span class="kw-2">&amp;</span><span class="ident">ComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="kw">match</span> <span class="ident">msg</span> {
             <span class="ident">AppMsg::AddCounter</span> =&gt; {

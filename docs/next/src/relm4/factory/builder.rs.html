@@ -286,9 +286,9 @@
             <span class="ident">data</span>,
             <span class="ident">root_widget</span>,
             <span class="ident">input_tx</span>,
-            <span class="kw-2">mut</span> <span class="ident">input_rx</span>,
+            <span class="ident">input_rx</span>,
             <span class="ident">output_tx</span>,
-            <span class="kw-2">mut</span> <span class="ident">output_rx</span>,
+            <span class="ident">output_rx</span>,
         } <span class="op">=</span> <span class="self">self</span>;
 
         <span class="kw">let</span> <span class="ident">forward_sender</span> <span class="op">=</span> <span class="ident">parent_sender</span>.<span class="number">0</span>.<span class="ident">clone</span>();
@@ -303,7 +303,7 @@
         });
 
         <span class="comment">// Sends messages from commands executed from the background.</span>
-        <span class="kw">let</span> (<span class="ident">cmd_tx</span>, <span class="kw-2">mut</span> <span class="ident">cmd_rx</span>) <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::channel</span>::<span class="op">&lt;</span><span class="ident">C::CommandOutput</span><span class="op">&gt;</span>();
+        <span class="kw">let</span> (<span class="ident">cmd_tx</span>, <span class="ident">cmd_rx</span>) <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::channel</span>::<span class="op">&lt;</span><span class="ident">C::CommandOutput</span><span class="op">&gt;</span>();
 
         <span class="comment">// Gets notifications when a component&#39;s model and view is updated externally.</span>
         <span class="kw">let</span> (<span class="ident">notifier</span>, <span class="ident">notifier_rx</span>) <span class="op">=</span> <span class="ident">flume::bounded</span>(<span class="number">0</span>);

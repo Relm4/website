@@ -49,7 +49,7 @@
             }
             <span class="ident">PropertyName::Path</span>(<span class="ident">path</span>) =&gt; <span class="ident">path</span>.<span class="ident">to_token_stream</span>(),
             <span class="ident">PropertyName::RelmContainerExtAssign</span> =&gt; {
-                <span class="macro">quote!</span> { #<span class="ident">relm4_path</span> <span class="ident">::RelmContainerExt::container_add</span> }
+                <span class="macro">quote_spanned!</span> { <span class="ident">w_name</span>.<span class="ident">span</span>() =&gt; #<span class="ident">relm4_path</span> <span class="ident">::RelmContainerExt::container_add</span> }
             }
         }
     }

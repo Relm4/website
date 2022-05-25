@@ -174,9 +174,6 @@
 <span id="165">165</span>
 <span id="166">166</span>
 <span id="167">167</span>
-<span id="168">168</span>
-<span id="169">169</span>
-<span id="170">170</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">proc_macro2::TokenStream</span> <span class="kw">as</span> <span class="ident">TokenStream2</span>;
 <span class="kw">use</span> <span class="ident">quote</span>::{<span class="ident">quote</span>, <span class="ident">ToTokens</span>};
 <span class="kw">use</span> <span class="ident">syn::spanned::Spanned</span>;
@@ -186,7 +183,7 @@
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ItemImpl</span>;
 
 <span class="kw">mod</span> <span class="ident">funcs</span>;
-<span class="kw">mod</span> <span class="ident">inject_view_code</span>;
+<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">mod</span> <span class="ident">inject_view_code</span>;
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">mod</span> <span class="ident">token_streams</span>;
 <span class="kw">mod</span> <span class="ident">types</span>;
 
@@ -197,7 +194,11 @@
     <span class="ident">relm4_path</span>: <span class="ident">Path</span>,
     <span class="ident">data</span>: <span class="ident">ItemImpl</span>,
 ) -&gt; <span class="ident">TokenStream2</span> {
-    <span class="kw">let</span> <span class="ident">last_segment</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">trait_</span>.<span class="ident">segments</span>.<span class="ident">last</span>().<span class="ident">unwrap</span>();
+    <span class="kw">let</span> <span class="ident">last_segment</span> <span class="op">=</span> <span class="ident">data</span>
+        .<span class="ident">trait_</span>
+        .<span class="ident">segments</span>
+        .<span class="ident">last</span>()
+        .<span class="ident">expect</span>(<span class="string">&quot;Expected at least one segment in the trait path&quot;</span>);
     <span class="kw">if</span> <span class="ident">PathArguments::None</span> <span class="op">!</span><span class="op">=</span> <span class="ident">last_segment</span>.<span class="ident">arguments</span> {
         <span class="kw">return</span> <span class="ident">Error::new</span>(
             <span class="ident">last_segment</span>.<span class="ident">arguments</span>.<span class="ident">span</span>(),
@@ -208,9 +209,6 @@
 
     <span class="kw">let</span> <span class="ident">types::Types</span> {
         <span class="ident">widgets</span>: <span class="ident">widgets_type</span>,
-        <span class="ident">init_params</span>,
-        <span class="ident">input</span>,
-        <span class="ident">output</span>,
         <span class="ident">other_types</span>,
     } <span class="op">=</span> <span class="kw">match</span> <span class="ident">types::Types::new</span>(<span class="ident">data</span>.<span class="ident">types</span>) {
         <span class="prelude-val">Ok</span>(<span class="ident">types</span>) =&gt; <span class="ident">types</span>,
@@ -312,10 +310,6 @@
             <span class="kw">type</span> <span class="ident">Widgets</span> <span class="op">=</span> #<span class="ident">widgets_type</span>;
 
             #(#<span class="ident">other_types</span>)<span class="op">*</span>
-
-            #<span class="ident">init_params</span>
-            #<span class="ident">input</span>
-            #<span class="ident">output</span>
 
             <span class="kw">fn</span> <span class="ident">init_root</span>() -&gt; <span class="ident"><span class="self">Self</span>::Root</span> {
                 #<span class="ident">init_root</span>
