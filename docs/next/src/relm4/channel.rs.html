@@ -84,12 +84,16 @@
 <span id="75">75</span>
 <span id="76">76</span>
 <span id="77">77</span>
+<span id="78">78</span>
+<span id="79">79</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2022 System76 &lt;info@system76.com&gt;</span>
 <span class="comment">// SPDX-License-Identifier: MIT or Apache-2.0</span>
 
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">channel</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() -&gt; (<span class="ident">Sender</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">Receiver</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) {
+<span class="doccomment">/// Create an unbounded channel to send messages</span>
+<span class="doccomment">/// between different parts of you application.</span>
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">channel</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() -&gt; (<span class="ident">Sender</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">Receiver</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) {
     <span class="kw">let</span> (<span class="ident">tx</span>, <span class="ident">rx</span>) <span class="op">=</span> <span class="ident">flume::unbounded</span>();
     (<span class="ident">Sender</span>(<span class="ident">tx</span>), <span class="ident">Receiver</span>(<span class="ident">rx</span>))
 }

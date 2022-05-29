@@ -71,13 +71,19 @@
 <span id="62">62</span>
 <span id="63">63</span>
 <span id="64">64</span>
+<span id="65">65</span>
+<span id="66">66</span>
+<span id="67">67</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2021-2022 Aaron Erhardt &lt;aaron.erhardt@t-online.de&gt;</span>
 <span class="comment">// Copyright 2022 System76 &lt;info@system76.com&gt;</span>
 <span class="comment">// SPDX-License-Identifier: MIT or Apache-2.0</span>
 
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">std::fmt</span>::{<span class="self">self</span>, <span class="ident">Debug</span>};
 <span class="kw">use</span> <span class="ident">std::rc::Rc</span>;
+
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Sender</span>;
+
+<span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">Component</span>, <span class="ident">StateWatcher</span>};
 
 <span class="doccomment">/// Shared behavior of component controller types.</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">ComponentController</span><span class="op">&lt;</span><span class="ident">C</span>: <span class="ident">Component</span><span class="op">&gt;</span> {
