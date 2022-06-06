@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/github/home/.cargo/git/checkouts/gtk-rs-core-7be42ca38bd6361c/f20b435/glib/sys/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/github/home/.cargo/git/checkouts/gtk-rs-core-7be42ca38bd6361c/0afcb34/glib/sys/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
     <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../glib_sys/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
         </a><h2 class="location"></h2>
     </nav>
@@ -6836,203 +6836,6 @@
 <span id="6829">6829</span>
 <span id="6830">6830</span>
 <span id="6831">6831</span>
-<span id="6832">6832</span>
-<span id="6833">6833</span>
-<span id="6834">6834</span>
-<span id="6835">6835</span>
-<span id="6836">6836</span>
-<span id="6837">6837</span>
-<span id="6838">6838</span>
-<span id="6839">6839</span>
-<span id="6840">6840</span>
-<span id="6841">6841</span>
-<span id="6842">6842</span>
-<span id="6843">6843</span>
-<span id="6844">6844</span>
-<span id="6845">6845</span>
-<span id="6846">6846</span>
-<span id="6847">6847</span>
-<span id="6848">6848</span>
-<span id="6849">6849</span>
-<span id="6850">6850</span>
-<span id="6851">6851</span>
-<span id="6852">6852</span>
-<span id="6853">6853</span>
-<span id="6854">6854</span>
-<span id="6855">6855</span>
-<span id="6856">6856</span>
-<span id="6857">6857</span>
-<span id="6858">6858</span>
-<span id="6859">6859</span>
-<span id="6860">6860</span>
-<span id="6861">6861</span>
-<span id="6862">6862</span>
-<span id="6863">6863</span>
-<span id="6864">6864</span>
-<span id="6865">6865</span>
-<span id="6866">6866</span>
-<span id="6867">6867</span>
-<span id="6868">6868</span>
-<span id="6869">6869</span>
-<span id="6870">6870</span>
-<span id="6871">6871</span>
-<span id="6872">6872</span>
-<span id="6873">6873</span>
-<span id="6874">6874</span>
-<span id="6875">6875</span>
-<span id="6876">6876</span>
-<span id="6877">6877</span>
-<span id="6878">6878</span>
-<span id="6879">6879</span>
-<span id="6880">6880</span>
-<span id="6881">6881</span>
-<span id="6882">6882</span>
-<span id="6883">6883</span>
-<span id="6884">6884</span>
-<span id="6885">6885</span>
-<span id="6886">6886</span>
-<span id="6887">6887</span>
-<span id="6888">6888</span>
-<span id="6889">6889</span>
-<span id="6890">6890</span>
-<span id="6891">6891</span>
-<span id="6892">6892</span>
-<span id="6893">6893</span>
-<span id="6894">6894</span>
-<span id="6895">6895</span>
-<span id="6896">6896</span>
-<span id="6897">6897</span>
-<span id="6898">6898</span>
-<span id="6899">6899</span>
-<span id="6900">6900</span>
-<span id="6901">6901</span>
-<span id="6902">6902</span>
-<span id="6903">6903</span>
-<span id="6904">6904</span>
-<span id="6905">6905</span>
-<span id="6906">6906</span>
-<span id="6907">6907</span>
-<span id="6908">6908</span>
-<span id="6909">6909</span>
-<span id="6910">6910</span>
-<span id="6911">6911</span>
-<span id="6912">6912</span>
-<span id="6913">6913</span>
-<span id="6914">6914</span>
-<span id="6915">6915</span>
-<span id="6916">6916</span>
-<span id="6917">6917</span>
-<span id="6918">6918</span>
-<span id="6919">6919</span>
-<span id="6920">6920</span>
-<span id="6921">6921</span>
-<span id="6922">6922</span>
-<span id="6923">6923</span>
-<span id="6924">6924</span>
-<span id="6925">6925</span>
-<span id="6926">6926</span>
-<span id="6927">6927</span>
-<span id="6928">6928</span>
-<span id="6929">6929</span>
-<span id="6930">6930</span>
-<span id="6931">6931</span>
-<span id="6932">6932</span>
-<span id="6933">6933</span>
-<span id="6934">6934</span>
-<span id="6935">6935</span>
-<span id="6936">6936</span>
-<span id="6937">6937</span>
-<span id="6938">6938</span>
-<span id="6939">6939</span>
-<span id="6940">6940</span>
-<span id="6941">6941</span>
-<span id="6942">6942</span>
-<span id="6943">6943</span>
-<span id="6944">6944</span>
-<span id="6945">6945</span>
-<span id="6946">6946</span>
-<span id="6947">6947</span>
-<span id="6948">6948</span>
-<span id="6949">6949</span>
-<span id="6950">6950</span>
-<span id="6951">6951</span>
-<span id="6952">6952</span>
-<span id="6953">6953</span>
-<span id="6954">6954</span>
-<span id="6955">6955</span>
-<span id="6956">6956</span>
-<span id="6957">6957</span>
-<span id="6958">6958</span>
-<span id="6959">6959</span>
-<span id="6960">6960</span>
-<span id="6961">6961</span>
-<span id="6962">6962</span>
-<span id="6963">6963</span>
-<span id="6964">6964</span>
-<span id="6965">6965</span>
-<span id="6966">6966</span>
-<span id="6967">6967</span>
-<span id="6968">6968</span>
-<span id="6969">6969</span>
-<span id="6970">6970</span>
-<span id="6971">6971</span>
-<span id="6972">6972</span>
-<span id="6973">6973</span>
-<span id="6974">6974</span>
-<span id="6975">6975</span>
-<span id="6976">6976</span>
-<span id="6977">6977</span>
-<span id="6978">6978</span>
-<span id="6979">6979</span>
-<span id="6980">6980</span>
-<span id="6981">6981</span>
-<span id="6982">6982</span>
-<span id="6983">6983</span>
-<span id="6984">6984</span>
-<span id="6985">6985</span>
-<span id="6986">6986</span>
-<span id="6987">6987</span>
-<span id="6988">6988</span>
-<span id="6989">6989</span>
-<span id="6990">6990</span>
-<span id="6991">6991</span>
-<span id="6992">6992</span>
-<span id="6993">6993</span>
-<span id="6994">6994</span>
-<span id="6995">6995</span>
-<span id="6996">6996</span>
-<span id="6997">6997</span>
-<span id="6998">6998</span>
-<span id="6999">6999</span>
-<span id="7000">7000</span>
-<span id="7001">7001</span>
-<span id="7002">7002</span>
-<span id="7003">7003</span>
-<span id="7004">7004</span>
-<span id="7005">7005</span>
-<span id="7006">7006</span>
-<span id="7007">7007</span>
-<span id="7008">7008</span>
-<span id="7009">7009</span>
-<span id="7010">7010</span>
-<span id="7011">7011</span>
-<span id="7012">7012</span>
-<span id="7013">7013</span>
-<span id="7014">7014</span>
-<span id="7015">7015</span>
-<span id="7016">7016</span>
-<span id="7017">7017</span>
-<span id="7018">7018</span>
-<span id="7019">7019</span>
-<span id="7020">7020</span>
-<span id="7021">7021</span>
-<span id="7022">7022</span>
-<span id="7023">7023</span>
-<span id="7024">7024</span>
-<span id="7025">7025</span>
-<span id="7026">7026</span>
-<span id="7027">7027</span>
-<span id="7028">7028</span>
 </pre><pre class="rust"><code><span class="comment">// This file was generated by gir (https://github.com/gtk-rs/gir)</span>
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files)</span>
 <span class="comment">// DO NOT EDIT</span>
@@ -10119,19 +9922,9 @@
     <span class="comment">// GDir</span>
     <span class="comment">//=========================================================================</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_dir_close</span>(<span class="ident">dir</span>: <span class="kw-2">*mut</span> <span class="ident">GDir</span>);
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">windows</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">windows</span>)))]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_dir_read_name_utf8</span>(<span class="ident">dir</span>: <span class="kw-2">*mut</span> <span class="ident">GDir</span>) -&gt; <span class="kw-2">*const</span> <span class="ident">c_char</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_dir_read_name</span>(<span class="ident">dir</span>: <span class="kw-2">*mut</span> <span class="ident">GDir</span>) -&gt; <span class="kw-2">*const</span> <span class="ident">c_char</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_dir_rewind</span>(<span class="ident">dir</span>: <span class="kw-2">*mut</span> <span class="ident">GDir</span>);
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_dir_make_tmp</span>(<span class="ident">tmpl</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>, <span class="ident">error</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">GError</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">c_char</span>;
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">windows</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">windows</span>)))]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_dir_open_utf8</span>(
-        <span class="ident">path</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-        <span class="ident">flags</span>: <span class="ident">c_uint</span>,
-        <span class="ident">error</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">GError</span>,
-    ) -&gt; <span class="kw-2">*mut</span> <span class="ident">GDir</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_dir_open</span>(<span class="ident">path</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>, <span class="ident">flags</span>: <span class="ident">c_uint</span>, <span class="ident">error</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">GError</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">GDir</span>;
 
     <span class="comment">//=========================================================================</span>
@@ -10337,13 +10130,6 @@
     <span class="comment">// GIOChannel</span>
     <span class="comment">//=========================================================================</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_io_channel_get_type</span>() -&gt; <span class="ident">GType</span>;
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">windows</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">windows</span>)))]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_io_channel_new_file_utf8</span>(
-        <span class="ident">filename</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-        <span class="ident">mode</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-        <span class="ident">error</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">GError</span>,
-    ) -&gt; <span class="kw-2">*mut</span> <span class="ident">GIOChannel</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_io_channel_new_file</span>(
         <span class="ident">filename</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
         <span class="ident">mode</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
@@ -12957,27 +12743,12 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_environ_unsetenv</span>(<span class="ident">envp</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">c_char</span>, <span class="ident">variable</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>) -&gt; <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">c_char</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_file_error_from_errno</span>(<span class="ident">err_no</span>: <span class="ident">c_int</span>) -&gt; <span class="ident">GFileError</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_file_error_quark</span>() -&gt; <span class="ident">GQuark</span>;
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">windows</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">windows</span>)))]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_file_get_contents_utf8</span>(
-        <span class="ident">filename</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-        <span class="ident">contents</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">u8</span>,
-        <span class="ident">length</span>: <span class="kw-2">*mut</span> <span class="ident">size_t</span>,
-        <span class="ident">error</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">GError</span>,
-    ) -&gt; <span class="ident">gboolean</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_file_get_contents</span>(
         <span class="ident">filename</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
         <span class="ident">contents</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">u8</span>,
         <span class="ident">length</span>: <span class="kw-2">*mut</span> <span class="ident">size_t</span>,
         <span class="ident">error</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">GError</span>,
     ) -&gt; <span class="ident">gboolean</span>;
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">windows</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">windows</span>)))]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_file_open_tmp_utf8</span>(
-        <span class="ident">tmpl</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-        <span class="ident">name_used</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">c_char</span>,
-        <span class="ident">error</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">GError</span>,
-    ) -&gt; <span class="ident">c_int</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_file_open_tmp</span>(
         <span class="ident">tmpl</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
         <span class="ident">name_used</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">c_char</span>,
@@ -13000,31 +12771,12 @@
         <span class="ident">mode</span>: <span class="ident">c_int</span>,
         <span class="ident">error</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">GError</span>,
     ) -&gt; <span class="ident">gboolean</span>;
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">windows</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">windows</span>)))]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_file_test_utf8</span>(<span class="ident">filename</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>, <span class="ident">test</span>: <span class="ident">GFileTest</span>) -&gt; <span class="ident">gboolean</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_file_test</span>(<span class="ident">filename</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>, <span class="ident">test</span>: <span class="ident">GFileTest</span>) -&gt; <span class="ident">gboolean</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_filename_display_basename</span>(<span class="ident">filename</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">c_char</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_filename_display_name</span>(<span class="ident">filename</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">c_char</span>;
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">windows</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">windows</span>)))]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_filename_from_uri_utf8</span>(
-        <span class="ident">uri</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-        <span class="ident">hostname</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">c_char</span>,
-        <span class="ident">error</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">GError</span>,
-    ) -&gt; <span class="kw-2">*mut</span> <span class="ident">c_char</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_filename_from_uri</span>(
         <span class="ident">uri</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
         <span class="ident">hostname</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">c_char</span>,
-        <span class="ident">error</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">GError</span>,
-    ) -&gt; <span class="kw-2">*mut</span> <span class="ident">c_char</span>;
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">windows</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">windows</span>)))]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_filename_from_utf8_utf8</span>(
-        <span class="ident">utf8string</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-        <span class="ident">len</span>: <span class="ident">ssize_t</span>,
-        <span class="ident">bytes_read</span>: <span class="kw-2">*mut</span> <span class="ident">size_t</span>,
-        <span class="ident">bytes_written</span>: <span class="kw-2">*mut</span> <span class="ident">size_t</span>,
         <span class="ident">error</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">GError</span>,
     ) -&gt; <span class="kw-2">*mut</span> <span class="ident">c_char</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_filename_from_utf8</span>(
@@ -13034,25 +12786,9 @@
         <span class="ident">bytes_written</span>: <span class="kw-2">*mut</span> <span class="ident">size_t</span>,
         <span class="ident">error</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">GError</span>,
     ) -&gt; <span class="kw-2">*mut</span> <span class="ident">c_char</span>;
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">windows</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">windows</span>)))]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_filename_to_uri_utf8</span>(
-        <span class="ident">filename</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-        <span class="ident">hostname</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-        <span class="ident">error</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">GError</span>,
-    ) -&gt; <span class="kw-2">*mut</span> <span class="ident">c_char</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_filename_to_uri</span>(
         <span class="ident">filename</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
         <span class="ident">hostname</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-        <span class="ident">error</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">GError</span>,
-    ) -&gt; <span class="kw-2">*mut</span> <span class="ident">c_char</span>;
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">windows</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">windows</span>)))]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_filename_to_utf8_utf8</span>(
-        <span class="ident">opsysstring</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-        <span class="ident">len</span>: <span class="ident">ssize_t</span>,
-        <span class="ident">bytes_read</span>: <span class="kw-2">*mut</span> <span class="ident">size_t</span>,
-        <span class="ident">bytes_written</span>: <span class="kw-2">*mut</span> <span class="ident">size_t</span>,
         <span class="ident">error</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">GError</span>,
     ) -&gt; <span class="kw-2">*mut</span> <span class="ident">c_char</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_filename_to_utf8</span>(
@@ -13062,9 +12798,6 @@
         <span class="ident">bytes_written</span>: <span class="kw-2">*mut</span> <span class="ident">size_t</span>,
         <span class="ident">error</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">GError</span>,
     ) -&gt; <span class="kw-2">*mut</span> <span class="ident">c_char</span>;
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">windows</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">windows</span>)))]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_find_program_in_path_utf8</span>(<span class="ident">program</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">c_char</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_find_program_in_path</span>(<span class="ident">program</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">c_char</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_format_size</span>(<span class="ident">size</span>: <span class="ident">u64</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">c_char</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_format_size_for_display</span>(<span class="ident">size</span>: <span class="ident">i64</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">c_char</span>;
@@ -13077,16 +12810,10 @@
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v2_62&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v2_62&quot;</span>)))]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_get_console_charset</span>(<span class="ident">charset</span>: <span class="kw-2">*mut</span> <span class="kw-2">*const</span> <span class="ident">c_char</span>) -&gt; <span class="ident">gboolean</span>;
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">windows</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">windows</span>)))]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_get_current_dir_utf8</span>() -&gt; <span class="kw-2">*mut</span> <span class="ident">c_char</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_get_current_dir</span>() -&gt; <span class="kw-2">*mut</span> <span class="ident">c_char</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_get_current_time</span>(<span class="ident">result</span>: <span class="kw-2">*mut</span> <span class="ident">GTimeVal</span>);
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_get_environ</span>() -&gt; <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">c_char</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_get_filename_charsets</span>(<span class="ident">filename_charsets</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="kw-2">*const</span> <span class="ident">c_char</span>) -&gt; <span class="ident">gboolean</span>;
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">windows</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">windows</span>)))]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_get_home_dir_utf8</span>() -&gt; <span class="kw-2">*const</span> <span class="ident">c_char</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_get_home_dir</span>() -&gt; <span class="kw-2">*const</span> <span class="ident">c_char</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_get_host_name</span>() -&gt; <span class="kw-2">*const</span> <span class="ident">c_char</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_get_language_names</span>() -&gt; <span class="kw-2">*const</span> <span class="kw-2">*const</span> <span class="ident">c_char</span>;
@@ -13101,32 +12828,20 @@
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v2_64&quot;</span>)))]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_get_os_info</span>(<span class="ident">key_name</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">c_char</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_get_prgname</span>() -&gt; <span class="kw-2">*const</span> <span class="ident">c_char</span>;
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">windows</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">windows</span>)))]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_get_real_name_utf8</span>() -&gt; <span class="kw-2">*const</span> <span class="ident">c_char</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_get_real_name</span>() -&gt; <span class="kw-2">*const</span> <span class="ident">c_char</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_get_real_time</span>() -&gt; <span class="ident">i64</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_get_system_config_dirs</span>() -&gt; <span class="kw-2">*const</span> <span class="kw-2">*const</span> <span class="ident">c_char</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_get_system_data_dirs</span>() -&gt; <span class="kw-2">*const</span> <span class="kw-2">*const</span> <span class="ident">c_char</span>;
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">windows</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">windows</span>)))]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_get_tmp_dir_utf8</span>() -&gt; <span class="kw-2">*const</span> <span class="ident">c_char</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_get_tmp_dir</span>() -&gt; <span class="kw-2">*const</span> <span class="ident">c_char</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_get_user_cache_dir</span>() -&gt; <span class="kw-2">*const</span> <span class="ident">c_char</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_get_user_config_dir</span>() -&gt; <span class="kw-2">*const</span> <span class="ident">c_char</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_get_user_data_dir</span>() -&gt; <span class="kw-2">*const</span> <span class="ident">c_char</span>;
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">windows</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">windows</span>)))]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_get_user_name_utf8</span>() -&gt; <span class="kw-2">*const</span> <span class="ident">c_char</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_get_user_name</span>() -&gt; <span class="kw-2">*const</span> <span class="ident">c_char</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_get_user_runtime_dir</span>() -&gt; <span class="kw-2">*const</span> <span class="ident">c_char</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_get_user_special_dir</span>(<span class="ident">directory</span>: <span class="ident">GUserDirectory</span>) -&gt; <span class="kw-2">*const</span> <span class="ident">c_char</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v2_72&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v2_72&quot;</span>)))]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_get_user_state_dir</span>() -&gt; <span class="kw-2">*const</span> <span class="ident">c_char</span>;
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">windows</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">windows</span>)))]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_getenv_utf8</span>(<span class="ident">variable</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>) -&gt; <span class="kw-2">*const</span> <span class="ident">c_char</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_getenv</span>(<span class="ident">variable</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>) -&gt; <span class="kw-2">*const</span> <span class="ident">c_char</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_hostname_is_ascii_encoded</span>(<span class="ident">hostname</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>) -&gt; <span class="ident">gboolean</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_hostname_is_ip_address</span>(<span class="ident">hostname</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>) -&gt; <span class="ident">gboolean</span>;
@@ -13308,9 +13023,6 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_mkdir_with_parents</span>(<span class="ident">pathname</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>, <span class="ident">mode</span>: <span class="ident">c_int</span>) -&gt; <span class="ident">c_int</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_mkdtemp</span>(<span class="ident">tmpl</span>: <span class="kw-2">*mut</span> <span class="ident">c_char</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">c_char</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_mkdtemp_full</span>(<span class="ident">tmpl</span>: <span class="kw-2">*mut</span> <span class="ident">c_char</span>, <span class="ident">mode</span>: <span class="ident">c_int</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">c_char</span>;
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">windows</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">windows</span>)))]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_mkstemp_utf8</span>(<span class="ident">tmpl</span>: <span class="kw-2">*mut</span> <span class="ident">c_char</span>) -&gt; <span class="ident">c_int</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_mkstemp</span>(<span class="ident">tmpl</span>: <span class="kw-2">*mut</span> <span class="ident">c_char</span>) -&gt; <span class="ident">c_int</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_mkstemp_full</span>(<span class="ident">tmpl</span>: <span class="kw-2">*mut</span> <span class="ident">c_char</span>, <span class="ident">flags</span>: <span class="ident">c_int</span>, <span class="ident">mode</span>: <span class="ident">c_int</span>) -&gt; <span class="ident">c_int</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_nullify_pointer</span>(<span class="ident">nullify_location</span>: <span class="kw-2">*mut</span> <span class="ident">gpointer</span>);
@@ -13447,13 +13159,6 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_set_prgname</span>(<span class="ident">prgname</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>);
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_set_print_handler</span>(<span class="ident">func</span>: <span class="ident">GPrintFunc</span>) -&gt; <span class="ident">GPrintFunc</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_set_printerr_handler</span>(<span class="ident">func</span>: <span class="ident">GPrintFunc</span>) -&gt; <span class="ident">GPrintFunc</span>;
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">windows</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">windows</span>)))]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_setenv_utf8</span>(
-        <span class="ident">variable</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-        <span class="ident">value</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-        <span class="ident">overwrite</span>: <span class="ident">gboolean</span>,
-    ) -&gt; <span class="ident">gboolean</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_setenv</span>(<span class="ident">variable</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>, <span class="ident">value</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>, <span class="ident">overwrite</span>: <span class="ident">gboolean</span>)
         -&gt; <span class="ident">gboolean</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_shell_error_quark</span>() -&gt; <span class="ident">GQuark</span>;
@@ -13483,18 +13188,6 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_slice_set_config</span>(<span class="ident">ckey</span>: <span class="ident">GSliceConfig</span>, <span class="ident">value</span>: <span class="ident">i64</span>);
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_snprintf</span>(<span class="ident">string</span>: <span class="kw-2">*mut</span> <span class="ident">c_char</span>, <span class="ident">n</span>: <span class="ident">c_ulong</span>, <span class="ident">format</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>, ...) -&gt; <span class="ident">c_int</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_spaced_primes_closest</span>(<span class="ident">num</span>: <span class="ident">c_uint</span>) -&gt; <span class="ident">c_uint</span>;
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">windows</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">windows</span>)))]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_spawn_async_utf8</span>(
-        <span class="ident">working_directory</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-        <span class="ident">argv</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">c_char</span>,
-        <span class="ident">envp</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">c_char</span>,
-        <span class="ident">flags</span>: <span class="ident">GSpawnFlags</span>,
-        <span class="ident">child_setup</span>: <span class="ident">GSpawnChildSetupFunc</span>,
-        <span class="ident">user_data</span>: <span class="ident">gpointer</span>,
-        <span class="ident">child_pid</span>: <span class="kw-2">*mut</span> <span class="ident">GPid</span>,
-        <span class="ident">error</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">GError</span>,
-    ) -&gt; <span class="ident">gboolean</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_spawn_async</span>(
         <span class="ident">working_directory</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
         <span class="ident">argv</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">c_char</span>,
@@ -13503,23 +13196,6 @@
         <span class="ident">child_setup</span>: <span class="ident">GSpawnChildSetupFunc</span>,
         <span class="ident">user_data</span>: <span class="ident">gpointer</span>,
         <span class="ident">child_pid</span>: <span class="kw-2">*mut</span> <span class="ident">GPid</span>,
-        <span class="ident">error</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">GError</span>,
-    ) -&gt; <span class="ident">gboolean</span>;
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v2_58&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v2_58&quot;</span>)))]</span>
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">windows</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">windows</span>)))]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_spawn_async_with_fds_utf8</span>(
-        <span class="ident">working_directory</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-        <span class="ident">argv</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">c_char</span>,
-        <span class="ident">envp</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">c_char</span>,
-        <span class="ident">flags</span>: <span class="ident">GSpawnFlags</span>,
-        <span class="ident">child_setup</span>: <span class="ident">GSpawnChildSetupFunc</span>,
-        <span class="ident">user_data</span>: <span class="ident">gpointer</span>,
-        <span class="ident">child_pid</span>: <span class="kw-2">*mut</span> <span class="ident">GPid</span>,
-        <span class="ident">stdin_fd</span>: <span class="ident">c_int</span>,
-        <span class="ident">stdout_fd</span>: <span class="ident">c_int</span>,
-        <span class="ident">stderr_fd</span>: <span class="ident">c_int</span>,
         <span class="ident">error</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">GError</span>,
     ) -&gt; <span class="ident">gboolean</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v2_58&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
@@ -13537,21 +13213,6 @@
         <span class="ident">stderr_fd</span>: <span class="ident">c_int</span>,
         <span class="ident">error</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">GError</span>,
     ) -&gt; <span class="ident">gboolean</span>;
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">windows</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">windows</span>)))]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_spawn_async_with_pipes_utf8</span>(
-        <span class="ident">working_directory</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-        <span class="ident">argv</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">c_char</span>,
-        <span class="ident">envp</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">c_char</span>,
-        <span class="ident">flags</span>: <span class="ident">GSpawnFlags</span>,
-        <span class="ident">child_setup</span>: <span class="ident">GSpawnChildSetupFunc</span>,
-        <span class="ident">user_data</span>: <span class="ident">gpointer</span>,
-        <span class="ident">child_pid</span>: <span class="kw-2">*mut</span> <span class="ident">GPid</span>,
-        <span class="ident">standard_input</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>,
-        <span class="ident">standard_output</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>,
-        <span class="ident">standard_error</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>,
-        <span class="ident">error</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">GError</span>,
-    ) -&gt; <span class="ident">gboolean</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_spawn_async_with_pipes</span>(
         <span class="ident">working_directory</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
         <span class="ident">argv</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">c_char</span>,
@@ -13563,29 +13224,6 @@
         <span class="ident">standard_input</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>,
         <span class="ident">standard_output</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>,
         <span class="ident">standard_error</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>,
-        <span class="ident">error</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">GError</span>,
-    ) -&gt; <span class="ident">gboolean</span>;
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v2_68&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v2_68&quot;</span>)))]</span>
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">windows</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">windows</span>)))]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_spawn_async_with_pipes_and_fds_utf8</span>(
-        <span class="ident">working_directory</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-        <span class="ident">argv</span>: <span class="kw-2">*const</span> <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-        <span class="ident">envp</span>: <span class="kw-2">*const</span> <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-        <span class="ident">flags</span>: <span class="ident">GSpawnFlags</span>,
-        <span class="ident">child_setup</span>: <span class="ident">GSpawnChildSetupFunc</span>,
-        <span class="ident">user_data</span>: <span class="ident">gpointer</span>,
-        <span class="ident">stdin_fd</span>: <span class="ident">c_int</span>,
-        <span class="ident">stdout_fd</span>: <span class="ident">c_int</span>,
-        <span class="ident">stderr_fd</span>: <span class="ident">c_int</span>,
-        <span class="ident">source_fds</span>: <span class="kw-2">*const</span> <span class="ident">c_int</span>,
-        <span class="ident">target_fds</span>: <span class="kw-2">*const</span> <span class="ident">c_int</span>,
-        <span class="ident">n_fds</span>: <span class="ident">size_t</span>,
-        <span class="ident">child_pid_out</span>: <span class="kw-2">*mut</span> <span class="ident">GPid</span>,
-        <span class="ident">stdin_pipe_out</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>,
-        <span class="ident">stdout_pipe_out</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>,
-        <span class="ident">stderr_pipe_out</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>,
         <span class="ident">error</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">GError</span>,
     ) -&gt; <span class="ident">gboolean</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v2_68&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
@@ -13614,23 +13252,8 @@
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v2_70&quot;</span>)))]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_spawn_check_wait_status</span>(<span class="ident">wait_status</span>: <span class="ident">c_int</span>, <span class="ident">error</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">GError</span>) -&gt; <span class="ident">gboolean</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_spawn_close_pid</span>(<span class="ident">pid</span>: <span class="ident">GPid</span>);
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">windows</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">windows</span>)))]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_spawn_command_line_async_utf8</span>(
-        <span class="ident">command_line</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-        <span class="ident">error</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">GError</span>,
-    ) -&gt; <span class="ident">gboolean</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_spawn_command_line_async</span>(
         <span class="ident">command_line</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-        <span class="ident">error</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">GError</span>,
-    ) -&gt; <span class="ident">gboolean</span>;
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">windows</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">windows</span>)))]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_spawn_command_line_sync_utf8</span>(
-        <span class="ident">command_line</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-        <span class="ident">standard_output</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">u8</span>,
-        <span class="ident">standard_error</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">u8</span>,
-        <span class="ident">wait_status</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>,
         <span class="ident">error</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">GError</span>,
     ) -&gt; <span class="ident">gboolean</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_spawn_command_line_sync</span>(
@@ -13642,20 +13265,6 @@
     ) -&gt; <span class="ident">gboolean</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_spawn_error_quark</span>() -&gt; <span class="ident">GQuark</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_spawn_exit_error_quark</span>() -&gt; <span class="ident">GQuark</span>;
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">windows</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">windows</span>)))]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_spawn_sync_utf8</span>(
-        <span class="ident">working_directory</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-        <span class="ident">argv</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">c_char</span>,
-        <span class="ident">envp</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">c_char</span>,
-        <span class="ident">flags</span>: <span class="ident">GSpawnFlags</span>,
-        <span class="ident">child_setup</span>: <span class="ident">GSpawnChildSetupFunc</span>,
-        <span class="ident">user_data</span>: <span class="ident">gpointer</span>,
-        <span class="ident">standard_output</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">u8</span>,
-        <span class="ident">standard_error</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">u8</span>,
-        <span class="ident">wait_status</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>,
-        <span class="ident">error</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">GError</span>,
-    ) -&gt; <span class="ident">gboolean</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_spawn_sync</span>(
         <span class="ident">working_directory</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
         <span class="ident">argv</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">c_char</span>,
@@ -13977,9 +13586,6 @@
     ) -&gt; <span class="ident">c_uint</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_unix_signal_source_new</span>(<span class="ident">signum</span>: <span class="ident">c_int</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">GSource</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_unlink</span>(<span class="ident">filename</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>) -&gt; <span class="ident">c_int</span>;
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">windows</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">windows</span>)))]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_unsetenv_utf8</span>(<span class="ident">variable</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>);
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_unsetenv</span>(<span class="ident">variable</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>);
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_usleep</span>(<span class="ident">microseconds</span>: <span class="ident">c_ulong</span>);
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_utf16_to_ucs4</span>(

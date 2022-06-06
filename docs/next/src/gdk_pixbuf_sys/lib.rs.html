@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/github/home/.cargo/git/checkouts/gtk-rs-core-7be42ca38bd6361c/f20b435/gdk-pixbuf/sys/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/github/home/.cargo/git/checkouts/gtk-rs-core-7be42ca38bd6361c/0afcb34/gdk-pixbuf/sys/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
     <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../gdk_pixbuf_sys/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
         </a><h2 class="location"></h2>
     </nav>
@@ -903,54 +903,6 @@
 <span id="896">896</span>
 <span id="897">897</span>
 <span id="898">898</span>
-<span id="899">899</span>
-<span id="900">900</span>
-<span id="901">901</span>
-<span id="902">902</span>
-<span id="903">903</span>
-<span id="904">904</span>
-<span id="905">905</span>
-<span id="906">906</span>
-<span id="907">907</span>
-<span id="908">908</span>
-<span id="909">909</span>
-<span id="910">910</span>
-<span id="911">911</span>
-<span id="912">912</span>
-<span id="913">913</span>
-<span id="914">914</span>
-<span id="915">915</span>
-<span id="916">916</span>
-<span id="917">917</span>
-<span id="918">918</span>
-<span id="919">919</span>
-<span id="920">920</span>
-<span id="921">921</span>
-<span id="922">922</span>
-<span id="923">923</span>
-<span id="924">924</span>
-<span id="925">925</span>
-<span id="926">926</span>
-<span id="927">927</span>
-<span id="928">928</span>
-<span id="929">929</span>
-<span id="930">930</span>
-<span id="931">931</span>
-<span id="932">932</span>
-<span id="933">933</span>
-<span id="934">934</span>
-<span id="935">935</span>
-<span id="936">936</span>
-<span id="937">937</span>
-<span id="938">938</span>
-<span id="939">939</span>
-<span id="940">940</span>
-<span id="941">941</span>
-<span id="942">942</span>
-<span id="943">943</span>
-<span id="944">944</span>
-<span id="945">945</span>
-<span id="946">946</span>
 </pre><pre class="rust"><code><span class="comment">// This file was generated by gir (https://github.com/gtk-rs/gir)</span>
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files)</span>
 <span class="comment">// DO NOT EDIT</span>
@@ -1417,23 +1369,8 @@
         <span class="ident">destroy_fn</span>: <span class="ident">GdkPixbufDestroyNotify</span>,
         <span class="ident">destroy_fn_data</span>: <span class="ident">gpointer</span>,
     ) -&gt; <span class="kw-2">*mut</span> <span class="ident">GdkPixbuf</span>;
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">windows</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">windows</span>)))]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gdk_pixbuf_new_from_file_utf8</span>(
-        <span class="ident">filename</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-        <span class="ident">error</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">glib::GError</span>,
-    ) -&gt; <span class="kw-2">*mut</span> <span class="ident">GdkPixbuf</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gdk_pixbuf_new_from_file</span>(
         <span class="ident">filename</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-        <span class="ident">error</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">glib::GError</span>,
-    ) -&gt; <span class="kw-2">*mut</span> <span class="ident">GdkPixbuf</span>;
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">windows</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">windows</span>)))]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gdk_pixbuf_new_from_file_at_scale_utf8</span>(
-        <span class="ident">filename</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-        <span class="ident">width</span>: <span class="ident">c_int</span>,
-        <span class="ident">height</span>: <span class="ident">c_int</span>,
-        <span class="ident">preserve_aspect_ratio</span>: <span class="ident">gboolean</span>,
         <span class="ident">error</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">glib::GError</span>,
     ) -&gt; <span class="kw-2">*mut</span> <span class="ident">GdkPixbuf</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gdk_pixbuf_new_from_file_at_scale</span>(
@@ -1441,14 +1378,6 @@
         <span class="ident">width</span>: <span class="ident">c_int</span>,
         <span class="ident">height</span>: <span class="ident">c_int</span>,
         <span class="ident">preserve_aspect_ratio</span>: <span class="ident">gboolean</span>,
-        <span class="ident">error</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">glib::GError</span>,
-    ) -&gt; <span class="kw-2">*mut</span> <span class="ident">GdkPixbuf</span>;
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">windows</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">windows</span>)))]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gdk_pixbuf_new_from_file_at_size_utf8</span>(
-        <span class="ident">filename</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-        <span class="ident">width</span>: <span class="ident">c_int</span>,
-        <span class="ident">height</span>: <span class="ident">c_int</span>,
         <span class="ident">error</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">glib::GError</span>,
     ) -&gt; <span class="kw-2">*mut</span> <span class="ident">GdkPixbuf</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gdk_pixbuf_new_from_file_at_size</span>(
@@ -1643,15 +1572,6 @@
         <span class="ident">saturation</span>: <span class="ident">c_float</span>,
         <span class="ident">pixelate</span>: <span class="ident">gboolean</span>,
     );
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">windows</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">windows</span>)))]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gdk_pixbuf_save_utf8</span>(
-        <span class="ident">pixbuf</span>: <span class="kw-2">*mut</span> <span class="ident">GdkPixbuf</span>,
-        <span class="ident">filename</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-        <span class="ident">type_</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-        <span class="ident">error</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">glib::GError</span>,
-        ...
-    ) -&gt; <span class="ident">gboolean</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gdk_pixbuf_save</span>(
         <span class="ident">pixbuf</span>: <span class="kw-2">*mut</span> <span class="ident">GdkPixbuf</span>,
         <span class="ident">filename</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
@@ -1729,16 +1649,6 @@
         <span class="ident">callback</span>: <span class="ident">gio::GAsyncReadyCallback</span>,
         <span class="ident">user_data</span>: <span class="ident">gpointer</span>,
     );
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">windows</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">windows</span>)))]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gdk_pixbuf_savev_utf8</span>(
-        <span class="ident">pixbuf</span>: <span class="kw-2">*mut</span> <span class="ident">GdkPixbuf</span>,
-        <span class="ident">filename</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-        <span class="ident">type_</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-        <span class="ident">option_keys</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">c_char</span>,
-        <span class="ident">option_values</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">c_char</span>,
-        <span class="ident">error</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">glib::GError</span>,
-    ) -&gt; <span class="ident">gboolean</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gdk_pixbuf_savev</span>(
         <span class="ident">pixbuf</span>: <span class="kw-2">*mut</span> <span class="ident">GdkPixbuf</span>,
         <span class="ident">filename</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
@@ -1777,12 +1687,6 @@
     <span class="comment">// GdkPixbufAnimation</span>
     <span class="comment">//=========================================================================</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gdk_pixbuf_animation_get_type</span>() -&gt; <span class="ident">GType</span>;
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">windows</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">windows</span>)))]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gdk_pixbuf_animation_new_from_file_utf8</span>(
-        <span class="ident">filename</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-        <span class="ident">error</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">glib::GError</span>,
-    ) -&gt; <span class="kw-2">*mut</span> <span class="ident">GdkPixbufAnimation</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gdk_pixbuf_animation_new_from_file</span>(
         <span class="ident">filename</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
         <span class="ident">error</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">glib::GError</span>,
