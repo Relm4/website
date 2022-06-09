@@ -177,6 +177,8 @@
 <span id="168">168</span>
 <span id="169">169</span>
 <span id="170">170</span>
+<span id="171">171</span>
+<span id="172">172</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">proc_macro2</span>::{<span class="ident">Span</span> <span class="kw">as</span> <span class="ident">Span2</span>, <span class="ident">TokenStream</span> <span class="kw">as</span> <span class="ident">TokenStream2</span>};
 <span class="kw">use</span> <span class="ident">syn::punctuated::Punctuated</span>;
 <span class="kw">use</span> <span class="ident">syn::token</span>::{<span class="ident">Else</span>, <span class="ident">FatArrow</span>, <span class="ident">If</span>, <span class="ident">Match</span>, <span class="ident">Mut</span>};
@@ -280,7 +282,7 @@
     <span class="ident">func</span>: <span class="ident">WidgetFunc</span>,
     <span class="ident">args</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Args</span><span class="op">&lt;</span><span class="ident">Expr</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="ident">properties</span>: <span class="ident">Properties</span>,
-    <span class="ident">wrapper</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Ident</span><span class="op">&gt;</span>,
+    <span class="ident">assign_wrapper</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span>,
     <span class="ident">ref_token</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">token::And</span><span class="op">&gt;</span>,
     <span class="ident">deref_token</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">token::Star</span><span class="op">&gt;</span>,
     <span class="ident">returned_widget</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ReturnedWidget</span><span class="op">&gt;</span>,
@@ -303,6 +305,7 @@
 <span class="kw">struct</span> <span class="ident">ConditionalWidget</span> {
     <span class="ident">doc_attr</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TokenStream2</span><span class="op">&gt;</span>,
     <span class="ident">transition</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Ident</span><span class="op">&gt;</span>,
+    <span class="ident">assign_wrapper</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span>,
     <span class="ident">name</span>: <span class="ident">Ident</span>,
     <span class="ident">args</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Args</span><span class="op">&lt;</span><span class="ident">Expr</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="ident">branches</span>: <span class="ident">ConditionalBranches</span>,
@@ -342,11 +345,12 @@
     <span class="ident">BlockSignal</span>(<span class="ident">Ident</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Ident</span><span class="op">&gt;</span>),
     <span class="ident">Name</span>(<span class="ident">Ident</span>, <span class="ident">Ident</span>),
     <span class="ident">Transition</span>(<span class="ident">Ident</span>, <span class="ident">Ident</span>),
+    <span class="ident">Wrap</span>(<span class="ident">Ident</span>, <span class="ident">Path</span>),
 }
 
 <span class="kw">struct</span> <span class="ident">Attrs</span> {
     <span class="ident">inner</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attr</span><span class="op">&gt;</span>,
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="relm4_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (5435ed691 2022-06-07)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="relm4_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (7466d5492 2022-06-08)" ></div>
 </body></html>

@@ -52,9 +52,7 @@
 <span id="43">43</span>
 <span id="44">44</span>
 <span id="45">45</span>
-<span id="46">46</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">proc_macro2::Span</span> <span class="kw">as</span> <span class="ident">Span2</span>;
-<span class="kw">use</span> <span class="ident">syn::parse::ParseStream</span>;
+</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">syn::parse::ParseStream</span>;
 <span class="kw">use</span> <span class="ident">syn::token::And</span>;
 <span class="kw">use</span> <span class="ident">syn</span>::{<span class="ident">token</span>, <span class="ident">Token</span>};
 
@@ -85,11 +83,11 @@
         };
 
         <span class="kw">let</span> <span class="ident">attributes</span> <span class="op">=</span> <span class="ident">inner_tokens</span>.<span class="ident">parse</span>().<span class="ident">ok</span>();
-        <span class="kw">let</span> <span class="ident">args</span> <span class="op">=</span> <span class="ident">args_from_index</span>(<span class="ident">index</span>);
+        <span class="kw">let</span> <span class="ident">args</span> <span class="op">=</span> <span class="ident">args_from_index</span>(<span class="ident">index</span>, <span class="ident">input</span>.<span class="ident">span</span>());
+
+        <span class="kw">let</span> <span class="ident">ref_span</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">span</span>();
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">widget</span> <span class="op">=</span> <span class="ident">Widget::parse</span>(<span class="ident">inner_tokens</span>, <span class="ident">attributes</span>, <span class="prelude-val">Some</span>(<span class="ident">args</span>))<span class="question-mark">?</span>;
-        <span class="ident">widget</span>.<span class="ident">ref_token</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">And</span> {
-            <span class="ident">spans</span>: [<span class="ident">Span2::call_site</span>()],
-        });
+        <span class="ident">widget</span>.<span class="ident">ref_token</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">And</span> { <span class="ident">spans</span>: [<span class="ident">ref_span</span>] });
 
         <span class="prelude-val">Ok</span>(<span class="self">Self</span> {
             <span class="ident">pattern</span>,
@@ -100,5 +98,5 @@
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="relm4_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (5435ed691 2022-06-07)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="relm4_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (7466d5492 2022-06-08)" ></div>
 </body></html>

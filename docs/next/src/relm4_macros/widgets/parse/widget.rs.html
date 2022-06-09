@@ -246,37 +246,23 @@
 <span id="237">237</span>
 <span id="238">238</span>
 <span id="239">239</span>
-<span id="240">240</span>
-<span id="241">241</span>
-<span id="242">242</span>
-<span id="243">243</span>
-<span id="244">244</span>
-<span id="245">245</span>
-<span id="246">246</span>
-<span id="247">247</span>
-<span id="248">248</span>
-<span id="249">249</span>
-<span id="250">250</span>
-<span id="251">251</span>
-<span id="252">252</span>
-<span id="253">253</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">proc_macro2::TokenStream</span> <span class="kw">as</span> <span class="ident">TokenStream2</span>;
-<span class="kw">use</span> <span class="ident">syn::parse</span>::{<span class="ident">ParseBuffer</span>, <span class="ident">ParseStream</span>};
+<span class="kw">use</span> <span class="ident">syn::parse::ParseStream</span>;
 <span class="kw">use</span> <span class="ident">syn::spanned::Spanned</span>;
 <span class="kw">use</span> <span class="ident">syn::token</span>::{<span class="ident">And</span>, <span class="ident">Star</span>};
-<span class="kw">use</span> <span class="ident">syn</span>::{<span class="ident">token</span>, <span class="ident">Error</span>, <span class="ident">Expr</span>, <span class="ident">Ident</span>, <span class="ident">Token</span>};
+<span class="kw">use</span> <span class="ident">syn</span>::{<span class="ident">Error</span>, <span class="ident">Expr</span>, <span class="ident">Ident</span>, <span class="ident">Path</span>, <span class="ident">Token</span>};
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::args::Args</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::widgets::parse_util</span>::{<span class="self">self</span>, <span class="ident">attr_twice_error</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::widgets</span>::{<span class="ident">Attr</span>, <span class="ident">Attrs</span>, <span class="ident">ParseError</span>, <span class="ident">Properties</span>, <span class="ident">Widget</span>, <span class="ident">WidgetAttr</span>, <span class="ident">WidgetFunc</span>};
 
-<span class="kw">type</span> <span class="ident">WidgetFuncInfo</span> <span class="op">=</span> (
-    <span class="comment">// For `Some(widget)`</span>
+<span class="kw">type</span> <span class="ident">WidgetFuncInfo</span> <span class="op">=</span> (<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">And</span><span class="op">&gt;</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Star</span><span class="op">&gt;</span>, <span class="ident">WidgetFunc</span>, <span class="ident">Properties</span>);
+
+<span class="kw">type</span> <span class="ident">AttributeInfo</span> <span class="op">=</span> (
+    <span class="ident">WidgetAttr</span>,
+    <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TokenStream2</span><span class="op">&gt;</span>,
     <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Ident</span><span class="op">&gt;</span>,
-    <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">And</span><span class="op">&gt;</span>,
-    <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Star</span><span class="op">&gt;</span>,
-    <span class="ident">WidgetFunc</span>,
-    <span class="ident">Properties</span>,
+    <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span>,
 );
 
 <span class="kw">impl</span> <span class="ident">Widget</span> {
@@ -285,7 +271,7 @@
         <span class="ident">attributes</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Attrs</span><span class="op">&gt;</span>,
         <span class="ident">args</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Args</span><span class="op">&lt;</span><span class="ident">Expr</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">ParseError</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> (<span class="ident">attr</span>, <span class="ident">doc_attr</span>, <span class="ident">new_name</span>) <span class="op">=</span> <span class="ident"><span class="self">Self</span>::process_attributes</span>(<span class="ident">attributes</span>)<span class="question-mark">?</span>;
+        <span class="kw">let</span> (<span class="ident">attr</span>, <span class="ident">doc_attr</span>, <span class="ident">new_name</span>, <span class="ident">assign_wrapper</span>) <span class="op">=</span> <span class="ident"><span class="self">Self</span>::process_attributes</span>(<span class="ident">attributes</span>)<span class="question-mark">?</span>;
         <span class="comment">// Check if first token is `mut`</span>
         <span class="kw">let</span> <span class="ident">mutable</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>().<span class="ident">ok</span>();
 
@@ -302,7 +288,7 @@
             <span class="prelude-val">None</span>
         };
 
-        <span class="kw">let</span> (<span class="ident">wrapper</span>, <span class="ident">ref_token</span>, <span class="ident">deref_token</span>, <span class="ident">func</span>, <span class="ident">properties</span>) <span class="op">=</span> <span class="ident"><span class="self">Self</span>::parse_widget_func</span>(<span class="ident">input</span>)<span class="question-mark">?</span>;
+        <span class="kw">let</span> (<span class="ident">ref_token</span>, <span class="ident">deref_token</span>, <span class="ident">func</span>, <span class="ident">properties</span>) <span class="op">=</span> <span class="ident"><span class="self">Self</span>::parse_widget_func</span>(<span class="ident">input</span>)<span class="question-mark">?</span>;
 
         <span class="comment">// Make sure that the name is only defined one.</span>
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">name_set</span> <span class="op">=</span> <span class="ident">name_opt</span>.<span class="ident">is_some</span>();
@@ -344,7 +330,7 @@
             <span class="ident">func</span>,
             <span class="ident">args</span>,
             <span class="ident">properties</span>,
-            <span class="ident">wrapper</span>,
+            <span class="ident">assign_wrapper</span>,
             <span class="ident">ref_token</span>,
             <span class="ident">deref_token</span>,
             <span class="ident">returned_widget</span>,
@@ -356,7 +342,15 @@
         <span class="ident">func</span>: <span class="ident">WidgetFunc</span>,
         <span class="ident">attributes</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Attrs</span><span class="op">&gt;</span>,
     ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">ParseError</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> (<span class="ident">attr</span>, <span class="ident">doc_attr</span>, <span class="ident">new_name</span>) <span class="op">=</span> <span class="ident"><span class="self">Self</span>::process_attributes</span>(<span class="ident">attributes</span>)<span class="question-mark">?</span>;
+        <span class="kw">let</span> (<span class="ident">attr</span>, <span class="ident">doc_attr</span>, <span class="ident">new_name</span>, <span class="ident">assign_wrapper</span>) <span class="op">=</span> <span class="ident"><span class="self">Self</span>::process_attributes</span>(<span class="ident">attributes</span>)<span class="question-mark">?</span>;
+
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">wrapper</span>) <span class="op">=</span> <span class="ident">assign_wrapper</span> {
+            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::new</span>(
+                <span class="ident">wrapper</span>.<span class="ident">span</span>(),
+                <span class="string">&quot;Can&#39;t use wrapper types in container assignment.&quot;</span>,
+            )
+            .<span class="ident">into</span>());
+        }
 
         <span class="kw">let</span> <span class="ident">properties</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token!</span>[,]) {
             <span class="ident">Properties::default</span>()
@@ -390,35 +384,35 @@
             <span class="ident">func</span>,
             <span class="ident">args</span>: <span class="prelude-val">None</span>,
             <span class="ident">properties</span>,
-            <span class="ident">wrapper</span>: <span class="prelude-val">None</span>,
+            <span class="ident">assign_wrapper</span>,
             <span class="ident">ref_token</span>,
             <span class="ident">deref_token</span>: <span class="prelude-val">None</span>,
             <span class="ident">returned_widget</span>: <span class="prelude-val">None</span>,
         })
     }
 
-    <span class="kw">fn</span> <span class="ident">process_attributes</span>(
-        <span class="ident">attrs</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Attrs</span><span class="op">&gt;</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="ident">WidgetAttr</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TokenStream2</span><span class="op">&gt;</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Ident</span><span class="op">&gt;</span>), <span class="ident">ParseError</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">process_attributes</span>(<span class="ident">attrs</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Attrs</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AttributeInfo</span>, <span class="ident">ParseError</span><span class="op">&gt;</span> {
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">attrs</span>) <span class="op">=</span> <span class="ident">attrs</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">widget_attr</span> <span class="op">=</span> <span class="ident">WidgetAttr::None</span>;
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">doc_attr</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TokenStream2</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">None</span>;
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">name</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">assign_wrapper</span> <span class="op">=</span> <span class="prelude-val">None</span>;
 
             <span class="kw">for</span> <span class="ident">attr</span> <span class="kw">in</span> <span class="ident">attrs</span>.<span class="ident">inner</span> {
+                <span class="kw">let</span> <span class="ident">span</span> <span class="op">=</span> <span class="ident">attr</span>.<span class="ident">span</span>();
                 <span class="kw">match</span> <span class="ident">attr</span> {
                     <span class="ident">Attr::Local</span>(<span class="kw">_</span>) =&gt; {
                         <span class="kw">if</span> <span class="ident">widget_attr</span> <span class="op">==</span> <span class="ident">WidgetAttr::None</span> {
                             <span class="ident">widget_attr</span> <span class="op">=</span> <span class="ident">WidgetAttr::Local</span>;
                         } <span class="kw">else</span> {
-                            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">attr_twice_error</span>(<span class="kw-2">&amp;</span><span class="ident">attr</span>).<span class="ident">into</span>());
+                            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">attr_twice_error</span>(<span class="ident">span</span>).<span class="ident">into</span>());
                         }
                     }
                     <span class="ident">Attr::LocalRef</span>(<span class="kw">_</span>) =&gt; {
                         <span class="kw">if</span> <span class="ident">widget_attr</span> <span class="op">==</span> <span class="ident">WidgetAttr::None</span> {
                             <span class="ident">widget_attr</span> <span class="op">=</span> <span class="ident">WidgetAttr::LocalRef</span>;
                         } <span class="kw">else</span> {
-                            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">attr_twice_error</span>(<span class="kw-2">&amp;</span><span class="ident">attr</span>).<span class="ident">into</span>());
+                            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">attr_twice_error</span>(<span class="ident">span</span>).<span class="ident">into</span>());
                         }
                     }
                     <span class="ident">Attr::Doc</span>(<span class="ident">tokens</span>) =&gt; {
@@ -428,11 +422,18 @@
                             <span class="ident">doc_attr</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">tokens</span>);
                         }
                     }
-                    <span class="ident">Attr::Name</span>(<span class="kw">_</span>, <span class="kw-2">ref</span> <span class="ident">name_value</span>) =&gt; {
+                    <span class="ident">Attr::Name</span>(<span class="kw">_</span>, <span class="ident">name_value</span>) =&gt; {
                         <span class="kw">if</span> <span class="ident">name</span>.<span class="ident">is_some</span>() {
-                            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">attr_twice_error</span>(<span class="kw-2">&amp;</span><span class="ident">attr</span>).<span class="ident">into</span>());
+                            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">attr_twice_error</span>(<span class="ident">span</span>).<span class="ident">into</span>());
                         } <span class="kw">else</span> {
-                            <span class="ident">name</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">name_value</span>.<span class="ident">clone</span>());
+                            <span class="ident">name</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">name_value</span>);
+                        }
+                    }
+                    <span class="ident">Attr::Wrap</span>(<span class="kw">_</span>, <span class="ident">path</span>) =&gt; {
+                        <span class="kw">if</span> <span class="ident">assign_wrapper</span>.<span class="ident">is_some</span>() {
+                            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">attr_twice_error</span>(<span class="ident">span</span>).<span class="ident">into</span>());
+                        } <span class="kw">else</span> {
+                            <span class="ident">assign_wrapper</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">path</span>.<span class="ident">clone</span>());
                         }
                     }
                     <span class="kw">_</span> =&gt; {
@@ -444,9 +445,9 @@
                 }
             }
 
-            <span class="prelude-val">Ok</span>((<span class="ident">widget_attr</span>, <span class="ident">doc_attr</span>, <span class="ident">name</span>))
+            <span class="prelude-val">Ok</span>((<span class="ident">widget_attr</span>, <span class="ident">doc_attr</span>, <span class="ident">name</span>, <span class="ident">assign_wrapper</span>))
         } <span class="kw">else</span> {
-            <span class="prelude-val">Ok</span>((<span class="ident">WidgetAttr::None</span>, <span class="prelude-val">None</span>, <span class="prelude-val">None</span>))
+            <span class="prelude-val">Ok</span>((<span class="ident">WidgetAttr::None</span>, <span class="prelude-val">None</span>, <span class="prelude-val">None</span>, <span class="prelude-val">None</span>))
         }
     }
 
@@ -466,42 +467,13 @@
 
     <span class="doccomment">/// Parse information related to the widget function.</span>
     <span class="kw">fn</span> <span class="ident">parse_widget_func</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">WidgetFuncInfo</span>, <span class="ident">ParseError</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">inner_input</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ParseBuffer</span><span class="op">&gt;</span>;
-
-        <span class="kw">let</span> <span class="ident">upcoming_some</span> <span class="op">=</span> {
-            <span class="kw">let</span> <span class="ident">forked_input</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">fork</span>();
-            <span class="kw">if</span> <span class="ident">forked_input</span>.<span class="ident">peek</span>(<span class="ident">Ident</span>) {
-                <span class="kw">let</span> <span class="ident">ident</span>: <span class="ident">Ident</span> <span class="op">=</span> <span class="ident">forked_input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-                <span class="ident">ident</span> <span class="op">==</span> <span class="string">&quot;Some&quot;</span>
-            } <span class="kw">else</span> {
-                <span class="bool-val">false</span>
-            }
-        };
-
-        <span class="kw">let</span> <span class="ident">wrapper</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">upcoming_some</span> <span class="op">&amp;&amp;</span> <span class="ident">input</span>.<span class="ident">peek2</span>(<span class="ident">token::Paren</span>) {
-            <span class="kw">let</span> <span class="ident">ident</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="ident">paren_input</span> <span class="op">=</span> <span class="ident">parse_util::parens</span>(<span class="ident">input</span>)<span class="question-mark">?</span>;
-            <span class="ident">inner_input</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">paren_input</span>);
-            <span class="prelude-val">Some</span>(<span class="ident">ident</span>)
-        } <span class="kw">else</span> {
-            <span class="ident">inner_input</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-            <span class="prelude-val">None</span>
-        };
-
-        <span class="comment">// get the inner input as func_input</span>
-        <span class="kw">let</span> <span class="ident">func_input</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">paren_input</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">inner_input</span> {
-            <span class="ident">paren_input</span>
-        } <span class="kw">else</span> {
-            <span class="ident">input</span>
-        };
-
         <span class="comment">// Look for &amp;</span>
-        <span class="kw">let</span> <span class="ident">ref_token</span> <span class="op">=</span> <span class="ident">func_input</span>.<span class="ident">parse</span>().<span class="ident">ok</span>();
+        <span class="kw">let</span> <span class="ident">ref_token</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>().<span class="ident">ok</span>();
 
         <span class="comment">// Look for *</span>
-        <span class="kw">let</span> <span class="ident">deref_token</span> <span class="op">=</span> <span class="ident">func_input</span>.<span class="ident">parse</span>().<span class="ident">ok</span>();
+        <span class="kw">let</span> <span class="ident">deref_token</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>().<span class="ident">ok</span>();
 
-        <span class="kw">let</span> <span class="ident">func</span> <span class="op">=</span> <span class="ident">WidgetFunc::parse</span>(<span class="ident">func_input</span>)<span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="ident">func</span> <span class="op">=</span> <span class="ident">WidgetFunc::parse</span>(<span class="ident">input</span>)<span class="question-mark">?</span>;
 
         <span class="kw">let</span> <span class="ident">properties</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token!</span>[,]) {
             <span class="ident">Properties::default</span>()
@@ -510,9 +482,9 @@
             <span class="ident">Properties::parse</span>(<span class="kw-2">&amp;</span><span class="ident">inner</span>)
         };
 
-        <span class="prelude-val">Ok</span>((<span class="ident">wrapper</span>, <span class="ident">ref_token</span>, <span class="ident">deref_token</span>, <span class="ident">func</span>, <span class="ident">properties</span>))
+        <span class="prelude-val">Ok</span>((<span class="ident">ref_token</span>, <span class="ident">deref_token</span>, <span class="ident">func</span>, <span class="ident">properties</span>))
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="relm4_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (5435ed691 2022-06-07)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="relm4_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (7466d5492 2022-06-08)" ></div>
 </body></html>
