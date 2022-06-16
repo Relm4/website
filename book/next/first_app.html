@@ -315,9 +315,9 @@
 </blockquote>
 <h2 id="the-complete-code"><a class="header" href="#the-complete-code">The complete code</a></h2>
 <p>Let's review our code in one piece to see how all these parts work together:</p>
-<pre><code class="language-rust no_run noplayground">use relm4::{gtk, ComponentParts, ComponentSender, RelmApp, SimpleComponent, WidgetPlus};
+<pre><code class="language-rust no_run noplayground">use gtk::glib::clone;
 use gtk::prelude::{BoxExt, ButtonExt, GtkWindowExt};
-use gtk::glib::clone;
+use relm4::{gtk, ComponentParts, ComponentSender, RelmApp, SimpleComponent, WidgetPlus};
 
 struct AppModel {
     counter: u8,
@@ -402,7 +402,7 @@ impl SimpleComponent for AppModel {
             }
         }
     }
-    
+
     /// Update the view to represent the updated model.
     fn update_view(&amp;self, widgets: &amp;mut Self::Widgets, _sender: &amp;ComponentSender&lt;Self&gt;) {
         widgets

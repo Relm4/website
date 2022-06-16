@@ -445,9 +445,9 @@ cd Relm4/examples
 </blockquote>
 <h2 id="the-complete-code"><a class="header" href="#the-complete-code">The complete code</a></h2>
 <p>Let's review our code in one piece to see how all these parts work together:</p>
-<pre><code class="language-rust no_run noplayground">use relm4::{gtk, ComponentParts, ComponentSender, RelmApp, SimpleComponent, WidgetPlus};
+<pre><code class="language-rust no_run noplayground">use gtk::glib::clone;
 use gtk::prelude::{BoxExt, ButtonExt, GtkWindowExt};
-use gtk::glib::clone;
+use relm4::{gtk, ComponentParts, ComponentSender, RelmApp, SimpleComponent, WidgetPlus};
 
 struct AppModel {
     counter: u8,
@@ -532,7 +532,7 @@ impl SimpleComponent for AppModel {
             }
         }
     }
-    
+
     /// Update the view to represent the updated model.
     fn update_view(&amp;self, widgets: &amp;mut Self::Widgets, _sender: &amp;ComponentSender&lt;Self&gt;) {
         widgets
@@ -876,7 +876,7 @@ First, we call <code>self.reset()</code> at the top of the update function body.
 </code></pre>
 <p>The overall UI is pretty simple: A window that contains a box. This box has two boxes itself for showing the two icons and the two buttons to update those icons.</p>
 <p>There's also something new. With the <code>pre_init()</code> and <code>post_init()</code> functions you can add custom code that will be run either before or after the code the widget macro generates for initialization. In our case, we want to add <a href="https://docs.gtk.org/gtk4/css-properties.html">custom CSS</a> that sets the background color for elements with class name &quot;identical&quot;.</p>
-<pre><code class="language-rust no_run noplayground">         relm4::set_global_css(b&quot;.identical { background: #00ad5c; }&quot;);
+<pre><code class="language-rust no_run noplayground">        relm4::set_global_css(b&quot;.identical { background: #00ad5c; }&quot;);
 </code></pre>
 <h3 id="the-track-macro"><a class="header" href="#the-track-macro">The track! macro</a></h3>
 <p>The <code>track!</code> macro is a simple macro that can be used inside the widget macro and allows us to pass a condition for updates and then the arguments. So the syntax looks like this:</p>
@@ -913,7 +913,7 @@ First, we call <code>self.reset()</code> at the top of the update function body.
 <p>Let's review our code in one piece one more time to see how all these parts work together:</p>
 <pre><code class="language-rust no_run noplayground">use gtk::prelude::{BoxExt, ButtonExt, OrientableExt};
 use rand::prelude::IteratorRandom;
-use relm4::{gtk, RelmApp, SimpleComponent, ComponentSender, ComponentParts, WidgetPlus};
+use relm4::{gtk, ComponentParts, ComponentSender, RelmApp, SimpleComponent, WidgetPlus};
 
 const ICON_LIST: &amp;[&amp;str] = &amp;[
     &quot;bookmark-new-symbolic&quot;,
@@ -947,7 +947,6 @@ enum AppInput {
     UpdateFirst,
     UpdateSecond,
 }
-
 
 #[relm4::component]
 impl SimpleComponent for AppModel {
@@ -1007,14 +1006,14 @@ impl SimpleComponent for AppModel {
         root: &amp;Self::Root,
         sender: &amp;ComponentSender&lt;Self&gt;,
     ) -&gt; ComponentParts&lt;Self&gt; {
-        let model = AppModel { 
+        let model = AppModel {
             first_icon: random_icon_name(),
             second_icon: random_icon_name(),
             identical: false,
-            tracker: 0
-         };
+            tracker: 0,
+        };
 
-         relm4::set_global_css(b&quot;.identical { background: #00ad5c; }&quot;);
+        relm4::set_global_css(b&quot;.identical { background: #00ad5c; }&quot;);
 
         // Insert the macro code generation here
         let widgets = view_output!();
@@ -1598,7 +1597,7 @@ fn init(counter: Self::InitParams, root: &amp;Self::Root, sender: &amp;Component
 }
 
 enum DialogOutput {
-    Close
+    Close,
 }
 </code></pre>
 <p>The update function updates the state of the dialog and sends a close message if the user accepted.</p>
@@ -1687,7 +1686,8 @@ impl SimpleComponent for HeaderModel {
     view! {
         #[root]
         gtk::HeaderBar {
-            set_title_widget = Some(&amp;gtk::Box) {
+            #[wrap(Some)]
+            set_title_widget = &amp;gtk::Box {
                 add_css_class: &quot;linked&quot;,
                 #[name = &quot;group&quot;]
                 gtk::ToggleButton {
@@ -1744,7 +1744,7 @@ enum DialogInput {
 }
 
 enum DialogOutput {
-    Close
+    Close,
 }
 
 #[relm4::component]
@@ -1798,7 +1798,6 @@ impl SimpleComponent for DialogModel {
     }
 }
 
-
 #[derive(Debug)]
 enum AppMode {
     View,
@@ -1833,7 +1832,8 @@ impl SimpleComponent for AppModel {
             set_default_width: 500,
             set_default_height: 250,
             set_titlebar: Some(model.header.widget()),
-            set_child = Some(&amp;gtk::Label) {
+
+            gtk::Label {
                 #[watch]
                 set_label: &amp;format!(&quot;Placeholder for {:?}&quot;, model.mode),
             },

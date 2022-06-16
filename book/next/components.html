@@ -229,7 +229,7 @@ fn init(counter: Self::InitParams, root: &amp;Self::Root, sender: &amp;Component
 }
 
 enum DialogOutput {
-    Close
+    Close,
 }
 </code></pre>
 <p>The update function updates the state of the dialog and sends a close message if the user accepted.</p>
@@ -318,7 +318,8 @@ impl SimpleComponent for HeaderModel {
     view! {
         #[root]
         gtk::HeaderBar {
-            set_title_widget = Some(&amp;gtk::Box) {
+            #[wrap(Some)]
+            set_title_widget = &amp;gtk::Box {
                 add_css_class: &quot;linked&quot;,
                 #[name = &quot;group&quot;]
                 gtk::ToggleButton {
@@ -375,7 +376,7 @@ enum DialogInput {
 }
 
 enum DialogOutput {
-    Close
+    Close,
 }
 
 #[relm4::component]
@@ -429,7 +430,6 @@ impl SimpleComponent for DialogModel {
     }
 }
 
-
 #[derive(Debug)]
 enum AppMode {
     View,
@@ -464,7 +464,8 @@ impl SimpleComponent for AppModel {
             set_default_width: 500,
             set_default_height: 250,
             set_titlebar: Some(model.header.widget()),
-            set_child = Some(&amp;gtk::Label) {
+
+            gtk::Label {
                 #[watch]
                 set_label: &amp;format!(&quot;Placeholder for {:?}&quot;, model.mode),
             },

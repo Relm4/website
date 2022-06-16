@@ -257,7 +257,7 @@ First, we call <code>self.reset()</code> at the top of the update function body.
 </code></pre>
 <p>The overall UI is pretty simple: A window that contains a box. This box has two boxes itself for showing the two icons and the two buttons to update those icons.</p>
 <p>There's also something new. With the <code>pre_init()</code> and <code>post_init()</code> functions you can add custom code that will be run either before or after the code the widget macro generates for initialization. In our case, we want to add <a href="https://docs.gtk.org/gtk4/css-properties.html">custom CSS</a> that sets the background color for elements with class name &quot;identical&quot;.</p>
-<pre><code class="language-rust no_run noplayground">         relm4::set_global_css(b&quot;.identical { background: #00ad5c; }&quot;);
+<pre><code class="language-rust no_run noplayground">        relm4::set_global_css(b&quot;.identical { background: #00ad5c; }&quot;);
 </code></pre>
 <h3 id="the-track-macro"><a class="header" href="#the-track-macro">The track! macro</a></h3>
 <p>The <code>track!</code> macro is a simple macro that can be used inside the widget macro and allows us to pass a condition for updates and then the arguments. So the syntax looks like this:</p>
@@ -294,7 +294,7 @@ First, we call <code>self.reset()</code> at the top of the update function body.
 <p>Let's review our code in one piece one more time to see how all these parts work together:</p>
 <pre><code class="language-rust no_run noplayground">use gtk::prelude::{BoxExt, ButtonExt, OrientableExt};
 use rand::prelude::IteratorRandom;
-use relm4::{gtk, RelmApp, SimpleComponent, ComponentSender, ComponentParts, WidgetPlus};
+use relm4::{gtk, ComponentParts, ComponentSender, RelmApp, SimpleComponent, WidgetPlus};
 
 const ICON_LIST: &amp;[&amp;str] = &amp;[
     &quot;bookmark-new-symbolic&quot;,
@@ -328,7 +328,6 @@ enum AppInput {
     UpdateFirst,
     UpdateSecond,
 }
-
 
 #[relm4::component]
 impl SimpleComponent for AppModel {
@@ -388,14 +387,14 @@ impl SimpleComponent for AppModel {
         root: &amp;Self::Root,
         sender: &amp;ComponentSender&lt;Self&gt;,
     ) -&gt; ComponentParts&lt;Self&gt; {
-        let model = AppModel { 
+        let model = AppModel {
             first_icon: random_icon_name(),
             second_icon: random_icon_name(),
             identical: false,
-            tracker: 0
-         };
+            tracker: 0,
+        };
 
-         relm4::set_global_css(b&quot;.identical { background: #00ad5c; }&quot;);
+        relm4::set_global_css(b&quot;.identical { background: #00ad5c; }&quot;);
 
         // Insert the macro code generation here
         let widgets = view_output!();
