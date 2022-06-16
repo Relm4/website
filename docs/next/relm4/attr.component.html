@@ -8,7 +8,7 @@
                         <img src="https://raw.githubusercontent.com/AaronErhardt/relm4/main/assets/Relm_logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><div id="settings-menu" tabindex="-1">
                                 <a href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../wheel.svg"></a></div>
                         </div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
-    <h1 class="fqn"><span class="in-band">Attribute Macro <a href="index.html">relm4</a>::<wbr><a class="attr" href="#">component</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../src/relm4_macros/lib.rs.html#114">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><div class="docblock item-decl"><pre class="rust attr"><code>#[component]</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Macro that implements <a href="https://relm4.org/docs/next/relm4/trait.Component.html"><code>relm4::Component</code></a> and generates the corresponding struct.</p>
+    <h1 class="fqn"><span class="in-band">Attribute Macro <a href="index.html">relm4</a>::<wbr><a class="attr" href="#">component</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../src/relm4_macros/lib.rs.html#158">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><div class="docblock item-decl"><pre class="rust attr"><code>#[component]</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Macro that implements <a href="https://relm4.org/docs/next/relm4/trait.Component.html"><code>relm4::Component</code></a> and generates the corresponding struct.</p>
 <h2 id="attributes"><a href="#attributes">Attributes</a></h2>
 <p>To create public struct use <code>#[component(pub)]</code> or <code>#[component(visibility = pub)]</code>.</p>
 <p>If you use reexports to provide relm4, then you can use <code>#[widget(relm4 = ::myreexports::my_relm)]</code> to override relm4 used during generating struct.</p>
@@ -38,24 +38,24 @@
             <span class="ident">set_title</span>: <span class="prelude-val">Some</span>(<span class="string">&quot;Simple app&quot;</span>),
             <span class="ident">set_default_width</span>: <span class="number">300</span>,
             <span class="ident">set_default_height</span>: <span class="number">100</span>,
-            <span class="ident">set_child</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="ident">gtk::Box</span>) {
+            <span class="ident">gtk::Box</span> {
                 <span class="ident">set_orientation</span>: <span class="ident">gtk::Orientation::Vertical</span>,
                 <span class="ident">set_margin_all</span>: <span class="number">5</span>,
                 <span class="ident">set_spacing</span>: <span class="number">5</span>,
 
-                <span class="ident">append</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">gtk::Button</span> {
+                <span class="ident">gtk::Button</span> {
                     <span class="ident">set_label</span>: <span class="string">&quot;Increment&quot;</span>,
                     <span class="ident">connect_clicked</span>[<span class="ident">sender</span>] =&gt; <span class="kw">move</span> <span class="op">|</span><span class="kw">_</span><span class="op">|</span> {
                         <span class="ident">sender</span>.<span class="ident">input</span>(<span class="ident">AppMsg::Increment</span>);
                     },
                 },
-                <span class="ident">append</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">gtk::Button</span> {
+                <span class="ident">gtk::Button</span> {
                     <span class="ident">set_label</span>: <span class="string">&quot;Decrement&quot;</span>,
                     <span class="ident">connect_clicked</span>[<span class="ident">sender</span>] =&gt; <span class="kw">move</span> <span class="op">|</span><span class="kw">_</span><span class="op">|</span> {
                         <span class="ident">sender</span>.<span class="ident">input</span>(<span class="ident">AppMsg::Decrement</span>);
                     },
                 },
-                <span class="ident">append</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">gtk::Label</span> {
+                <span class="ident">gtk::Label</span> {
                     <span class="ident">set_margin_all</span>: <span class="number">5</span>,
                     <span class="attribute">#[<span class="ident">watch</span>]</span>
                     <span class="ident">set_label</span>: <span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;Counter: {}&quot;</span>, <span class="ident">model</span>.<span class="ident">counter</span>),
@@ -86,6 +86,23 @@
             }
         }
     }
+}</code></pre></div>
+<h2 id="notes-on-pre_view"><a href="#notes-on-pre_view">Notes on pre_view</a></h2>
+<p>Using <code>return</code> in <code>pre_view</code> will cause a compiler warning.
+In general, you don’t want to use <code>return</code> in <code>pre_view</code> as it will
+cause all following update functionality to be skipped.</p>
+
+<div class='information'><div class='tooltip compile_fail'>ⓘ</div></div><div class="example-wrap"><pre class="rust rust-example-rendered compile_fail"><code><span class="attribute">#![<span class="ident">deny</span>(<span class="ident">unreachable_code</span>)]</span>
+
+<span class="kw">struct</span> <span class="ident">AppModel</span> {}
+
+<span class="attribute">#[<span class="ident">relm4_macros::component</span>]</span>
+<span class="kw">impl</span> <span class="ident">SimpleComponent</span> <span class="kw">for</span> <span class="ident">AppModel</span> {
+      <span class="comment">/* Code omitted */</span>
+
+      <span class="kw">fn</span> <span class="ident">pre_view</span>() {
+          <span class="kw">return</span>;
+      }
 }</code></pre></div>
 </div></details></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="relm4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (b31f9cc22 2022-06-15)" ></div>
 </body></html>
