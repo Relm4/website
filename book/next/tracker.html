@@ -142,13 +142,13 @@
                     <main>
                         <h1 id="tracker"><a class="header" href="#tracker">Tracker</a></h1>
 <p>A tracker in this context just means a data type that's able to track changes to itself. For example, if we increment the counter of the model we used for our first app, the model could tell us later that the counter changed during the last update function.</p>
-<p>Relm4 does not promote any implementation of a tracker. You're free to use any implementation you like, you can even implement a tracker yourself. In this example however, we'll use the tracker crate that provides a simple macro that implements a tracker for us automatically.</p>
+<p>Relm4 does not promote any implementation of a tracker. You're free to use any implementation you like, you can even implement a tracker yourself. In this example however, we'll use the <a href="https://docs.rs/tracker/latest/tracker/"><code>tracker</code> crate</a> that provides a simple macro that implements a tracker for us automatically.</p>
 <p>Using this technique, we will implement a small program which displays two randomly picked icons that are controlled by two buttons:</p>
 <p><img src="img/screenshots/tracker-dark-1.png" alt="App screenshot" /></p>
 <p>When pressing a button, the icon above it will change. The background of the application will become green when the two icons are identical:</p>
 <p><img src="img/screenshots/tracker-dark-2.png" alt="App screenshot with with equal icons" /></p>
 <h2 id="the-tracker-crate"><a class="header" href="#the-tracker-crate">The tracker crate</a></h2>
-<p>The <code>tracker::track</code> macro implements the following methods for your struct fields:</p>
+<p>The <a href="https://docs.rs/tracker/latest/tracker/attr.track.html"><code>tracker::track</code></a> macro implements the following methods for your struct fields:</p>
 <ul>
 <li>
 <p><code>get_#field_name()</code><br />
@@ -201,9 +201,6 @@ fn main() {
     assert!(!t.changed(Test::x()));
 }
 </code></pre>
-<blockquote>
-<p>More information about the tracker crate can be found <a href="https://github.com/AaronErhardt/Tracker">here</a>.</p>
-</blockquote>
 <p>So in short, the <code>tracker::track</code> macro provides different getters and setters that will mark struct fields as changed. You also get a method that checks for changes and a method to reset the changes.</p>
 <h1 id="using-trackers-in-relm4-apps"><a class="header" href="#using-trackers-in-relm4-apps">Using trackers in Relm4 apps</a></h1>
 <p>Let's build a simple app that shows two random icons and allows the user to set each of them to a new random icon. As a bonus, we want to show a fancy background color if both icons are the same.</p>
@@ -246,49 +243,108 @@ struct AppModel {
     UpdateSecond,
 }
 </code></pre>
-<p>There are a few notable things for the <code>AppUpdate</code> implementation.
-First, we call <code>self.reset()</code> at the top of the update function body. This ensures that the tracker will be reset so we don't track old changes.</p>
+<p>There are a few notable things for the <code>Component</code>'s <code>update</code> implementation.
+First, we call <code>self.reset()</code> at the top of the function body. This ensures that the tracker will be reset so we don't track old changes.</p>
 <p>Also, we use setters instead of assignments because we want to track these changes. Yet, you could still use the assignment operator if you want to apply changes without notifying the tracker.</p>
-<pre><code class="language-rust no_run noplayground">
+<pre><code class="language-rust no_run noplayground">    fn update(&amp;mut self, message: Self::Input, _sender: &amp;ComponentSender&lt;Self&gt;) {
+        // reset tracker value of the model
+        self.reset();
+
+        match message {
+            AppInput::UpdateFirst =&gt; {
+                self.set_first_icon(random_icon_name());
+            }
+            AppInput::UpdateSecond =&gt; {
+                self.set_second_icon(random_icon_name());
+            }
+        }
+        self.set_identical(self.first_icon == self.second_icon);
+    }
 </code></pre>
-<h2 id="the-widgets"><a class="header" href="#the-widgets">The widgets</a></h2>
-<p>Now we reached the interesting part of the code where we can actually make use of the tracker. Let's have a look at the complete widget macro:</p>
-<pre><code class="language-rust no_run noplayground">
+<h2 id="the-view"><a class="header" href="#the-view">The view</a></h2>
+<p>Now we reached the interesting part of the code where we can actually make use of the tracker. Let's have a look at the complete <code>view!</code> macro invocation:</p>
+<pre><code class="language-rust no_run noplayground">    view! {
+        #[root]
+        gtk::ApplicationWindow {
+            #[track = &quot;model.changed(AppModel::identical())&quot;]
+            set_class_active: (&quot;identical&quot;, model.identical),
+            gtk::Box {
+                set_orientation: gtk::Orientation::Horizontal,
+                set_spacing: 10,
+                set_margin_all: 10,
+                gtk::Box {
+                    set_orientation: gtk::Orientation::Vertical,
+                    set_spacing: 10,
+                    gtk::Image {
+                        set_pixel_size: 50,
+                        #[track = &quot;model.changed(AppModel::first_icon())&quot;]
+                        set_icon_name: Some(model.first_icon),
+                    },
+                    gtk::Button {
+                        set_label: &quot;New random image&quot;,
+                        connect_clicked[sender] =&gt; move |_| {
+                            sender.input.send(AppInput::UpdateFirst)
+                        }
+                    }
+                },
+                append = &amp;gtk::Box {
+                    set_orientation: gtk::Orientation::Vertical,
+                    set_spacing: 10,
+                    gtk::Image {
+                        set_pixel_size: 50,
+                        #[track = &quot;model.changed(AppModel::second_icon())&quot;]
+                        set_icon_name: Some(model.second_icon),
+                    },
+                    gtk::Button {
+                        set_label: &quot;New random image&quot;,
+                        connect_clicked[sender] =&gt; move |_| {
+                            sender.input.send(AppInput::UpdateSecond)
+                        }
+                    }
+                },
+            }
+        }
+    }
 </code></pre>
 <p>The overall UI is pretty simple: A window that contains a box. This box has two boxes itself for showing the two icons and the two buttons to update those icons.</p>
-<p>There's also something new. With the <code>pre_init()</code> and <code>post_init()</code> functions you can add custom code that will be run either before or after the code the widget macro generates for initialization. In our case, we want to add <a href="https://docs.gtk.org/gtk4/css-properties.html">custom CSS</a> that sets the background color for elements with class name &quot;identical&quot;.</p>
+<p>We also added some additional code in <code>init</code> that runs before the view is constructed. In our case, we want to add <a href="https://docs.gtk.org/gtk4/css-properties.html">custom CSS</a> that sets the background color for elements with class name &quot;identical&quot;.</p>
 <pre><code class="language-rust no_run noplayground">        relm4::set_global_css(b&quot;.identical { background: #00ad5c; }&quot;);
+
+        // Insert the macro code generation here
+        let widgets = view_output!();
 </code></pre>
-<h3 id="the-track-macro"><a class="header" href="#the-track-macro">The track! macro</a></h3>
-<p>The <code>track!</code> macro is a simple macro that can be used inside the widget macro and allows us to pass a condition for updates and then the arguments. So the syntax looks like this:</p>
-<pre><code class="language-rust no_run noplayground">track!(bool_expression, argument, [further arguments])
+<h3 id="the-track-attribute"><a class="header" href="#the-track-attribute">The <code>#[track]</code> attribute</a></h3>
+<p>The <code>#[track]</code> attribute is applied to method invocations in our view code. It allows us to add a condition to the update: if the condition is true, the method will be called, otherwise, it will be skipped. The attribute syntax looks like this:</p>
+<pre><code class="language-rust no_run noplayground">#[track = &quot;&lt;boolean expression&gt;&quot;]
 </code></pre>
 <p>Let's have a look at its first appearance:</p>
 <pre><code class="language-rust no_run noplayground">            #[track = &quot;model.changed(AppModel::identical())&quot;]
             set_class_active: (&quot;identical&quot;, model.identical),
 </code></pre>
 <p>The <a href="https://aaronerhardt.github.io/docs/relm4/relm4/util/widget_plus/trait.WidgetPlus.html#tymethod.set_class_active"><code>set_class_active</code></a> method is used to either activate or disable a CSS class. It takes two parameters, the first is the class itself and the second is a boolean which specifies if the class should be added (<code>true</code>) or removed (<code>false</code>).</p>
-<p>The first parameter of the <code>track!</code> macro will be used as a condition to check whether something has changed. If this condition is <code>true</code>, the <code>set_class_active</code> method will be called with all the parameters of the <code>track!</code> macro that follow the condition.</p>
-<p>The macro expansion for the <code>track!</code> macro in the generated view function looks roughly like this:</p>
+<p>The value of the <code>#[track]</code> attribute is parsed as a boolean expression. This expression will be used  as a condition to check whether something has changed. If this condition is <code>true</code>, the <code>set_class_active</code> method will be called with the parameters it guards.</p>
+<p>The macro expansion for method calls annotated with the <code>#[track]</code> attribute look roughly like this:</p>
 <pre><code class="language-rust no_run noplayground">if model.changed(AppModel::identical()) {
     self.main_window.set_class_active(&quot;identical&quot;, model.identical);
 }
 </code></pre>
 <p>That's all. It's pretty simple, actually. We just use a condition that allows us to update our widgets only when needed.</p>
-<p>The second <code>track!</code> macro looks very similar but only passes one argument:</p>
+<p>The second <code>#[track]</code> attribute works similarly:</p>
 <pre><code class="language-rust no_run noplayground">                        #[track = &quot;model.changed(AppModel::first_icon())&quot;]
                         set_icon_name: Some(model.first_icon),
 </code></pre>
 <blockquote>
-<p>Since the <code>track!</code> macro parses expressions, you can use the following syntax to debug your trackers:</p>
-<p><code>track!(bool_expression, { println!(&quot;Update widget&quot;); argument })</code></p>
+<p>Since the <code>#[track]</code> attribute parses expressions, you can use the following syntax to debug your trackers:</p>
+<p><code>#[track = &quot;{ println!(&quot;Update widget&quot;); argument }&quot;]</code></p>
 </blockquote>
-<h2 id="the-main-function"><a class="header" href="#the-main-function">The main function</a></h2>
+<h2 id="initializing-the-model"><a class="header" href="#initializing-the-model">Initializing the model</a></h2>
 <p>There's one last thing to point out. When initializing our model, we need to initialize the <code>tracker</code> field as well. The initial value doesn't really matter because we call <code>reset()</code> in the update function anyway, but usually <code>0</code> is used.</p>
-<pre><code class="language-rust no_run noplayground">fn main() {
-    let app: RelmApp&lt;AppModel&gt; = RelmApp::new(&quot;relm4.test.simple&quot;);
-    app.run(());
-}
+<pre><code class="language-rust no_run noplayground">        let model = AppModel {
+            first_icon: random_icon_name(),
+            second_icon: random_icon_name(),
+            identical: false,
+            tracker: 0,
+        };
 </code></pre>
 <h2 id="the-complete-code"><a class="header" href="#the-complete-code">The complete code</a></h2>
 <p>Let's review our code in one piece one more time to see how all these parts work together:</p>
