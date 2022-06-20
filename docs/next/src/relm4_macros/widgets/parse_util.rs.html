@@ -152,14 +152,36 @@
 <span id="143">143</span>
 <span id="144">144</span>
 <span id="145">145</span>
+<span id="146">146</span>
+<span id="147">147</span>
+<span id="148">148</span>
+<span id="149">149</span>
+<span id="150">150</span>
+<span id="151">151</span>
+<span id="152">152</span>
+<span id="153">153</span>
+<span id="154">154</span>
+<span id="155">155</span>
+<span id="156">156</span>
+<span id="157">157</span>
+<span id="158">158</span>
+<span id="159">159</span>
+<span id="160">160</span>
+<span id="161">161</span>
+<span id="162">162</span>
+<span id="163">163</span>
+<span id="164">164</span>
+<span id="165">165</span>
+<span id="166">166</span>
+<span id="167">167</span>
+<span id="168">168</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::sync::atomic</span>::{<span class="ident">AtomicU16</span>, <span class="ident">Ordering</span>};
 
 <span class="kw">use</span> <span class="ident">proc_macro2::Span</span> <span class="kw">as</span> <span class="ident">Span2</span>;
-<span class="kw">use</span> <span class="ident">syn::group</span>::{<span class="ident">parse_braces</span>, <span class="ident">parse_brackets</span>, <span class="ident">parse_parens</span>};
 <span class="kw">use</span> <span class="ident">syn::parse::ParseBuffer</span>;
 <span class="kw">use</span> <span class="ident">syn::punctuated::Punctuated</span>;
 <span class="kw">use</span> <span class="ident">syn::spanned::Spanned</span>;
-<span class="kw">use</span> <span class="ident">syn</span>::{<span class="ident">Error</span>, <span class="ident">Ident</span>, <span class="ident">Path</span>, <span class="ident">PathArguments</span>, <span class="ident">PathSegment</span>};
+<span class="kw">use</span> <span class="ident">syn</span>::{<span class="ident">braced</span>, <span class="ident">bracketed</span>, <span class="ident">parenthesized</span>, <span class="ident">Error</span>, <span class="ident">Ident</span>, <span class="ident">Path</span>, <span class="ident">PathArguments</span>, <span class="ident">PathSegment</span>};
 
 <span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">ParseError</span>, <span class="ident">PropertyName</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::widgets</span>::{<span class="ident">parse_util</span>, <span class="ident">AssignPropertyAttr</span>, <span class="ident">WidgetAttr</span>, <span class="ident">WidgetFunc</span>};
@@ -263,25 +285,49 @@
     <span class="ident">Ident::new</span>(<span class="kw-2">&amp;</span><span class="ident">name</span>, <span class="ident">span</span>)
 }
 
+<span class="doccomment">/// Weird hack to work around syn&#39;s awkward macros</span>
+<span class="doccomment">/// that always return [`syn::Error`] and are worse</span>
+<span class="doccomment">/// in every aspect compared to regular Rust code.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Sadly, the regular Rust API won&#39;t be made public,</span>
+<span class="doccomment">/// see https://github.com/dtolnay/syn/issues/1190.</span>
 <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">parens</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">ParseBuffer</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ParseBuffer</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>, <span class="ident">ParseError</span><span class="op">&gt;</span> {
-    <span class="kw">match</span> <span class="ident">parse_parens</span>(<span class="ident">input</span>) {
-        <span class="prelude-val">Ok</span>(<span class="ident">parens</span>) =&gt; <span class="prelude-val">Ok</span>(<span class="ident">parens</span>.<span class="ident">content</span>),
-        <span class="prelude-val">Err</span>(<span class="ident">error</span>) =&gt; <span class="prelude-val">Err</span>(<span class="ident">error</span>.<span class="ident">into</span>()),
-    }
+    <span class="kw">let</span> <span class="ident">content</span> <span class="op">=</span> (<span class="kw">move</span> <span class="op">|</span><span class="op">|</span> {
+        <span class="kw">let</span> <span class="ident">content</span>;
+        <span class="macro">parenthesized!</span>(<span class="ident">content</span> <span class="kw">in</span> <span class="ident">input</span>);
+        <span class="prelude-val">Ok</span>(<span class="ident">content</span>)
+    })();
+    <span class="prelude-val">Ok</span>(<span class="ident">content</span><span class="question-mark">?</span>)
 }
 
+<span class="doccomment">/// Weird hack to work around syn&#39;s awkward macros</span>
+<span class="doccomment">/// that always return [`syn::Error`] and are worse</span>
+<span class="doccomment">/// in every aspect compared to regular Rust code.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Sadly, the regular Rust API won&#39;t be made public,</span>
+<span class="doccomment">/// see https://github.com/dtolnay/syn/issues/1190.</span>
 <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">braces</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">ParseBuffer</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ParseBuffer</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>, <span class="ident">ParseError</span><span class="op">&gt;</span> {
-    <span class="kw">match</span> <span class="ident">parse_braces</span>(<span class="ident">input</span>) {
-        <span class="prelude-val">Ok</span>(<span class="ident">parens</span>) =&gt; <span class="prelude-val">Ok</span>(<span class="ident">parens</span>.<span class="ident">content</span>),
-        <span class="prelude-val">Err</span>(<span class="ident">error</span>) =&gt; <span class="prelude-val">Err</span>(<span class="ident">error</span>.<span class="ident">into</span>()),
-    }
+    <span class="kw">let</span> <span class="ident">content</span> <span class="op">=</span> (<span class="kw">move</span> <span class="op">|</span><span class="op">|</span> {
+        <span class="kw">let</span> <span class="ident">content</span>;
+        <span class="macro">braced!</span>(<span class="ident">content</span> <span class="kw">in</span> <span class="ident">input</span>);
+        <span class="prelude-val">Ok</span>(<span class="ident">content</span>)
+    })();
+    <span class="prelude-val">Ok</span>(<span class="ident">content</span><span class="question-mark">?</span>)
 }
 
+<span class="doccomment">/// Weird hack to work around syn&#39;s awkward macros</span>
+<span class="doccomment">/// that always return [`syn::Error`] and are worse</span>
+<span class="doccomment">/// in every aspect compared to regular Rust code.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Sadly, the regular Rust API won&#39;t be made public,</span>
+<span class="doccomment">/// see https://github.com/dtolnay/syn/issues/1190.</span>
 <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">brackets</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">ParseBuffer</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ParseBuffer</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>, <span class="ident">ParseError</span><span class="op">&gt;</span> {
-    <span class="kw">match</span> <span class="ident">parse_brackets</span>(<span class="ident">input</span>) {
-        <span class="prelude-val">Ok</span>(<span class="ident">parens</span>) =&gt; <span class="prelude-val">Ok</span>(<span class="ident">parens</span>.<span class="ident">content</span>),
-        <span class="prelude-val">Err</span>(<span class="ident">error</span>) =&gt; <span class="prelude-val">Err</span>(<span class="ident">error</span>.<span class="ident">into</span>()),
-    }
+    <span class="kw">let</span> <span class="ident">content</span> <span class="op">=</span> (<span class="kw">move</span> <span class="op">|</span><span class="op">|</span> {
+        <span class="kw">let</span> <span class="ident">content</span>;
+        <span class="macro">bracketed!</span>(<span class="ident">content</span> <span class="kw">in</span> <span class="ident">input</span>);
+        <span class="prelude-val">Ok</span>(<span class="ident">content</span>)
+    })();
+    <span class="prelude-val">Ok</span>(<span class="ident">content</span><span class="question-mark">?</span>)
 }
 
 <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">strings_to_path</span>(<span class="ident">strings</span>: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="ident">str</span>]) -&gt; <span class="ident">Path</span> {
@@ -298,5 +344,5 @@
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="relm4_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (c3b7d7b49 2022-06-17)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="relm4_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (bb8c2f411 2022-06-19)" ></div>
 </body></html>
