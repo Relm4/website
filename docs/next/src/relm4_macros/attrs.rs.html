@@ -106,38 +106,10 @@
 <span id="98">98</span>
 <span id="99">99</span>
 <span id="100">100</span>
-<span id="101">101</span>
-<span id="102">102</span>
-<span id="103">103</span>
-<span id="104">104</span>
-<span id="105">105</span>
-<span id="106">106</span>
-<span id="107">107</span>
-<span id="108">108</span>
-<span id="109">109</span>
-<span id="110">110</span>
-<span id="111">111</span>
-<span id="112">112</span>
-<span id="113">113</span>
-<span id="114">114</span>
-<span id="115">115</span>
-<span id="116">116</span>
-<span id="117">117</span>
-<span id="118">118</span>
-<span id="119">119</span>
-<span id="120">120</span>
-<span id="121">121</span>
-<span id="122">122</span>
-<span id="123">123</span>
-<span id="124">124</span>
-<span id="125">125</span>
-<span id="126">126</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">proc_macro2::Span</span>;
 <span class="kw">use</span> <span class="ident">syn::parse</span>::{<span class="ident">Parse</span>, <span class="ident">ParseStream</span>};
 <span class="kw">use</span> <span class="ident">syn::spanned::Spanned</span>;
-<span class="kw">use</span> <span class="ident">syn</span>::{<span class="ident">Error</span>, <span class="ident">Ident</span>, <span class="ident">Path</span>, <span class="prelude-ty">Result</span>, <span class="ident">Token</span>, <span class="ident">Visibility</span>};
-
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::util::default_relm4_path</span>;
+<span class="kw">use</span> <span class="ident">syn</span>::{<span class="ident">Error</span>, <span class="ident">Ident</span>, <span class="prelude-ty">Result</span>, <span class="ident">Token</span>, <span class="ident">Visibility</span>};
 
 <span class="kw">enum</span> <span class="ident">AttributeType</span> {
     <span class="prelude-val">None</span>,
@@ -148,19 +120,11 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Attrs</span> {
     <span class="doccomment">/// Keeps information about visibility of the widget</span>
     <span class="kw">pub</span> <span class="ident">visibility</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Visibility</span><span class="op">&gt;</span>,
-
-    <span class="doccomment">/// Path to relm4</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Defaults to `::relm4`</span>
-    <span class="kw">pub</span> <span class="ident">relm4_path</span>: <span class="ident">Path</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">Attrs</span> {
     <span class="kw">fn</span> <span class="ident">new</span>() -&gt; <span class="self">Self</span> {
-        <span class="ident">Attrs</span> {
-            <span class="ident">visibility</span>: <span class="prelude-val">None</span>,
-            <span class="ident">relm4_path</span>: <span class="ident">default_relm4_path</span>(),
-        }
+        <span class="ident">Attrs</span> { <span class="ident">visibility</span>: <span class="prelude-val">None</span> }
     }
 }
 
@@ -181,10 +145,8 @@
         <span class="comment">// #[widget(relm4 = ::my::path, relm4 = ::my::other::path ) ]</span>
         <span class="comment">// ```</span>
         <span class="comment">// is illegal.</span>
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">relm4_path_set</span> <span class="op">=</span> <span class="bool-val">false</span>;
-
         <span class="kw">let</span> <span class="ident">mixed_use_error_message</span> <span class="op">=</span>
-            <span class="string">&quot;You can&#39;t mix named and unnamed arguments while using `relm4_macros::widget`. \n\
+            <span class="string">&quot;You can&#39;t mix named and unnamed arguments. \n\
             \n\
             You can use one of\n\
             \n\
@@ -227,22 +189,8 @@
 
                     <span class="ident">attrs</span>.<span class="ident">visibility</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">pub_vis</span>);
                     <span class="ident">attrs_type</span> <span class="op">=</span> <span class="ident">AttributeType::Named</span>;
-                } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">ident</span> <span class="op">==</span> <span class="string">&quot;relm4&quot;</span> {
-                    <span class="kw">let</span> <span class="ident">path</span>: <span class="ident">Path</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-
-                    <span class="kw">if</span> <span class="kw">let</span> <span class="ident">AttributeType::Unnamed</span> { <span class="ident">span</span> } <span class="op">=</span> <span class="ident">attrs_type</span> {
-                        <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::new</span>(<span class="ident">span</span>, <span class="ident">mixed_use_error_message</span>));
-                    }
-                    <span class="kw">if</span> <span class="ident">relm4_path_set</span> {
-                        <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::new</span>(<span class="ident">path</span>.<span class="ident">span</span>(), <span class="string">&quot;You can&#39;t assign relm4 path twice&quot;</span>));
-                    }
-
-                    <span class="ident">attrs</span>.<span class="ident">relm4_path</span> <span class="op">=</span> <span class="ident">path</span>;
-                    <span class="ident">relm4_path_set</span> <span class="op">=</span> <span class="bool-val">true</span>;
-                    <span class="ident">attrs_type</span> <span class="op">=</span> <span class="ident">AttributeType::Named</span>;
                 } <span class="kw">else</span> {
-                    <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">input</span>
-                        .<span class="ident">error</span>(<span class="string">&quot;Unknown argument. Valid arguments are: `visibility` or `relm4`&quot;</span>));
+                    <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">input</span>.<span class="ident">error</span>(<span class="string">&quot;Unknown argument. Expected `visibility`&quot;</span>));
                 }
             }
 

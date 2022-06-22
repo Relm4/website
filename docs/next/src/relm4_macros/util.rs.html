@@ -38,15 +38,55 @@
 <span id="30">30</span>
 <span id="31">31</span>
 <span id="32">32</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">syn::spanned::Spanned</span>;
-<span class="kw">use</span> <span class="ident">syn</span>::{<span class="ident">Error</span>, <span class="ident">FnArg</span>, <span class="ident">Ident</span>, <span class="ident">ImplItemMethod</span>, <span class="ident">Pat</span>, <span class="ident">Path</span>};
+<span id="33">33</span>
+<span id="34">34</span>
+<span id="35">35</span>
+<span id="36">36</span>
+<span id="37">37</span>
+<span id="38">38</span>
+<span id="39">39</span>
+<span id="40">40</span>
+<span id="41">41</span>
+<span id="42">42</span>
+<span id="43">43</span>
+<span id="44">44</span>
+<span id="45">45</span>
+<span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
+<span id="50">50</span>
+<span id="51">51</span>
+<span id="52">52</span>
+</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::rc::Rc</span>;
 
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">kw</span> {
-    <span class="macro">syn::custom_keyword!</span>(<span class="prelude-val">Some</span>);
+<span class="kw">use</span> <span class="ident">proc_macro2::Span</span> <span class="kw">as</span> <span class="ident">Span2</span>;
+<span class="kw">use</span> <span class="ident">syn::punctuated::Punctuated</span>;
+<span class="kw">use</span> <span class="ident">syn::spanned::Spanned</span>;
+<span class="kw">use</span> <span class="ident">syn</span>::{<span class="ident">Error</span>, <span class="ident">FnArg</span>, <span class="ident">Ident</span>, <span class="ident">ImplItemMethod</span>, <span class="ident">Pat</span>, <span class="ident">Path</span>, <span class="ident">PathArguments</span>, <span class="ident">PathSegment</span>};
+
+<span class="macro">thread_local!</span> {
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;relm4&quot;</span>)]</span>
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">static</span> <span class="ident">GTK_IMPORT</span>: <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">syn::Path</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Rc::new</span>(<span class="ident">strings_to_path</span>(<span class="kw-2">&amp;</span>[<span class="string">&quot;relm4&quot;</span>, <span class="string">&quot;gtk&quot;</span>]));
+
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;relm4&quot;</span>))]</span>
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">static</span> <span class="ident">GTK_IMPORT</span>: <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">syn::Path</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Rc::new</span>(<span class="ident">strings_to_path</span>(<span class="kw-2">&amp;</span>[<span class="string">&quot;gtk&quot;</span>]));
 }
 
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">default_relm4_path</span>() -&gt; <span class="ident">Path</span> {
-    <span class="macro">syn::parse_quote!</span> { <span class="ident">::relm4</span> }
+<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">strings_to_path</span>(<span class="ident">strings</span>: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="ident">str</span>]) -&gt; <span class="ident">Path</span> {
+    <span class="kw">let</span> <span class="ident">path_segments</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">PathSegment</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">strings</span>
+        .<span class="ident">iter</span>()
+        .<span class="ident">map</span>(<span class="op">|</span><span class="ident">string</span><span class="op">|</span> -&gt; <span class="ident">PathSegment</span> {
+            <span class="ident">PathSegment</span> {
+                <span class="ident">ident</span>: <span class="ident">Ident::new</span>(<span class="ident">string</span>, <span class="ident">Span2::call_site</span>()),
+                <span class="ident">arguments</span>: <span class="ident">PathArguments::None</span>,
+            }
+        })
+        .<span class="ident">collect</span>();
+    <span class="ident">Path</span> {
+        <span class="ident">leading_colon</span>: <span class="prelude-val">None</span>,
+        <span class="ident">segments</span>: <span class="ident">Punctuated::from_iter</span>(<span class="ident">path_segments</span>),
+    }
 }
 
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">get_ident_of_nth_func_input</span>(

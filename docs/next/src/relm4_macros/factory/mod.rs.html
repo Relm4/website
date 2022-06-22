@@ -175,15 +175,9 @@
 <span id="167">167</span>
 <span id="168">168</span>
 <span id="169">169</span>
-<span id="170">170</span>
-<span id="171">171</span>
-<span id="172">172</span>
-<span id="173">173</span>
-<span id="174">174</span>
-<span id="175">175</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">proc_macro2</span>::{<span class="ident">Span</span> <span class="kw">as</span> <span class="ident">Span2</span>, <span class="ident">TokenStream</span> <span class="kw">as</span> <span class="ident">TokenStream2</span>};
 <span class="kw">use</span> <span class="ident">quote</span>::{<span class="ident">quote</span>, <span class="ident">ToTokens</span>};
-<span class="kw">use</span> <span class="ident">syn</span>::{<span class="ident">Ident</span>, <span class="ident">Path</span>, <span class="ident">PathArguments</span>, <span class="ident">Visibility</span>};
+<span class="kw">use</span> <span class="ident">syn</span>::{<span class="ident">Ident</span>, <span class="ident">PathArguments</span>, <span class="ident">Visibility</span>};
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::component::token_streams</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::macros::Macros</span>;
@@ -195,11 +189,7 @@
 
 <span class="kw">use</span> <span class="ident">inject_view_code::inject_view_code</span>;
 
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">generate_tokens</span>(
-    <span class="ident">vis</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Visibility</span><span class="op">&gt;</span>,
-    <span class="ident">relm4_path</span>: <span class="ident">Path</span>,
-    <span class="ident">data</span>: <span class="ident">ItemImpl</span>,
-) -&gt; <span class="ident">TokenStream2</span> {
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">generate_tokens</span>(<span class="ident">vis</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Visibility</span><span class="op">&gt;</span>, <span class="ident">data</span>: <span class="ident">ItemImpl</span>) -&gt; <span class="ident">TokenStream2</span> {
     <span class="kw">let</span> <span class="ident">last_segment</span> <span class="op">=</span> <span class="ident">data</span>
         .<span class="ident">trait_</span>
         .<span class="ident">segments</span>
@@ -237,7 +227,7 @@
     };
 
     <span class="comment">// Generate menu tokens</span>
-    <span class="kw">let</span> <span class="ident">menus_stream</span> <span class="op">=</span> <span class="ident">menus</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">m</span><span class="op">|</span> <span class="ident">m</span>.<span class="ident">menus_stream</span>(<span class="kw-2">&amp;</span><span class="ident">relm4_path</span>));
+    <span class="kw">let</span> <span class="ident">menus_stream</span> <span class="op">=</span> <span class="ident">menus</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">m</span><span class="op">|</span> <span class="ident">m</span>.<span class="ident">menus_stream</span>());
 
     <span class="kw">let</span> <span class="ident">funcs::Funcs</span> {
         <span class="ident">init_widgets</span>,
@@ -263,7 +253,6 @@
         <span class="ident">update_view</span>,
     } <span class="op">=</span> <span class="ident">view_widgets</span>.<span class="ident">generate_streams</span>(
         <span class="kw-2">&amp;</span><span class="ident">vis</span>,
-        <span class="kw-2">&amp;</span><span class="ident">relm4_path</span>,
         <span class="kw-2">&amp;</span><span class="ident">Ident::new</span>(<span class="string">&quot;self&quot;</span>, <span class="ident">Span2::call_site</span>()),
         <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="ident">root_name</span>),
         <span class="bool-val">false</span>,
@@ -309,7 +298,6 @@
         <span class="ident">view_code</span>,
         <span class="ident">widgets_return_code</span>,
         <span class="ident">container_widget</span>,
-        <span class="kw-2">&amp;</span><span class="ident">relm4_path</span>,
     );
 
     <span class="macro">quote!</span> {

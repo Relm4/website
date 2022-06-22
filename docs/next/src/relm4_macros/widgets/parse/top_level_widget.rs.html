@@ -69,8 +69,10 @@
 <span id="61">61</span>
 <span id="62">62</span>
 <span id="63">63</span>
+<span id="64">64</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">syn::parse::ParseStream</span>;
 
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::util</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::widgets</span>::{
     <span class="ident">parse_util</span>, <span class="ident">Attr</span>, <span class="ident">Attrs</span>, <span class="ident">Properties</span>, <span class="ident">Property</span>, <span class="ident">PropertyName</span>, <span class="ident">PropertyType</span>, <span class="ident">TopLevelWidget</span>,
     <span class="ident">Widget</span>, <span class="ident">WidgetAttr</span>, <span class="ident">WidgetFunc</span>,
@@ -108,7 +110,7 @@
                 <span class="ident">mutable</span>: <span class="prelude-val">None</span>,
                 <span class="ident">name</span>: <span class="ident">parse_util::string_to_snake_case</span>(<span class="string">&quot;incorrect_top_level_widget&quot;</span>),
                 <span class="ident">func</span>: <span class="ident">WidgetFunc</span> {
-                    <span class="ident">path</span>: <span class="ident">parse_util::strings_to_path</span>(<span class="kw-2">&amp;</span>[<span class="string">&quot;gtk&quot;</span>, <span class="string">&quot;Box&quot;</span>]),
+                    <span class="ident">path</span>: <span class="ident">util::strings_to_path</span>(<span class="kw-2">&amp;</span>[<span class="string">&quot;gtk&quot;</span>, <span class="string">&quot;Box&quot;</span>]),
                     <span class="ident">args</span>: <span class="prelude-val">None</span>,
                     <span class="ident">method_chain</span>: <span class="prelude-val">None</span>,
                     <span class="ident">ty</span>: <span class="prelude-val">None</span>,

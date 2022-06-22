@@ -32,18 +32,8 @@
 <span id="24">24</span>
 <span id="25">25</span>
 <span id="26">26</span>
-<span id="27">27</span>
-<span id="28">28</span>
-<span id="29">29</span>
-<span id="30">30</span>
-<span id="31">31</span>
-<span id="32">32</span>
-<span id="33">33</span>
-<span id="34">34</span>
-<span id="35">35</span>
-<span id="36">36</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">proc_macro2::TokenStream</span> <span class="kw">as</span> <span class="ident">TokenStream2</span>;
-<span class="kw">use</span> <span class="ident">syn</span>::{<span class="ident">Ident</span>, <span class="ident">Path</span>};
+<span class="kw">use</span> <span class="ident">syn::Ident</span>;
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::widgets</span>::{<span class="ident">Property</span>, <span class="ident">PropertyType</span>};
 
@@ -53,26 +43,16 @@
 <span class="kw">mod</span> <span class="ident">widgets</span>;
 
 <span class="kw">impl</span> <span class="ident">Property</span> {
-    <span class="kw">fn</span> <span class="ident">assign_stream</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">stream</span>: <span class="kw-2">&amp;mut</span> <span class="ident">TokenStream2</span>,
-        <span class="ident">w_name</span>: <span class="kw-2">&amp;</span><span class="ident">Ident</span>,
-        <span class="ident">is_conditional</span>: <span class="ident">bool</span>,
-        <span class="ident">relm4_path</span>: <span class="kw-2">&amp;</span><span class="ident">Path</span>,
-    ) {
+    <span class="kw">fn</span> <span class="ident">assign_stream</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">stream</span>: <span class="kw-2">&amp;mut</span> <span class="ident">TokenStream2</span>, <span class="ident">w_name</span>: <span class="kw-2">&amp;</span><span class="ident">Ident</span>, <span class="ident">is_conditional</span>: <span class="ident">bool</span>) {
         <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">ty</span> {
-            <span class="ident">PropertyType::Assign</span>(<span class="ident">assign</span>) =&gt; <span class="ident">assign</span>.<span class="ident">conditional_assign_stream</span>(
-                <span class="ident">stream</span>,
-                <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">name</span>,
-                <span class="ident">w_name</span>,
-                <span class="ident">is_conditional</span>,
-                <span class="ident">relm4_path</span>,
-            ),
+            <span class="ident">PropertyType::Assign</span>(<span class="ident">assign</span>) =&gt; {
+                <span class="ident">assign</span>.<span class="ident">conditional_assign_stream</span>(<span class="ident">stream</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">name</span>, <span class="ident">w_name</span>, <span class="ident">is_conditional</span>)
+            }
             <span class="ident">PropertyType::Widget</span>(<span class="ident">widget</span>) =&gt; {
-                <span class="ident">widget</span>.<span class="ident">assign_stream</span>(<span class="ident">stream</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">name</span>, <span class="ident">w_name</span>, <span class="ident">is_conditional</span>, <span class="ident">relm4_path</span>)
+                <span class="ident">widget</span>.<span class="ident">assign_stream</span>(<span class="ident">stream</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">name</span>, <span class="ident">w_name</span>, <span class="ident">is_conditional</span>)
             }
             <span class="ident">PropertyType::ConditionalWidget</span>(<span class="ident">cond_widget</span>) =&gt; {
-                <span class="ident">cond_widget</span>.<span class="ident">assign_stream</span>(<span class="ident">stream</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">name</span>, <span class="ident">w_name</span>, <span class="ident">relm4_path</span>)
+                <span class="ident">cond_widget</span>.<span class="ident">assign_stream</span>(<span class="ident">stream</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">name</span>, <span class="ident">w_name</span>)
             }
             <span class="ident">PropertyType::ParseError</span>(<span class="kw">_</span>) <span class="op">|</span> <span class="ident">PropertyType::SignalHandler</span>(<span class="kw">_</span>) =&gt; (),
         }

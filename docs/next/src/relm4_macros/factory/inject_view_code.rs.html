@@ -39,10 +39,9 @@
 <span id="31">31</span>
 <span id="32">32</span>
 <span id="33">33</span>
-<span id="34">34</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">proc_macro2::TokenStream</span> <span class="kw">as</span> <span class="ident">TokenStream2</span>;
 <span class="kw">use</span> <span class="ident">quote</span>::{<span class="ident">quote</span>, <span class="ident">ToTokens</span>};
-<span class="kw">use</span> <span class="ident">syn</span>::{<span class="ident">ImplItemMethod</span>, <span class="ident">Path</span>};
+<span class="kw">use</span> <span class="ident">syn::ImplItemMethod</span>;
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::component</span>;
 
@@ -51,7 +50,6 @@
     <span class="ident">view_code</span>: <span class="ident">TokenStream2</span>,
     <span class="ident">widgets_return_code</span>: <span class="ident">TokenStream2</span>,
     <span class="ident">container_widget</span>: <span class="ident">TokenStream2</span>,
-    <span class="ident">relm4_path</span>: <span class="kw-2">&amp;</span><span class="ident">Path</span>,
 ) -&gt; <span class="ident">TokenStream2</span> {
     <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">func</span>) <span class="op">=</span> <span class="ident">func</span> {
         <span class="kw">match</span> <span class="ident">component::inject_view_code::inject_view_code</span>(<span class="ident">func</span>, <span class="ident">view_code</span>, <span class="ident">widgets_return_code</span>) {
@@ -62,9 +60,9 @@
         <span class="macro">quote!</span> {
             <span class="kw">fn</span> <span class="ident">init_widgets</span>(
                 <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
-                <span class="ident">index</span>: <span class="kw-2">&amp;</span>#<span class="ident">relm4_path::factory::DynamicIndex</span>,
+                <span class="ident">index</span>: <span class="kw-2">&amp;</span><span class="ident">relm4::factory::DynamicIndex</span>,
                 <span class="ident">root</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Root</span>,
-                <span class="ident">returned_widget</span>: <span class="kw-2">&amp;</span><span class="op">&lt;</span>#<span class="ident">container_widget</span> <span class="kw">as</span> #<span class="ident">relm4_path::factory::FactoryView</span><span class="op">&gt;</span><span class="ident">::ReturnedWidget</span>,
+                <span class="ident">returned_widget</span>: <span class="kw-2">&amp;</span><span class="op">&lt;</span>#<span class="ident">container_widget</span> <span class="kw">as</span> <span class="ident">relm4::factory::FactoryView</span><span class="op">&gt;</span><span class="ident">::ReturnedWidget</span>,
                 <span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="ident">Sender</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Input</span><span class="op">&gt;</span>,
                 <span class="ident">output</span>: <span class="kw-2">&amp;</span><span class="ident">Sender</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Output</span><span class="op">&gt;</span>,
             ) -&gt; <span class="ident"><span class="self">Self</span>::Widgets</span> {

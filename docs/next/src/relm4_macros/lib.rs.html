@@ -407,15 +407,10 @@
 <span id="399">399</span>
 <span id="400">400</span>
 <span id="401">401</span>
-<span id="402">402</span>
-<span id="403">403</span>
-<span id="404">404</span>
-<span id="405">405</span>
-<span id="406">406</span>
 </pre><pre class="rust"><code><span class="attribute">#![<span class="ident">doc</span>(<span class="ident">html_logo_url</span> <span class="op">=</span> <span class="string">&quot;https://relm4.org/icons/relm4_logo.svg&quot;</span>)]</span>
 <span class="attribute">#![<span class="ident">doc</span>(<span class="ident">html_favicon_url</span> <span class="op">=</span> <span class="string">&quot;https://relm4.org/icons/relm4_org.svg&quot;</span>)]</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! *This document was built at Wednesday June 22, 03:00 UTC.*</span>
+<span class="doccomment">//! *This document was built at Wednesday June 22, 13:28 UTC.*</span>
 
 <span class="kw">use</span> <span class="ident">proc_macro::TokenStream</span>;
 <span class="kw">use</span> <span class="ident">syn::parse_macro_input</span>;
@@ -437,6 +432,10 @@
 <span class="kw">use</span> <span class="ident">attrs::Attrs</span>;
 <span class="kw">use</span> <span class="ident">item_impl::ItemImpl</span>;
 <span class="kw">use</span> <span class="ident">menu::Menus</span>;
+
+<span class="kw">fn</span> <span class="ident">gtk_import</span>() -&gt; <span class="ident">std::rc::Rc</span><span class="op">&lt;</span><span class="ident">syn::Path</span><span class="op">&gt;</span> {
+    <span class="ident">util::GTK_IMPORT</span>.<span class="ident">with</span>(<span class="op">|</span><span class="ident">p</span><span class="op">|</span> <span class="ident">p</span>.<span class="ident">clone</span>())
+}
 
 <span class="doccomment">/// Macro that implements [`relm4::Component`](https://relm4.org/docs/next/relm4/trait.Component.html) and generates the corresponding struct.</span>
 <span class="doccomment">///</span>
@@ -570,24 +569,18 @@
 <span class="doccomment">/// ```</span>
 <span class="attribute">#[<span class="ident">proc_macro_attribute</span>]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">component</span>(<span class="ident">attributes</span>: <span class="ident">TokenStream</span>, <span class="ident">input</span>: <span class="ident">TokenStream</span>) -&gt; <span class="ident">TokenStream</span> {
-    <span class="kw">let</span> <span class="ident">Attrs</span> {
-        <span class="ident">visibility</span>,
-        <span class="ident">relm4_path</span>,
-    } <span class="op">=</span> <span class="macro">parse_macro_input!</span>(<span class="ident">attributes</span> <span class="kw">as</span> <span class="ident">Attrs</span>);
+    <span class="kw">let</span> <span class="ident">Attrs</span> { <span class="ident">visibility</span> } <span class="op">=</span> <span class="macro">parse_macro_input!</span>(<span class="ident">attributes</span> <span class="kw">as</span> <span class="ident">Attrs</span>);
     <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="macro">parse_macro_input!</span>(<span class="ident">input</span> <span class="kw">as</span> <span class="ident">ItemImpl</span>);
 
-    <span class="ident">component::generate_tokens</span>(<span class="ident">visibility</span>, <span class="ident">relm4_path</span>, <span class="ident">data</span>).<span class="ident">into</span>()
+    <span class="ident">component::generate_tokens</span>(<span class="ident">visibility</span>, <span class="ident">data</span>).<span class="ident">into</span>()
 }
 
 <span class="attribute">#[<span class="ident">proc_macro_attribute</span>]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">factory</span>(<span class="ident">attributes</span>: <span class="ident">TokenStream</span>, <span class="ident">input</span>: <span class="ident">TokenStream</span>) -&gt; <span class="ident">TokenStream</span> {
-    <span class="kw">let</span> <span class="ident">Attrs</span> {
-        <span class="ident">visibility</span>,
-        <span class="ident">relm4_path</span>,
-    } <span class="op">=</span> <span class="macro">parse_macro_input!</span>(<span class="ident">attributes</span> <span class="kw">as</span> <span class="ident">Attrs</span>);
+    <span class="kw">let</span> <span class="ident">Attrs</span> { <span class="ident">visibility</span> } <span class="op">=</span> <span class="macro">parse_macro_input!</span>(<span class="ident">attributes</span> <span class="kw">as</span> <span class="ident">Attrs</span>);
     <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="macro">parse_macro_input!</span>(<span class="ident">input</span> <span class="kw">as</span> <span class="ident">ItemImpl</span>);
 
-    <span class="ident">factory::generate_tokens</span>(<span class="ident">visibility</span>, <span class="ident">relm4_path</span>, <span class="ident">data</span>).<span class="ident">into</span>()
+    <span class="ident">factory::generate_tokens</span>(<span class="ident">visibility</span>, <span class="ident">data</span>).<span class="ident">into</span>()
 }
 
 <span class="comment">// Macro that implements [`relm4::factory::FactoryPrototype`](https://aaronerhardt.github.io/docs/relm4/relm4/factory/trait.FactoryPrototype.html)</span>
@@ -598,11 +591,10 @@
 <span class="comment">// pub fn factory_prototype(attributes: TokenStream, input: TokenStream) -&gt; TokenStream {</span>
 <span class="comment">// let Attrs {</span>
 <span class="comment">//     visibility,</span>
-<span class="comment">//     relm4_path,</span>
 <span class="comment">// } = parse_macro_input!(attributes as Attrs);</span>
 <span class="comment">// let data = parse_macro_input!(input as ItemImpl);</span>
 
-<span class="comment">// factory_prototype_macro::generate_tokens(visibility, relm4_path, data).into()</span>
+<span class="comment">// factory::generate_tokens(visibility, data).into()</span>
 <span class="comment">//    quote! {}.into()</span>
 <span class="comment">// }</span>
 
@@ -702,9 +694,7 @@
 <span class="attribute">#[<span class="ident">proc_macro</span>]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">menu</span>(<span class="ident">input</span>: <span class="ident">TokenStream</span>) -&gt; <span class="ident">TokenStream</span> {
     <span class="kw">let</span> <span class="ident">menus</span> <span class="op">=</span> <span class="macro">parse_macro_input!</span>(<span class="ident">input</span> <span class="kw">as</span> <span class="ident">Menus</span>);
-    <span class="kw">let</span> <span class="ident">default_relm4_path</span> <span class="op">=</span> <span class="ident">util::default_relm4_path</span>();
-
-    <span class="ident">menus</span>.<span class="ident">menus_stream</span>(<span class="kw-2">&amp;</span><span class="ident">default_relm4_path</span>).<span class="ident">into</span>()
+    <span class="ident">menus</span>.<span class="ident">menus_stream</span>().<span class="ident">into</span>()
 }
 
 <span class="doccomment">/// The [`view!`] macro allows you to construct your UI easily and cleanly.</span>

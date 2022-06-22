@@ -127,11 +127,10 @@
 <span id="119">119</span>
 <span id="120">120</span>
 <span id="121">121</span>
-<span id="122">122</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">proc_macro2::TokenStream</span> <span class="kw">as</span> <span class="ident">TokenStream2</span>;
 <span class="kw">use</span> <span class="ident">quote</span>::{<span class="ident">quote</span>, <span class="ident">quote_spanned</span>, <span class="ident">ToTokens</span>};
 <span class="kw">use</span> <span class="ident">syn::spanned::Spanned</span>;
-<span class="kw">use</span> <span class="ident">syn</span>::{<span class="ident">Expr</span>, <span class="ident">Ident</span>, <span class="ident">Path</span>};
+<span class="kw">use</span> <span class="ident">syn</span>::{<span class="ident">Expr</span>, <span class="ident">Ident</span>};
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::widgets</span>::{<span class="ident">AssignProperty</span>, <span class="ident">AssignPropertyAttr</span>, <span class="ident">PropertyName</span>};
 
@@ -142,7 +141,6 @@
         <span class="ident">p_name</span>: <span class="kw-2">&amp;</span><span class="ident">PropertyName</span>,
         <span class="ident">w_name</span>: <span class="kw-2">&amp;</span><span class="ident">Ident</span>,
         <span class="ident">is_conditional</span>: <span class="ident">bool</span>,
-        <span class="ident">relm4_path</span>: <span class="kw-2">&amp;</span><span class="ident">Path</span>,
     ) {
         <span class="comment">// If the code gen path is behind a conditional widgets, handle `watch` and `track` later.</span>
         <span class="comment">// Normally, those would be initialized right away, but they might need access to</span>
@@ -154,7 +152,7 @@
                 <span class="ident">AssignPropertyAttr::Track</span>(<span class="kw">_</span>) <span class="op">|</span> <span class="ident">AssignPropertyAttr::Watch</span>
             )
         {
-            <span class="self">self</span>.<span class="ident">assign_stream</span>(<span class="ident">stream</span>, <span class="ident">p_name</span>, <span class="ident">w_name</span>, <span class="ident">relm4_path</span>);
+            <span class="self">self</span>.<span class="ident">assign_stream</span>(<span class="ident">stream</span>, <span class="ident">p_name</span>, <span class="ident">w_name</span>);
         }
     }
 
@@ -163,9 +161,8 @@
         <span class="ident">stream</span>: <span class="kw-2">&amp;mut</span> <span class="ident">TokenStream2</span>,
         <span class="ident">p_name</span>: <span class="kw-2">&amp;</span><span class="ident">PropertyName</span>,
         <span class="ident">w_name</span>: <span class="kw-2">&amp;</span><span class="ident">Ident</span>,
-        <span class="ident">relm4_path</span>: <span class="kw-2">&amp;</span><span class="ident">Path</span>,
     ) {
-        <span class="kw">let</span> <span class="ident">assign_fn</span> <span class="op">=</span> <span class="ident">p_name</span>.<span class="ident">assign_fn_stream</span>(<span class="ident">w_name</span>, <span class="ident">relm4_path</span>);
+        <span class="kw">let</span> <span class="ident">assign_fn</span> <span class="op">=</span> <span class="ident">p_name</span>.<span class="ident">assign_fn_stream</span>(<span class="ident">w_name</span>);
         <span class="kw">let</span> <span class="ident">self_assign_args</span> <span class="op">=</span> <span class="ident">p_name</span>.<span class="ident">assign_args_stream</span>(<span class="ident">w_name</span>);
         <span class="kw">let</span> <span class="ident">span</span> <span class="op">=</span> <span class="ident">p_name</span>.<span class="ident">span</span>();
 
@@ -187,21 +184,22 @@
         } <span class="kw">else</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">block_stream</span> <span class="op">=</span> <span class="ident">TokenStream2::default</span>();
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">unblock_stream</span> <span class="op">=</span> <span class="ident">TokenStream2::default</span>();
+            <span class="kw">let</span> <span class="ident">gtk_import</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::gtk_import</span>();
             <span class="kw">for</span> <span class="ident">signal_handler</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">block_signals</span> {
                 <span class="ident">block_stream</span>.<span class="ident">extend</span>(<span class="macro">quote_spanned!</span> {
                     <span class="ident">signal_handler</span>.<span class="ident">span</span>() =&gt;
                         {
-                            <span class="kw">use</span> #<span class="ident">relm4_path</span> <span class="ident">::WidgetRef</span>;
+                            <span class="kw">use</span> <span class="ident">relm4::WidgetRef</span>;
                             <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::needless_borrow</span>)]</span>
-                            #<span class="ident">relm4_path</span> <span class="ident">::gtk::prelude::ObjectExt::block_signal</span>(#<span class="ident">w_name</span>.<span class="ident">widget_ref</span>(), <span class="kw-2">&amp;</span>#<span class="ident">signal_handler</span>);
+                            #<span class="ident">gtk_import::prelude::ObjectExt::block_signal</span>(#<span class="ident">w_name</span>.<span class="ident">widget_ref</span>(), <span class="kw-2">&amp;</span>#<span class="ident">signal_handler</span>);
                         }
                 });
                 <span class="ident">unblock_stream</span>.<span class="ident">extend</span>(<span class="macro">quote_spanned!</span> {
                     <span class="ident">signal_handler</span>.<span class="ident">span</span>() =&gt;
                         {
-                            <span class="kw">use</span> #<span class="ident">relm4_path</span> <span class="ident">::WidgetRef</span>;
+                            <span class="kw">use</span> <span class="ident">relm4::WidgetRef</span>;
                             <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::needless_borrow</span>)]</span>
-                            #<span class="ident">relm4_path</span> <span class="ident">::gtk::prelude::ObjectExt::unblock_signal</span>(#<span class="ident">w_name</span>.<span class="ident">widget_ref</span>(), <span class="kw-2">&amp;</span>#<span class="ident">signal_handler</span>);
+                            #<span class="ident">gtk_import::prelude::ObjectExt::unblock_signal</span>(#<span class="ident">w_name</span>.<span class="ident">widget_ref</span>(), <span class="kw-2">&amp;</span>#<span class="ident">signal_handler</span>);
                         }
                 });
             }

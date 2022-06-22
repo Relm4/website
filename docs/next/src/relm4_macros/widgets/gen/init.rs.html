@@ -108,23 +108,21 @@
 <span id="100">100</span>
 <span id="101">101</span>
 <span id="102">102</span>
-<span id="103">103</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">proc_macro2::TokenStream</span> <span class="kw">as</span> <span class="ident">TokenStream2</span>;
 <span class="kw">use</span> <span class="ident">quote</span>::{<span class="ident">quote_spanned</span>, <span class="ident">ToTokens</span>};
-<span class="kw">use</span> <span class="ident">syn::Path</span>;
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::widgets</span>::{
     <span class="ident">ConditionalBranches</span>, <span class="ident">ConditionalWidget</span>, <span class="ident">Properties</span>, <span class="ident">Property</span>, <span class="ident">PropertyType</span>, <span class="ident">Widget</span>, <span class="ident">WidgetAttr</span>,
 };
 
 <span class="kw">impl</span> <span class="ident">Property</span> {
-    <span class="kw">fn</span> <span class="ident">init_stream</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">stream</span>: <span class="kw-2">&amp;mut</span> <span class="ident">TokenStream2</span>, <span class="ident">relm4_path</span>: <span class="kw-2">&amp;</span><span class="ident">Path</span>) {
+    <span class="kw">fn</span> <span class="ident">init_stream</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">stream</span>: <span class="kw-2">&amp;mut</span> <span class="ident">TokenStream2</span>) {
         <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">ty</span> {
             <span class="ident">PropertyType::Widget</span>(<span class="ident">widget</span>) =&gt; {
-                <span class="ident">widget</span>.<span class="ident">init_stream</span>(<span class="ident">stream</span>, <span class="ident">relm4_path</span>);
+                <span class="ident">widget</span>.<span class="ident">init_stream</span>(<span class="ident">stream</span>);
             }
             <span class="ident">PropertyType::ConditionalWidget</span>(<span class="ident">cond_widget</span>) =&gt; {
-                <span class="ident">cond_widget</span>.<span class="ident">init_stream</span>(<span class="ident">stream</span>, <span class="ident">relm4_path</span>);
+                <span class="ident">cond_widget</span>.<span class="ident">init_stream</span>(<span class="ident">stream</span>);
             }
             <span class="kw">_</span> =&gt; (),
         }
@@ -132,30 +130,29 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Properties</span> {
-    <span class="kw">fn</span> <span class="ident">init_stream</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">stream</span>: <span class="kw-2">&amp;mut</span> <span class="ident">TokenStream2</span>, <span class="ident">relm4_path</span>: <span class="kw-2">&amp;</span><span class="ident">Path</span>) {
+    <span class="kw">fn</span> <span class="ident">init_stream</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">stream</span>: <span class="kw-2">&amp;mut</span> <span class="ident">TokenStream2</span>) {
         <span class="kw">for</span> <span class="ident">prop</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">properties</span> {
-            <span class="ident">prop</span>.<span class="ident">init_stream</span>(<span class="ident">stream</span>, <span class="ident">relm4_path</span>);
+            <span class="ident">prop</span>.<span class="ident">init_stream</span>(<span class="ident">stream</span>);
         }
     }
 }
 
 <span class="kw">impl</span> <span class="ident">Widget</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">init_stream</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">stream</span>: <span class="kw-2">&amp;mut</span> <span class="ident">TokenStream2</span>, <span class="ident">relm4_path</span>: <span class="kw-2">&amp;</span><span class="ident">Path</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">init_stream</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">stream</span>: <span class="kw-2">&amp;mut</span> <span class="ident">TokenStream2</span>) {
         <span class="self">self</span>.<span class="ident">self_init_stream</span>(<span class="ident">stream</span>);
-        <span class="self">self</span>.<span class="ident">other_init_stream</span>(<span class="ident">stream</span>, <span class="ident">relm4_path</span>);
+        <span class="self">self</span>.<span class="ident">other_init_stream</span>(<span class="ident">stream</span>);
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">init_root_init_streams</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">init_root_stream</span>: <span class="kw-2">&amp;mut</span> <span class="ident">TokenStream2</span>,
         <span class="ident">init_stream</span>: <span class="kw-2">&amp;mut</span> <span class="ident">TokenStream2</span>,
-        <span class="ident">relm4_path</span>: <span class="kw-2">&amp;</span><span class="ident">Path</span>,
     ) {
         <span class="comment">// Init and name as return value</span>
         <span class="self">self</span>.<span class="ident">self_init_stream</span>(<span class="ident">init_root_stream</span>);
         <span class="self">self</span>.<span class="ident">name</span>.<span class="ident">to_tokens</span>(<span class="ident">init_root_stream</span>);
 
-        <span class="self">self</span>.<span class="ident">other_init_stream</span>(<span class="ident">init_stream</span>, <span class="ident">relm4_path</span>);
+        <span class="self">self</span>.<span class="ident">other_init_stream</span>(<span class="ident">init_stream</span>);
     }
 
     <span class="kw">fn</span> <span class="ident">self_init_stream</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">stream</span>: <span class="kw-2">&amp;mut</span> <span class="ident">TokenStream2</span>) {
@@ -177,36 +174,37 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">other_init_stream</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">stream</span>: <span class="kw-2">&amp;mut</span> <span class="ident">TokenStream2</span>, <span class="ident">relm4_path</span>: <span class="kw-2">&amp;</span><span class="ident">Path</span>) {
-        <span class="self">self</span>.<span class="ident">properties</span>.<span class="ident">init_stream</span>(<span class="ident">stream</span>, <span class="ident">relm4_path</span>);
+    <span class="kw">fn</span> <span class="ident">other_init_stream</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">stream</span>: <span class="kw-2">&amp;mut</span> <span class="ident">TokenStream2</span>) {
+        <span class="self">self</span>.<span class="ident">properties</span>.<span class="ident">init_stream</span>(<span class="ident">stream</span>);
     }
 }
 
 <span class="kw">impl</span> <span class="ident">ConditionalWidget</span> {
-    <span class="kw">fn</span> <span class="ident">init_stream</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">stream</span>: <span class="kw-2">&amp;mut</span> <span class="ident">TokenStream2</span>, <span class="ident">relm4_path</span>: <span class="kw-2">&amp;</span><span class="ident">Path</span>) {
+    <span class="kw">fn</span> <span class="ident">init_stream</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">stream</span>: <span class="kw-2">&amp;mut</span> <span class="ident">TokenStream2</span>) {
         <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">name</span>;
+        <span class="kw">let</span> <span class="ident">gtk_import</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::gtk_import</span>();
 
         <span class="ident">stream</span>.<span class="ident">extend</span>(<span class="macro">quote_spanned!</span> {
             <span class="ident">name</span>.<span class="ident">span</span>() =&gt;
-                <span class="kw">let</span> #<span class="ident">name</span> <span class="op">=</span> #<span class="ident">relm4_path::gtk::Stack::default</span>();
+                <span class="kw">let</span> #<span class="ident">name</span> <span class="op">=</span> #<span class="ident">gtk_import::Stack::default</span>();
         });
 
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">transition</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">transition</span> {
             <span class="ident">stream</span>.<span class="ident">extend</span>(<span class="macro">quote_spanned!</span> {
                 <span class="ident">transition</span>.<span class="ident">span</span>() =&gt;
-                    #<span class="ident">name</span>.<span class="ident">set_transition_type</span>(#<span class="ident">relm4_path::gtk::StackTransitionType</span>:: #<span class="ident">transition</span>);
+                    #<span class="ident">name</span>.<span class="ident">set_transition_type</span>(#<span class="ident">gtk_import::StackTransitionType</span>:: #<span class="ident">transition</span>);
             });
         }
 
         <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">branches</span> {
             <span class="ident">ConditionalBranches::If</span>(<span class="ident">if_branches</span>) =&gt; {
                 <span class="kw">for</span> <span class="ident">branch</span> <span class="kw">in</span> <span class="ident">if_branches</span> {
-                    <span class="ident">branch</span>.<span class="ident">widget</span>.<span class="ident">init_stream</span>(<span class="ident">stream</span>, <span class="ident">relm4_path</span>);
+                    <span class="ident">branch</span>.<span class="ident">widget</span>.<span class="ident">init_stream</span>(<span class="ident">stream</span>);
                 }
             }
             <span class="ident">ConditionalBranches::Match</span>((<span class="kw">_</span>, <span class="kw">_</span>, <span class="ident">match_arms</span>)) =&gt; {
                 <span class="kw">for</span> <span class="ident">arm</span> <span class="kw">in</span> <span class="ident">match_arms</span> {
-                    <span class="ident">arm</span>.<span class="ident">widget</span>.<span class="ident">init_stream</span>(<span class="ident">stream</span>, <span class="ident">relm4_path</span>);
+                    <span class="ident">arm</span>.<span class="ident">widget</span>.<span class="ident">init_stream</span>(<span class="ident">stream</span>);
                 }
             }
         }
