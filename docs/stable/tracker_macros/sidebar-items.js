@@ -1,1 +1,1 @@
-initSidebarItems({"attr":[["track","Implements tracker methods for structs"]]});
+window.SIDEBAR_ITEMS = {"attr":[["track","Implements tracker methods for structs"]]};

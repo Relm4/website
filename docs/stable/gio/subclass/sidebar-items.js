@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["prelude",""]],"struct":[["ArgumentList",""]]});
+window.SIDEBAR_ITEMS = {"mod":[["prelude",""]],"struct":[["ArgumentList",""]]};

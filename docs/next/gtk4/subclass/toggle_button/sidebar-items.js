@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["ToggleButtonImpl",""],["ToggleButtonImplExt",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["ToggleButtonImpl",""],["ToggleButtonImplExt",""]]};

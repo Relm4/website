@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["PreferencesPageImpl",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["PreferencesPageImpl",""]]};

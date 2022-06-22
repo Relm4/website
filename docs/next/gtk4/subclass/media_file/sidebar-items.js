@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["MediaFileImpl",""],["MediaFileImplExt",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["MediaFileImpl",""],["MediaFileImplExt",""]]};

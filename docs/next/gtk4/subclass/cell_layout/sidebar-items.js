@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["CellLayoutDataCallback",""]],"trait":[["CellLayoutImpl",""],["CellLayoutImplExt",""]]});
+window.SIDEBAR_ITEMS = {"struct":[["CellLayoutDataCallback",""]],"trait":[["CellLayoutImpl",""],["CellLayoutImplExt",""]]};

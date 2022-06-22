@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["OrientableImpl",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["OrientableImpl",""]]};

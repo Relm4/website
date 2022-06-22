@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["AdwApplicationImpl",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["AdwApplicationImpl",""]]};

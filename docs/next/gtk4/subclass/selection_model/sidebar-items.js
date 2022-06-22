@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["SelectionModelImpl",""],["SelectionModelImplExt",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["SelectionModelImpl",""],["SelectionModelImplExt",""]]};

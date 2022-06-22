@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["ActionRowImpl",""],["ActionRowImplExt",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["ActionRowImpl",""],["ActionRowImplExt",""]]};

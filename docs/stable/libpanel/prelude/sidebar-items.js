@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["DockExt",""],["FrameExt",""],["FrameHeaderExt",""],["GridExt",""],["OmniBarExt",""],["PanelFrameExt",""],["PanelGridExt",""],["PanelWidgetExt",""],["SaveDelegateExt",""],["SaveDelegateExtManual",""],["WidgetExt",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["DockExt",""],["FrameExt",""],["FrameHeaderExt",""],["GridExt",""],["OmniBarExt",""],["PanelFrameExt",""],["PanelGridExt",""],["PanelWidgetExt",""],["SaveDelegateExt",""],["SaveDelegateExtManual",""],["WidgetExt",""]]};

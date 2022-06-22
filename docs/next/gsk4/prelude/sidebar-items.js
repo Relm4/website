@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["GskRendererExt",""],["IsRenderNode","A common trait implemented by the various `RenderNode` types."]]});
+window.SIDEBAR_ITEMS = {"trait":[["GskRendererExt",""],["IsRenderNode","A common trait implemented by the various `RenderNode` types."]]};

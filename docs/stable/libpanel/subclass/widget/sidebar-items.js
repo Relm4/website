@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["PanelWidgetImpl",""],["PanelWidgetImplExt",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["PanelWidgetImpl",""],["PanelWidgetImplExt",""]]};

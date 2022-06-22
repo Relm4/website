@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["NativeImpl",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["NativeImpl",""]]};

@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["FactoryVecDeque","A container similar to [`VecDeque`] that can be used to store data associated with components that implement [`FactoryComponent`]."]]});
+window.SIDEBAR_ITEMS = {"struct":[["FactoryVecDeque","A container similar to [`VecDeque`] that can be used to store data associated with components that implement [`FactoryComponent`]."]]};

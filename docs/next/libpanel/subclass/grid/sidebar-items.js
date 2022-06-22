@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["PanelGridImpl",""],["PanelGridImplExt",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["PanelGridImpl",""],["PanelGridImplExt",""]]};

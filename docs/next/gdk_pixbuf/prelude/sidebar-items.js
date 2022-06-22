@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["PixbufAnimationExt",""],["PixbufAnimationExtManual",""],["PixbufLoaderExt",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["PixbufAnimationExt",""],["PixbufAnimationExtManual",""],["PixbufLoaderExt",""]]};

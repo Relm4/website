@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["ExpanderRowImpl",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["ExpanderRowImpl",""]]};

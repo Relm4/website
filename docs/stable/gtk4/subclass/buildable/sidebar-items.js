@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["BuildableImpl",""],["BuildableImplExt",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["BuildableImpl",""],["BuildableImplExt",""]]};

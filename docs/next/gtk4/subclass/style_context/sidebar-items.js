@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["StyleContextImpl",""],["StyleContextImplExt",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["StyleContextImpl",""],["StyleContextImplExt",""]]};

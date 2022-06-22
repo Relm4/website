@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["FlowBoxChildImpl",""],["FlowBoxChildImplExt",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["FlowBoxChildImpl",""],["FlowBoxChildImplExt",""]]};

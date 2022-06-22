@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["SaveDelegateImpl",""],["SaveDelegateImplExt",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["SaveDelegateImpl",""],["SaveDelegateImplExt",""]]};

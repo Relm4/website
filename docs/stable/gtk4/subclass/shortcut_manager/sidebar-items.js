@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["ShortcutManagerImpl",""],["ShortcutManagerImplExt",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["ShortcutManagerImpl",""],["ShortcutManagerImplExt",""]]};

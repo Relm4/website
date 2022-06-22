@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["TreeModelFilterImpl",""],["TreeModelFilterImplExt",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["TreeModelFilterImpl",""],["TreeModelFilterImplExt",""]]};

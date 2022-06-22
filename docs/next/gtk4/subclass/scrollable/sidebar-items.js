@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["ScrollableImpl",""],["ScrollableImplExt",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["ScrollableImpl",""],["ScrollableImplExt",""]]};

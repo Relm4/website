@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["LayoutChildImpl",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["LayoutChildImpl",""]]};

@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["ContentFormatsBuilder",""],["CursorBuilder","A builder-pattern type to construct [`Cursor`] objects."],["RGBABuilder","A builder-pattern type to construct [`RGBA`] objects."]]});
+window.SIDEBAR_ITEMS = {"struct":[["ContentFormatsBuilder",""],["CursorBuilder","A builder-pattern type to construct [`Cursor`] objects."],["RGBABuilder","A builder-pattern type to construct [`RGBA`] objects."]]};

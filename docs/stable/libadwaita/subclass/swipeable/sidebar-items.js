@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["SwipeableImpl",""],["SwipeableImplExt",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["SwipeableImpl",""],["SwipeableImplExt",""]]};

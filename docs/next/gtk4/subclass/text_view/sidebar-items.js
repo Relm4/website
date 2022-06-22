@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["TextViewImpl",""],["TextViewImplExt",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["TextViewImpl",""],["TextViewImplExt",""]]};

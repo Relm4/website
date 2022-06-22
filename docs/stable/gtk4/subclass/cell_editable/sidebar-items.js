@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["CellEditableImpl",""],["CellEditableImplExt",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["CellEditableImpl",""],["CellEditableImplExt",""]]};

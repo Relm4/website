@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["CheckButtonImpl",""],["CheckButtonImplExt",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["CheckButtonImpl",""],["CheckButtonImplExt",""]]};

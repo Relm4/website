@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["FrameHeaderImpl",""],["FrameHeaderImplExt",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["FrameHeaderImpl",""],["FrameHeaderImplExt",""]]};

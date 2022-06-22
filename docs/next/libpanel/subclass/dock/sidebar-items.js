@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["DockImpl",""],["DockImplExt",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["DockImpl",""],["DockImplExt",""]]};

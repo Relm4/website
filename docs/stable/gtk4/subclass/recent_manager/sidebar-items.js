@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["RecentManagerImpl",""],["RecentManagerImplExt",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["RecentManagerImpl",""],["RecentManagerImplExt",""]]};

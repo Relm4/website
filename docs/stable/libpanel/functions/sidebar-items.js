@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["finalize",""],["init",""],["resource",""]]});
+window.SIDEBAR_ITEMS = {"fn":[["finalize",""],["init",""],["resource",""]]};

@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["PreferencesRowImpl",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["PreferencesRowImpl",""]]};

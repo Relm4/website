@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["widget_plus","Trait that extends [`gtk::prelude::WidgetExt`]."]],"trait":[["WidgetRef","Get a reference to a widget."]]});
+window.SIDEBAR_ITEMS = {"mod":[["widget_plus","Trait that extends [`gtk::prelude::WidgetExt`]."]],"trait":[["WidgetRef","Get a reference to a widget."]]};

@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["FontExt",""],["FontFaceExt",""],["FontFamilyExt",""],["FontMapExt",""],["FontsetExt",""],["IsAttribute",""],["RendererExt",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["FontExt",""],["FontFaceExt",""],["FontFamilyExt",""],["FontMapExt",""],["FontsetExt",""],["IsAttribute",""],["RendererExt",""]]};

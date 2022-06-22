@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["EntryBufferImpl",""],["EntryBufferImplExt",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["EntryBufferImpl",""],["EntryBufferImplExt",""]]};

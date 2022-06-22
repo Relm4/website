@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["GridImpl",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["GridImpl",""]]};

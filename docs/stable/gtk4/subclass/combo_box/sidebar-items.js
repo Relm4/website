@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["ComboBoxImpl",""],["ComboBoxImplExt",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["ComboBoxImpl",""],["ComboBoxImplExt",""]]};

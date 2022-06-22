@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["register_shared_type","Register a boxed `glib::Type` ID for `T`."]],"trait":[["RefCounted",""],["SharedType","Trait for defining shared types."]]});
+window.SIDEBAR_ITEMS = {"fn":[["register_shared_type","Register a boxed `glib::Type` ID for `T`."]],"trait":[["RefCounted",""],["SharedType","Trait for defining shared types."]]};

@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["ConstraintTargetImpl",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["ConstraintTargetImpl",""]]};

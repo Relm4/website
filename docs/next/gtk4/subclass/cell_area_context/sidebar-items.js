@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["CellAreaContextImpl",""],["CellAreaContextImplExt",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["CellAreaContextImpl",""],["CellAreaContextImplExt",""]]};

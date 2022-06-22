@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["SorterImpl",""],["SorterImplExt",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["SorterImpl",""],["SorterImplExt",""]]};

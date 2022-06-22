@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["ParamSpecType",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["ParamSpecType",""]]};

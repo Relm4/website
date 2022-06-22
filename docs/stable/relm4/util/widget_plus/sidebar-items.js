@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["WidgetPlus","Trait that extends [`gtk::prelude::WidgetExt`]."]]});
+window.SIDEBAR_ITEMS = {"trait":[["WidgetPlus","Trait that extends [`gtk::prelude::WidgetExt`]."]]};

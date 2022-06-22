@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["FilterImpl",""],["FilterImplExt",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["FilterImpl",""],["FilterImplExt",""]]};

@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["BuilderScopeImpl",""],["BuilderScopeImplExt",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["BuilderScopeImpl",""],["BuilderScopeImplExt",""]]};

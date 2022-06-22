@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["RootImpl",""]]});
+window.SIDEBAR_ITEMS = {"trait":[["RootImpl",""]]};
