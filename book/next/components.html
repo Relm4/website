@@ -142,8 +142,8 @@
                     <main>
                         <h1 id="components"><a class="header" href="#components">Components</a></h1>
 <p>I've already mentioned components several times in the previous chapters. Now we'll finally have a look at them.</p>
-<p>In short, components are independent parts of your application that can communicate with each other through messages. They are used in a parent-child model: The main app can have components and each component can have child components that again can have child components. This means that each component has a parent, whereas the main app is at the top of this tree structure and therefore does not have a parent. Also, each component can send and receive messages from both parent and children.</p>
-<p>To showcase this, we will create a small application which opens a dialog when it gets closed. The headerbar and the dialog will be implemented as standalone components. The communication to the main application will be done via messages.</p>
+<p>In short, components are independent parts of your application that can communicate with each other. They are used in a parent-child model: The main app can have components and each component can have child components that again can have child components. This means that each component has a parent, whereas the main app is at the top of this tree structure and therefore does not have a parent.</p>
+<p>To showcase this, we will create a small application which opens a dialog when it gets closed. The headerbar and the dialog will be implemented as standalone components. The communication to the main application will be done via outputs.</p>
 <p><img src="img/screenshots/components-dark-1.png" alt="App screenshot dark" /></p>
 <p><img src="img/screenshots/components-dark-2.png" alt="App screenshot dark" /></p>
 <h2 id="when-to-use-components"><a class="header" href="#when-to-use-components">When to use components</a></h2>
@@ -195,18 +195,46 @@ fn init(counter: Self::InitParams, root: &amp;Self::Root, sender: &amp;Component
     Export,
 }
 </code></pre>
-<p>For components we also need to implement the <code>Model</code> trait. The <code>Components</code> type is empty here because it refers to child components. We don't have any child components for our header bar so we use a <code>()</code>.</p>
-<pre><code class="language-rust no_run noplayground">
-</code></pre>
-<p>The update function is rather minimal. If our header bar was more complex, storing state in this component would make sense, but because we just handle a few buttons, we can simply forward messages. For that we can use the <code>parent_sender</code>. You can see that the message type of the main application is <code>AppMsg</code> and that there's an enum <code>AppMode</code>. Both were not introduced yet, but will be explained later. For now, we just need to know that this component will send <code>SetMode</code> messages to the app.</p>
-<pre><code class="language-rust no_run noplayground">
-</code></pre>
-<blockquote>
-<p>We don't use the <code>_parent_model</code> argument of the <code>init_model</code> in this example. Yet you can use it if you need to access information from the parent model during initialization, for example for passing a resource shared with the component.</p>
-</blockquote>
+<p>Our component needs no <code>update</code> method, because the <code>view</code> can emit the component's output messages as part of its click signal handlers, as we will see in the next section.</p>
 <h3 id="the-widgets"><a class="header" href="#the-widgets">The widgets</a></h3>
-<p>There's nothing special about widgets of a component. The only difference to the main app is that the root widget doesn't need to be a <code>gtk::ApplicationWindow</code>. Instead, we use a <code>gtk::HeaderBar</code> here, but theoretically the root widget doesn't even need to be a widget at all (which can be useful in special cases).</p>
-<pre><code class="language-rust no_run noplayground">
+<p>There's nothing special about widgets of a child component. The only difference to the main app component is that the root widget doesn't need to be a <code>gtk::Window</code>. Instead, we use a <code>gtk::HeaderBar</code> here, but theoretically the root widget doesn't even need to be a widget at all (which can be useful in special cases).</p>
+<pre><code class="language-rust no_run noplayground">    view! {
+        #[root]
+        gtk::HeaderBar {
+            #[wrap(Some)]
+            set_title_widget = &amp;gtk::Box {
+                add_css_class: &quot;linked&quot;,
+                #[name = &quot;group&quot;]
+                gtk::ToggleButton {
+                    set_label: &quot;View&quot;,
+                    set_active: true,
+                    connect_toggled[sender] =&gt; move |btn| {
+                        if btn.is_active() {
+                            sender.output.send(HeaderOutput::View)
+                        }
+                    },
+                },
+                gtk::ToggleButton {
+                    set_label: &quot;Edit&quot;,
+                    set_group: Some(&amp;group),
+                    connect_toggled[sender] =&gt; move |btn| {
+                        if btn.is_active() {
+                            sender.output.send(HeaderOutput::Edit)
+                        }
+                    },
+                },
+                gtk::ToggleButton {
+                    set_label: &quot;Export&quot;,
+                    set_group: Some(&amp;group),
+                    connect_toggled[sender] =&gt; move |btn| {
+                        if btn.is_active() {
+                            sender.output.send(HeaderOutput::Export)
+                        }
+                    },
+                },
+            }
+        }
+    }
 </code></pre>
 <h2 id="the-close-alert"><a class="header" href="#the-close-alert">The close alert</a></h2>
 <p>Like a normal application that's used to edit files, we want to notify the user before accidentally closing the application and discarding all progress. For this — you might have guessed it already — we will use another component.</p>
@@ -232,28 +260,46 @@ enum DialogOutput {
     Close,
 }
 </code></pre>
-<p>The update function updates the state of the dialog and sends a close message if the user accepted.</p>
-<pre><code class="language-rust no_run noplayground">
-</code></pre>
 <h3 id="the-widgets-1"><a class="header" href="#the-widgets-1">The widgets</a></h3>
-<p>You've probably seen enough widget implementations by now to know roughly how this should look like, but because we haven't had window components let's have a look at it either way.</p>
-<pre><code class="language-rust no_run noplayground">
+<p>Unlike the last component, the <code>DialogModel</code> component doesn't send its output messages from a signal handler. Instead, the <code>response</code> signal handler sends <em>input</em> messages to itself, handles them in <code>update</code>, and then sends output messages if necessary. This is a common pattern for more complex components.</p>
+<blockquote>
+<p>If your component accepts non-internal inputs as well, you may want to mark the internal variants as <code>#[doc(hidden)]</code> so that users of your component know they're only intended for internal use.</p>
+</blockquote>
+<pre><code class="language-rust no_run noplayground">    view! {
+        gtk::MessageDialog {
+            set_modal: true,
+            #[watch]
+            set_visible: !model.hidden,
+            set_text: Some(&quot;Do you want to close before saving?&quot;),
+            set_secondary_text: Some(&quot;All unsaved changes will be lost&quot;),
+            add_button: (&quot;Close&quot;, gtk::ResponseType::Accept),
+            add_button: (&quot;Cancel&quot;, gtk::ResponseType::Cancel),
+            connect_response[sender] =&gt; move |_, resp| {
+                sender.input.send(if resp == gtk::ResponseType::Accept {
+                    DialogInput::Accept
+                } else {
+                    DialogInput::Cancel
+                })
+            }
+        }
+    }
 </code></pre>
-<p>Most notably there is the <code>args!</code> macro. It allows us to pass values to functions that take more than one argument. The macro would otherwise interpret the comma for a second argument as new property, so we need to use <code>args!</code> here.</p>
-<p>Also, we set the <code>set_transient_for</code> property, which actually uses the main window from the parent widgets. So far <code>parent_widgets</code> was an unused argument in our implementations. However in this case, it's neat to have access to the parent widgets. The dialog should set his parent window so that GTK can handle the dialog better. The GTK docs state: &quot;[set_transient_for] allows window managers to e.g. keep the dialog on top of the main window, or center the dialog over the main window&quot;. So we definitely want that and conveniently Relm4 gives us the widgets we need from the parents.</p>
+<p>In the <code>update</code> implementation, we match the input messages and emit an output if needed.</p>
+<pre><code class="language-rust no_run noplayground">    fn update(&amp;mut self, msg: Self::Input, sender: &amp;ComponentSender&lt;Self&gt;) {
+        match msg {
+            DialogInput::Show =&gt; self.hidden = false,
+            DialogInput::Accept =&gt; {
+                self.hidden = true;
+                sender.output.send(DialogOutput::Close)
+            }
+            DialogInput::Cancel =&gt; self.hidden = true,
+        }
+    }
+</code></pre>
 <h2 id="the-main-app"><a class="header" href="#the-main-app">The main app</a></h2>
-<p>Now all parts come together to form a single app. You might remember that there was a components type we always set to <code>()</code>. Now we actually make use of this type.</p>
-<h3 id="the-components"><a class="header" href="#the-components">The components</a></h3>
-<p>Because each app and each component can have any amount of child components we need to define a struct that stores all of our components.</p>
-<pre><code class="language-rust no_run noplayground">
-</code></pre>
-<p>To do this, just implement a struct with the components wrapped into a <code>RelmComponent</code> (which is similar to <code>RelmApp</code>). The first generic type of <code>RelmComponent</code> is the model of the component and the second one the parent model.</p>
-<p>To make this work and to initialize our components, we need to implement the <code>Components</code> trait for our struct.</p>
-<pre><code class="language-rust no_run noplayground">
-</code></pre>
-<p>We just need to pass the arguments of the <code>init_components</code> function over to the <code>RelmComponent::new</code> function and the rest will be handled by Relm4.</p>
+<p>Now all parts come together to form a single app.</p>
 <h3 id="the-model-2"><a class="header" href="#the-model-2">The model</a></h3>
-<p>Now we're looking at something familiar again, the model of the main app.</p>
+<p>First, let's define the model of the main app and its messages.</p>
 <pre><code class="language-rust no_run noplayground">#[derive(Debug)]
 enum AppMode {
     View,
@@ -273,22 +319,91 @@ struct AppModel {
     dialog: Controller&lt;DialogModel&gt;,
 }
 </code></pre>
-<p>The <code>AppMode</code> struct stores the modes the application can be in. The <code>SetMode</code> message is used by our header bar component to update the state of the main application when someone presses a button in the header bar. The <code>Close</code> message is used by the dialog component to indicate that the window should be closed.</p>
-<p>And now we finally use the <code>Components</code> type of the <code>Model</code> trait.</p>
-<pre><code class="language-rust no_run noplayground">
+<p>The <code>AppMode</code> struct stores the modes the application can be in. The <code>SetMode</code> message is transformed from the output of our header bar component to update the state of the main application when someone presses a button in the header bar. The <code>Close</code> message is transformed from the output of the dialog component to indicate that the window should be closed.</p>
+<p>In the model, we store the current <code>AppMode</code> as well as a <code>Controller</code> for each of our child components.</p>
+<p>The update function of the model is pretty straightforward.</p>
+<pre><code class="language-rust no_run noplayground">    fn update(&amp;mut self, msg: Self::Input, _sender: &amp;ComponentSender&lt;Self&gt;) {
+        match msg {
+            AppMsg::SetMode(mode) =&gt; {
+                self.mode = mode;
+            }
+            AppMsg::CloseRequest =&gt; {
+                self.dialog.sender().send(DialogInput::Show);
+            }
+            AppMsg::Close =&gt; {
+                // TODO: Figure out how to close app.
+            }
+        }
+    }
 </code></pre>
-<p>The update function of the model is pretty straight forward.</p>
-<pre><code class="language-rust no_run noplayground">
+<p>We can retrieve a sender for the child component by calling the <code>sender()</code> method on the associated <code>Controller</code>, and then send messages of the associated <code>Input</code> type through it.</p>
+<h3 id="controllers"><a class="header" href="#controllers">Controllers</a></h3>
+<p>When initializing the app component, we construct the child components by passing the appropriate <code>InitParams</code> and forwarding any desired inputs and outputs. This is done through a builder provided by <code>Component</code> implementations. We pass the initial parameters via the <code>launch</code> method, and then retrieve the final <code>Controller</code> by calling the <code>forward</code> method. In addition to starting the component, the <code>forward</code> method allows us to take the outputs of the component, transform them with a mapping function, and then pass the result as an input message to another sender (in this case, the input sender of the app component). If you don't need to forward any outputs, you can start the component with the <code>detach</code> method instead.</p>
+<pre><code class="language-rust no_run noplayground">    fn init(
+        params: Self::InitParams,
+        root: &amp;Self::Root,
+        sender: &amp;ComponentSender&lt;Self&gt;,
+    ) -&gt; ComponentParts&lt;Self&gt; {
+        let model = AppModel {
+            mode: params,
+            header: HeaderModel::builder()
+                .launch(())
+                .forward(&amp;sender.input, |msg| match msg {
+                    HeaderOutput::View =&gt; AppMsg::SetMode(AppMode::View),
+                    HeaderOutput::Edit =&gt; AppMsg::SetMode(AppMode::Edit),
+                    HeaderOutput::Export =&gt; AppMsg::SetMode(AppMode::Export),
+                }),
+            dialog: DialogModel::builder()
+                .launch(true)
+                .forward(&amp;sender.input, |msg| match msg {
+                    DialogOutput::Close =&gt; AppMsg::Close,
+                }),
+        };
+        model.dialog.widget().set_transient_for(Some(root));
+        let widgets = view_output!();
+        ComponentParts { model, widgets }
+    }
 </code></pre>
-<p>You see we can use <code>components.NAME.send()</code> to send messages to a child component, similar to the parent_sender we used to send messages in the other direction. Also we return <code>false</code> if our dialog component sends the <code>Close</code> message to tell Relm4 to close the application.</p>
+<p>Also, we set the <code>set_transient_for</code> property, which actually uses the main window. The dialog should set his parent window so that GTK can handle the dialog better. The GTK docs state: &quot;[set_transient_for] allows window managers to e.g. keep the dialog on top of the main window, or center the dialog over the main window&quot;.</p>
+<pre><code class="language-rust no_run noplayground">#[derive(Debug)]
+enum AppMode {
+    View,
+    Edit,
+    Export,
+}
+
+enum AppMsg {
+    SetMode(AppMode),
+    CloseRequest,
+    Close,
+}
+
+struct AppModel {
+    mode: AppMode,
+    header: Controller&lt;HeaderModel&gt;,
+    dialog: Controller&lt;DialogModel&gt;,
+}
+</code></pre>
 <h3 id="the-widgets-2"><a class="header" href="#the-widgets-2">The widgets</a></h3>
-<p>We're almost done! We only need to define the widgets of the main app.</p>
-<pre><code class="language-rust no_run noplayground">
+<p>We're almost done! Lastly, let's take a look at the app widgets.</p>
+<pre><code class="language-rust no_run noplayground">    view! {
+        main_window = gtk::Window {
+            set_default_width: 500,
+            set_default_height: 250,
+            set_titlebar: Some(model.header.widget()),
+
+            gtk::Label {
+                #[watch]
+                set_label: &amp;format!(&quot;Placeholder for {:?}&quot;, model.mode),
+            },
+            connect_close_request[sender] =&gt; move |_| {
+                sender.input.send(AppMsg::CloseRequest);
+                gtk::Inhibit(true)
+            }
+        }
+    }
 </code></pre>
-<p>The <code>component!</code> macro is used to interact with components. We just need to get our header bar component in place. Our dialog component does not need to be attached anywhere because the dialog lives in a separate window.</p>
-<blockquote>
-<p>Widgets from components are added <strong>after</strong> everything else. Because Relm4 initializes components after their parents we can only add components after the rest is already in place. This means that you sometimes might have to use methods like <a href="https://gtk-rs.org/gtk4-rs/git/docs/gtk4/prelude/trait.BoxExt.html#tymethod.prepend"><code>prepend</code></a> to keep the right order because with <code>append</code> the a component will always be added at the end. Yet, everything else is initialized in the right order.</p>
-</blockquote>
+<p>Most notably, we retrieve the root widget of our header component through the <code>widget()</code> method on the associated <code>Controller</code> to set it as a child of the main window.</p>
 <h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
 <p>You now know most of the secrets that Relm4 offers. Components can be powerful and if they are implemented correctly, they are even reusable across different apps. The relm4-components crate offers several reusable components you can use in your applications. In the following chapters, we'll look at an even simpler component type called worker, how to implement reusable components yourself and how to use components with async code and multiple threads.</p>
 <h2 id="the-complete-code"><a class="header" href="#the-complete-code">The complete code</a></h2>
@@ -460,7 +575,7 @@ impl SimpleComponent for AppModel {
     type Widgets = AppWidgets;
 
     view! {
-        main_window = gtk::ApplicationWindow {
+        main_window = gtk::Window {
             set_default_width: 500,
             set_default_height: 250,
             set_titlebar: Some(model.header.widget()),
