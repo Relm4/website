@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/github/home/.cargo/git/checkouts/gtk4-rs-e74ad56283dfeb5e/6dbaa73/gtk4/sys/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../gtk4_sys/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/github/home/.cargo/git/checkouts/gtk4-rs-e74ad56283dfeb5e/92170a7/gtk4/sys/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../gtk4_sys/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
         </a><h2 class="location"></h2>
     </nav>
     <nav class="sidebar"><a class="sidebar-logo" href="../../gtk4_sys/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
@@ -18791,6 +18791,135 @@
 <span id="18785">18785</span>
 <span id="18786">18786</span>
 <span id="18787">18787</span>
+<span id="18788">18788</span>
+<span id="18789">18789</span>
+<span id="18790">18790</span>
+<span id="18791">18791</span>
+<span id="18792">18792</span>
+<span id="18793">18793</span>
+<span id="18794">18794</span>
+<span id="18795">18795</span>
+<span id="18796">18796</span>
+<span id="18797">18797</span>
+<span id="18798">18798</span>
+<span id="18799">18799</span>
+<span id="18800">18800</span>
+<span id="18801">18801</span>
+<span id="18802">18802</span>
+<span id="18803">18803</span>
+<span id="18804">18804</span>
+<span id="18805">18805</span>
+<span id="18806">18806</span>
+<span id="18807">18807</span>
+<span id="18808">18808</span>
+<span id="18809">18809</span>
+<span id="18810">18810</span>
+<span id="18811">18811</span>
+<span id="18812">18812</span>
+<span id="18813">18813</span>
+<span id="18814">18814</span>
+<span id="18815">18815</span>
+<span id="18816">18816</span>
+<span id="18817">18817</span>
+<span id="18818">18818</span>
+<span id="18819">18819</span>
+<span id="18820">18820</span>
+<span id="18821">18821</span>
+<span id="18822">18822</span>
+<span id="18823">18823</span>
+<span id="18824">18824</span>
+<span id="18825">18825</span>
+<span id="18826">18826</span>
+<span id="18827">18827</span>
+<span id="18828">18828</span>
+<span id="18829">18829</span>
+<span id="18830">18830</span>
+<span id="18831">18831</span>
+<span id="18832">18832</span>
+<span id="18833">18833</span>
+<span id="18834">18834</span>
+<span id="18835">18835</span>
+<span id="18836">18836</span>
+<span id="18837">18837</span>
+<span id="18838">18838</span>
+<span id="18839">18839</span>
+<span id="18840">18840</span>
+<span id="18841">18841</span>
+<span id="18842">18842</span>
+<span id="18843">18843</span>
+<span id="18844">18844</span>
+<span id="18845">18845</span>
+<span id="18846">18846</span>
+<span id="18847">18847</span>
+<span id="18848">18848</span>
+<span id="18849">18849</span>
+<span id="18850">18850</span>
+<span id="18851">18851</span>
+<span id="18852">18852</span>
+<span id="18853">18853</span>
+<span id="18854">18854</span>
+<span id="18855">18855</span>
+<span id="18856">18856</span>
+<span id="18857">18857</span>
+<span id="18858">18858</span>
+<span id="18859">18859</span>
+<span id="18860">18860</span>
+<span id="18861">18861</span>
+<span id="18862">18862</span>
+<span id="18863">18863</span>
+<span id="18864">18864</span>
+<span id="18865">18865</span>
+<span id="18866">18866</span>
+<span id="18867">18867</span>
+<span id="18868">18868</span>
+<span id="18869">18869</span>
+<span id="18870">18870</span>
+<span id="18871">18871</span>
+<span id="18872">18872</span>
+<span id="18873">18873</span>
+<span id="18874">18874</span>
+<span id="18875">18875</span>
+<span id="18876">18876</span>
+<span id="18877">18877</span>
+<span id="18878">18878</span>
+<span id="18879">18879</span>
+<span id="18880">18880</span>
+<span id="18881">18881</span>
+<span id="18882">18882</span>
+<span id="18883">18883</span>
+<span id="18884">18884</span>
+<span id="18885">18885</span>
+<span id="18886">18886</span>
+<span id="18887">18887</span>
+<span id="18888">18888</span>
+<span id="18889">18889</span>
+<span id="18890">18890</span>
+<span id="18891">18891</span>
+<span id="18892">18892</span>
+<span id="18893">18893</span>
+<span id="18894">18894</span>
+<span id="18895">18895</span>
+<span id="18896">18896</span>
+<span id="18897">18897</span>
+<span id="18898">18898</span>
+<span id="18899">18899</span>
+<span id="18900">18900</span>
+<span id="18901">18901</span>
+<span id="18902">18902</span>
+<span id="18903">18903</span>
+<span id="18904">18904</span>
+<span id="18905">18905</span>
+<span id="18906">18906</span>
+<span id="18907">18907</span>
+<span id="18908">18908</span>
+<span id="18909">18909</span>
+<span id="18910">18910</span>
+<span id="18911">18911</span>
+<span id="18912">18912</span>
+<span id="18913">18913</span>
+<span id="18914">18914</span>
+<span id="18915">18915</span>
+<span id="18916">18916</span>
 </pre><pre class="rust"><code><span class="comment">// This file was generated by gir (https://github.com/gtk-rs/gir)</span>
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files.git)</span>
 <span class="comment">// DO NOT EDIT</span>
@@ -19191,6 +19320,12 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GTK_INPUT_PURPOSE_PASSWORD</span>: <span class="ident">GtkInputPurpose</span> <span class="op">=</span> <span class="number">8</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GTK_INPUT_PURPOSE_PIN</span>: <span class="ident">GtkInputPurpose</span> <span class="op">=</span> <span class="number">9</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GTK_INPUT_PURPOSE_TERMINAL</span>: <span class="ident">GtkInputPurpose</span> <span class="op">=</span> <span class="number">10</span>;
+
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">GtkInscriptionOverflow</span> <span class="op">=</span> <span class="ident">c_int</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GTK_INSCRIPTION_OVERFLOW_CLIP</span>: <span class="ident">GtkInscriptionOverflow</span> <span class="op">=</span> <span class="number">0</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GTK_INSCRIPTION_OVERFLOW_ELLIPSIZE_START</span>: <span class="ident">GtkInscriptionOverflow</span> <span class="op">=</span> <span class="number">1</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GTK_INSCRIPTION_OVERFLOW_ELLIPSIZE_MIDDLE</span>: <span class="ident">GtkInscriptionOverflow</span> <span class="op">=</span> <span class="number">2</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GTK_INSCRIPTION_OVERFLOW_ELLIPSIZE_END</span>: <span class="ident">GtkInscriptionOverflow</span> <span class="op">=</span> <span class="number">3</span>;
 
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">GtkJustification</span> <span class="op">=</span> <span class="ident">c_int</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GTK_JUSTIFY_LEFT</span>: <span class="ident">GtkJustification</span> <span class="op">=</span> <span class="number">0</span>;
@@ -19714,6 +19849,7 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GTK_DEBUG_BUILDER_OBJECTS</span>: <span class="ident">GtkDebugFlags</span> <span class="op">=</span> <span class="number">65536</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GTK_DEBUG_A11Y</span>: <span class="ident">GtkDebugFlags</span> <span class="op">=</span> <span class="number">131072</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GTK_DEBUG_ICONFALLBACK</span>: <span class="ident">GtkDebugFlags</span> <span class="op">=</span> <span class="number">262144</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GTK_DEBUG_INVERT_TEXT_DIR</span>: <span class="ident">GtkDebugFlags</span> <span class="op">=</span> <span class="number">524288</span>;
 
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">GtkDialogFlags</span> <span class="op">=</span> <span class="ident">c_uint</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GTK_DIALOG_MODAL</span>: <span class="ident">GtkDialogFlags</span> <span class="op">=</span> <span class="number">1</span>;
@@ -21864,6 +22000,20 @@
 }
 
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">GtkIMMulticontextPrivate</span> <span class="op">=</span> <span class="kw-2">*mut</span> <span class="ident">_GtkIMMulticontextPrivate</span>;
+
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GtkInscriptionClass</span> {
+    <span class="kw">pub</span> <span class="ident">parent_class</span>: <span class="ident">GtkWidgetClass</span>,
+}
+
+<span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GtkInscriptionClass</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
+        <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GtkInscriptionClass @ {:p}&quot;</span>, <span class="self">self</span>))
+            .<span class="ident">field</span>(<span class="string">&quot;parent_class&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">parent_class</span>)
+            .<span class="ident">finish</span>()
+    }
+}
 
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_GtkKeyvalTriggerClass</span> {
@@ -25581,6 +25731,19 @@
 }
 
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GtkInscription</span> {
+    <span class="ident">_data</span>: [<span class="ident">u8</span>; <span class="number">0</span>],
+    <span class="ident">_marker</span>: <span class="ident">core::marker::PhantomData</span><span class="op">&lt;</span>(<span class="kw-2">*mut</span> <span class="ident">u8</span>, <span class="ident">core::marker::PhantomPinned</span>)<span class="op">&gt;</span>,
+}
+
+<span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GtkInscription</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
+        <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GtkInscription @ {:p}&quot;</span>, <span class="self">self</span>))
+            .<span class="ident">finish</span>()
+    }
+}
+
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GtkKeyvalTrigger</span> {
     <span class="ident">_data</span>: [<span class="ident">u8</span>; <span class="number">0</span>],
     <span class="ident">_marker</span>: <span class="ident">core::marker::PhantomData</span><span class="op">&lt;</span>(<span class="kw-2">*mut</span> <span class="ident">u8</span>, <span class="ident">core::marker::PhantomPinned</span>)<span class="op">&gt;</span>,
@@ -27764,6 +27927,13 @@
     <span class="comment">// GtkInputPurpose</span>
     <span class="comment">//=========================================================================</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_input_purpose_get_type</span>() -&gt; <span class="ident">GType</span>;
+
+    <span class="comment">//=========================================================================</span>
+    <span class="comment">// GtkInscriptionOverflow</span>
+    <span class="comment">//=========================================================================</span>
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>)))]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_inscription_overflow_get_type</span>() -&gt; <span class="ident">GType</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GtkJustification</span>
@@ -29992,10 +30162,16 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_check_button_new_with_label</span>(<span class="ident">label</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">GtkWidget</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_check_button_new_with_mnemonic</span>(<span class="ident">label</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">GtkWidget</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_check_button_get_active</span>(<span class="ident">self_</span>: <span class="kw-2">*mut</span> <span class="ident">GtkCheckButton</span>) -&gt; <span class="ident">gboolean</span>;
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>)))]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_check_button_get_child</span>(<span class="ident">button</span>: <span class="kw-2">*mut</span> <span class="ident">GtkCheckButton</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">GtkWidget</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_check_button_get_inconsistent</span>(<span class="ident">check_button</span>: <span class="kw-2">*mut</span> <span class="ident">GtkCheckButton</span>) -&gt; <span class="ident">gboolean</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_check_button_get_label</span>(<span class="ident">self_</span>: <span class="kw-2">*mut</span> <span class="ident">GtkCheckButton</span>) -&gt; <span class="kw-2">*const</span> <span class="ident">c_char</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_check_button_get_use_underline</span>(<span class="ident">self_</span>: <span class="kw-2">*mut</span> <span class="ident">GtkCheckButton</span>) -&gt; <span class="ident">gboolean</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_check_button_set_active</span>(<span class="ident">self_</span>: <span class="kw-2">*mut</span> <span class="ident">GtkCheckButton</span>, <span class="ident">setting</span>: <span class="ident">gboolean</span>);
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>)))]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_check_button_set_child</span>(<span class="ident">button</span>: <span class="kw-2">*mut</span> <span class="ident">GtkCheckButton</span>, <span class="ident">child</span>: <span class="kw-2">*mut</span> <span class="ident">GtkWidget</span>);
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_check_button_set_group</span>(<span class="ident">self_</span>: <span class="kw-2">*mut</span> <span class="ident">GtkCheckButton</span>, <span class="ident">group</span>: <span class="kw-2">*mut</span> <span class="ident">GtkCheckButton</span>);
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_check_button_set_inconsistent</span>(
         <span class="ident">check_button</span>: <span class="kw-2">*mut</span> <span class="ident">GtkCheckButton</span>,
@@ -32035,6 +32211,88 @@
     );
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_info_bar_set_revealed</span>(<span class="ident">info_bar</span>: <span class="kw-2">*mut</span> <span class="ident">GtkInfoBar</span>, <span class="ident">revealed</span>: <span class="ident">gboolean</span>);
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_info_bar_set_show_close_button</span>(<span class="ident">info_bar</span>: <span class="kw-2">*mut</span> <span class="ident">GtkInfoBar</span>, <span class="ident">setting</span>: <span class="ident">gboolean</span>);
+
+    <span class="comment">//=========================================================================</span>
+    <span class="comment">// GtkInscription</span>
+    <span class="comment">//=========================================================================</span>
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>)))]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_inscription_get_type</span>() -&gt; <span class="ident">GType</span>;
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>)))]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_inscription_new</span>(<span class="ident">text</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">GtkWidget</span>;
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>)))]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_inscription_get_attributes</span>(<span class="ident">self_</span>: <span class="kw-2">*mut</span> <span class="ident">GtkInscription</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">pango::PangoAttrList</span>;
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>)))]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_inscription_get_min_chars</span>(<span class="ident">self_</span>: <span class="kw-2">*mut</span> <span class="ident">GtkInscription</span>) -&gt; <span class="ident">c_uint</span>;
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>)))]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_inscription_get_min_lines</span>(<span class="ident">self_</span>: <span class="kw-2">*mut</span> <span class="ident">GtkInscription</span>) -&gt; <span class="ident">c_uint</span>;
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>)))]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_inscription_get_nat_chars</span>(<span class="ident">self_</span>: <span class="kw-2">*mut</span> <span class="ident">GtkInscription</span>) -&gt; <span class="ident">c_uint</span>;
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>)))]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_inscription_get_nat_lines</span>(<span class="ident">self_</span>: <span class="kw-2">*mut</span> <span class="ident">GtkInscription</span>) -&gt; <span class="ident">c_uint</span>;
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>)))]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_inscription_get_text</span>(<span class="ident">self_</span>: <span class="kw-2">*mut</span> <span class="ident">GtkInscription</span>) -&gt; <span class="kw-2">*const</span> <span class="ident">c_char</span>;
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>)))]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_inscription_get_text_overflow</span>(<span class="ident">self_</span>: <span class="kw-2">*mut</span> <span class="ident">GtkInscription</span>) -&gt; <span class="ident">GtkInscriptionOverflow</span>;
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>)))]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_inscription_get_wrap_mode</span>(<span class="ident">self_</span>: <span class="kw-2">*mut</span> <span class="ident">GtkInscription</span>) -&gt; <span class="ident">pango::PangoWrapMode</span>;
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>)))]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_inscription_get_xalign</span>(<span class="ident">self_</span>: <span class="kw-2">*mut</span> <span class="ident">GtkInscription</span>) -&gt; <span class="ident">c_float</span>;
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>)))]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_inscription_get_yalign</span>(<span class="ident">self_</span>: <span class="kw-2">*mut</span> <span class="ident">GtkInscription</span>) -&gt; <span class="ident">c_float</span>;
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>)))]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_inscription_set_attributes</span>(
+        <span class="ident">self_</span>: <span class="kw-2">*mut</span> <span class="ident">GtkInscription</span>,
+        <span class="ident">attrs</span>: <span class="kw-2">*mut</span> <span class="ident">pango::PangoAttrList</span>,
+    );
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>)))]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_inscription_set_markup</span>(<span class="ident">self_</span>: <span class="kw-2">*mut</span> <span class="ident">GtkInscription</span>, <span class="ident">markup</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>);
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>)))]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_inscription_set_min_chars</span>(<span class="ident">self_</span>: <span class="kw-2">*mut</span> <span class="ident">GtkInscription</span>, <span class="ident">min_chars</span>: <span class="ident">c_uint</span>);
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>)))]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_inscription_set_min_lines</span>(<span class="ident">self_</span>: <span class="kw-2">*mut</span> <span class="ident">GtkInscription</span>, <span class="ident">min_lines</span>: <span class="ident">c_uint</span>);
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>)))]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_inscription_set_nat_chars</span>(<span class="ident">self_</span>: <span class="kw-2">*mut</span> <span class="ident">GtkInscription</span>, <span class="ident">nat_chars</span>: <span class="ident">c_uint</span>);
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>)))]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_inscription_set_nat_lines</span>(<span class="ident">self_</span>: <span class="kw-2">*mut</span> <span class="ident">GtkInscription</span>, <span class="ident">nat_lines</span>: <span class="ident">c_uint</span>);
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>)))]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_inscription_set_text</span>(<span class="ident">self_</span>: <span class="kw-2">*mut</span> <span class="ident">GtkInscription</span>, <span class="ident">text</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>);
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>)))]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_inscription_set_text_overflow</span>(
+        <span class="ident">self_</span>: <span class="kw-2">*mut</span> <span class="ident">GtkInscription</span>,
+        <span class="ident">overflow</span>: <span class="ident">GtkInscriptionOverflow</span>,
+    );
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>)))]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_inscription_set_wrap_mode</span>(
+        <span class="ident">self_</span>: <span class="kw-2">*mut</span> <span class="ident">GtkInscription</span>,
+        <span class="ident">wrap_mode</span>: <span class="ident">pango::PangoWrapMode</span>,
+    );
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>)))]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_inscription_set_xalign</span>(<span class="ident">self_</span>: <span class="kw-2">*mut</span> <span class="ident">GtkInscription</span>, <span class="ident">xalign</span>: <span class="ident">c_float</span>);
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>)))]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_inscription_set_yalign</span>(<span class="ident">self_</span>: <span class="kw-2">*mut</span> <span class="ident">GtkInscription</span>, <span class="ident">yalign</span>: <span class="ident">c_float</span>);
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GtkKeyvalTrigger</span>
