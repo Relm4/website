@@ -9,7 +9,41 @@
                         </div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
     <h1 class="fqn"><span class="in-band">Struct <a href="index.html">relm4</a>::<wbr><a class="struct" href="#">Sender</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../src/relm4/channel.rs.html#14">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><div class="docblock item-decl"><pre class="rust struct"><code>pub struct Sender&lt;T&gt;(_);</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>A Relm4 sender sends messages to a component or worker.</p>
 </div></details><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><div id="implementations-list"><details class="rustdoc-toggle implementors-toggle" open><summary><section id="impl" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../src/relm4/channel.rs.html#22-29">source</a></span><a href="#impl" class="anchor"></a><h3 class="code-header in-band">impl&lt;T&gt; <a class="struct" href="struct.Sender.html" title="struct relm4::Sender">Sender</a>&lt;T&gt;</h3></section></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><section id="method.send" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/relm4/channel.rs.html#24-28">source</a></span><a href="#method.send" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.send" class="fnname">send</a>(&amp;self, message: T)</h4></section></summary><div class="docblock"><p>Sends messages to a component or worker.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[11,11],&quot;../src/progress/progress.rs.html#130&quot;,&quot;line 130&quot;],[[16,16],&quot;../src/progress/progress.rs.html#135&quot;,&quot;line 135&quot;]]"><div class="scraped-example-title">examples/progress.rs (<a href="../src/progress/progress.rs.html#130">line 130</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>119</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[12,12],&quot;../src/non_blocking_async/non_blocking_async.rs.html#51&quot;,&quot;line 51&quot;],[[13,13],&quot;../src/non_blocking_async/non_blocking_async.rs.html#52&quot;,&quot;line 52&quot;]]"><div class="scraped-example-title">examples/non_blocking_async.rs (<a href="../src/non_blocking_async/non_blocking_async.rs.html#51">line 51</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>39</span>
+<span>40</span>
+<span>41</span>
+<span>42</span>
+<span>43</span>
+<span>44</span>
+<span>45</span>
+<span>46</span>
+<span>47</span>
+<span>48</span>
+<span>49</span>
+<span>50</span>
+<span>51</span>
+<span>52</span>
+<span>53</span>
+<span>54</span>
+<span>55</span>
+</pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">update</span>(
+        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
+        <span class="ident">msg</span>: <span class="ident">AsyncHandlerMsg</span>,
+        <span class="kw">_</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Sender</span><span class="op">&lt;</span><span class="ident">AsyncHandlerMsg</span><span class="op">&gt;</span>,
+        <span class="ident">output</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Sender</span><span class="op">&lt;</span><span class="ident">AppMsg</span><span class="op">&gt;</span>,
+    ) -&gt; <span class="ident">WorkerFuture</span> {
+        <span class="kw">let</span> <span class="ident">output</span> <span class="op">=</span> <span class="ident">output</span>.<span class="ident">clone</span>();
+
+        <span class="ident">Box::pin</span>(<span class="kw">async</span> <span class="kw">move</span> {
+            <span class="ident">sleep</span>(<span class="ident">Duration::from_secs</span>(<span class="number">1</span>)).<span class="kw">await</span>;
+
+            <span class="kw">match</span> <span class="ident">msg</span> {
+                <span class="ident">AsyncHandlerMsg::DelayedIncrement</span> =&gt; <span class="ident">output</span>.<span class="highlight focus"><span class="ident">send</span></span>(<span class="ident">AppMsg::Increment</span>),
+                <span class="ident">AsyncHandlerMsg::DelayedDecrement</span> =&gt; <span class="ident">output</span>.<span class="highlight"><span class="ident">send</span></span>(<span class="ident">AppMsg::Decrement</span>),
+            }
+        })
+    }</code></pre></div>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[11,11],&quot;../src/progress/progress.rs.html#130&quot;,&quot;line 130&quot;],[[16,16],&quot;../src/progress/progress.rs.html#135&quot;,&quot;line 135&quot;]]"><div class="scraped-example-title">examples/progress.rs (<a href="../src/progress/progress.rs.html#130">line 130</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>119</span>
 <span>120</span>
 <span>121</span>
 <span>122</span>
@@ -61,7 +95,7 @@
             }
         }
     }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[14,14],&quot;../src/tab_game/tab_game.rs.html#279&quot;,&quot;line 279&quot;],[[17,17],&quot;../src/tab_game/tab_game.rs.html#282&quot;,&quot;line 282&quot;]]"><div class="scraped-example-title">examples/libadwaita/tab_game.rs (<a href="../src/tab_game/tab_game.rs.html#279">line 279</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>265</span>
+</div></div><div class="scraped-example " data-locs="[[[14,14],&quot;../src/tab_game/tab_game.rs.html#279&quot;,&quot;line 279&quot;],[[17,17],&quot;../src/tab_game/tab_game.rs.html#282&quot;,&quot;line 282&quot;]]"><div class="scraped-example-title">examples/libadwaita/tab_game.rs (<a href="../src/tab_game/tab_game.rs.html#279">line 279</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>265</span>
 <span>266</span>
 <span>267</span>
 <span>268</span>

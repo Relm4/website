@@ -139,6 +139,10 @@
 <span id="131">131</span>
 <span id="132">132</span>
 <span id="133">133</span>
+<span id="134">134</span>
+<span id="135">135</span>
+<span id="136">136</span>
+<span id="137">137</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2021-2022 Aaron Erhardt &lt;aaron.erhardt@t-online.de&gt;</span>
 <span class="comment">// Copyright 2022 System76 &lt;info@system76.com&gt;</span>
 <span class="comment">// SPDX-License-Identifier: MIT or Apache-2.0</span>
@@ -167,7 +171,7 @@
     ) -&gt; <span class="self">Self</span>;
 
     <span class="doccomment">/// Spawns the worker task in the background.</span>
-    <span class="kw">fn</span> <span class="ident">init</span>(<span class="ident">params</span>: <span class="ident"><span class="self">Self</span>::InputParams</span>) -&gt; <span class="ident">WorkerHandle</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Input</span>, <span class="ident"><span class="self">Self</span>::Output</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">init</span>(<span class="ident">params</span>: <span class="ident"><span class="self">Self</span>::InputParams</span>) -&gt; <span class="ident">WorkerHandle</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="kw">let</span> (<span class="ident">input_tx</span>, <span class="ident">input_rx</span>) <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::channel</span>::<span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Input</span><span class="op">&gt;</span>();
         <span class="kw">let</span> (<span class="kw-2">mut</span> <span class="ident">output_tx</span>, <span class="ident">output_rx</span>) <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::channel</span>::<span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Output</span><span class="op">&gt;</span>();
 
@@ -204,27 +208,31 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="attribute">#[<span class="ident">must_use</span> <span class="op">=</span> <span class="string">&quot;Dropping without aborting or handling the receiver causes the worker to live forever.&quot;</span>]</span>
 <span class="doccomment">/// Handle to a worker task in the background</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">WorkerHandle</span><span class="op">&lt;</span><span class="ident">Input</span>, <span class="ident">Output</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">WorkerHandle</span><span class="op">&lt;</span><span class="ident">W</span>: <span class="ident">Worker</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Sends inputs to the worker.</span>
-    <span class="kw">pub</span> <span class="ident">sender</span>: <span class="ident">Sender</span><span class="op">&lt;</span><span class="ident">Input</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">sender</span>: <span class="ident">Sender</span><span class="op">&lt;</span><span class="ident">W::Input</span><span class="op">&gt;</span>,
 
     <span class="doccomment">/// Where the worker will send its outputs to.</span>
-    <span class="kw">pub</span> <span class="ident">receiver</span>: <span class="ident">Receiver</span><span class="op">&lt;</span><span class="ident">Output</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">receiver</span>: <span class="ident">Receiver</span><span class="op">&lt;</span><span class="ident">W::Output</span><span class="op">&gt;</span>,
 
     <span class="ident">worker</span>: <span class="ident"><span class="kw">crate</span>::JoinHandle</span><span class="op">&lt;</span>()<span class="op">&gt;</span>,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">Input</span>: <span class="lifetime">&#39;static</span>, <span class="ident">Output</span>: <span class="lifetime">&#39;static</span><span class="op">&gt;</span> <span class="ident">WorkerHandle</span><span class="op">&lt;</span><span class="ident">Input</span>, <span class="ident">Output</span><span class="op">&gt;</span> {
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">W</span>: <span class="ident">Worker</span><span class="op">&gt;</span> <span class="ident">WorkerHandle</span><span class="op">&lt;</span><span class="ident">W</span><span class="op">&gt;</span>
+<span class="kw">where</span>
+    <span class="ident">W::Input</span>: <span class="lifetime">&#39;static</span>,
+    <span class="ident">W::Output</span>: <span class="lifetime">&#39;static</span>,
+{
     <span class="doccomment">/// Drops the handle and shuts down the service.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">abort</span>(<span class="self">self</span>) {
         <span class="self">self</span>.<span class="ident">worker</span>.<span class="ident">abort</span>();
     }
 
     <span class="doccomment">/// Given a mutable closure, captures the receiver for handling.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_receiver</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">FnMut</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Sender</span><span class="op">&lt;</span><span class="ident">Input</span><span class="op">&gt;</span>, <span class="ident">Output</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_receiver</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">FnMut</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Sender</span><span class="op">&lt;</span><span class="ident">W::Input</span><span class="op">&gt;</span>, <span class="ident">W::Output</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="self">self</span>,
         <span class="kw-2">mut</span> <span class="ident">func</span>: <span class="ident">F</span>,
-    ) -&gt; <span class="ident">WorkerController</span><span class="op">&lt;</span><span class="ident">Input</span><span class="op">&gt;</span> {
+    ) -&gt; <span class="ident">WorkerController</span><span class="op">&lt;</span><span class="ident">W</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">WorkerHandle</span> {
             <span class="ident">worker</span>,
             <span class="ident">sender</span>,
@@ -242,11 +250,11 @@
     }
 
     <span class="doccomment">/// Forwards output events to the designated sender.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">forward</span><span class="op">&lt;</span><span class="ident">X</span>: <span class="lifetime">&#39;static</span>, <span class="ident">F</span>: (<span class="ident">Fn</span>(<span class="ident">Output</span>) -&gt; <span class="ident">X</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">forward</span><span class="op">&lt;</span><span class="ident">X</span>: <span class="lifetime">&#39;static</span>, <span class="ident">F</span>: (<span class="ident">Fn</span>(<span class="ident">W::Output</span>) -&gt; <span class="ident">X</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="self">self</span>,
         <span class="ident">sender_</span>: <span class="kw-2">&amp;</span><span class="ident">Sender</span><span class="op">&lt;</span><span class="ident">X</span><span class="op">&gt;</span>,
         <span class="ident">transform</span>: <span class="ident">F</span>,
-    ) -&gt; <span class="ident">WorkerController</span><span class="op">&lt;</span><span class="ident">Input</span><span class="op">&gt;</span> {
+    ) -&gt; <span class="ident">WorkerController</span><span class="op">&lt;</span><span class="ident">W</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">WorkerHandle</span> {
             <span class="ident">sender</span>,
             <span class="ident">receiver</span>,
@@ -260,14 +268,14 @@
 
 <span class="doccomment">/// Sends inputs to a worker. On drop, shuts down the worker.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">WorkerController</span><span class="op">&lt;</span><span class="ident">Input</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">WorkerController</span><span class="op">&lt;</span><span class="ident">W</span>: <span class="ident">Worker</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Sends inputs to the worker.</span>
-    <span class="kw">pub</span> <span class="ident">sender</span>: <span class="ident">Sender</span><span class="op">&lt;</span><span class="ident">Input</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">sender</span>: <span class="ident">Sender</span><span class="op">&lt;</span><span class="ident">W::Input</span><span class="op">&gt;</span>,
 
     <span class="ident">worker</span>: <span class="ident"><span class="kw">crate</span>::JoinHandle</span><span class="op">&lt;</span>()<span class="op">&gt;</span>,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">Input</span><span class="op">&gt;</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">WorkerController</span><span class="op">&lt;</span><span class="ident">Input</span><span class="op">&gt;</span> {
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">W</span>: <span class="ident">Worker</span><span class="op">&gt;</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">WorkerController</span><span class="op">&lt;</span><span class="ident">W</span><span class="op">&gt;</span> {
     <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
         <span class="self">self</span>.<span class="ident">worker</span>.<span class="ident">abort</span>();
     }
