@@ -205,6 +205,7 @@
 <span id="197">197</span>
 <span id="198">198</span>
 <span id="199">199</span>
+<span id="200">200</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std</span>::{
     <span class="ident">ops</span>::{<span class="ident">Deref</span>, <span class="ident">DerefMut</span>},
     <span class="ident">sync</span>::{<span class="ident">RwLock</span>, <span class="ident">RwLockReadGuard</span>, <span class="ident">RwLockWriteGuard</span>},
@@ -366,11 +367,12 @@
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Data</span><span class="op">&gt;</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">SharedStateWriteGuard</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Data</span><span class="op">&gt;</span> {
+    <span class="comment">// Notify subscribers</span>
     <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
         <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">deref</span>();
-        <span class="kw">for</span> <span class="ident">subscriber</span> <span class="kw">in</span> <span class="self">self</span>.<span class="ident">subscribers</span>.<span class="ident">iter</span>() {
-            <span class="ident">subscriber</span>(<span class="ident">data</span>);
-        }
+        <span class="self">self</span>.<span class="ident">subscribers</span>
+            .<span class="ident">iter</span>()
+            .<span class="ident">for_each</span>(<span class="op">|</span><span class="ident">subscriber</span><span class="op">|</span> <span class="ident">subscriber</span>(<span class="ident">data</span>));
     }
 }
 
@@ -405,5 +407,5 @@
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="relm4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (ddcbba036 2022-06-29)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="relm4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (7425fb293 2022-06-30)" ></div>
 </body></html>
