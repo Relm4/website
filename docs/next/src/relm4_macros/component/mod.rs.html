@@ -169,6 +169,7 @@
 <span id="161">161</span>
 <span id="162">162</span>
 <span id="163">163</span>
+<span id="164">164</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">proc_macro2::TokenStream</span> <span class="kw">as</span> <span class="ident">TokenStream2</span>;
 <span class="kw">use</span> <span class="ident">quote</span>::{<span class="ident">quote</span>, <span class="ident">ToTokens</span>};
 <span class="kw">use</span> <span class="ident">syn::spanned::Spanned</span>;
@@ -198,13 +199,13 @@
         .<span class="ident">to_compile_error</span>();
     };
 
-    <span class="kw">let</span> <span class="ident">types::Types</span> {
-        <span class="ident">widgets</span>: <span class="ident">widgets_type</span>,
-        <span class="ident">other_types</span>,
-    } <span class="op">=</span> <span class="kw">match</span> <span class="ident">types::Types::new</span>(<span class="ident">data</span>.<span class="ident">types</span>) {
-        <span class="prelude-val">Ok</span>(<span class="ident">types</span>) =&gt; <span class="ident">types</span>,
-        <span class="prelude-val">Err</span>(<span class="ident">err</span>) =&gt; <span class="kw">return</span> <span class="ident">err</span>.<span class="ident">to_compile_error</span>(),
-    };
+    <span class="kw">let</span> (
+        <span class="ident">types::Types</span> {
+            <span class="ident">widgets</span>: <span class="ident">widgets_type</span>,
+            <span class="ident">other_types</span>,
+        },
+        <span class="ident">type_errors</span>,
+    ) <span class="op">=</span> <span class="ident">types::Types::new</span>(<span class="ident">data</span>.<span class="ident">types</span>);
 
     <span class="kw">let</span> <span class="ident">trait_</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">trait_</span>;
     <span class="kw">let</span> <span class="ident">ty</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">self_ty</span>;
@@ -270,6 +271,7 @@
         #<span class="ident">init_widgets</span>
         #<span class="ident">connect</span>
         {
+            #<span class="ident">type_errors</span>
             #<span class="ident">error</span>
         }
         #<span class="ident">assign</span>
@@ -333,5 +335,5 @@
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="relm4_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (46b8c23f3 2022-07-01)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="relm4_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (f2d93935f 2022-07-02)" ></div>
 </body></html>

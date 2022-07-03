@@ -7,7 +7,7 @@
                         <img src="https://relm4.org/icons/relm4_logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1">
                                 <a href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../wheel.svg"></a></div>
                         </div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
-    <h1 class="fqn"><span class="in-band">Macro <a href="index.html">relm4_macros</a>::<wbr><a class="macro" href="#">view</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../src/relm4_macros/lib.rs.html#397-399">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><div class="docblock item-decl"><pre class="rust macro"><code>view!() { /* proc-macro */ }</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>The <a href="macro.view.html" title="view!"><code>view!</code></a> macro allows you to construct your UI easily and cleanly.</p>
+    <h1 class="fqn"><span class="in-band">Macro <a href="index.html">relm4_macros</a>::<wbr><a class="macro" href="#">view</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../src/relm4_macros/lib.rs.html#412-414">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><div class="docblock item-decl"><pre class="rust macro"><code>view!() { /* proc-macro */ }</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>The <a href="macro.view.html" title="view!"><code>view!</code></a> macro allows you to construct your UI easily and cleanly.</p>
 <p>It does the same as inside the <a href="attr.component.html" title="component"><code>component</code></a> attribute macro,
 but with less features.</p>
 <p>You can even use the <code>relm4-macros</code> crate independently from Relm4 to build your GTK4 UI.</p>
@@ -87,12 +87,12 @@ so you can even use the macro for other purposes.</p>
 }
 
 <span class="comment">// The button was added without any further instructions, so we assume `container_add()` will work.</span>
-<span class="ident">::relm4::RelmContainerExt::container_add</span>(<span class="kw-2">&amp;</span><span class="ident">vbox</span>, <span class="kw-2">&amp;</span><span class="ident">_gtk_button_5</span>);
+<span class="ident">relm4::RelmContainerExt::container_add</span>(<span class="kw-2">&amp;</span><span class="ident">vbox</span>, <span class="kw-2">&amp;</span><span class="ident">_gtk_button_5</span>);
 <span class="ident">_gtk_button_5</span>.<span class="ident">set_label</span>(<span class="string">&quot;Click me!&quot;</span>);
 <span class="comment">// For the label, we used the `prepend` method, so we don&#39;t need `container_add()` here.</span>
 <span class="ident">vbox</span>.<span class="ident">prepend</span>(<span class="kw-2">&amp;</span><span class="ident">my_label</span>);</code></pre></div>
 <p>The widgets are first initialized, then signals are connected and then
 properties and widgets are assigned to each other.</p>
 <p>The nested structure of the UI is translated into regular Rust code.</p>
-</div></details></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="relm4_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (46b8c23f3 2022-07-01)" ></div>
+</div></details></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="relm4_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (f2d93935f 2022-07-02)" ></div>
 </body></html>

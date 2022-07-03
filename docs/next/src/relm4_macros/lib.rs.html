@@ -405,10 +405,25 @@
 <span id="397">397</span>
 <span id="398">398</span>
 <span id="399">399</span>
+<span id="400">400</span>
+<span id="401">401</span>
+<span id="402">402</span>
+<span id="403">403</span>
+<span id="404">404</span>
+<span id="405">405</span>
+<span id="406">406</span>
+<span id="407">407</span>
+<span id="408">408</span>
+<span id="409">409</span>
+<span id="410">410</span>
+<span id="411">411</span>
+<span id="412">412</span>
+<span id="413">413</span>
+<span id="414">414</span>
 </pre><pre class="rust"><code><span class="attribute">#![<span class="ident">doc</span>(<span class="ident">html_logo_url</span> <span class="op">=</span> <span class="string">&quot;https://relm4.org/icons/relm4_logo.svg&quot;</span>)]</span>
 <span class="attribute">#![<span class="ident">doc</span>(<span class="ident">html_favicon_url</span> <span class="op">=</span> <span class="string">&quot;https://relm4.org/icons/relm4_org.svg&quot;</span>)]</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! *This document was built at Saturday July 02, 13:11 UTC.*</span>
+<span class="doccomment">//! *This document was built at Sunday July 03, 03:05 UTC.*</span>
 
 <span class="kw">use</span> <span class="ident">proc_macro::TokenStream</span>;
 <span class="kw">use</span> <span class="ident">syn::parse_macro_input</span>;
@@ -596,6 +611,13 @@
 
 <span class="doccomment">/// A macro to create menus.</span>
 <span class="doccomment">///</span>
+<span class="doccomment">/// Use</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// + `&quot;Label text&quot; =&gt; ActionType,` to create new entries.</span>
+<span class="doccomment">/// + `&quot;Label text&quot; =&gt; ActionType(value),` to create new entries with action value.</span>
+<span class="doccomment">/// + `custom =&gt; &quot;widget_id&quot;,` add a placeholder for custom widgets you can add later with [set_attribute_name](https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/gio/struct.MenuItem.html#method.set_attribute_value).</span>
+<span class="doccomment">/// + `section! { ... }` to create new sections.</span>
+<span class="doccomment">///</span>
 <span class="doccomment">/// # Example</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// ```</span>
@@ -607,6 +629,7 @@
 <span class="doccomment">/// // Create a `MenuModel` called `menu_model`</span>
 <span class="doccomment">/// relm4_macros::menu! {</span>
 <span class="doccomment">///     main_menu: {</span>
+<span class="doccomment">///         custom: &quot;my_widget&quot;,</span>
 <span class="doccomment">///         &quot;Test&quot; =&gt; TestAction,</span>
 <span class="doccomment">///         &quot;Test2&quot; =&gt; TestAction,</span>
 <span class="doccomment">///         &quot;Test toggle&quot; =&gt; TestU8Action(1_u8),</span>
@@ -652,36 +675,43 @@
 <span class="doccomment">/// }</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// // Main menu</span>
-<span class="doccomment">/// let main_menu = ::relm4::gtk::gio::Menu::new();</span>
-<span class="doccomment">/// let new_entry = ::relm4::actions::RelmAction::&lt;TestAction&gt;::to_menu_item(&quot;Test&quot;);</span>
+<span class="doccomment">/// let main_menu = relm4::gtk::gio::Menu::new();</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// // Placeholder for custom widget</span>
+<span class="doccomment">/// let new_entry = relm4::gtk::gio::MenuItem::new(None, None);</span>
+<span class="doccomment">/// let variant = relm4::gtk::glib::variant::ToVariant::to_variant(&quot;my_widget&quot;);</span>
+<span class="doccomment">/// new_entry.set_attribute_value(&quot;custom&quot;, Some(&amp;variant));</span>
 <span class="doccomment">/// main_menu.append_item(&amp;new_entry);</span>
-<span class="doccomment">/// let new_entry = ::relm4::actions::RelmAction::&lt;TestAction&gt;::to_menu_item(&quot;Test2&quot;);</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// let new_entry = relm4::actions::RelmAction::&lt;TestAction&gt;::to_menu_item(&quot;Test&quot;);</span>
 <span class="doccomment">/// main_menu.append_item(&amp;new_entry);</span>
-<span class="doccomment">/// let new_entry = ::relm4::actions::RelmAction::&lt;TestU8Action&gt;::to_menu_item_with_target_value(</span>
+<span class="doccomment">/// let new_entry = relm4::actions::RelmAction::&lt;TestAction&gt;::to_menu_item(&quot;Test2&quot;);</span>
+<span class="doccomment">/// main_menu.append_item(&amp;new_entry);</span>
+<span class="doccomment">/// let new_entry = relm4::actions::RelmAction::&lt;TestU8Action&gt;::to_menu_item_with_target_value(</span>
 <span class="doccomment">///     &quot;Test toggle&quot;,</span>
 <span class="doccomment">///     &amp;1_u8,</span>
 <span class="doccomment">/// );</span>
 <span class="doccomment">/// main_menu.append_item(&amp;new_entry);</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// // Section 0</span>
-<span class="doccomment">/// let _section_0 = ::relm4::gtk::gio::Menu::new();</span>
+<span class="doccomment">/// let _section_0 = relm4::gtk::gio::Menu::new();</span>
 <span class="doccomment">/// main_menu.append_section(None, &amp;_section_0);</span>
-<span class="doccomment">/// let new_entry = ::relm4::actions::RelmAction::&lt;TestAction&gt;::to_menu_item(&quot;Section test&quot;);</span>
+<span class="doccomment">/// let new_entry = relm4::actions::RelmAction::&lt;TestAction&gt;::to_menu_item(&quot;Section test&quot;);</span>
 <span class="doccomment">/// _section_0.append_item(&amp;new_entry);</span>
-<span class="doccomment">/// let new_entry = ::relm4::actions::RelmAction::&lt;TestU8Action&gt;::to_menu_item_with_target_value(</span>
+<span class="doccomment">/// let new_entry = relm4::actions::RelmAction::&lt;TestU8Action&gt;::to_menu_item_with_target_value(</span>
 <span class="doccomment">///     &quot;Test toggle&quot;,</span>
 <span class="doccomment">///     &amp;1_u8,</span>
 <span class="doccomment">/// );</span>
 <span class="doccomment">/// _section_0.append_item(&amp;new_entry);</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// // Section 1</span>
-<span class="doccomment">/// let _section_1 = ::relm4::gtk::gio::Menu::new();</span>
+<span class="doccomment">/// let _section_1 = relm4::gtk::gio::Menu::new();</span>
 <span class="doccomment">/// main_menu.append_section(None, &amp;_section_1);</span>
-<span class="doccomment">/// let new_entry = ::relm4::actions::RelmAction::&lt;TestAction&gt;::to_menu_item(&quot;Test&quot;);</span>
+<span class="doccomment">/// let new_entry = relm4::actions::RelmAction::&lt;TestAction&gt;::to_menu_item(&quot;Test&quot;);</span>
 <span class="doccomment">/// _section_1.append_item(&amp;new_entry);</span>
-<span class="doccomment">/// let new_entry = ::relm4::actions::RelmAction::&lt;TestAction&gt;::to_menu_item(&quot;Test2&quot;);</span>
+<span class="doccomment">/// let new_entry = relm4::actions::RelmAction::&lt;TestAction&gt;::to_menu_item(&quot;Test2&quot;);</span>
 <span class="doccomment">/// _section_1.append_item(&amp;new_entry);</span>
-<span class="doccomment">/// let new_entry = ::relm4::actions::RelmAction::&lt;TestU8Action&gt;::to_menu_item_with_target_value(</span>
+<span class="doccomment">/// let new_entry = relm4::actions::RelmAction::&lt;TestU8Action&gt;::to_menu_item_with_target_value(</span>
 <span class="doccomment">///     &quot;Test Value&quot;,</span>
 <span class="doccomment">///     &amp;1_u8,</span>
 <span class="doccomment">/// );</span>
@@ -790,7 +820,7 @@
 <span class="doccomment">/// }</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// // The button was added without any further instructions, so we assume `container_add()` will work.</span>
-<span class="doccomment">/// ::relm4::RelmContainerExt::container_add(&amp;vbox, &amp;_gtk_button_5);</span>
+<span class="doccomment">/// relm4::RelmContainerExt::container_add(&amp;vbox, &amp;_gtk_button_5);</span>
 <span class="doccomment">/// _gtk_button_5.set_label(&quot;Click me!&quot;);</span>
 <span class="doccomment">/// // For the label, we used the `prepend` method, so we don&#39;t need `container_add()` here.</span>
 <span class="doccomment">/// vbox.prepend(&amp;my_label);</span>
@@ -805,5 +835,5 @@
     <span class="ident">view::generate_tokens</span>(<span class="ident">input</span>)
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="relm4_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (46b8c23f3 2022-07-01)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="relm4_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (f2d93935f 2022-07-02)" ></div>
 </body></html>

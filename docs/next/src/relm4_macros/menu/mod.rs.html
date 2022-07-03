@@ -37,6 +37,7 @@
 <span id="29">29</span>
 <span id="30">30</span>
 <span id="31">31</span>
+<span id="32">32</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">syn::punctuated::Punctuated</span>;
 <span class="kw">use</span> <span class="ident">syn::token::Comma</span>;
 <span class="kw">use</span> <span class="ident">syn</span>::{<span class="ident">Expr</span>, <span class="ident">Ident</span>, <span class="ident">LitStr</span>, <span class="ident">Path</span>};
@@ -55,6 +56,7 @@
 
 <span class="kw">enum</span> <span class="ident">MenuItem</span> {
     <span class="ident">Entry</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">MenuEntry</span><span class="op">&gt;</span>),
+    <span class="ident">Custom</span>(<span class="ident">LitStr</span>),
     <span class="ident">Section</span>(<span class="ident">MenuSection</span>),
 }
 
@@ -69,5 +71,5 @@
     <span class="ident">items</span>: <span class="ident">Punctuated</span><span class="op">&lt;</span><span class="ident">MenuItem</span>, <span class="ident">Comma</span><span class="op">&gt;</span>,
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="relm4_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (46b8c23f3 2022-07-01)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="relm4_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (f2d93935f 2022-07-02)" ></div>
 </body></html>
