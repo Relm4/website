@@ -337,7 +337,7 @@
 }
 
 <span class="doccomment">/// A guard that mutably dereferences `Data`.</span>
-<span class="doccomment">/// Once dropped all subscribers of the [`SharedData`] will be notified.</span>
+<span class="doccomment">/// Once dropped all subscribers of the [`SharedState`] will be notified.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SharedStateWriteGuard</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Data</span><span class="op">&gt;</span> {
     <span class="ident">data</span>: <span class="ident">RwLockWriteGuard</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Data</span><span class="op">&gt;</span>,
     <span class="ident">subscribers</span>: <span class="ident">RwLockWriteGuard</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">SubscriberFn</span><span class="op">&lt;</span><span class="ident">Data</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
