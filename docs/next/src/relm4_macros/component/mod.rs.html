@@ -166,150 +166,120 @@
 <span id="158">158</span>
 <span id="159">159</span>
 <span id="160">160</span>
-<span id="161">161</span>
-<span id="162">162</span>
-<span id="163">163</span>
-<span id="164">164</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">proc_macro2::TokenStream</span> <span class="kw">as</span> <span class="ident">TokenStream2</span>;
 <span class="kw">use</span> <span class="ident">quote</span>::{<span class="ident">quote</span>, <span class="ident">ToTokens</span>};
-<span class="kw">use</span> <span class="ident">syn::spanned::Spanned</span>;
-<span class="kw">use</span> <span class="ident">syn</span>::{<span class="ident">Error</span>, <span class="ident">PathArguments</span>, <span class="ident">Visibility</span>};
+<span class="kw">use</span> <span class="ident">syn::visit_mut::VisitMut</span>;
+<span class="kw">use</span> <span class="ident">syn</span>::{<span class="ident">parse_quote</span>, <span class="ident">Visibility</span>};
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::macros::Macros</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ItemImpl</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::visitors::ComponentVisitor</span>;
 
-<span class="kw">mod</span> <span class="ident">funcs</span>;
 <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">mod</span> <span class="ident">inject_view_code</span>;
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">mod</span> <span class="ident">token_streams</span>;
-<span class="kw">mod</span> <span class="ident">types</span>;
 
 <span class="kw">use</span> <span class="ident">inject_view_code::inject_view_code</span>;
 
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">generate_tokens</span>(<span class="ident">vis</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Visibility</span><span class="op">&gt;</span>, <span class="ident">data</span>: <span class="ident">ItemImpl</span>) -&gt; <span class="ident">TokenStream2</span> {
-    <span class="kw">let</span> <span class="ident">last_segment</span> <span class="op">=</span> <span class="ident">data</span>
-        .<span class="ident">trait_</span>
-        .<span class="ident">segments</span>
-        .<span class="ident">last</span>()
-        .<span class="ident">expect</span>(<span class="string">&quot;Expected at least one segment in the trait path&quot;</span>);
-    <span class="kw">if</span> <span class="ident">PathArguments::None</span> <span class="op">!</span><span class="op">=</span> <span class="ident">last_segment</span>.<span class="ident">arguments</span> {
-        <span class="kw">return</span> <span class="ident">Error::new</span>(
-            <span class="ident">last_segment</span>.<span class="ident">arguments</span>.<span class="ident">span</span>(),
-            <span class="string">&quot;Expected no generic parameters&quot;</span>,
-        )
-        .<span class="ident">to_compile_error</span>();
-    };
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">generate_tokens</span>(
+    <span class="ident">vis</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Visibility</span><span class="op">&gt;</span>,
+    <span class="kw-2">mut</span> <span class="ident">component_impl</span>: <span class="ident">syn::ItemImpl</span>,
+) -&gt; <span class="ident">TokenStream2</span> {
+    <span class="kw">let</span> <span class="ident">outer_attrs</span> <span class="op">=</span> <span class="ident">component_impl</span>.<span class="ident">attrs</span>.<span class="ident">clone</span>();
 
-    <span class="kw">let</span> (
-        <span class="ident">types::Types</span> {
-            <span class="ident">widgets</span>: <span class="ident">widgets_type</span>,
-            <span class="ident">other_types</span>,
-        },
-        <span class="ident">type_errors</span>,
-    ) <span class="op">=</span> <span class="ident">types::Types::new</span>(<span class="ident">data</span>.<span class="ident">types</span>);
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">component_visitor</span> <span class="op">=</span> <span class="ident">ComponentVisitor::default</span>();
+    <span class="ident">component_visitor</span>.<span class="ident">visit_item_impl_mut</span>(<span class="kw-2">&amp;mut</span> <span class="ident">component_impl</span>);
 
-    <span class="kw">let</span> <span class="ident">trait_</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">trait_</span>;
-    <span class="kw">let</span> <span class="ident">ty</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">self_ty</span>;
-    <span class="kw">let</span> <span class="ident">outer_attrs</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">data</span>.<span class="ident">outer_attrs</span>;
+    <span class="kw">let</span> <span class="ident">errors</span> <span class="op">=</span> <span class="ident">component_visitor</span>
+        .<span class="ident">errors</span>
+        .<span class="ident">iter</span>()
+        .<span class="ident">map</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">err</span>.<span class="ident">to_compile_error</span>());
 
-    <span class="kw">let</span> <span class="ident">Macros</span> {
-        <span class="ident">view_widgets</span>,
-        <span class="ident">additional_fields</span>,
-        <span class="ident">menus</span>,
-    } <span class="op">=</span> <span class="kw">match</span> <span class="ident">Macros::new</span>(<span class="kw-2">&amp;</span><span class="ident">data</span>.<span class="ident">macros</span>, <span class="ident">data</span>.<span class="ident">brace_span</span>.<span class="ident">unwrap</span>()) {
-        <span class="prelude-val">Ok</span>(<span class="ident">macros</span>) =&gt; <span class="ident">macros</span>,
-        <span class="prelude-val">Err</span>(<span class="ident">err</span>) =&gt; <span class="kw">return</span> <span class="ident">err</span>.<span class="ident">to_compile_error</span>(),
-    };
+    <span class="kw">let</span> <span class="ident">additional_fields</span> <span class="op">=</span> <span class="ident">component_visitor</span>.<span class="ident">additional_fields</span>.<span class="ident">take</span>();
 
-    <span class="comment">// Generate menu tokens</span>
-    <span class="kw">let</span> <span class="ident">menus_stream</span> <span class="op">=</span> <span class="ident">menus</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">m</span><span class="op">|</span> <span class="ident">m</span>.<span class="ident">menus_stream</span>());
+    <span class="kw">let</span> <span class="ident">menus_stream</span> <span class="op">=</span> <span class="ident">component_visitor</span>
+        .<span class="ident">menus</span>
+        .<span class="ident">take</span>()
+        .<span class="ident">map</span>(<span class="op">|</span><span class="ident">menus</span><span class="op">|</span> <span class="ident">menus</span>.<span class="ident">menus_stream</span>());
 
-    <span class="kw">let</span> <span class="ident">funcs::Funcs</span> {
-        <span class="ident">init</span>,
-        <span class="ident">pre_view</span>,
-        <span class="ident">post_view</span>,
-        <span class="ident">unhandled_fns</span>,
-        <span class="ident">root_name</span>,
-        <span class="ident">model_name</span>,
-    } <span class="op">=</span> <span class="kw">match</span> <span class="ident">funcs::Funcs::new</span>(<span class="ident">data</span>.<span class="ident">funcs</span>) {
-        <span class="prelude-val">Ok</span>(<span class="ident">macros</span>) =&gt; <span class="ident">macros</span>,
-        <span class="prelude-val">Err</span>(<span class="ident">err</span>) =&gt; <span class="kw">return</span> <span class="ident">err</span>.<span class="ident">to_compile_error</span>(),
-    };
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">struct_fields</span> <span class="op">=</span> <span class="prelude-val">None</span>;
 
-    <span class="kw">let</span> <span class="ident">token_streams::TokenStreams</span> {
-        <span class="ident">error</span>,
-        <span class="ident">init_root</span>,
-        <span class="ident">rename_root</span>,
-        <span class="ident">struct_fields</span>,
-        <span class="ident">init</span>: <span class="ident">init_widgets</span>,
-        <span class="ident">assign</span>,
-        <span class="ident">connect</span>,
-        <span class="ident">return_fields</span>,
-        <span class="ident">destructure_fields</span>,
-        <span class="ident">update_view</span>,
-    } <span class="op">=</span> <span class="ident">view_widgets</span>.<span class="ident">generate_streams</span>(<span class="kw-2">&amp;</span><span class="ident">vis</span>, <span class="kw-2">&amp;</span><span class="ident">model_name</span>, <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="ident">root_name</span>), <span class="bool-val">false</span>);
+    <span class="kw">if</span> <span class="kw">let</span> <span class="ident">ComponentVisitor</span> {
+        <span class="ident">view_widgets</span>: <span class="prelude-val">Some</span>(<span class="ident">view_widgets</span>),
+        <span class="ident">model_name</span>: <span class="prelude-val">Some</span>(<span class="ident">model_name</span>),
+        <span class="ident">root_name</span>: <span class="prelude-val">Some</span>(<span class="ident">root_name</span>),
+        <span class="ident">init</span>: <span class="prelude-val">Some</span>(<span class="ident">init</span>),
+        ..
+    } <span class="op">=</span> <span class="ident">component_visitor</span>
+    {
+        <span class="kw">let</span> <span class="ident">token_streams::TokenStreams</span> {
+            <span class="ident">error</span>,
+            <span class="ident">init_root</span>,
+            <span class="ident">rename_root</span>,
+            <span class="ident">struct_fields</span>: <span class="ident">struct_fields_stream</span>,
+            <span class="ident">init</span>: <span class="ident">init_widgets</span>,
+            <span class="ident">assign</span>,
+            <span class="ident">connect</span>,
+            <span class="ident">return_fields</span>,
+            <span class="ident">destructure_fields</span>,
+            <span class="ident">update_view</span>,
+        } <span class="op">=</span> <span class="ident">view_widgets</span>.<span class="ident">generate_streams</span>(<span class="kw-2">&amp;</span><span class="ident">vis</span>, <span class="kw-2">&amp;</span><span class="ident">model_name</span>, <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="ident">root_name</span>), <span class="bool-val">false</span>);
 
-    <span class="kw">let</span> <span class="ident">root_widget_type</span> <span class="op">=</span> <span class="ident">view_widgets</span>.<span class="ident">root_type</span>();
+        <span class="ident">struct_fields</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">struct_fields_stream</span>);
+        <span class="kw">let</span> <span class="ident">root_widget_type</span> <span class="op">=</span> <span class="ident">view_widgets</span>.<span class="ident">root_type</span>();
 
-    <span class="kw">let</span> <span class="ident">impl_generics</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">impl_generics</span>;
-    <span class="kw">let</span> <span class="ident">where_clause</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">where_clause</span>;
+        <span class="comment">// Extract identifiers from additional fields for struct initialization: &quot;test: u8&quot; =&gt; &quot;test&quot;</span>
+        <span class="kw">let</span> <span class="ident">additional_fields_return_stream</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">fields</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">additional_fields</span> {
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">tokens</span> <span class="op">=</span> <span class="ident">TokenStream2::new</span>();
+            <span class="kw">for</span> <span class="ident">field</span> <span class="kw">in</span> <span class="ident">fields</span>.<span class="ident">inner</span>.<span class="ident">pairs</span>() {
+                <span class="ident">tokens</span>.<span class="ident">extend</span>(<span class="ident">field</span>.<span class="ident">value</span>().<span class="ident">ident</span>.<span class="ident">to_token_stream</span>());
+                <span class="ident">tokens</span>.<span class="ident">extend</span>(<span class="macro">quote!</span> {,});
+            }
+            <span class="ident">tokens</span>
+        } <span class="kw">else</span> {
+            <span class="ident">TokenStream2::new</span>()
+        };
 
-    <span class="comment">// Extract identifiers from additional fields for struct initialization: &quot;test: u8&quot; =&gt; &quot;test&quot;</span>
-    <span class="kw">let</span> <span class="ident">additional_fields_return_stream</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">fields</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">additional_fields</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">tokens</span> <span class="op">=</span> <span class="ident">TokenStream2::new</span>();
-        <span class="kw">for</span> <span class="ident">field</span> <span class="kw">in</span> <span class="ident">fields</span>.<span class="ident">inner</span>.<span class="ident">pairs</span>() {
-            <span class="ident">tokens</span>.<span class="ident">extend</span>(<span class="ident">field</span>.<span class="ident">value</span>().<span class="ident">ident</span>.<span class="ident">to_token_stream</span>());
-            <span class="ident">tokens</span>.<span class="ident">extend</span>(<span class="macro">quote!</span> {,});
-        }
-        <span class="ident">tokens</span>
-    } <span class="kw">else</span> {
-        <span class="ident">TokenStream2::new</span>()
-    };
+        <span class="kw">let</span> <span class="ident">view_code</span> <span class="op">=</span> <span class="macro">quote!</span> {
+            #<span class="ident">rename_root</span>
+            #<span class="ident">menus_stream</span>
+            #<span class="ident">init_widgets</span>
+            #<span class="ident">connect</span>
+            {
+                #<span class="ident">error</span>
+            }
+            #<span class="ident">assign</span>
+        };
 
-    <span class="kw">let</span> <span class="ident">view_code</span> <span class="op">=</span> <span class="macro">quote!</span> {
-        #<span class="ident">rename_root</span>
-        #<span class="ident">menus_stream</span>
-        #<span class="ident">init_widgets</span>
-        #<span class="ident">connect</span>
-        {
-            #<span class="ident">type_errors</span>
-            #<span class="ident">error</span>
-        }
-        #<span class="ident">assign</span>
-    };
+        <span class="kw">let</span> <span class="ident">widgets_return_code</span> <span class="op">=</span> <span class="macro">quote!</span> {
+            <span class="ident"><span class="self">Self</span>::Widgets</span> {
+                #<span class="ident">return_fields</span>
+                #<span class="ident">additional_fields_return_stream</span>
+            }
+        };
 
-    <span class="kw">let</span> <span class="ident">widgets_return_code</span> <span class="op">=</span> <span class="macro">quote!</span> {
-        <span class="ident"><span class="self">Self</span>::Widgets</span> {
-            #<span class="ident">return_fields</span>
-            #<span class="ident">additional_fields_return_stream</span>
-        }
-    };
+        <span class="kw">let</span> <span class="ident">init_injected</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">inject_view_code</span>(<span class="ident">init</span>, <span class="ident">view_code</span>, <span class="ident">widgets_return_code</span>) {
+            <span class="prelude-val">Ok</span>(<span class="ident">method</span>) =&gt; <span class="ident">method</span>,
+            <span class="prelude-val">Err</span>(<span class="ident">err</span>) =&gt; <span class="kw">return</span> <span class="ident">err</span>.<span class="ident">to_compile_error</span>(),
+        };
 
-    <span class="kw">let</span> <span class="ident">init_injected</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">inject_view_code</span>(<span class="ident">init</span>, <span class="ident">view_code</span>, <span class="ident">widgets_return_code</span>) {
-        <span class="prelude-val">Ok</span>(<span class="ident">method</span>) =&gt; <span class="ident">method</span>,
-        <span class="prelude-val">Err</span>(<span class="ident">err</span>) =&gt; <span class="kw">return</span> <span class="ident">err</span>.<span class="ident">to_compile_error</span>(),
-    };
-
-    <span class="macro">quote!</span> {
-        <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">dead_code</span>)]</span>
-        #<span class="ident">outer_attrs</span>
-        <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-        #<span class="ident">vis</span> <span class="kw">struct</span> #<span class="ident">widgets_type</span> {
-            #<span class="ident">struct_fields</span>
-            #<span class="ident">additional_fields</span>
-        }
-
-        <span class="kw">impl</span> #<span class="ident">impl_generics</span> #<span class="ident">trait_</span> <span class="kw">for</span> #<span class="ident">ty</span> #<span class="ident">where_clause</span> {
+        <span class="ident">component_impl</span>.<span class="ident">items</span>.<span class="ident">push</span>(<span class="macro">parse_quote!</span> {
             <span class="kw">type</span> <span class="ident">Root</span> <span class="op">=</span> #<span class="ident">root_widget_type</span>;
-            <span class="kw">type</span> <span class="ident">Widgets</span> <span class="op">=</span> #<span class="ident">widgets_type</span>;
+        });
 
-            #(#<span class="ident">other_types</span>)<span class="op">*</span>
-
+        <span class="ident">component_impl</span>.<span class="ident">items</span>.<span class="ident">push</span>(<span class="macro">parse_quote!</span> {
             <span class="kw">fn</span> <span class="ident">init_root</span>() -&gt; <span class="ident"><span class="self">Self</span>::Root</span> {
                 #<span class="ident">init_root</span>
             }
+        });
 
-            #<span class="ident">init_injected</span>
+        <span class="kw">let</span> <span class="ident">pre_view_stmts</span> <span class="op">=</span> <span class="ident">component_visitor</span>
+            .<span class="ident">pre_view</span>
+            .<span class="ident">map</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>.<span class="ident">block</span>.<span class="ident">stmts</span>)
+            .<span class="ident">unwrap_or_default</span>();
+        <span class="kw">let</span> <span class="ident">post_view_stmts</span> <span class="op">=</span> <span class="ident">component_visitor</span>
+            .<span class="ident">post_view</span>
+            .<span class="ident">map</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>.<span class="ident">block</span>.<span class="ident">stmts</span>)
+            .<span class="ident">unwrap_or_default</span>();
 
+        <span class="ident">component_impl</span>.<span class="ident">items</span>.<span class="ident">push</span>(<span class="macro">parse_quote!</span> {
             <span class="doccomment">/// Update the view to represent the updated model.</span>
             <span class="kw">fn</span> <span class="ident">update_view</span>(
                 <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -325,15 +295,37 @@
                 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_variables</span>)]</span>
                 <span class="kw">let</span> #<span class="ident">model_name</span> <span class="op">=</span> <span class="self">self</span>;
 
-                #<span class="ident">pre_view</span>
+                #(#<span class="ident">pre_view_stmts</span>)<span class="op">*</span>
                 #<span class="ident">update_view</span>
-                (<span class="op">|</span><span class="op">|</span> { #<span class="ident">post_view</span> })();
+                (<span class="op">|</span><span class="op">|</span> { #(#<span class="ident">post_view_stmts</span>)<span class="op">*</span> })();
             }
+        });
 
-            #(#<span class="ident">unhandled_fns</span>)<span class="op">*</span>
+        <span class="ident">component_impl</span>
+            .<span class="ident">items</span>
+            .<span class="ident">push</span>(<span class="ident">syn::ImplItem::Method</span>(<span class="ident">init_injected</span>));
+    }
+
+    <span class="kw">let</span> <span class="ident">widgets_struct</span> <span class="op">=</span> <span class="ident">component_visitor</span>.<span class="ident">widgets_ty</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">ty</span><span class="op">|</span> {
+        <span class="macro">quote!</span> {
+            <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">dead_code</span>)]</span>
+            #(#<span class="ident">outer_attrs</span>)<span class="op">*</span>
+            <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+            #<span class="ident">vis</span> <span class="kw">struct</span> #<span class="ident">ty</span> {
+                #<span class="ident">struct_fields</span>
+                #<span class="ident">additional_fields</span>
+            }
         }
+    });
+
+    <span class="macro">quote!</span> {
+        #<span class="ident">widgets_struct</span>
+
+        #<span class="ident">component_impl</span>
+
+        #(#<span class="ident">errors</span>)<span class="op">*</span>
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="relm4_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (27eb6d701 2022-07-04)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="relm4_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (7b46aa594 2022-07-05)" ></div>
 </body></html>

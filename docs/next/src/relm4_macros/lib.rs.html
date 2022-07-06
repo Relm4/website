@@ -420,10 +420,15 @@
 <span id="412">412</span>
 <span id="413">413</span>
 <span id="414">414</span>
+<span id="415">415</span>
+<span id="416">416</span>
+<span id="417">417</span>
+<span id="418">418</span>
+<span id="419">419</span>
 </pre><pre class="rust"><code><span class="attribute">#![<span class="ident">doc</span>(<span class="ident">html_logo_url</span> <span class="op">=</span> <span class="string">&quot;https://relm4.org/icons/relm4_logo.svg&quot;</span>)]</span>
 <span class="attribute">#![<span class="ident">doc</span>(<span class="ident">html_favicon_url</span> <span class="op">=</span> <span class="string">&quot;https://relm4.org/icons/relm4_org.svg&quot;</span>)]</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! *This document was built at Tuesday July 05, 13:38 UTC.*</span>
+<span class="doccomment">//! *This document was built at Wednesday July 06, 03:13 UTC.*</span>
 
 <span class="kw">use</span> <span class="ident">proc_macro::TokenStream</span>;
 <span class="kw">use</span> <span class="ident">syn::parse_macro_input</span>;
@@ -432,10 +437,10 @@
 <span class="kw">mod</span> <span class="ident">args</span>;
 <span class="kw">mod</span> <span class="ident">attrs</span>;
 <span class="kw">mod</span> <span class="ident">component</span>;
-<span class="kw">mod</span> <span class="ident">item_impl</span>;
 <span class="kw">mod</span> <span class="ident">macros</span>;
 <span class="kw">mod</span> <span class="ident">menu</span>;
 <span class="kw">mod</span> <span class="ident">view</span>;
+<span class="kw">mod</span> <span class="ident">visitors</span>;
 <span class="kw">mod</span> <span class="ident">widgets</span>;
 
 <span class="attribute">#[<span class="ident">macro_use</span>]</span>
@@ -443,7 +448,6 @@
 <span class="kw">mod</span> <span class="ident">factory</span>;
 
 <span class="kw">use</span> <span class="ident">attrs::Attrs</span>;
-<span class="kw">use</span> <span class="ident">item_impl::ItemImpl</span>;
 <span class="kw">use</span> <span class="ident">menu::Menus</span>;
 
 <span class="kw">fn</span> <span class="ident">gtk_import</span>() -&gt; <span class="ident">std::rc::Rc</span><span class="op">&lt;</span><span class="ident">syn::Path</span><span class="op">&gt;</span> {
@@ -581,17 +585,17 @@
 <span class="attribute">#[<span class="ident">proc_macro_attribute</span>]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">component</span>(<span class="ident">attributes</span>: <span class="ident">TokenStream</span>, <span class="ident">input</span>: <span class="ident">TokenStream</span>) -&gt; <span class="ident">TokenStream</span> {
     <span class="kw">let</span> <span class="ident">Attrs</span> { <span class="ident">visibility</span> } <span class="op">=</span> <span class="macro">parse_macro_input!</span>(<span class="ident">attributes</span> <span class="kw">as</span> <span class="ident">Attrs</span>);
-    <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="macro">parse_macro_input!</span>(<span class="ident">input</span> <span class="kw">as</span> <span class="ident">ItemImpl</span>);
+    <span class="kw">let</span> <span class="ident">component_impl</span> <span class="op">=</span> <span class="macro">parse_macro_input!</span>(<span class="ident">input</span> <span class="kw">as</span> <span class="ident">syn::ItemImpl</span>);
 
-    <span class="ident">component::generate_tokens</span>(<span class="ident">visibility</span>, <span class="ident">data</span>).<span class="ident">into</span>()
+    <span class="ident">component::generate_tokens</span>(<span class="ident">visibility</span>, <span class="ident">component_impl</span>).<span class="ident">into</span>()
 }
 
 <span class="attribute">#[<span class="ident">proc_macro_attribute</span>]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">factory</span>(<span class="ident">attributes</span>: <span class="ident">TokenStream</span>, <span class="ident">input</span>: <span class="ident">TokenStream</span>) -&gt; <span class="ident">TokenStream</span> {
     <span class="kw">let</span> <span class="ident">Attrs</span> { <span class="ident">visibility</span> } <span class="op">=</span> <span class="macro">parse_macro_input!</span>(<span class="ident">attributes</span> <span class="kw">as</span> <span class="ident">Attrs</span>);
-    <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="macro">parse_macro_input!</span>(<span class="ident">input</span> <span class="kw">as</span> <span class="ident">ItemImpl</span>);
+    <span class="kw">let</span> <span class="ident">factory_impl</span> <span class="op">=</span> <span class="macro">parse_macro_input!</span>(<span class="ident">input</span> <span class="kw">as</span> <span class="ident">syn::ItemImpl</span>);
 
-    <span class="ident">factory::generate_tokens</span>(<span class="ident">visibility</span>, <span class="ident">data</span>).<span class="ident">into</span>()
+    <span class="ident">factory::generate_tokens</span>(<span class="ident">visibility</span>, <span class="ident">factory_impl</span>).<span class="ident">into</span>()
 }
 
 <span class="comment">// Macro that implements [`relm4::factory::FactoryPrototype`](https://aaronerhardt.github.io/docs/relm4/relm4/factory/trait.FactoryPrototype.html)</span>
@@ -834,6 +838,12 @@
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">view</span>(<span class="ident">input</span>: <span class="ident">TokenStream</span>) -&gt; <span class="ident">TokenStream</span> {
     <span class="ident">view::generate_tokens</span>(<span class="ident">input</span>)
 }
+
+<span class="attribute">#[<span class="ident">test</span>]</span>
+<span class="kw">fn</span> <span class="ident">ui</span>() {
+    <span class="kw">let</span> <span class="ident">t</span> <span class="op">=</span> <span class="ident">trybuild::TestCases::new</span>();
+    <span class="ident">t</span>.<span class="ident">compile_fail</span>(<span class="string">&quot;tests/ui/compile-fail/**/*.rs&quot;</span>);
+}
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="relm4_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (27eb6d701 2022-07-04)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="relm4_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (7b46aa594 2022-07-05)" ></div>
 </body></html>
