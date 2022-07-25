@@ -201,6 +201,24 @@
 <span id="193">193</span>
 <span id="194">194</span>
 <span id="195">195</span>
+<span id="196">196</span>
+<span id="197">197</span>
+<span id="198">198</span>
+<span id="199">199</span>
+<span id="200">200</span>
+<span id="201">201</span>
+<span id="202">202</span>
+<span id="203">203</span>
+<span id="204">204</span>
+<span id="205">205</span>
+<span id="206">206</span>
+<span id="207">207</span>
+<span id="208">208</span>
+<span id="209">209</span>
+<span id="210">210</span>
+<span id="211">211</span>
+<span id="212">212</span>
+<span id="213">213</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2021-2022 Aaron Erhardt &lt;aaron.erhardt@t-online.de&gt;</span>
 <span class="comment">// Copyright 2022 System76 &lt;info@system76.com&gt;</span>
 <span class="comment">// SPDX-License-Identifier: MIT or Apache-2.0</span>
@@ -211,10 +229,12 @@
 <span class="kw">use</span> <span class="ident">async_oneshot::oneshot</span>;
 <span class="kw">use</span> <span class="ident">futures::FutureExt</span>;
 <span class="kw">use</span> <span class="ident">gtk::prelude::GtkWindowExt</span>;
+<span class="kw">use</span> <span class="ident">std::any</span>;
 <span class="kw">use</span> <span class="ident">std::cell::RefCell</span>;
 <span class="kw">use</span> <span class="ident">std::marker::PhantomData</span>;
 <span class="kw">use</span> <span class="ident">std::rc::Rc</span>;
 <span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
+<span class="kw">use</span> <span class="ident">tracing::info_span</span>;
 
 <span class="doccomment">/// A component that is ready for docking and launch.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
@@ -335,6 +355,14 @@
                                 <span class="kw-2">ref</span> <span class="kw-2">mut</span> <span class="ident">widgets</span>,
                             } <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="kw-2">*</span><span class="ident">watcher_</span>.<span class="ident">state</span>.<span class="ident">borrow_mut</span>();
 
+                            <span class="kw">let</span> <span class="ident">span</span> <span class="op">=</span> <span class="macro">info_span!</span>(
+                                <span class="string">&quot;update_with_view&quot;</span>,
+                                <span class="ident">input</span><span class="op">=</span><span class="question-mark">?</span><span class="ident">message</span>,
+                                <span class="ident">component</span><span class="op">=</span><span class="ident">any::type_name</span>::<span class="op">&lt;</span><span class="ident">C</span><span class="op">&gt;</span>(),
+                                <span class="ident">id</span><span class="op">=</span><span class="ident">model</span>.<span class="ident">id</span>(),
+                            );
+                            <span class="kw">let</span> <span class="ident">_enter</span> <span class="op">=</span> <span class="ident">span</span>.<span class="ident">enter</span>();
+
                             <span class="ident">model</span>.<span class="ident">update_with_view</span>(<span class="ident">widgets</span>, <span class="ident">message</span>, <span class="kw-2">&amp;</span><span class="ident">component_sender</span>);
                         }
                     }
@@ -346,6 +374,14 @@
                                 <span class="kw-2">ref</span> <span class="kw-2">mut</span> <span class="ident">model</span>,
                                 <span class="kw-2">ref</span> <span class="kw-2">mut</span> <span class="ident">widgets</span>,
                             } <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="kw-2">*</span><span class="ident">watcher_</span>.<span class="ident">state</span>.<span class="ident">borrow_mut</span>();
+
+                            <span class="kw">let</span> <span class="ident">span</span> <span class="op">=</span> <span class="macro">info_span!</span>(
+                                <span class="string">&quot;update_cmd_with_view&quot;</span>,
+                                <span class="ident">cmd_output</span><span class="op">=</span><span class="question-mark">?</span><span class="ident">message</span>,
+                                <span class="ident">component</span><span class="op">=</span><span class="ident">any::type_name</span>::<span class="op">&lt;</span><span class="ident">C</span><span class="op">&gt;</span>(),
+                                <span class="ident">id</span><span class="op">=</span><span class="ident">model</span>.<span class="ident">id</span>(),
+                            );
+                            <span class="kw">let</span> <span class="ident">_enter</span> <span class="op">=</span> <span class="ident">span</span>.<span class="ident">enter</span>();
 
                             <span class="ident">model</span>.<span class="ident">update_cmd_with_view</span>(<span class="ident">widgets</span>, <span class="ident">message</span>, <span class="kw-2">&amp;</span><span class="ident">component_sender</span>);
                         }
@@ -397,5 +433,5 @@
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="relm4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (7b46aa594 2022-07-05)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="relm4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (7fe022f5a 2022-07-24)" ></div>
 </body></html>

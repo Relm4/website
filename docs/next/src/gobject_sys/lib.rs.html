@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/github/home/.cargo/git/checkouts/gtk-rs-core-7be42ca38bd6361c/3a0325e/glib/gobject-sys/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../gobject_sys/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/github/home/.cargo/git/checkouts/gtk-rs-core-7be42ca38bd6361c/a6e33bf/glib/gobject-sys/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../gobject_sys/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
         </a><h2 class="location"></h2>
     </nav>
     <nav class="sidebar"><a class="sidebar-logo" href="../../gobject_sys/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
@@ -2786,6 +2786,19 @@
 <span id="2780">2780</span>
 <span id="2781">2781</span>
 <span id="2782">2782</span>
+<span id="2783">2783</span>
+<span id="2784">2784</span>
+<span id="2785">2785</span>
+<span id="2786">2786</span>
+<span id="2787">2787</span>
+<span id="2788">2788</span>
+<span id="2789">2789</span>
+<span id="2790">2790</span>
+<span id="2791">2791</span>
+<span id="2792">2792</span>
+<span id="2793">2793</span>
+<span id="2794">2794</span>
+<span id="2795">2795</span>
 </pre><pre class="rust"><code><span class="comment">// This file was generated by gir (https://github.com/gtk-rs/gir)</span>
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files)</span>
 <span class="comment">// DO NOT EDIT</span>
@@ -2859,6 +2872,7 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">G_BINDING_INVERT_BOOLEAN</span>: <span class="ident">GBindingFlags</span> <span class="op">=</span> <span class="number">4</span>;
 
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">GConnectFlags</span> <span class="op">=</span> <span class="ident">c_uint</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">G_CONNECT_DEFAULT</span>: <span class="ident">GConnectFlags</span> <span class="op">=</span> <span class="number">0</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">G_CONNECT_AFTER</span>: <span class="ident">GConnectFlags</span> <span class="op">=</span> <span class="number">1</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">G_CONNECT_SWAPPED</span>: <span class="ident">GConnectFlags</span> <span class="op">=</span> <span class="number">2</span>;
 
@@ -2904,6 +2918,7 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">G_TYPE_DEBUG_MASK</span>: <span class="ident">GTypeDebugFlags</span> <span class="op">=</span> <span class="number">7</span>;
 
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">GTypeFlags</span> <span class="op">=</span> <span class="ident">c_uint</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">G_TYPE_FLAG_NONE</span>: <span class="ident">GTypeFlags</span> <span class="op">=</span> <span class="number">0</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">G_TYPE_FLAG_ABSTRACT</span>: <span class="ident">GTypeFlags</span> <span class="op">=</span> <span class="number">16</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">G_TYPE_FLAG_VALUE_ABSTRACT</span>: <span class="ident">GTypeFlags</span> <span class="op">=</span> <span class="number">32</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">G_TYPE_FLAG_FINAL</span>: <span class="ident">GTypeFlags</span> <span class="op">=</span> <span class="number">64</span>;
@@ -3156,7 +3171,10 @@
     <span class="kw">pub</span> <span class="ident">notify</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span>(<span class="kw-2">*mut</span> <span class="ident">GObject</span>, <span class="kw-2">*mut</span> <span class="ident">GParamSpec</span>)<span class="op">&gt;</span>,
     <span class="kw">pub</span> <span class="ident">constructed</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span>(<span class="kw-2">*mut</span> <span class="ident">GObject</span>)<span class="op">&gt;</span>,
     <span class="kw">pub</span> <span class="ident">flags</span>: <span class="ident">size_t</span>,
-    <span class="kw">pub</span> <span class="ident">pdummy</span>: [<span class="ident">gpointer</span>; <span class="number">6</span>],
+    <span class="kw">pub</span> <span class="ident">n_construct_properties</span>: <span class="ident">size_t</span>,
+    <span class="kw">pub</span> <span class="ident">pspecs</span>: <span class="ident">gpointer</span>,
+    <span class="kw">pub</span> <span class="ident">n_pspecs</span>: <span class="ident">size_t</span>,
+    <span class="kw">pub</span> <span class="ident">pdummy</span>: [<span class="ident">gpointer</span>; <span class="number">3</span>],
 }
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GInitiallyUnownedClass</span> {
@@ -3214,7 +3232,10 @@
     <span class="kw">pub</span> <span class="ident">notify</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span>(<span class="kw-2">*mut</span> <span class="ident">GObject</span>, <span class="kw-2">*mut</span> <span class="ident">GParamSpec</span>)<span class="op">&gt;</span>,
     <span class="kw">pub</span> <span class="ident">constructed</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span>(<span class="kw-2">*mut</span> <span class="ident">GObject</span>)<span class="op">&gt;</span>,
     <span class="kw">pub</span> <span class="ident">flags</span>: <span class="ident">size_t</span>,
-    <span class="kw">pub</span> <span class="ident">pdummy</span>: [<span class="ident">gpointer</span>; <span class="number">6</span>],
+    <span class="kw">pub</span> <span class="ident">n_construct_properties</span>: <span class="ident">size_t</span>,
+    <span class="kw">pub</span> <span class="ident">pspecs</span>: <span class="ident">gpointer</span>,
+    <span class="kw">pub</span> <span class="ident">n_pspecs</span>: <span class="ident">size_t</span>,
+    <span class="kw">pub</span> <span class="ident">pdummy</span>: [<span class="ident">gpointer</span>; <span class="number">3</span>],
 }
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GObjectClass</span> {
@@ -3262,7 +3283,8 @@
     <span class="kw">pub</span> <span class="ident">value_validate</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span>(<span class="kw-2">*mut</span> <span class="ident">GParamSpec</span>, <span class="kw-2">*mut</span> <span class="ident">GValue</span>) -&gt; <span class="ident">gboolean</span><span class="op">&gt;</span>,
     <span class="kw">pub</span> <span class="ident">values_cmp</span>:
         <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span>(<span class="kw-2">*mut</span> <span class="ident">GParamSpec</span>, <span class="kw-2">*const</span> <span class="ident">GValue</span>, <span class="kw-2">*const</span> <span class="ident">GValue</span>) -&gt; <span class="ident">c_int</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">dummy</span>: [<span class="ident">gpointer</span>; <span class="number">4</span>],
+    <span class="kw">pub</span> <span class="ident">value_is_valid</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span>(<span class="kw-2">*mut</span> <span class="ident">GParamSpec</span>, <span class="kw-2">*mut</span> <span class="ident">GValue</span>) -&gt; <span class="ident">gboolean</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">dummy</span>: [<span class="ident">gpointer</span>; <span class="number">3</span>],
 }
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GParamSpecClass</span> {
@@ -3274,6 +3296,7 @@
             .<span class="ident">field</span>(<span class="string">&quot;value_set_default&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">value_set_default</span>)
             .<span class="ident">field</span>(<span class="string">&quot;value_validate&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">value_validate</span>)
             .<span class="ident">field</span>(<span class="string">&quot;values_cmp&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">values_cmp</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;value_is_valid&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">value_is_valid</span>)
             .<span class="ident">finish</span>()
     }
 }
@@ -5293,6 +5316,9 @@
         <span class="ident">strict_validation</span>: <span class="ident">gboolean</span>,
     ) -&gt; <span class="ident">gboolean</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_param_value_defaults</span>(<span class="ident">pspec</span>: <span class="kw-2">*mut</span> <span class="ident">GParamSpec</span>, <span class="ident">value</span>: <span class="kw-2">*const</span> <span class="ident">GValue</span>) -&gt; <span class="ident">gboolean</span>;
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v2_74&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v2_74&quot;</span>)))]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_param_value_is_valid</span>(<span class="ident">pspec</span>: <span class="kw-2">*mut</span> <span class="ident">GParamSpec</span>, <span class="ident">value</span>: <span class="kw-2">*const</span> <span class="ident">GValue</span>) -&gt; <span class="ident">gboolean</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_param_value_set_default</span>(<span class="ident">pspec</span>: <span class="kw-2">*mut</span> <span class="ident">GParamSpec</span>, <span class="ident">value</span>: <span class="kw-2">*mut</span> <span class="ident">GValue</span>);
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_param_value_validate</span>(<span class="ident">pspec</span>: <span class="kw-2">*mut</span> <span class="ident">GParamSpec</span>, <span class="ident">value</span>: <span class="kw-2">*mut</span> <span class="ident">GValue</span>) -&gt; <span class="ident">gboolean</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">g_param_values_cmp</span>(
@@ -5569,5 +5595,5 @@
 
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gobject_sys" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (7b46aa594 2022-07-05)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gobject_sys" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (7fe022f5a 2022-07-24)" ></div>
 </body></html>

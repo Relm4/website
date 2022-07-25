@@ -389,9 +389,9 @@
 }
 
 <span class="kw">fn</span> <span class="ident">main</span>() {
-    <span class="kw">let</span> <span class="ident">app</span>: <span class="ident">RelmApp</span><span class="op">&lt;</span><span class="ident">AppModel</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">RelmApp::new</span>(<span class="string">&quot;relm4.test.macro_reference&quot;</span>);
-    <span class="ident">app</span>.<span class="ident">run</span>(<span class="ident">AppInit</span> { <span class="ident">counter</span>: <span class="number">0</span> });
+    <span class="kw">let</span> <span class="ident">app</span> <span class="op">=</span> <span class="ident">RelmApp::new</span>(<span class="string">&quot;relm4.test.macro_reference&quot;</span>);
+    <span class="ident">app</span>.<span class="ident">run</span>::<span class="op">&lt;</span><span class="ident">AppModel</span><span class="op">&gt;</span>(<span class="ident">AppInit</span> { <span class="ident">counter</span>: <span class="number">0</span> });
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="macro_reference" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (7b46aa594 2022-07-05)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="macro_reference" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (7fe022f5a 2022-07-24)" ></div>
 </body></html>

@@ -238,6 +238,9 @@
 <span id="232">232</span>
 <span id="233">233</span>
 <span id="234">234</span>
+<span id="235">235</span>
+<span id="236">236</span>
+<span id="237">237</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2022 System76 &lt;info@system76.com&gt;</span>
 <span class="comment">// SPDX-License-Identifier: MIT or Apache-2.0</span>
 
@@ -319,6 +322,7 @@
     <span class="kw">pub</span> <span class="ident">button_sg</span>: <span class="ident">gtk::SizeGroup</span>,
 }
 
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Input</span> {
     <span class="ident">AddSetting</span> {
         <span class="ident">description</span>: <span class="ident">String</span>,
@@ -329,11 +333,13 @@
     <span class="ident">Reload</span>,
 }
 
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Output</span> {
     <span class="ident">Clicked</span>(<span class="ident">u32</span>),
     <span class="ident">Reload</span>,
 }
 
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">CmdOut</span> {
     <span class="ident">Reload</span>,
 }
@@ -473,5 +479,5 @@
     });
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="settings_list" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (7b46aa594 2022-07-05)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="settings_list" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (7fe022f5a 2022-07-24)" ></div>
 </body></html>

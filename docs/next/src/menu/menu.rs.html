@@ -170,6 +170,7 @@
 <span id="164">164</span>
 <span id="165">165</span>
 <span id="166">166</span>
+<span id="167">167</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">gtk::prelude</span>::{<span class="ident">BoxExt</span>, <span class="ident">ButtonExt</span>, <span class="ident">GtkWindowExt</span>, <span class="ident">OrientableExt</span>, <span class="ident">WidgetExt</span>};
 <span class="kw">use</span> <span class="ident">relm4</span>::{
     <span class="ident">actions</span>::{<span class="ident">AccelsPlus</span>, <span class="ident">ActionablePlus</span>, <span class="ident">RelmAction</span>, <span class="ident">RelmActionGroup</span>},
@@ -181,6 +182,7 @@
     <span class="ident">counter</span>: <span class="ident">u8</span>,
 }
 
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">enum</span> <span class="ident">AppMsg</span> {
     <span class="ident">Increment</span>,
     <span class="ident">Decrement</span>,
@@ -330,12 +332,12 @@
 <span class="macro">relm4::new_stateful_action!</span>(<span class="ident">TestU8Action</span>, <span class="ident">WindowActionGroup</span>, <span class="string">&quot;test2&quot;</span>, <span class="ident">u8</span>, <span class="ident">u8</span>);
 
 <span class="kw">fn</span> <span class="ident">main</span>() {
-    <span class="kw">let</span> <span class="ident">app</span>: <span class="ident">RelmApp</span><span class="op">&lt;</span><span class="ident">AppModel</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">RelmApp::new</span>(<span class="string">&quot;relm4.test.menu&quot;</span>);
+    <span class="kw">let</span> <span class="ident">app</span> <span class="op">=</span> <span class="ident">RelmApp::new</span>(<span class="string">&quot;relm4.test.menu&quot;</span>);
     <span class="ident">app</span>.<span class="ident">app</span>
         .<span class="ident">set_accelerators_for_action</span>::<span class="op">&lt;</span><span class="ident">TestAction</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span>[<span class="string">&quot;&lt;primary&gt;W&quot;</span>]);
 
-    <span class="ident">app</span>.<span class="ident">run</span>(<span class="number">0</span>);
+    <span class="ident">app</span>.<span class="ident">run</span>::<span class="op">&lt;</span><span class="ident">AppModel</span><span class="op">&gt;</span>(<span class="number">0</span>);
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="menu" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (7b46aa594 2022-07-05)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="menu" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (7fe022f5a 2022-07-24)" ></div>
 </body></html>

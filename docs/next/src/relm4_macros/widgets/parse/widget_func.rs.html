@@ -70,10 +70,6 @@
 <span id="62">62</span>
 <span id="63">63</span>
 <span id="64">64</span>
-<span id="65">65</span>
-<span id="66">66</span>
-<span id="67">67</span>
-<span id="68">68</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">syn::parse::ParseStream</span>;
 <span class="kw">use</span> <span class="ident">syn::punctuated::Punctuated</span>;
 <span class="kw">use</span> <span class="ident">syn::spanned::Spanned</span>;
@@ -105,27 +101,23 @@
 
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">args</span> <span class="op">=</span> <span class="prelude-val">None</span>;
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ty</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">method_chain</span> <span class="op">=</span> <span class="prelude-val">None</span>;
 
         <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="ident">token::Paren</span>) {
             <span class="kw">let</span> <span class="ident">paren_input</span> <span class="op">=</span> <span class="ident">parse_util::parens</span>(<span class="ident">input</span>)<span class="question-mark">?</span>;
             <span class="ident">args</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">paren_input</span>.<span class="ident">call</span>(<span class="ident">Punctuated::parse_terminated</span>)<span class="question-mark">?</span>);
-            <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token!</span> [-&gt;]) {
-                <span class="kw">let</span> <span class="ident">_token</span>: <span class="macro">Token!</span> [-&gt;] <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">ty_path</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-                <span class="ident">ty</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">ty_path</span>);
+
+            <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="ident">token::Dot</span>) {
+                <span class="kw">let</span> <span class="ident">_dot</span>: <span class="ident">token::Dot</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
+                <span class="ident">method_chain</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">Punctuated::parse_separated_nonempty</span>(<span class="ident">input</span>)<span class="question-mark">?</span>);
             }
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token!</span> [-&gt;]) {
+        }
+
+        <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token!</span> [-&gt;]) {
             <span class="kw">let</span> <span class="ident">_token</span>: <span class="macro">Token!</span> [-&gt;] <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
             <span class="kw">let</span> <span class="ident">ty_path</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
             <span class="ident">ty</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">ty_path</span>);
         }
-
-        <span class="kw">let</span> <span class="ident">method_chain</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="ident">token::Dot</span>) {
-            <span class="kw">let</span> <span class="ident">_dot</span>: <span class="ident">token::Dot</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-            <span class="prelude-val">Some</span>(<span class="ident">Punctuated::parse_separated_nonempty</span>(<span class="ident">input</span>)<span class="question-mark">?</span>)
-        } <span class="kw">else</span> {
-            <span class="prelude-val">None</span>
-        };
 
         <span class="prelude-val">Ok</span>(<span class="ident">WidgetFunc</span> {
             <span class="ident">path</span>: <span class="ident">path</span>.<span class="ident">clone</span>(),
@@ -143,5 +135,5 @@
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="relm4_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (7b46aa594 2022-07-05)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="relm4_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (7fe022f5a 2022-07-24)" ></div>
 </body></html>

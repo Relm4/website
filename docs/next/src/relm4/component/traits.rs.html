@@ -167,9 +167,21 @@
 <span id="159">159</span>
 <span id="160">160</span>
 <span id="161">161</span>
+<span id="162">162</span>
+<span id="163">163</span>
+<span id="164">164</span>
+<span id="165">165</span>
+<span id="166">166</span>
+<span id="167">167</span>
+<span id="168">168</span>
+<span id="169">169</span>
+<span id="170">170</span>
+<span id="171">171</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2021-2022 Aaron Erhardt &lt;aaron.erhardt@t-online.de&gt;</span>
 <span class="comment">// Copyright 2022 System76 &lt;info@system76.com&gt;</span>
 <span class="comment">// SPDX-License-Identifier: MIT or Apache-2.0</span>
+
+<span class="kw">use</span> <span class="ident">std::fmt::Debug</span>;
 
 <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">ComponentSender</span>, <span class="ident">Sender</span>};
@@ -177,19 +189,19 @@
 <span class="doccomment">/// Elm-style variant of a Component with view updates separated from input updates</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Component</span>: <span class="ident">Sized</span> <span class="op">+</span> <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Messages which are received from commands executing in the background.</span>
-    <span class="kw">type</span> <span class="ident">CommandOutput</span>: <span class="lifetime">&#39;static</span> <span class="op">+</span> <span class="ident">Send</span>;
+    <span class="kw">type</span> <span class="ident">CommandOutput</span>: <span class="ident">Debug</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>;
 
     <span class="doccomment">/// The message type that the component accepts as inputs.</span>
-    <span class="kw">type</span> <span class="ident">Input</span>: <span class="lifetime">&#39;static</span>;
+    <span class="kw">type</span> <span class="ident">Input</span>: <span class="ident">Debug</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>;
 
     <span class="doccomment">/// The message type that the component provides as outputs.</span>
-    <span class="kw">type</span> <span class="ident">Output</span>: <span class="lifetime">&#39;static</span>;
+    <span class="kw">type</span> <span class="ident">Output</span>: <span class="ident">Debug</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>;
 
     <span class="doccomment">/// The initial parameter(s) for launch.</span>
     <span class="kw">type</span> <span class="ident">InitParams</span>;
 
     <span class="doccomment">/// The widget that was constructed by the component.</span>
-    <span class="kw">type</span> <span class="ident">Root</span>: <span class="ident">std::fmt::Debug</span> <span class="op">+</span> <span class="ident">OnDestroy</span>;
+    <span class="kw">type</span> <span class="ident">Root</span>: <span class="ident">Debug</span> <span class="op">+</span> <span class="ident">OnDestroy</span>;
 
     <span class="doccomment">/// The type that&#39;s used for storing widgets created for this component.</span>
     <span class="kw">type</span> <span class="ident">Widgets</span>: <span class="lifetime">&#39;static</span>;
@@ -246,15 +258,23 @@
     <span class="doccomment">/// Last method called before a component is shut down.</span>
     <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused</span>)]</span>
     <span class="kw">fn</span> <span class="ident">shutdown</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">widgets</span>: <span class="kw-2">&amp;mut</span> <span class="ident"><span class="self">Self</span>::Widgets</span>, <span class="ident">output</span>: <span class="ident">Sender</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Output</span><span class="op">&gt;</span>) {}
+
+    <span class="doccomment">/// An identifier for the component used for debug logging.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The default implementation of this method uses the address of the component, but</span>
+    <span class="doccomment">/// implementations are free to provide more meaningful identifiers.</span>
+    <span class="kw">fn</span> <span class="ident">id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">String</span> {
+        <span class="macro">format!</span>(<span class="string">&quot;{:p}&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>)
+    }
 }
 
 <span class="doccomment">/// Elm-style variant of a Component with view updates separated from input updates</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">SimpleComponent</span>: <span class="ident">Sized</span> <span class="op">+</span> <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// The message type that the component accepts as inputs.</span>
-    <span class="kw">type</span> <span class="ident">Input</span>: <span class="lifetime">&#39;static</span>;
+    <span class="kw">type</span> <span class="ident">Input</span>: <span class="ident">Debug</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>;
 
     <span class="doccomment">/// The message type that the component provides as outputs.</span>
-    <span class="kw">type</span> <span class="ident">Output</span>: <span class="lifetime">&#39;static</span>;
+    <span class="kw">type</span> <span class="ident">Output</span>: <span class="ident">Debug</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>;
 
     <span class="doccomment">/// The initial parameter(s) for launch.</span>
     <span class="kw">type</span> <span class="ident">InitParams</span>;
@@ -329,5 +349,5 @@
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="relm4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (7b46aa594 2022-07-05)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="relm4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (7fe022f5a 2022-07-24)" ></div>
 </body></html>

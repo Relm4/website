@@ -290,6 +290,7 @@
 <span id="284">284</span>
 <span id="285">285</span>
 <span id="286">286</span>
+<span id="287">287</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">gtk::prelude</span>::{<span class="ident">BoxExt</span>, <span class="ident">ButtonExt</span>, <span class="ident">GtkWindowExt</span>, <span class="ident">OrientableExt</span>};
 <span class="kw">use</span> <span class="ident">relm4</span>::{
     <span class="ident">adw</span>,
@@ -308,6 +309,7 @@
     <span class="ident">Decrement</span>,
 }
 
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">enum</span> <span class="ident">CounterOutput</span> {
     <span class="ident">SendFront</span>(<span class="ident">DynamicIndex</span>),
     <span class="ident">MoveUp</span>(<span class="ident">DynamicIndex</span>),
@@ -573,9 +575,9 @@
 }
 
 <span class="kw">fn</span> <span class="ident">main</span>() {
-    <span class="kw">let</span> <span class="ident">app</span>: <span class="ident">RelmApp</span><span class="op">&lt;</span><span class="ident">AppModel</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">RelmApp::new</span>(<span class="string">&quot;relm4.test.tabFactory&quot;</span>);
-    <span class="ident">app</span>.<span class="ident">run</span>(<span class="number">0</span>);
+    <span class="kw">let</span> <span class="ident">app</span> <span class="op">=</span> <span class="ident">RelmApp::new</span>(<span class="string">&quot;relm4.test.tabFactory&quot;</span>);
+    <span class="ident">app</span>.<span class="ident">run</span>::<span class="op">&lt;</span><span class="ident">AppModel</span><span class="op">&gt;</span>(<span class="number">0</span>);
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="tab_factory" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (7b46aa594 2022-07-05)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="tab_factory" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (7fe022f5a 2022-07-24)" ></div>
 </body></html>
