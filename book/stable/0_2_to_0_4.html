@@ -162,8 +162,7 @@
 <p>The <a href="https://aaronerhardt.github.io/docs/relm4/relm4/trait.Components.html"><code>Components</code></a> trait now has a new method called <code>connect_parent</code>.
 This method doesn't do much more than passing the parent widgets down to individual components and originated unintentionally in the rework of the initialization process.
 Because this method is usually just repetitive code, you can now use the derive macro instead:</p>
-<pre><pre class="playground"><code class="language-rust  no_run">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust  no_run"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(relm4::Components)]
 struct AppComponents {
