@@ -18,7 +18,14 @@ the model of one element.</p>
 <p>Returns None if the deque is empty.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.pop_back" class="method has-srclink"><span class="rightside"><a class="srclink" href="../../../src/relm4/factory/collections/vec_deque.rs.html#149-155">source</a></span><h4 class="code-header">pub fn <a href="#method.pop_back" class="fnname">pop_back</a>(&amp;mut self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;C&gt;</h4></section></summary><div class="docblock"><p>Removes the last element from the <a href="struct.FactoryVecDeque.html" title="FactoryVecDeque"><code>FactoryVecDeque</code></a> and returns it,
 or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> if it is empty.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[8,8],&quot;../../../src/factory/factory.rs.html#211&quot;,&quot;line 211&quot;]]"><div class="scraped-example-title">examples/factory.rs (<a href="../../../src/factory/factory.rs.html#211">line 211</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>203</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[8,8],&quot;../../../src/factory/factory.rs.html#204&quot;,&quot;line 204&quot;]]"><div class="scraped-example-title">examples/factory.rs (<a href="../../../src/factory/factory.rs.html#204">line 204</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>196</span>
+<span>197</span>
+<span>198</span>
+<span>199</span>
+<span>200</span>
+<span>201</span>
+<span>202</span>
+<span>203</span>
 <span>204</span>
 <span>205</span>
 <span>206</span>
@@ -41,13 +48,6 @@ or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#varia
 <span>223</span>
 <span>224</span>
 <span>225</span>
-<span>226</span>
-<span>227</span>
-<span>228</span>
-<span>229</span>
-<span>230</span>
-<span>231</span>
-<span>232</span>
 </pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident"><span class="self">Self</span>::Input</span>, <span class="ident">_sender</span>: <span class="kw-2">&amp;</span><span class="ident">ComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">counters_guard</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">guard</span>();
         <span class="kw">match</span> <span class="ident">msg</span> {
@@ -140,7 +140,13 @@ or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#varia
             }
         }
     }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[9,9],&quot;../../../src/grid_factory/grid_factory.rs.html#262&quot;,&quot;line 262&quot;]]"><div class="scraped-example-title">examples/grid_factory.rs (<a href="../../../src/grid_factory/grid_factory.rs.html#262">line 262</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>253</span>
+</div></div><div class="scraped-example " data-locs="[[[9,9],&quot;../../../src/grid_factory/grid_factory.rs.html#256&quot;,&quot;line 256&quot;]]"><div class="scraped-example-title">examples/grid_factory.rs (<a href="../../../src/grid_factory/grid_factory.rs.html#256">line 256</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>247</span>
+<span>248</span>
+<span>249</span>
+<span>250</span>
+<span>251</span>
+<span>252</span>
+<span>253</span>
 <span>254</span>
 <span>255</span>
 <span>256</span>
@@ -165,12 +171,6 @@ or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#varia
 <span>275</span>
 <span>276</span>
 <span>277</span>
-<span>278</span>
-<span>279</span>
-<span>280</span>
-<span>281</span>
-<span>282</span>
-<span>283</span>
 </pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident"><span class="self">Self</span>::Input</span>, <span class="ident">_sender</span>: <span class="kw-2">&amp;</span><span class="ident">ComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">counters_guard</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">guard</span>();
 
@@ -258,7 +258,14 @@ Returns <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#
 
         <span class="ident">ComponentParts</span> { <span class="ident">model</span>, <span class="ident">widgets</span> }
     }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[4,4],&quot;../../../src/factory/factory.rs.html#207&quot;,&quot;line 207&quot;]]"><div class="scraped-example-title">examples/factory.rs (<a href="../../../src/factory/factory.rs.html#207">line 207</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>203</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[4,4],&quot;../../../src/factory/factory.rs.html#200&quot;,&quot;line 200&quot;]]"><div class="scraped-example-title">examples/factory.rs (<a href="../../../src/factory/factory.rs.html#200">line 200</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>196</span>
+<span>197</span>
+<span>198</span>
+<span>199</span>
+<span>200</span>
+<span>201</span>
+<span>202</span>
+<span>203</span>
 <span>204</span>
 <span>205</span>
 <span>206</span>
@@ -281,13 +288,6 @@ Returns <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#
 <span>223</span>
 <span>224</span>
 <span>225</span>
-<span>226</span>
-<span>227</span>
-<span>228</span>
-<span>229</span>
-<span>230</span>
-<span>231</span>
-<span>232</span>
 </pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident"><span class="self">Self</span>::Input</span>, <span class="ident">_sender</span>: <span class="kw-2">&amp;</span><span class="ident">ComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">counters_guard</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">guard</span>();
         <span class="kw">match</span> <span class="ident">msg</span> {
@@ -318,7 +318,13 @@ Returns <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#
             }
         }
     }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[5,5],&quot;../../../src/grid_factory/grid_factory.rs.html#258&quot;,&quot;line 258&quot;]]"><div class="scraped-example-title">examples/grid_factory.rs (<a href="../../../src/grid_factory/grid_factory.rs.html#258">line 258</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>253</span>
+</div></div><div class="scraped-example " data-locs="[[[5,5],&quot;../../../src/grid_factory/grid_factory.rs.html#252&quot;,&quot;line 252&quot;]]"><div class="scraped-example-title">examples/grid_factory.rs (<a href="../../../src/grid_factory/grid_factory.rs.html#252">line 252</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>247</span>
+<span>248</span>
+<span>249</span>
+<span>250</span>
+<span>251</span>
+<span>252</span>
+<span>253</span>
 <span>254</span>
 <span>255</span>
 <span>256</span>
@@ -343,12 +349,6 @@ Returns <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#
 <span>275</span>
 <span>276</span>
 <span>277</span>
-<span>278</span>
-<span>279</span>
-<span>280</span>
-<span>281</span>
-<span>282</span>
-<span>283</span>
 </pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident"><span class="self">Self</span>::Input</span>, <span class="ident">_sender</span>: <span class="kw-2">&amp;</span><span class="ident">ComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">counters_guard</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">guard</span>();
 
@@ -502,7 +502,14 @@ shifting all elements between these positions.</p>
 <p>Element at index 0 is the front of the queue.</p>
 <h5 id="panics-2"><a href="#panics-2">Panics</a></h5>
 <p>Panics if either index is out of bounds.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-3"><a href="#scraped-examples-3">Examples found in repository</a><a class="scrape-help" href="../../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[18,18],&quot;../../../src/factory/factory.rs.html#221&quot;,&quot;line 221&quot;],[[25,25],&quot;../../../src/factory/factory.rs.html#228&quot;,&quot;line 228&quot;]]"><div class="scraped-example-title">examples/factory.rs (<a href="../../../src/factory/factory.rs.html#221">line 221</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>203</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-3"><a href="#scraped-examples-3">Examples found in repository</a><a class="scrape-help" href="../../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[18,18],&quot;../../../src/factory/factory.rs.html#214&quot;,&quot;line 214&quot;],[[25,25],&quot;../../../src/factory/factory.rs.html#221&quot;,&quot;line 221&quot;]]"><div class="scraped-example-title">examples/factory.rs (<a href="../../../src/factory/factory.rs.html#214">line 214</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>196</span>
+<span>197</span>
+<span>198</span>
+<span>199</span>
+<span>200</span>
+<span>201</span>
+<span>202</span>
+<span>203</span>
 <span>204</span>
 <span>205</span>
 <span>206</span>
@@ -525,13 +532,6 @@ shifting all elements between these positions.</p>
 <span>223</span>
 <span>224</span>
 <span>225</span>
-<span>226</span>
-<span>227</span>
-<span>228</span>
-<span>229</span>
-<span>230</span>
-<span>231</span>
-<span>232</span>
 </pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident"><span class="self">Self</span>::Input</span>, <span class="ident">_sender</span>: <span class="kw-2">&amp;</span><span class="ident">ComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">counters_guard</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">guard</span>();
         <span class="kw">match</span> <span class="ident">msg</span> {
@@ -624,7 +624,13 @@ shifting all elements between these positions.</p>
             }
         }
     }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[19,19],&quot;../../../src/grid_factory/grid_factory.rs.html#272&quot;,&quot;line 272&quot;],[[26,26],&quot;../../../src/grid_factory/grid_factory.rs.html#279&quot;,&quot;line 279&quot;]]"><div class="scraped-example-title">examples/grid_factory.rs (<a href="../../../src/grid_factory/grid_factory.rs.html#272">line 272</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>253</span>
+</div></div><div class="scraped-example " data-locs="[[[19,19],&quot;../../../src/grid_factory/grid_factory.rs.html#266&quot;,&quot;line 266&quot;],[[26,26],&quot;../../../src/grid_factory/grid_factory.rs.html#273&quot;,&quot;line 273&quot;]]"><div class="scraped-example-title">examples/grid_factory.rs (<a href="../../../src/grid_factory/grid_factory.rs.html#266">line 266</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>247</span>
+<span>248</span>
+<span>249</span>
+<span>250</span>
+<span>251</span>
+<span>252</span>
+<span>253</span>
 <span>254</span>
 <span>255</span>
 <span>256</span>
@@ -649,12 +655,6 @@ shifting all elements between these positions.</p>
 <span>275</span>
 <span>276</span>
 <span>277</span>
-<span>278</span>
-<span>279</span>
-<span>280</span>
-<span>281</span>
-<span>282</span>
-<span>283</span>
 </pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident"><span class="self">Self</span>::Input</span>, <span class="ident">_sender</span>: <span class="kw-2">&amp;</span><span class="ident">ComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">counters_guard</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">guard</span>();
 
@@ -690,7 +690,14 @@ shifting all elements between these positions.</p>
 shifting all elements between these positions.</p>
 <h5 id="panics-3"><a href="#panics-3">Panics</a></h5>
 <p>Panics if index is out of bounds.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-4"><a href="#scraped-examples-4">Examples found in repository</a><a class="scrape-help" href="../../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[11,11],&quot;../../../src/factory/factory.rs.html#214&quot;,&quot;line 214&quot;]]"><div class="scraped-example-title">examples/factory.rs (<a href="../../../src/factory/factory.rs.html#214">line 214</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>203</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-4"><a href="#scraped-examples-4">Examples found in repository</a><a class="scrape-help" href="../../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[11,11],&quot;../../../src/factory/factory.rs.html#207&quot;,&quot;line 207&quot;]]"><div class="scraped-example-title">examples/factory.rs (<a href="../../../src/factory/factory.rs.html#207">line 207</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>196</span>
+<span>197</span>
+<span>198</span>
+<span>199</span>
+<span>200</span>
+<span>201</span>
+<span>202</span>
+<span>203</span>
 <span>204</span>
 <span>205</span>
 <span>206</span>
@@ -713,13 +720,6 @@ shifting all elements between these positions.</p>
 <span>223</span>
 <span>224</span>
 <span>225</span>
-<span>226</span>
-<span>227</span>
-<span>228</span>
-<span>229</span>
-<span>230</span>
-<span>231</span>
-<span>232</span>
 </pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident"><span class="self">Self</span>::Input</span>, <span class="ident">_sender</span>: <span class="kw-2">&amp;</span><span class="ident">ComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">counters_guard</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">guard</span>();
         <span class="kw">match</span> <span class="ident">msg</span> {
@@ -812,7 +812,13 @@ shifting all elements between these positions.</p>
             }
         }
     }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[12,12],&quot;../../../src/grid_factory/grid_factory.rs.html#265&quot;,&quot;line 265&quot;]]"><div class="scraped-example-title">examples/grid_factory.rs (<a href="../../../src/grid_factory/grid_factory.rs.html#265">line 265</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>253</span>
+</div></div><div class="scraped-example " data-locs="[[[12,12],&quot;../../../src/grid_factory/grid_factory.rs.html#259&quot;,&quot;line 259&quot;]]"><div class="scraped-example-title">examples/grid_factory.rs (<a href="../../../src/grid_factory/grid_factory.rs.html#259">line 259</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>247</span>
+<span>248</span>
+<span>249</span>
+<span>250</span>
+<span>251</span>
+<span>252</span>
+<span>253</span>
 <span>254</span>
 <span>255</span>
 <span>256</span>
@@ -837,12 +843,6 @@ shifting all elements between these positions.</p>
 <span>275</span>
 <span>276</span>
 <span>277</span>
-<span>278</span>
-<span>279</span>
-<span>280</span>
-<span>281</span>
-<span>282</span>
-<span>283</span>
 </pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident"><span class="self">Self</span>::Input</span>, <span class="ident">_sender</span>: <span class="kw-2">&amp;</span><span class="ident">ComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">counters_guard</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">guard</span>();
 
@@ -880,7 +880,14 @@ shifting all elements between these positions.</p>
 <p>Panics if index is out of bounds.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.clear" class="method has-srclink"><span class="rightside"><a class="srclink" href="../../../src/relm4/factory/collections/vec_deque.rs.html#319-327">source</a></span><h4 class="code-header">pub fn <a href="#method.clear" class="fnname">clear</a>(&amp;mut self)</h4></section></summary><div class="docblock"><p>Remove all components from the <a href="struct.FactoryVecDeque.html" title="FactoryVecDeque"><code>FactoryVecDeque</code></a>.</p>
 </div></details></div></details></div><h2 id="deref-methods-FactoryVecDeque%3CWidget%2C%20C%2C%20ParentMsg%3E" class="small-section-header"><span>Methods from <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/deref/trait.Deref.html" title="trait core::ops::deref::Deref">Deref</a>&lt;Target = <a class="struct" href="struct.FactoryVecDeque.html" title="struct relm4::factory::collections::FactoryVecDeque">FactoryVecDeque</a>&lt;Widget, C, ParentMsg&gt;&gt;</span><a href="#deref-methods-FactoryVecDeque%3CWidget%2C%20C%2C%20ParentMsg%3E" class="anchor"></a></h2><div id="deref-methods-FactoryVecDeque%3CWidget%2C%20C%2C%20ParentMsg%3E-1"><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><section id="method.len" class="method has-srclink"><span class="rightside"><a class="srclink" href="../../../src/relm4/factory/collections/vec_deque.rs.html#544-546">source</a></span><h4 class="code-header">pub fn <a href="#method.len" class="fnname">len</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a></h4></section></summary><div class="docblock"><p>Returns the number of elements in the <a href="struct.FactoryVecDeque.html" title="FactoryVecDeque"><code>FactoryVecDeque</code></a>.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-5"><a href="#scraped-examples-5">Examples found in repository</a><a class="scrape-help" href="../../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[17,17],&quot;../../../src/factory/factory.rs.html#220&quot;,&quot;line 220&quot;]]"><div class="scraped-example-title">examples/factory.rs (<a href="../../../src/factory/factory.rs.html#220">line 220</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>203</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-5"><a href="#scraped-examples-5">Examples found in repository</a><a class="scrape-help" href="../../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[17,17],&quot;../../../src/factory/factory.rs.html#213&quot;,&quot;line 213&quot;]]"><div class="scraped-example-title">examples/factory.rs (<a href="../../../src/factory/factory.rs.html#213">line 213</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>196</span>
+<span>197</span>
+<span>198</span>
+<span>199</span>
+<span>200</span>
+<span>201</span>
+<span>202</span>
+<span>203</span>
 <span>204</span>
 <span>205</span>
 <span>206</span>
@@ -903,13 +910,6 @@ shifting all elements between these positions.</p>
 <span>223</span>
 <span>224</span>
 <span>225</span>
-<span>226</span>
-<span>227</span>
-<span>228</span>
-<span>229</span>
-<span>230</span>
-<span>231</span>
-<span>232</span>
 </pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident"><span class="self">Self</span>::Input</span>, <span class="ident">_sender</span>: <span class="kw-2">&amp;</span><span class="ident">ComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">counters_guard</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">guard</span>();
         <span class="kw">match</span> <span class="ident">msg</span> {
@@ -1002,7 +1002,13 @@ shifting all elements between these positions.</p>
             }
         }
     }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[18,18],&quot;../../../src/grid_factory/grid_factory.rs.html#271&quot;,&quot;line 271&quot;]]"><div class="scraped-example-title">examples/grid_factory.rs (<a href="../../../src/grid_factory/grid_factory.rs.html#271">line 271</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>253</span>
+</div></div><div class="scraped-example " data-locs="[[[18,18],&quot;../../../src/grid_factory/grid_factory.rs.html#265&quot;,&quot;line 265&quot;]]"><div class="scraped-example-title">examples/grid_factory.rs (<a href="../../../src/grid_factory/grid_factory.rs.html#265">line 265</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>247</span>
+<span>248</span>
+<span>249</span>
+<span>250</span>
+<span>251</span>
+<span>252</span>
+<span>253</span>
 <span>254</span>
 <span>255</span>
 <span>256</span>
@@ -1027,12 +1033,6 @@ shifting all elements between these positions.</p>
 <span>275</span>
 <span>276</span>
 <span>277</span>
-<span>278</span>
-<span>279</span>
-<span>280</span>
-<span>281</span>
-<span>282</span>
-<span>283</span>
 </pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident"><span class="self">Self</span>::Input</span>, <span class="ident">_sender</span>: <span class="kw-2">&amp;</span><span class="ident">ComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">counters_guard</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">guard</span>();
 

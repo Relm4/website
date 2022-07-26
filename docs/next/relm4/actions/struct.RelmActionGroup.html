@@ -9,7 +9,9 @@
                         </div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
     <h1 class="fqn"><span class="in-band">Struct <a href="../index.html">relm4</a>::<wbr><a href="index.html">actions</a>::<wbr><a class="struct" href="#">RelmActionGroup</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../../src/relm4/actions/mod.rs.html#199-202">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><div class="docblock item-decl"><pre class="rust struct"><code>pub struct RelmActionGroup&lt;GroupName:&nbsp;<a class="trait" href="traits/trait.ActionGroupName.html" title="trait relm4::actions::traits::ActionGroupName">ActionGroupName</a>&gt; { /* private fields */ }</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>A type save action group that wraps around <a href="../../gio/auto/simple_action_group/struct.SimpleActionGroup.html" title="gio::SimpleActionGroup"><code>gio::SimpleActionGroup</code></a>.</p>
 </div></details><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><div id="implementations-list"><details class="rustdoc-toggle implementors-toggle" open><summary><section id="impl-RelmActionGroup%3CGroupName%3E" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../../src/relm4/actions/mod.rs.html#204-222">source</a></span><a href="#impl-RelmActionGroup%3CGroupName%3E" class="anchor"></a><h3 class="code-header in-band">impl&lt;GroupName:&nbsp;<a class="trait" href="traits/trait.ActionGroupName.html" title="trait relm4::actions::traits::ActionGroupName">ActionGroupName</a>&gt; <a class="struct" href="struct.RelmActionGroup.html" title="struct relm4::actions::RelmActionGroup">RelmActionGroup</a>&lt;GroupName&gt;</h3></section></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><section id="method.add_action" class="method has-srclink"><span class="rightside"><a class="srclink" href="../../src/relm4/actions/mod.rs.html#206-208">source</a></span><h4 class="code-header">pub fn <a href="#method.add_action" class="fnname">add_action</a>&lt;Name:&nbsp;<a class="trait" href="traits/trait.ActionName.html" title="trait relm4::actions::traits::ActionName">ActionName</a>&gt;(&amp;self, action: <a class="struct" href="struct.RelmAction.html" title="struct relm4::actions::RelmAction">RelmAction</a>&lt;Name&gt;)</h4></section></summary><div class="docblock"><p>Add an action to the group.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[49,49],&quot;../../src/menu/menu.rs.html#133&quot;,&quot;line 133&quot;],[[50,50],&quot;../../src/menu/menu.rs.html#134&quot;,&quot;line 134&quot;]]"><div class="scraped-example-title">examples/menu.rs (<a href="../../src/menu/menu.rs.html#133">line 133</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>84</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[49,49],&quot;../../src/menu/menu.rs.html#131&quot;,&quot;line 131&quot;],[[50,50],&quot;../../src/menu/menu.rs.html#132&quot;,&quot;line 132&quot;]]"><div class="scraped-example-title">examples/menu.rs (<a href="../../src/menu/menu.rs.html#131">line 131</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>82</span>
+<span>83</span>
+<span>84</span>
 <span>85</span>
 <span>86</span>
 <span>87</span>
@@ -66,8 +68,6 @@
 <span>138</span>
 <span>139</span>
 <span>140</span>
-<span>141</span>
-<span>142</span>
 </pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">init</span>(
         <span class="ident">counter</span>: <span class="ident"><span class="self">Self</span>::InitParams</span>,
         <span class="ident">root</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Root</span>,
@@ -128,7 +128,9 @@
         <span class="ident">ComponentParts</span> { <span class="ident">model</span>, <span class="ident">widgets</span> }
     }</code></pre></div>
 </div></div></div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.into_action_group" class="method has-srclink"><span class="rightside"><a class="srclink" href="../../src/relm4/actions/mod.rs.html#211-213">source</a></span><h4 class="code-header">pub fn <a href="#method.into_action_group" class="fnname">into_action_group</a>(self) -&gt; <a class="struct" href="../../gio/auto/simple_action_group/struct.SimpleActionGroup.html" title="struct gio::auto::simple_action_group::SimpleActionGroup">SimpleActionGroup</a></h4></section></summary><div class="docblock"><p>Convert <a href="struct.RelmActionGroup.html" title="RelmActionGroup"><code>RelmActionGroup</code></a> into a <a href="../../gio/auto/simple_action_group/struct.SimpleActionGroup.html" title="gio::SimpleActionGroup"><code>gio::SimpleActionGroup</code></a>.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-1"><a href="#scraped-examples-1">Examples found in repository</a><a class="scrape-help" href="../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[52,52],&quot;../../src/menu/menu.rs.html#136&quot;,&quot;line 136&quot;]]"><div class="scraped-example-title">examples/menu.rs (<a href="../../src/menu/menu.rs.html#136">line 136</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>84</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-1"><a href="#scraped-examples-1">Examples found in repository</a><a class="scrape-help" href="../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[52,52],&quot;../../src/menu/menu.rs.html#134&quot;,&quot;line 134&quot;]]"><div class="scraped-example-title">examples/menu.rs (<a href="../../src/menu/menu.rs.html#134">line 134</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>82</span>
+<span>83</span>
+<span>84</span>
 <span>85</span>
 <span>86</span>
 <span>87</span>
@@ -185,8 +187,6 @@
 <span>138</span>
 <span>139</span>
 <span>140</span>
-<span>141</span>
-<span>142</span>
 </pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">init</span>(
         <span class="ident">counter</span>: <span class="ident"><span class="self">Self</span>::InitParams</span>,
         <span class="ident">root</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Root</span>,
@@ -247,7 +247,9 @@
         <span class="ident">ComponentParts</span> { <span class="ident">model</span>, <span class="ident">widgets</span> }
     }</code></pre></div>
 </div></div></div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.new" class="method has-srclink"><span class="rightside"><a class="srclink" href="../../src/relm4/actions/mod.rs.html#216-221">source</a></span><h4 class="code-header">pub fn <a href="#method.new" class="fnname">new</a>() -&gt; Self</h4></section></summary><div class="docblock"><p>Create a new <a href="../../gio/auto/simple_action_group/struct.SimpleActionGroup.html"><code>SimpleActionGroup</code></a>.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-2"><a href="#scraped-examples-2">Examples found in repository</a><a class="scrape-help" href="../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[33,33],&quot;../../src/menu/menu.rs.html#117&quot;,&quot;line 117&quot;]]"><div class="scraped-example-title">examples/menu.rs (<a href="../../src/menu/menu.rs.html#117">line 117</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>84</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-2"><a href="#scraped-examples-2">Examples found in repository</a><a class="scrape-help" href="../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[33,33],&quot;../../src/menu/menu.rs.html#115&quot;,&quot;line 115&quot;]]"><div class="scraped-example-title">examples/menu.rs (<a href="../../src/menu/menu.rs.html#115">line 115</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>82</span>
+<span>83</span>
+<span>84</span>
 <span>85</span>
 <span>86</span>
 <span>87</span>
@@ -304,8 +306,6 @@
 <span>138</span>
 <span>139</span>
 <span>140</span>
-<span>141</span>
-<span>142</span>
 </pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">init</span>(
         <span class="ident">counter</span>: <span class="ident"><span class="self">Self</span>::InitParams</span>,
         <span class="ident">root</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Root</span>,

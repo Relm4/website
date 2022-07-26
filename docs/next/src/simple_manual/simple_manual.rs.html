@@ -102,8 +102,6 @@
 <span id="96">96</span>
 <span id="97">97</span>
 <span id="98">98</span>
-<span id="99">99</span>
-<span id="100">100</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">gtk::glib::clone</span>;
 <span class="kw">use</span> <span class="ident">gtk::prelude</span>::{<span class="ident">BoxExt</span>, <span class="ident">ButtonExt</span>, <span class="ident">GtkWindowExt</span>};
 <span class="kw">use</span> <span class="ident">relm4</span>::{<span class="ident">gtk</span>, <span class="ident">ComponentParts</span>, <span class="ident">ComponentSender</span>, <span class="ident">RelmApp</span>, <span class="ident">SimpleComponent</span>, <span class="ident">WidgetPlus</span>};
@@ -119,21 +117,19 @@
 }
 
 <span class="kw">struct</span> <span class="ident">AppWidgets</span> {
-    <span class="comment">//window: gtk::Window,</span>
-    <span class="comment">//vbox: gtk::Box,</span>
-    <span class="comment">//inc_button: gtk::Button,</span>
-    <span class="comment">//dec_button: gtk::Button,</span>
+    <span class="comment">// window: gtk::Window,</span>
+    <span class="comment">// vbox: gtk::Box,</span>
+    <span class="comment">// inc_button: gtk::Button,</span>
+    <span class="comment">// dec_button: gtk::Button,</span>
     <span class="ident">label</span>: <span class="ident">gtk::Label</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">SimpleComponent</span> <span class="kw">for</span> <span class="ident">AppModel</span> {
-    <span class="kw">type</span> <span class="ident">Widgets</span> <span class="op">=</span> <span class="ident">AppWidgets</span>;
-    <span class="kw">type</span> <span class="ident">Root</span> <span class="op">=</span> <span class="ident">gtk::Window</span>;
-
     <span class="kw">type</span> <span class="ident">InitParams</span> <span class="op">=</span> <span class="ident">u8</span>;
-
     <span class="kw">type</span> <span class="ident">Input</span> <span class="op">=</span> <span class="ident">AppMsg</span>;
     <span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> ();
+    <span class="kw">type</span> <span class="ident">Root</span> <span class="op">=</span> <span class="ident">gtk::Window</span>;
+    <span class="kw">type</span> <span class="ident">Widgets</span> <span class="op">=</span> <span class="ident">AppWidgets</span>;
 
     <span class="kw">fn</span> <span class="ident">init_root</span>() -&gt; <span class="ident"><span class="self">Self</span>::Root</span> {
         <span class="ident">gtk::Window::builder</span>()

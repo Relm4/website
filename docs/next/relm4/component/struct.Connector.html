@@ -10,8 +10,54 @@
     <h1 class="fqn"><span class="in-band">Struct <a href="../index.html">relm4</a>::<wbr><a href="index.html">component</a>::<wbr><a class="struct" href="#">Connector</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../../src/relm4/component/connector.rs.html#13-25">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><div class="docblock item-decl"><pre class="rust struct"><code>pub struct Connector&lt;C:&nbsp;<a class="trait" href="trait.Component.html" title="trait relm4::component::Component">Component</a>&gt; { /* private fields */ }</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Contains the post-launch input sender and output receivers with the root widget.</p>
 <p>The receiver can be separated from the <code>Fairing</code> by choosing a method for handling it.</p>
 </div></details><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><div id="implementations-list"><details class="rustdoc-toggle implementors-toggle" open><summary><section id="impl-Connector%3CC%3E" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../../src/relm4/component/connector.rs.html#27-91">source</a></span><a href="#impl-Connector%3CC%3E" class="anchor"></a><h3 class="code-header in-band">impl&lt;C:&nbsp;<a class="trait" href="trait.Component.html" title="trait relm4::component::Component">Component</a>&gt; <a class="struct" href="struct.Connector.html" title="struct relm4::component::Connector">Connector</a>&lt;C&gt;</h3></section></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><section id="method.forward" class="method has-srclink"><span class="rightside"><a class="srclink" href="../../src/relm4/component/connector.rs.html#29-48">source</a></span><h4 class="code-header">pub fn <a href="#method.forward" class="fnname">forward</a>&lt;X:&nbsp;'static, F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(C::<a class="associatedtype" href="trait.Component.html#associatedtype.Output" title="type relm4::component::Component::Output">Output</a>) -&gt; X + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;self,<br>&nbsp;&nbsp;&nbsp;&nbsp;sender_: &amp;<a class="struct" href="../struct.Sender.html" title="struct relm4::Sender">Sender</a>&lt;X&gt;,<br>&nbsp;&nbsp;&nbsp;&nbsp;transform: F<br>) -&gt; <a class="struct" href="struct.Controller.html" title="struct relm4::component::Controller">Controller</a>&lt;C&gt;</h4></section></summary><div class="docblock"><p>Forwards output events to the designated sender.</p>
-</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.connect_receiver" class="method has-srclink"><span class="rightside"><a class="srclink" href="../../src/relm4/component/connector.rs.html#51-74">source</a></span><h4 class="code-header">pub fn <a href="#method.connect_receiver" class="fnname">connect_receiver</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.FnMut.html" title="trait core::ops::function::FnMut">FnMut</a>(&amp;mut <a class="struct" href="../struct.Sender.html" title="struct relm4::Sender">Sender</a>&lt;C::<a class="associatedtype" href="trait.Component.html#associatedtype.Input" title="type relm4::component::Component::Input">Input</a>&gt;, C::<a class="associatedtype" href="trait.Component.html#associatedtype.Output" title="type relm4::component::Component::Output">Output</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;self,<br>&nbsp;&nbsp;&nbsp;&nbsp;func: F<br>) -&gt; <a class="struct" href="struct.Controller.html" title="struct relm4::component::Controller">Controller</a>&lt;C&gt;</h4></section></summary><div class="docblock"><p>Given a mutable closure, captures the receiver for handling.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[11,46],&quot;../../src/settings_list/settings_list.rs.html#30-65&quot;,&quot;lines 30-65&quot;]]"><div class="scraped-example-title">examples/settings_list.rs (<a href="../../src/settings_list/settings_list.rs.html#30-65">lines 30-65</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>19</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[7,7],&quot;../../src/components/components.rs.html#185&quot;,&quot;line 185&quot;],[[10,10],&quot;../../src/components/components.rs.html#188&quot;,&quot;line 188&quot;]]"><div class="scraped-example-title">examples/components.rs (<a href="../../src/components/components.rs.html#185">line 185</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>178</span>
+<span>179</span>
+<span>180</span>
+<span>181</span>
+<span>182</span>
+<span>183</span>
+<span>184</span>
+<span>185</span>
+<span>186</span>
+<span>187</span>
+<span>188</span>
+<span>189</span>
+<span>190</span>
+<span>191</span>
+<span>192</span>
+<span>193</span>
+<span>194</span>
+<span>195</span>
+<span>196</span>
+<span>197</span>
+<span>198</span>
+<span>199</span>
+<span>200</span>
+</pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">init</span>(
+        <span class="ident">application</span>: <span class="ident"><span class="self">Self</span>::InitParams</span>,
+        <span class="ident">root</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Root</span>,
+        <span class="ident">sender</span>: <span class="kw-2">&amp;</span><span class="ident">ComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>,
+    ) -&gt; <span class="ident">ComponentParts</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">header</span> <span class="op">=</span> <span class="ident">Header::builder</span>()
+            .<span class="ident">launch</span>(())
+            .<span class="highlight focus"><span class="ident">forward</span></span>(<span class="ident">sender</span>.<span class="ident">input_sender</span>(), <span class="ident">identity</span>);
+        <span class="kw">let</span> <span class="ident">dialog</span> <span class="op">=</span> <span class="ident">Dialog::builder</span>()
+            .<span class="ident">launch</span>(<span class="ident">root</span>.<span class="ident">clone</span>().<span class="ident">upcast</span>())
+            .<span class="highlight"><span class="ident">forward</span></span>(<span class="ident">sender</span>.<span class="ident">input_sender</span>(), <span class="ident">identity</span>);
+
+        <span class="kw">let</span> <span class="ident">model</span> <span class="op">=</span> <span class="ident">App</span> {
+            <span class="ident">mode</span>: <span class="ident">AppMode::View</span>,
+            <span class="ident">header</span>,
+            <span class="ident">dialog</span>,
+            <span class="ident">application</span>,
+        };
+
+        <span class="kw">let</span> <span class="ident">widgets</span> <span class="op">=</span> <span class="macro">view_output!</span>();
+
+        <span class="ident">ComponentParts</span> { <span class="ident">model</span>, <span class="ident">widgets</span> }
+    }</code></pre></div>
+</div></div></div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.connect_receiver" class="method has-srclink"><span class="rightside"><a class="srclink" href="../../src/relm4/component/connector.rs.html#51-74">source</a></span><h4 class="code-header">pub fn <a href="#method.connect_receiver" class="fnname">connect_receiver</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.FnMut.html" title="trait core::ops::function::FnMut">FnMut</a>(&amp;mut <a class="struct" href="../struct.Sender.html" title="struct relm4::Sender">Sender</a>&lt;C::<a class="associatedtype" href="trait.Component.html#associatedtype.Input" title="type relm4::component::Component::Input">Input</a>&gt;, C::<a class="associatedtype" href="trait.Component.html#associatedtype.Output" title="type relm4::component::Component::Output">Output</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;self,<br>&nbsp;&nbsp;&nbsp;&nbsp;func: F<br>) -&gt; <a class="struct" href="struct.Controller.html" title="struct relm4::component::Controller">Controller</a>&lt;C&gt;</h4></section></summary><div class="docblock"><p>Given a mutable closure, captures the receiver for handling.</p>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-1"><a href="#scraped-examples-1">Examples found in repository</a><a class="scrape-help" href="../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[11,46],&quot;../../src/settings_list/settings_list.rs.html#30-65&quot;,&quot;lines 30-65&quot;]]"><div class="scraped-example-title">examples/settings_list.rs (<a href="../../src/settings_list/settings_list.rs.html#30-65">lines 30-65</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>19</span>
 <span>20</span>
 <span>21</span>
 <span>22</span>
