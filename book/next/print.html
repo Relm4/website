@@ -2797,11 +2797,11 @@ It's recommended to use workers or message handlers for blocking operations inst
 </blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="migration-from-v04-to-v05"><a class="header" href="#migration-from-v04-to-v05">Migration from v0.4 to v0.5</a></h1>
 <p>Version 0.5 brings many exciting changes but also a few major breaking changes.
-In this chapter, all major changes should be covered to help you to migrate your existing code quickly.</p>
+In this chapter, all changes should be covered to help you migrating your existing code quickly.</p>
 <h2 id="components-3"><a class="header" href="#components-3">Components</a></h2>
 <p><code>Component</code> unifies several traits that existed before.
 It entirely replaces <code>AppUpdate</code>, <code>ComponentUpdate</code>, <code>AsyncComponentUpdate</code>, <code>MessageHandler</code>, <code>MicroModel</code>, <code>MicroWidgets</code>, <code>Components</code> and <code>Widgets</code>.
-Components are now more similar to <code>MicroComponent</code> which means they are much more flexible and don't need a strong connection to their parent component.
+Components are now more similar to <code>MicroComponent</code> which means they are much more flexible and don't need a typed connection to their parent component.
 This makes using the same component with different parent components much easier.
 Instead of accessing the parent model, you define <code>InitParams</code> as a type that includes all information to initialize the component.</p>
 <p>The life cycle has changed a bit, too.</p>
@@ -2810,8 +2810,8 @@ Instead of accessing the parent model, you define <code>InitParams</code> as a t
 The reason behind this is to allow parent components to access the root widget before the rest of the component is initialized.</li>
 <li><a href="https://relm4.org/docs/next/relm4/trait.Component.html#tymethod.init">Initialize the component itself and the widgets</a>.
 This happens in one method now, which makes it easier especially for more difficult initializations.</li>
-<li>Regarding updates, there hasn't been a lot of changes. However you can now update view and model at once using <a href="https://relm4.org/docs/next/relm4/trait.Component.html#method.update_with_view"><code>update_with_view</code></a>.</li>
-<li>The <a href="https://relm4.org/docs/next/relm4/trait.Component.html#method.shutdown">shutdown</a> method is called when the component is destroyed.</li>
+<li>Regarding updates, there hasn't been a lot of changes. However you can now optionally update view and model at once using <a href="https://relm4.org/docs/next/relm4/trait.Component.html#method.update_with_view"><code>update_with_view</code></a>.</li>
+<li>The <a href="https://relm4.org/docs/next/relm4/trait.Component.html#method.shutdown">shutdown</a> method is called when the component is destroyed. Components don't have to live for the entire application lifespan anymore.</li>
 </ol>
 <h3 id="senders-and-messages"><a class="header" href="#senders-and-messages">Senders and messages</a></h3>
 <p>Components have three kinds of messages now:</p>
@@ -2828,32 +2828,83 @@ The result of this future is the <code>CmdOutput</code> message handled in <a hr
 <h3 id="initializing-components"><a class="header" href="#initializing-components">Initializing components</a></h3>
 <p>Components are initialized in the <a href="https://relm4.org/docs/next/relm4/trait.Component.html#tymethod.init">init</a> method of their parent.
 You simply call <code>MyComponentType::builder()</code> to get a <a href="https://relm4.org/docs/next/relm4/struct.ComponentBuilder.html"><code>ComponentBuilder</code></a>.
-Then you launch the component by calling <code>builder.launch(init_params)</code>.
-Not you have a <a href="https://relm4.org/docs/next/relm4/component/struct.Connector.html"><code>Connector</code></a>.
+Then you launch the component by calling <code>builder.launch(init_params)</code> to receive a <a href="https://relm4.org/docs/next/relm4/component/struct.Connector.html"><code>Connector</code></a>.
 From the connector you can decide to automatically forward messages to another component or just <a href="https://relm4.org/docs/next/relm4/component/struct.Connector.html#method.detach">detach</a> the connector to get a <a href="https://relm4.org/docs/next/relm4/component/struct.Controller.html"><code>Controller</code></a>.
 The <strong>controller</strong> is the type you now <strong>store in the model of the parent component</strong> instead of creating a separate components struct.
 There's no <code>Components</code> trait necessary.</p>
-<p>For types that implement <code>Componet</code> that don't have any widgets (such as implementers of the <code>Worker</code> trait), you can TODO!</p>
+<p>For types that implement <code>Componet</code> that don't have any widgets (such as implementers of the <a href="https://relm4.org/docs/next/relm4/worker/trait.Worker.html"><code>Worker</code></a> trait), you can call <a href="https://relm4.org/docs/next/relm4/component/struct.ComponentBuilder.html#method.detach_worker"><code>detach_worker</code></a> from a <code>ComponentBuilder</code>.
+This spawns the internal runtime on a separate thread and gives you a <a href="https://relm4.org/docs/next/relm4/worker/struct.WorkerController.html"><code>WorkerController</code></a>.</p>
 <h3 id="helper-traits"><a class="header" href="#helper-traits">Helper traits</a></h3>
 <h4 id="simplecomponent"><a class="header" href="#simplecomponent"><code>SimpleComponent</code></a></h4>
 <p><code>SimpleComponent</code> is a simpler variant of <code>Component</code> that helps with the implementation of <code>Component</code>.
 Particularly, it doesn't support commands.</p>
 <h4 id="worker"><a class="header" href="#worker"><code>Worker</code></a></h4>
-<p><code>Worker</code> is a even simpler variant of <code>SimpleComponent</code> that helps with the implementation of <code>Component</code>.
-Particularly, it doesn't support widgets and allows running the components update loop on a different thread by using TODO!.
+<p><code>Worker</code> is an even simpler variant of <code>SimpleComponent</code> that helps with the implementation of <code>Component</code>.
+Particularly, it doesn't support widgets and allows running the components update loop on a different thread by using <a href="https://relm4.org/docs/next/relm4/component/struct.ComponentBuilder.html#method.detach_worker"><code>detach_worker</code></a>.
 <strong>This is the replacement for the previously separate <code>RelmWorker</code> type.</strong></p>
 <h2 id="factories-1"><a class="header" href="#factories-1">Factories</a></h2>
 <p>Factories now work very similar to components.
 In fact, the new <a href="https://relm4.org/docs/next/relm4/factory/traits/trait.FactoryComponent.html"><code>FactoryComponent</code></a> trait that replaces <code>FactoryPrototype</code> is almost identical to the <code>Component</code> trait.
-Messages can now be passed by using the <a href="https://relm4.org/docs/next/relm4/factory/traits/trait.FactoryComponent.html#method.output_to_parent_msg"><code>ouput_to_parent_msg</code></a> method.
-It allow to optionally forward messages to the parent.</p>
+Messages can now be optionally passed by using the <a href="https://relm4.org/docs/next/relm4/factory/traits/trait.FactoryComponent.html#method.output_to_parent_msg"><code>ouput_to_parent_msg</code></a> method.</p>
+<p><code>FactoryVec</code> was entirely removed in favor of <code>FactoryVecDeque</code>.
+Edits to factories are now similar to <code>Mutex</code> and require a guard.
+Then the guard is dropped, all changes are rendered automatically, so no render method is required anymore.</p>
 <h2 id="the-view-macro"><a class="header" href="#the-view-macro">The <code>view</code> macro</a></h2>
 <ul>
 <li>In general, a lot of internal macros were moved to be just attributes like <code>watch!</code> and <code>track!</code> now written as <code>#[watch]</code> and <code>#[track(optional_condition)]</code>.</li>
 <li>Multiple arguments now don't need <code>args!()</code> but just <code>()</code> whereas tuples need two parenthesis <code>(())</code>.</li>
 <li>Wrapping widgets into <code>Some</code> is now also an attribute <code>#[wrap(Some)]</code>.</li>
-<li>Additional arguments are now passed with brackets <code>[]</code> instead of parenthesis <code>()</code>.</li>
+<li>Additional arguments are now passed with square brackets <code>[]</code> instead of parenthesis <code>()</code>.</li>
+<li>Cloning variables for closures is always done with square brackets <code>[]</code> instead of parenthesis <code>()</code>.</li>
 </ul>
+<table>
+<tr>
+<th> Old </th>
+<th> New </th>
+</tr>
+<tr>
+<td>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>view! {
+    gtk::HeaderBar {
+        set_title_widget = Some(&amp;gtk::Box) {
+            append: group = &amp;gtk::ToggleButton {
+                set_label: watch!(model.label),
+                
+                connect_toggled(sender) =&gt; move |btn| {
+                    // ...
+                },
+            },
+        }
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+</td>
+<td>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>view! {
+    gtk::HeaderBar {
+        #[wrap(Some)]
+        set_title_widget = &amp;gtk::Box {
+            append: group = &amp;gtk::ToggleButton {
+                #[watch]
+                set_label: model.label,
+                
+                connect_toggled[sender] =&gt; move |btn| {
+                    // ...
+                },
+            },
+        }
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+</td>
+</tr>
+</table>
 <h3 id="the-widget-macro"><a class="header" href="#the-widget-macro">The <code>widget</code> macro</a></h3>
 <ul>
 <li>The macro in now called <code>#[component]</code>.</li>
@@ -2862,7 +2913,11 @@ It allow to optionally forward messages to the parent.</p>
 <li><code>post_init</code> -&gt; Code after <code>view_output!()</code>.</li>
 </ul>
 <h2 id="relmapp"><a class="header" href="#relmapp">RelmApp</a></h2>
-<p>Now you need to specify an application id and the generic parameter is only passed when calling <code>run()</code>, not when calling <code>new()</code>.</p>
+<p>Now you need to specify an application id and a generic parameter is required when calling <code>run()</code>.</p>
+<h2 id="miscellaneous"><a class="header" href="#miscellaneous">Miscellaneous</a></h2>
+<ul>
+<li><code>WidgetPlus::inline_css</code> now takes <code>&amp;str</code> as parameter instead of <code>&amp;[u8]</code>.</li>
+</ul>
 <h2 id="summary-1"><a class="header" href="#summary-1">Summary</a></h2>
 <div class="table-wrapper"><table><thead><tr><th>v0.4</th><th>v0.5</th></tr></thead><tbody>
 <tr><td><code>Model</code></td><td><code>Component</code></td></tr>
@@ -2873,6 +2928,11 @@ It allow to optionally forward messages to the parent.</p>
 <tr><td><code>MicroWidgets</code></td><td><code>Component</code></td></tr>
 <tr><td><code>MessageHandler</code></td><td><code>Component</code></td></tr>
 <tr><td><code>FactoryPrototype</code></td><td><code>FactoryComponent</code></td></tr>
+<tr><td><code>Model::Msg</code></td><td><code>Component::Input</code></td></tr>
+<tr><td><code>Model::Widgets</code></td><td><code>Component::Widgets</code></td></tr>
+<tr><td><code>Model::Components</code></td><td>removed</td></tr>
+<tr><td><code>Components</code></td><td>Store a <code>Controller</code> for each component in your model</td></tr>
+<tr><td><code>parent_sender</code></td><td>Forward output messages from one component to another by using <code>Connector</code></td></tr>
 </tbody></table>
 </div>
 <blockquote>
