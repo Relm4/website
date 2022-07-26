@@ -219,7 +219,11 @@
 <span id="211">211</span>
 <span id="212">212</span>
 <span id="213">213</span>
+<span id="214">214</span>
+<span id="215">215</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Traits for for managing and updating factories.</span>
+
+<span class="kw">use</span> <span class="ident">gtk::prelude::IsA</span>;
 
 <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::DynamicIndex</span>;
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">component::CommandFuture</span>, <span class="ident">OnDestroy</span>, <span class="ident">Sender</span>, <span class="ident">ShutdownReceiver</span>};
@@ -227,7 +231,7 @@
 <span class="kw">use</span> <span class="ident">std::fmt::Debug</span>;
 
 <span class="doccomment">/// A trait implemented for GTK4 widgets that allows a factory to create and remove widgets.</span>
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">FactoryView</span> {
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">FactoryView</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gtk::Widget</span><span class="op">&gt;</span> {
     <span class="doccomment">/// The widget returned when inserting a widget.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This doesn&#39;t matter on containers like [`gtk::Box`].</span>
@@ -433,5 +437,5 @@
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="relm4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (7fe022f5a 2022-07-24)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="relm4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (6dbae3ad1 2022-07-25)" ></div>
 </body></html>

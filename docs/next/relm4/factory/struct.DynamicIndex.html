@@ -8,7 +8,7 @@
                                 <a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div>
                         </div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
     <h1 class="fqn"><span class="in-band">Struct <a href="../index.html">relm4</a>::<wbr><a href="index.html">factory</a>::<wbr><a class="struct" href="#">DynamicIndex</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../../src/relm4/factory/dynamic_index.rs.html#22-24">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><div class="docblock item-decl"><pre class="rust struct"><code>pub struct DynamicIndex { /* private fields */ }</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>A dynamic index that updates automatically when items are shifted inside a factory container.</p>
-<p>For example a <a href="collections/struct.FactoryVecDeque.html"><code>FactoryVecDeque</code></a> has an <a href="collections/struct.FactoryVecDeque.html#method.insert"><code>insert</code></a>
+<p>For example a <a href="collections/struct.FactoryVecDeque.html"><code>FactoryVecDeque</code></a> has an <a href="super::FactoryVecDeque::insert"><code>insert</code></a>
 method that allows users to insert data at arbitrary positions.
 If we insert at the front all following widgets will be moved by one which would
 invalidate their indices.
@@ -22,67 +22,7 @@ a pointer to the same data.</p>
 where you actually need the index as <a href="https://doc.rust-lang.org/nightly/std/primitive.usize.html" title="usize"><code>usize</code></a>.</p>
 </div></details><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><div id="implementations-list"><details class="rustdoc-toggle implementors-toggle" open><summary><section id="impl-DynamicIndex" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../../src/relm4/factory/dynamic_index.rs.html#42-74">source</a></span><a href="#impl-DynamicIndex" class="anchor"></a><h3 class="code-header in-band">impl <a class="struct" href="struct.DynamicIndex.html" title="struct relm4::factory::DynamicIndex">DynamicIndex</a></h3></section></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><section id="method.current_index" class="method has-srclink"><span class="rightside"><a class="srclink" href="../../src/relm4/factory/dynamic_index.rs.html#46-48">source</a></span><h4 class="code-header">pub fn <a href="#method.current_index" class="fnname">current_index</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a></h4></section></summary><div class="docblock"><p>Get the current index number.</p>
 <p>This value is updated by the factory container and might change after each update function.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[10,10],&quot;../../src/grid_factory/grid_factory.rs.html#263&quot;,&quot;line 263&quot;],[[13,13],&quot;../../src/grid_factory/grid_factory.rs.html#266&quot;,&quot;line 266&quot;],[[21,21],&quot;../../src/grid_factory/grid_factory.rs.html#274&quot;,&quot;line 274&quot;]]"><div class="scraped-example-title">examples/grid_factory.rs (<a href="../../src/grid_factory/grid_factory.rs.html#263">line 263</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>253</span>
-<span>254</span>
-<span>255</span>
-<span>256</span>
-<span>257</span>
-<span>258</span>
-<span>259</span>
-<span>260</span>
-<span>261</span>
-<span>262</span>
-<span>263</span>
-<span>264</span>
-<span>265</span>
-<span>266</span>
-<span>267</span>
-<span>268</span>
-<span>269</span>
-<span>270</span>
-<span>271</span>
-<span>272</span>
-<span>273</span>
-<span>274</span>
-<span>275</span>
-<span>276</span>
-<span>277</span>
-<span>278</span>
-<span>279</span>
-<span>280</span>
-<span>281</span>
-<span>282</span>
-</pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident"><span class="self">Self</span>::Input</span>, <span class="ident">_sender</span>: <span class="kw-2">&amp;</span><span class="ident">ComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
-        <span class="kw">match</span> <span class="ident">msg</span> {
-            <span class="ident">AppMsg::AddCounter</span> =&gt; {
-                <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">push_back</span>(<span class="self">self</span>.<span class="ident">created_widgets</span>);
-                <span class="self">self</span>.<span class="ident">created_widgets</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">created_widgets</span>.<span class="ident">wrapping_add</span>(<span class="number">1</span>);
-            }
-            <span class="ident">AppMsg::RemoveCounter</span> =&gt; {
-                <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">pop_back</span>();
-            }
-            <span class="ident">AppMsg::SendFront</span>(<span class="ident">index</span>) =&gt; {
-                <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">move_front</span>(<span class="ident">index</span>.<span class="highlight focus"><span class="ident">current_index</span></span>());
-            }
-            <span class="ident">AppMsg::MoveDown</span>(<span class="ident">index</span>) =&gt; {
-                <span class="kw">let</span> <span class="ident">index</span> <span class="op">=</span> <span class="ident">index</span>.<span class="highlight"><span class="ident">current_index</span></span>();
-                <span class="kw">let</span> <span class="ident">new_index</span> <span class="op">=</span> <span class="ident">index</span> <span class="op">+</span> <span class="number">1</span>;
-                <span class="comment">// Already at the end?</span>
-                <span class="kw">if</span> <span class="ident">new_index</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">len</span>() {
-                    <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">move_to</span>(<span class="ident">index</span>, <span class="ident">new_index</span>);
-                }
-            }
-            <span class="ident">AppMsg::MoveUp</span>(<span class="ident">index</span>) =&gt; {
-                <span class="kw">let</span> <span class="ident">index</span> <span class="op">=</span> <span class="ident">index</span>.<span class="highlight"><span class="ident">current_index</span></span>();
-                <span class="comment">// Already at the start?</span>
-                <span class="kw">if</span> <span class="ident">index</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-                    <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">move_to</span>(<span class="ident">index</span>, <span class="ident">index</span> <span class="op">-</span> <span class="number">1</span>);
-                }
-            }
-        }
-        <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">render_changes</span>();
-    }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[10,10],&quot;../../src/factory/factory.rs.html#213&quot;,&quot;line 213&quot;],[[13,13],&quot;../../src/factory/factory.rs.html#216&quot;,&quot;line 216&quot;],[[21,21],&quot;../../src/factory/factory.rs.html#224&quot;,&quot;line 224&quot;]]"><div class="scraped-example-title">examples/factory.rs (<a href="../../src/factory/factory.rs.html#213">line 213</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>203</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[11,11],&quot;../../src/factory/factory.rs.html#214&quot;,&quot;line 214&quot;],[[14,14],&quot;../../src/factory/factory.rs.html#217&quot;,&quot;line 217&quot;],[[22,22],&quot;../../src/factory/factory.rs.html#225&quot;,&quot;line 225&quot;]]"><div class="scraped-example-title">examples/factory.rs (<a href="../../src/factory/factory.rs.html#214">line 214</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>203</span>
 <span>204</span>
 <span>205</span>
 <span>206</span>
@@ -112,39 +52,37 @@ where you actually need the index as <a href="https://doc.rust-lang.org/nightly/
 <span>230</span>
 <span>231</span>
 <span>232</span>
-<span>233</span>
 </pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident"><span class="self">Self</span>::Input</span>, <span class="ident">_sender</span>: <span class="kw-2">&amp;</span><span class="ident">ComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">counters_guard</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">guard</span>();
         <span class="kw">match</span> <span class="ident">msg</span> {
             <span class="ident">AppMsg::AddCounter</span> =&gt; {
-                <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">push_back</span>(<span class="self">self</span>.<span class="ident">created_widgets</span>);
+                <span class="ident">counters_guard</span>.<span class="ident">push_back</span>(<span class="self">self</span>.<span class="ident">created_widgets</span>);
                 <span class="self">self</span>.<span class="ident">created_widgets</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">created_widgets</span>.<span class="ident">wrapping_add</span>(<span class="number">1</span>);
             }
             <span class="ident">AppMsg::RemoveCounter</span> =&gt; {
-                <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">pop_back</span>();
+                <span class="ident">counters_guard</span>.<span class="ident">pop_back</span>();
             }
             <span class="ident">AppMsg::SendFront</span>(<span class="ident">index</span>) =&gt; {
-                <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">move_front</span>(<span class="ident">index</span>.<span class="highlight focus"><span class="ident">current_index</span></span>());
+                <span class="ident">counters_guard</span>.<span class="ident">move_front</span>(<span class="ident">index</span>.<span class="highlight focus"><span class="ident">current_index</span></span>());
             }
             <span class="ident">AppMsg::MoveDown</span>(<span class="ident">index</span>) =&gt; {
                 <span class="kw">let</span> <span class="ident">index</span> <span class="op">=</span> <span class="ident">index</span>.<span class="highlight"><span class="ident">current_index</span></span>();
                 <span class="kw">let</span> <span class="ident">new_index</span> <span class="op">=</span> <span class="ident">index</span> <span class="op">+</span> <span class="number">1</span>;
                 <span class="comment">// Already at the end?</span>
-                <span class="kw">if</span> <span class="ident">new_index</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">len</span>() {
-                    <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">move_to</span>(<span class="ident">index</span>, <span class="ident">new_index</span>);
+                <span class="kw">if</span> <span class="ident">new_index</span> <span class="op">&lt;</span> <span class="ident">counters_guard</span>.<span class="ident">len</span>() {
+                    <span class="ident">counters_guard</span>.<span class="ident">move_to</span>(<span class="ident">index</span>, <span class="ident">new_index</span>);
                 }
             }
             <span class="ident">AppMsg::MoveUp</span>(<span class="ident">index</span>) =&gt; {
                 <span class="kw">let</span> <span class="ident">index</span> <span class="op">=</span> <span class="ident">index</span>.<span class="highlight"><span class="ident">current_index</span></span>();
                 <span class="comment">// Already at the start?</span>
                 <span class="kw">if</span> <span class="ident">index</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-                    <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">move_to</span>(<span class="ident">index</span>, <span class="ident">index</span> <span class="op">-</span> <span class="number">1</span>);
+                    <span class="ident">counters_guard</span>.<span class="ident">move_to</span>(<span class="ident">index</span>, <span class="ident">index</span> <span class="op">-</span> <span class="number">1</span>);
                 }
             }
         }
-
-        <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">render_changes</span>();
     }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[11,11],&quot;../../src/tab_factory/tab_factory.rs.html#256&quot;,&quot;line 256&quot;],[[14,14],&quot;../../src/tab_factory/tab_factory.rs.html#259&quot;,&quot;line 259&quot;],[[22,22],&quot;../../src/tab_factory/tab_factory.rs.html#267&quot;,&quot;line 267&quot;]]"><div class="scraped-example-title">examples/libadwaita/tab_factory.rs (<a href="../../src/tab_factory/tab_factory.rs.html#256">line 256</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>245</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[12,12],&quot;../../src/tab_factory/tab_factory.rs.html#257&quot;,&quot;line 257&quot;],[[15,15],&quot;../../src/tab_factory/tab_factory.rs.html#260&quot;,&quot;line 260&quot;],[[23,23],&quot;../../src/tab_factory/tab_factory.rs.html#268&quot;,&quot;line 268&quot;]]"><div class="scraped-example-title">examples/libadwaita/tab_factory.rs (<a href="../../src/tab_factory/tab_factory.rs.html#257">line 257</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>245</span>
 <span>246</span>
 <span>247</span>
 <span>248</span>
@@ -175,48 +113,98 @@ where you actually need the index as <a href="https://doc.rust-lang.org/nightly/
 <span>273</span>
 <span>274</span>
 <span>275</span>
-<span>276</span>
-<span>277</span>
-<span>278</span>
-<span>279</span>
-<span>280</span>
-<span>281</span>
 </pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident"><span class="self">Self</span>::Input</span>, <span class="ident">_sender</span>: <span class="kw-2">&amp;</span><span class="ident">ComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
-        <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">apply_external_updates</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">counters_guard</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">guard</span>();
+
         <span class="kw">match</span> <span class="ident">msg</span> {
             <span class="ident">AppMsg::AddCounter</span> =&gt; {
-                <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">push_back</span>(<span class="self">self</span>.<span class="ident">created_widgets</span>);
+                <span class="ident">counters_guard</span>.<span class="ident">push_back</span>(<span class="self">self</span>.<span class="ident">created_widgets</span>);
                 <span class="self">self</span>.<span class="ident">created_widgets</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">created_widgets</span>.<span class="ident">wrapping_add</span>(<span class="number">1</span>);
             }
             <span class="ident">AppMsg::RemoveCounter</span> =&gt; {
-                <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">pop_back</span>();
+                <span class="ident">counters_guard</span>.<span class="ident">pop_back</span>();
             }
             <span class="ident">AppMsg::SendFront</span>(<span class="ident">index</span>) =&gt; {
-                <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">move_front</span>(<span class="ident">index</span>.<span class="highlight focus"><span class="ident">current_index</span></span>());
+                <span class="ident">counters_guard</span>.<span class="ident">move_front</span>(<span class="ident">index</span>.<span class="highlight focus"><span class="ident">current_index</span></span>());
             }
             <span class="ident">AppMsg::MoveDown</span>(<span class="ident">index</span>) =&gt; {
                 <span class="kw">let</span> <span class="ident">index</span> <span class="op">=</span> <span class="ident">index</span>.<span class="highlight"><span class="ident">current_index</span></span>();
                 <span class="kw">let</span> <span class="ident">new_index</span> <span class="op">=</span> <span class="ident">index</span> <span class="op">+</span> <span class="number">1</span>;
                 <span class="comment">// Already at the end?</span>
-                <span class="kw">if</span> <span class="ident">new_index</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">len</span>() {
-                    <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">move_to</span>(<span class="ident">index</span>, <span class="ident">new_index</span>);
+                <span class="kw">if</span> <span class="ident">new_index</span> <span class="op">&lt;</span> <span class="ident">counters_guard</span>.<span class="ident">len</span>() {
+                    <span class="ident">counters_guard</span>.<span class="ident">move_to</span>(<span class="ident">index</span>, <span class="ident">new_index</span>);
                 }
             }
             <span class="ident">AppMsg::MoveUp</span>(<span class="ident">index</span>) =&gt; {
                 <span class="kw">let</span> <span class="ident">index</span> <span class="op">=</span> <span class="ident">index</span>.<span class="highlight"><span class="ident">current_index</span></span>();
                 <span class="comment">// Already at the start?</span>
                 <span class="kw">if</span> <span class="ident">index</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-                    <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">move_to</span>(<span class="ident">index</span>, <span class="ident">index</span> <span class="op">-</span> <span class="number">1</span>);
+                    <span class="ident">counters_guard</span>.<span class="ident">move_to</span>(<span class="ident">index</span>, <span class="ident">index</span> <span class="op">-</span> <span class="number">1</span>);
                 }
             }
         }
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">len</span>() <span class="op">&gt;</span> <span class="number">2</span> {
-            <span class="comment">// Testing different stuff...</span>
-            <span class="comment">//self.counters.swap(0, 2);</span>
-            <span class="comment">// let mut counter = self.counters.get_mut(1);</span>
-            <span class="comment">// counter.value = counter.value.wrapping_add(10);</span>
+    }</code></pre></div>
+</div></div><div class="scraped-example " data-locs="[[[12,12],&quot;../../src/grid_factory/grid_factory.rs.html#265&quot;,&quot;line 265&quot;],[[15,15],&quot;../../src/grid_factory/grid_factory.rs.html#268&quot;,&quot;line 268&quot;],[[23,23],&quot;../../src/grid_factory/grid_factory.rs.html#276&quot;,&quot;line 276&quot;]]"><div class="scraped-example-title">examples/grid_factory.rs (<a href="../../src/grid_factory/grid_factory.rs.html#265">line 265</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>253</span>
+<span>254</span>
+<span>255</span>
+<span>256</span>
+<span>257</span>
+<span>258</span>
+<span>259</span>
+<span>260</span>
+<span>261</span>
+<span>262</span>
+<span>263</span>
+<span>264</span>
+<span>265</span>
+<span>266</span>
+<span>267</span>
+<span>268</span>
+<span>269</span>
+<span>270</span>
+<span>271</span>
+<span>272</span>
+<span>273</span>
+<span>274</span>
+<span>275</span>
+<span>276</span>
+<span>277</span>
+<span>278</span>
+<span>279</span>
+<span>280</span>
+<span>281</span>
+<span>282</span>
+<span>283</span>
+</pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident"><span class="self">Self</span>::Input</span>, <span class="ident">_sender</span>: <span class="kw-2">&amp;</span><span class="ident">ComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">counters_guard</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">guard</span>();
+
+        <span class="kw">match</span> <span class="ident">msg</span> {
+            <span class="ident">AppMsg::AddCounter</span> =&gt; {
+                <span class="ident">counters_guard</span>.<span class="ident">push_back</span>(<span class="self">self</span>.<span class="ident">created_widgets</span>);
+                <span class="self">self</span>.<span class="ident">created_widgets</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">created_widgets</span>.<span class="ident">wrapping_add</span>(<span class="number">1</span>);
+            }
+            <span class="ident">AppMsg::RemoveCounter</span> =&gt; {
+                <span class="ident">counters_guard</span>.<span class="ident">pop_back</span>();
+            }
+            <span class="ident">AppMsg::SendFront</span>(<span class="ident">index</span>) =&gt; {
+                <span class="ident">counters_guard</span>.<span class="ident">move_front</span>(<span class="ident">index</span>.<span class="highlight focus"><span class="ident">current_index</span></span>());
+            }
+            <span class="ident">AppMsg::MoveDown</span>(<span class="ident">index</span>) =&gt; {
+                <span class="kw">let</span> <span class="ident">index</span> <span class="op">=</span> <span class="ident">index</span>.<span class="highlight"><span class="ident">current_index</span></span>();
+                <span class="kw">let</span> <span class="ident">new_index</span> <span class="op">=</span> <span class="ident">index</span> <span class="op">+</span> <span class="number">1</span>;
+                <span class="comment">// Already at the end?</span>
+                <span class="kw">if</span> <span class="ident">new_index</span> <span class="op">&lt;</span> <span class="ident">counters_guard</span>.<span class="ident">len</span>() {
+                    <span class="ident">counters_guard</span>.<span class="ident">move_to</span>(<span class="ident">index</span>, <span class="ident">new_index</span>);
+                }
+            }
+            <span class="ident">AppMsg::MoveUp</span>(<span class="ident">index</span>) =&gt; {
+                <span class="kw">let</span> <span class="ident">index</span> <span class="op">=</span> <span class="ident">index</span>.<span class="highlight"><span class="ident">current_index</span></span>();
+                <span class="comment">// Already at the start?</span>
+                <span class="kw">if</span> <span class="ident">index</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
+                    <span class="ident">counters_guard</span>.<span class="ident">move_to</span>(<span class="ident">index</span>, <span class="ident">index</span> <span class="op">-</span> <span class="number">1</span>);
+                }
+            }
         }
-        <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">render_changes</span>();
     }</code></pre></div>
 </div></div></div></div></details></div></details></div></details></div><h2 id="trait-implementations" class="small-section-header">Trait Implementations<a href="#trait-implementations" class="anchor"></a></h2><div id="trait-implementations-list"><details class="rustdoc-toggle implementors-toggle" open><summary><section id="impl-Clone-for-DynamicIndex" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../../src/relm4/factory/dynamic_index.rs.html#34-40">source</a></span><a href="#impl-Clone-for-DynamicIndex" class="anchor"></a><h3 class="code-header in-band">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="struct" href="struct.DynamicIndex.html" title="struct relm4::factory::DynamicIndex">DynamicIndex</a></h3></section></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><section id="method.clone" class="method trait-impl has-srclink"><span class="rightside"><a class="srclink" href="../../src/relm4/factory/dynamic_index.rs.html#35-39">source</a></span><a href="#method.clone" class="anchor"></a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone" class="fnname">clone</a>(&amp;self) -&gt; Self</h4></section></summary><div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.clone_from" class="method trait-impl has-srclink"><span class="rightside"><span class="since" title="Stable since Rust version 1.0.0">1.0.0</span> · <a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/clone.rs.html#132-134">source</a></span><a href="#method.clone_from" class="anchor"></a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from" class="fnname">clone_from</a>(&amp;mut self, source: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self)</h4></section></summary><div class='docblock'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>
@@ -235,17 +223,17 @@ by <code>==</code>. <a href="https://doc.rust-lang.org/nightly/core/cmp/trait.Pa
 </div></details></div></details><details class="rustdoc-toggle implementors-toggle"><summary><section id="impl-Into%3CU%3E-for-DynamicIndex" class="impl has-srclink"><span class="rightside"><a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#541">source</a></span><a href="#impl-Into%3CU%3E-for-DynamicIndex" class="anchor"></a><h3 class="code-header in-band">impl&lt;T, U&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html" title="trait core::convert::Into">Into</a>&lt;U&gt; for T <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;U: <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html" title="trait core::convert::From">From</a>&lt;T&gt;,&nbsp;</span></h3></section></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><section id="method.into" class="method trait-impl has-srclink"><span class="rightside"><span class="since" title="const unstable">const: <a href="https://github.com/rust-lang/rust/issues/88674" title="Tracking issue for const_convert">unstable</a></span> · <a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#549">source</a></span><a href="#method.into" class="anchor"></a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html#tymethod.into" class="fnname">into</a>(self) -&gt; U</h4></section></summary><div class="docblock"><p>Calls <code>U::from(self)</code>.</p>
 <p>That is, this conversion is whatever the implementation of
 <code><a href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html" title="From">From</a>&lt;T&gt; for U</code> chooses to do.</p>
-</div></details></div></details><details class="rustdoc-toggle implementors-toggle"><summary><section id="impl-Position%3C()%3E-for-DynamicIndex" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../../src/relm4/factory/traits.rs.html#78-80">source</a></span><a href="#impl-Position%3C()%3E-for-DynamicIndex" class="anchor"></a><h3 class="code-header in-band">impl&lt;C&gt; <a class="trait" href="traits/trait.Position.html" title="trait relm4::factory::traits::Position">Position</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>&gt; for C</h3></section></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><section id="method.position" class="method trait-impl has-srclink"><span class="rightside"><a class="srclink" href="../../src/relm4/factory/traits.rs.html#79">source</a></span><a href="#method.position" class="anchor"></a><h4 class="code-header">fn <a href="traits/trait.Position.html#tymethod.position" class="fnname">position</a>(_index: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a>)</h4></section></summary><div class='docblock'><p>Returns the position. <a href="traits/trait.Position.html#tymethod.position">Read more</a></p>
+</div></details></div></details><details class="rustdoc-toggle implementors-toggle"><summary><section id="impl-Position%3C()%3E-for-DynamicIndex" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../../src/relm4/factory/traits.rs.html#80-82">source</a></span><a href="#impl-Position%3C()%3E-for-DynamicIndex" class="anchor"></a><h3 class="code-header in-band">impl&lt;C&gt; <a class="trait" href="traits/trait.Position.html" title="trait relm4::factory::traits::Position">Position</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>&gt; for C</h3></section></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><section id="method.position" class="method trait-impl has-srclink"><span class="rightside"><a class="srclink" href="../../src/relm4/factory/traits.rs.html#81">source</a></span><a href="#method.position" class="anchor"></a><h4 class="code-header">fn <a href="traits/trait.Position.html#tymethod.position" class="fnname">position</a>(_index: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a>)</h4></section></summary><div class='docblock'><p>Returns the position. <a href="traits/trait.Position.html#tymethod.position">Read more</a></p>
 </div></details></div></details><details class="rustdoc-toggle implementors-toggle"><summary><section id="impl-ToOwned-for-DynamicIndex" class="impl has-srclink"><span class="rightside"><a class="srclink" href="https://doc.rust-lang.org/nightly/src/alloc/borrow.rs.html#83">source</a></span><a href="#impl-ToOwned-for-DynamicIndex" class="anchor"></a><h3 class="code-header in-band">impl&lt;T&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/alloc/borrow/trait.ToOwned.html" title="trait alloc::borrow::ToOwned">ToOwned</a> for T <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;T: <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a>,&nbsp;</span></h3></section></summary><div class="impl-items"><details class="rustdoc-toggle" open><summary><section id="associatedtype.Owned" class="associatedtype trait-impl has-srclink"><a href="#associatedtype.Owned" class="anchor"></a><h4 class="code-header">type <a href="https://doc.rust-lang.org/nightly/alloc/borrow/trait.ToOwned.html#associatedtype.Owned" class="associatedtype">Owned</a> = T</h4></section></summary><div class='docblock'><p>The resulting type after obtaining ownership.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.to_owned" class="method trait-impl has-srclink"><span class="rightside"><a class="srclink" href="https://doc.rust-lang.org/nightly/src/alloc/borrow.rs.html#88">source</a></span><a href="#method.to_owned" class="anchor"></a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/alloc/borrow/trait.ToOwned.html#tymethod.to_owned" class="fnname">to_owned</a>(&amp;self) -&gt; T</h4></section></summary><div class='docblock'><p>Creates owned data from borrowed data, usually by cloning. <a href="https://doc.rust-lang.org/nightly/alloc/borrow/trait.ToOwned.html#tymethod.to_owned">Read more</a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.clone_into" class="method trait-impl has-srclink"><span class="rightside"><a class="srclink" href="https://doc.rust-lang.org/nightly/src/alloc/borrow.rs.html#92">source</a></span><a href="#method.clone_into" class="anchor"></a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/alloc/borrow/trait.ToOwned.html#method.clone_into" class="fnname">clone_into</a>(&amp;self, target: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;mut </a>T)</h4></section></summary><div class='docblock'><p>Uses borrowed data to replace owned data, usually by cloning. <a href="https://doc.rust-lang.org/nightly/alloc/borrow/trait.ToOwned.html#method.clone_into">Read more</a></p>
-</div></details></div></details><details class="rustdoc-toggle implementors-toggle"><summary><section id="impl-TryFrom%3CU%3E-for-DynamicIndex" class="impl has-srclink"><span class="rightside"><a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#598">source</a></span><a href="#impl-TryFrom%3CU%3E-for-DynamicIndex" class="anchor"></a><h3 class="code-header in-band">impl&lt;T, U&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;U&gt; for T <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;U: <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html" title="trait core::convert::Into">Into</a>&lt;T&gt;,&nbsp;</span></h3></section></summary><div class="impl-items"><details class="rustdoc-toggle" open><summary><section id="associatedtype.Error" class="associatedtype trait-impl has-srclink"><a href="#associatedtype.Error" class="anchor"></a><h4 class="code-header">type <a href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#associatedtype.Error" class="associatedtype">Error</a> = <a class="enum" href="https://doc.rust-lang.org/nightly/core/convert/enum.Infallible.html" title="enum core::convert::Infallible">Infallible</a></h4></section></summary><div class='docblock'><p>The type returned in the event of a conversion error.</p>
+</div></details></div></details><details class="rustdoc-toggle implementors-toggle"><summary><section id="impl-TryFrom%3CU%3E-for-DynamicIndex" class="impl has-srclink"><span class="rightside"><a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#598">source</a></span><a href="#impl-TryFrom%3CU%3E-for-DynamicIndex" class="anchor"></a><h3 class="code-header in-band">impl&lt;T, U&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;U&gt; for T <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;U: <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html" title="trait core::convert::Into">Into</a>&lt;T&gt;,&nbsp;</span></h3></section></summary><div class="impl-items"><details class="rustdoc-toggle" open><summary><section id="associatedtype.Error-1" class="associatedtype trait-impl has-srclink"><a href="#associatedtype.Error-1" class="anchor"></a><h4 class="code-header">type <a href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#associatedtype.Error" class="associatedtype">Error</a> = <a class="enum" href="https://doc.rust-lang.org/nightly/core/convert/enum.Infallible.html" title="enum core::convert::Infallible">Infallible</a></h4></section></summary><div class='docblock'><p>The type returned in the event of a conversion error.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.try_from" class="method trait-impl has-srclink"><span class="rightside"><span class="since" title="const unstable">const: <a href="https://github.com/rust-lang/rust/issues/88674" title="Tracking issue for const_convert">unstable</a></span> · <a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#604">source</a></span><a href="#method.try_from" class="anchor"></a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#tymethod.try_from" class="fnname">try_from</a>(value: U) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;T, &lt;T as <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;U&gt;&gt;::<a class="associatedtype" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#associatedtype.Error" title="type core::convert::TryFrom::Error">Error</a>&gt;</h4></section></summary><div class='docblock'><p>Performs the conversion.</p>
-</div></details></div></details><details class="rustdoc-toggle implementors-toggle"><summary><section id="impl-TryInto%3CU%3E-for-DynamicIndex" class="impl has-srclink"><span class="rightside"><a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#583">source</a></span><a href="#impl-TryInto%3CU%3E-for-DynamicIndex" class="anchor"></a><h3 class="code-header in-band">impl&lt;T, U&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryInto.html" title="trait core::convert::TryInto">TryInto</a>&lt;U&gt; for T <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;U: <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;T&gt;,&nbsp;</span></h3></section></summary><div class="impl-items"><details class="rustdoc-toggle" open><summary><section id="associatedtype.Error-1" class="associatedtype trait-impl has-srclink"><a href="#associatedtype.Error-1" class="anchor"></a><h4 class="code-header">type <a href="https://doc.rust-lang.org/nightly/core/convert/trait.TryInto.html#associatedtype.Error" class="associatedtype">Error</a> = &lt;U as <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;T&gt;&gt;::<a class="associatedtype" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#associatedtype.Error" title="type core::convert::TryFrom::Error">Error</a></h4></section></summary><div class='docblock'><p>The type returned in the event of a conversion error.</p>
+</div></details></div></details><details class="rustdoc-toggle implementors-toggle"><summary><section id="impl-TryInto%3CU%3E-for-DynamicIndex" class="impl has-srclink"><span class="rightside"><a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#583">source</a></span><a href="#impl-TryInto%3CU%3E-for-DynamicIndex" class="anchor"></a><h3 class="code-header in-band">impl&lt;T, U&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryInto.html" title="trait core::convert::TryInto">TryInto</a>&lt;U&gt; for T <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;U: <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;T&gt;,&nbsp;</span></h3></section></summary><div class="impl-items"><details class="rustdoc-toggle" open><summary><section id="associatedtype.Error" class="associatedtype trait-impl has-srclink"><a href="#associatedtype.Error" class="anchor"></a><h4 class="code-header">type <a href="https://doc.rust-lang.org/nightly/core/convert/trait.TryInto.html#associatedtype.Error" class="associatedtype">Error</a> = &lt;U as <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;T&gt;&gt;::<a class="associatedtype" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#associatedtype.Error" title="type core::convert::TryFrom::Error">Error</a></h4></section></summary><div class='docblock'><p>The type returned in the event of a conversion error.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.try_into" class="method trait-impl has-srclink"><span class="rightside"><span class="since" title="const unstable">const: <a href="https://github.com/rust-lang/rust/issues/88674" title="Tracking issue for const_convert">unstable</a></span> · <a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#589">source</a></span><a href="#method.try_into" class="anchor"></a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/convert/trait.TryInto.html#tymethod.try_into" class="fnname">try_into</a>(self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;U, &lt;U as <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;T&gt;&gt;::<a class="associatedtype" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#associatedtype.Error" title="type core::convert::TryFrom::Error">Error</a>&gt;</h4></section></summary><div class='docblock'><p>Performs the conversion.</p>
 </div></details></div></details><details class="rustdoc-toggle implementors-toggle"><summary><section id="impl-WithSubscriber-for-DynamicIndex" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../../src/tracing/instrument.rs.html#334">source</a></span><a href="#impl-WithSubscriber-for-DynamicIndex" class="anchor"></a><h3 class="code-header in-band">impl&lt;T&gt; <a class="trait" href="../../tracing/instrument/trait.WithSubscriber.html" title="trait tracing::instrument::WithSubscriber">WithSubscriber</a> for T</h3></section></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><section id="method.with_subscriber" class="method trait-impl has-srclink"><span class="rightside"><a class="srclink" href="../../src/tracing/instrument.rs.html#169-171">source</a></span><a href="#method.with_subscriber" class="anchor"></a><h4 class="code-header">fn <a href="../../tracing/instrument/trait.WithSubscriber.html#method.with_subscriber" class="fnname">with_subscriber</a>&lt;S&gt;(self, subscriber: S) -&gt; <a class="struct" href="../../tracing/instrument/struct.WithDispatch.html" title="struct tracing::instrument::WithDispatch">WithDispatch</a>&lt;Self&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;S: <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html" title="trait core::convert::Into">Into</a>&lt;<a class="struct" href="../../tracing_core/dispatcher/struct.Dispatch.html" title="struct tracing_core::dispatcher::Dispatch">Dispatch</a>&gt;,&nbsp;</span></h4></section></summary><div class='docblock'><p>Attaches the provided <a href="../../tracing_core/subscriber/trait.Subscriber.html"><code>Subscriber</code></a> to this type, returning a
 <a href="../../tracing/instrument/struct.WithDispatch.html" title="WithDispatch"><code>WithDispatch</code></a> wrapper. <a href="../../tracing/instrument/trait.WithSubscriber.html#method.with_subscriber">Read more</a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.with_current_subscriber" class="method trait-impl has-srclink"><span class="rightside"><a class="srclink" href="../../src/tracing/instrument.rs.html#221">source</a></span><a href="#method.with_current_subscriber" class="anchor"></a><h4 class="code-header">fn <a href="../../tracing/instrument/trait.WithSubscriber.html#method.with_current_subscriber" class="fnname">with_current_subscriber</a>(self) -&gt; <a class="struct" href="../../tracing/instrument/struct.WithDispatch.html" title="struct tracing::instrument::WithDispatch">WithDispatch</a>&lt;Self&gt;</h4></section></summary><div class='docblock'><p>Attaches the current <a href="../../tracing/dispatcher/index.html#setting-the-default-subscriber">default</a> <a href="../../tracing_core/subscriber/trait.Subscriber.html"><code>Subscriber</code></a> to this type, returning a
 <a href="../../tracing/instrument/struct.WithDispatch.html" title="WithDispatch"><code>WithDispatch</code></a> wrapper. <a href="../../tracing/instrument/trait.WithSubscriber.html#method.with_current_subscriber">Read more</a></p>
-</div></details></div></details></div></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="relm4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (7fe022f5a 2022-07-24)" ></div>
+</div></details></div></details></div></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="relm4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (6dbae3ad1 2022-07-25)" ></div>
 </body></html>

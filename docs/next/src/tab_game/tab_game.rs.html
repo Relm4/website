@@ -327,6 +327,8 @@
 <span id="321">321</span>
 <span id="322">322</span>
 <span id="323">323</span>
+<span id="324">324</span>
+<span id="325">325</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::time::Duration</span>;
 
 <span class="kw">use</span> <span class="ident">gtk::prelude</span>::{<span class="ident">BoxExt</span>, <span class="ident">ButtonExt</span>, <span class="ident">GtkWindowExt</span>, <span class="ident">OrientableExt</span>, <span class="ident">WidgetExt</span>};
@@ -584,17 +586,21 @@
             <span class="ident">counters</span>: <span class="ident">FactoryVecDeque::new</span>(<span class="ident">widgets</span>.<span class="ident">tabs</span>.<span class="ident">clone</span>(), <span class="kw-2">&amp;</span><span class="ident">sender</span>.<span class="ident">input</span>),
             <span class="ident">start_index</span>: <span class="prelude-val">None</span>,
         };
+
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">counters_guard</span> <span class="op">=</span> <span class="ident">model</span>.<span class="ident">counters</span>.<span class="ident">guard</span>();
         <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="number">3</span> {
-            <span class="ident">model</span>.<span class="ident">counters</span>.<span class="ident">push_back</span>(<span class="ident">i</span>);
+            <span class="ident">counters_guard</span>.<span class="ident">push_back</span>(<span class="ident">i</span>);
         }
-        <span class="ident">model</span>.<span class="ident">counters</span>.<span class="ident">render_changes</span>();
+
+        <span class="comment">// Explicitly drop the guard,</span>
+        <span class="comment">// so that &#39;model&#39; is no longer borrowed</span>
+        <span class="comment">// and can be moved inside ComponentParts</span>
+        <span class="ident">drop</span>(<span class="ident">counters_guard</span>);
 
         <span class="ident">ComponentParts</span> { <span class="ident">model</span>, <span class="ident">widgets</span> }
     }
 
     <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident"><span class="self">Self</span>::Input</span>, <span class="ident">sender</span>: <span class="kw-2">&amp;</span><span class="ident">ComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
-        <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">apply_external_updates</span>();
-
         <span class="kw">match</span> <span class="ident">msg</span> {
             <span class="ident">AppMsg::StartGame</span>(<span class="ident">index</span>) =&gt; {
                 <span class="self">self</span>.<span class="ident">start_index</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">index</span>);
@@ -619,29 +625,27 @@
                 <span class="kw-2">*</span><span class="kw-2">*</span><span class="ident">GAME_STATE</span>.<span class="ident">get_mut</span>() <span class="op">=</span> <span class="ident">GameState::End</span>(<span class="ident">index</span> <span class="op">==</span> <span class="self">self</span>.<span class="ident">start_index</span>.<span class="ident">take</span>().<span class="ident">unwrap</span>());
             }
         }
-        <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">render_changes</span>();
     }
 
     <span class="kw">fn</span> <span class="ident">update_cmd</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident"><span class="self">Self</span>::CommandOutput</span>, <span class="ident">sender</span>: <span class="kw-2">&amp;</span><span class="ident">ComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="kw">if</span> <span class="ident">msg</span> {
             <span class="ident">sender</span>.<span class="ident">input</span>(<span class="ident">AppMsg::StopGame</span>);
         } <span class="kw">else</span> {
-            <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">apply_external_updates</span>();
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">counters_guard</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">guard</span>();
             <span class="kw">match</span> <span class="ident">rand::random</span>::<span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>() <span class="op">%</span> <span class="number">3</span> {
                 <span class="number">0</span> =&gt; {
-                    <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">swap</span>(<span class="number">1</span>, <span class="number">2</span>);
+                    <span class="ident">counters_guard</span>.<span class="ident">swap</span>(<span class="number">1</span>, <span class="number">2</span>);
                 }
                 <span class="number">1</span> =&gt; {
-                    <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">swap</span>(<span class="number">0</span>, <span class="number">1</span>);
+                    <span class="ident">counters_guard</span>.<span class="ident">swap</span>(<span class="number">0</span>, <span class="number">1</span>);
                 }
                 <span class="kw">_</span> =&gt; {
-                    <span class="kw">let</span> <span class="ident">widget</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">widget</span>();
+                    <span class="kw">let</span> <span class="ident">widget</span> <span class="op">=</span> <span class="ident">counters_guard</span>.<span class="ident">widget</span>();
                     <span class="kw">if</span> <span class="op">!</span><span class="ident">widget</span>.<span class="ident">select_next_page</span>() {
                         <span class="ident">widget</span>.<span class="ident">select_previous_page</span>();
                     }
                 }
             }
-            <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">render_changes</span>();
         }
     }
 }
@@ -651,5 +655,5 @@
     <span class="ident">app</span>.<span class="ident">run</span>::<span class="op">&lt;</span><span class="ident">AppModel</span><span class="op">&gt;</span>(());
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="tab_game" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (7fe022f5a 2022-07-24)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="tab_game" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (6dbae3ad1 2022-07-25)" ></div>
 </body></html>

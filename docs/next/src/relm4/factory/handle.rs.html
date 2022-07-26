@@ -44,27 +44,44 @@
 <span id="36">36</span>
 <span id="37">37</span>
 <span id="38">38</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">super</span>::FactoryComponent</span>;
+<span id="39">39</span>
+<span id="40">40</span>
+<span id="41">41</span>
+<span id="42">42</span>
+<span id="43">43</span>
+<span id="44">44</span>
+<span id="45">45</span>
+<span id="46">46</span>
+</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">super</span>::data_guard::DataGuard</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::FactoryComponent</span>;
 
-<span class="kw">use</span> <span class="ident">std::cell::RefCell</span>;
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
-<span class="kw">use</span> <span class="ident">std::rc::Rc</span>;
 
 <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::FactoryView</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Sender</span>;
-<span class="kw">use</span> <span class="ident">gtk::glib</span>;
 
+<span class="doccomment">/// Don&#39;t allow public access to a [`FactoryHandle`].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// It might be unsafe to extract `data` or `runtime`.</span>
+<span class="doccomment">/// Inside this type, it is guaranteed that extracting `data` will drop `runtime` before to</span>
+<span class="doccomment">/// comply with all required safety guarantees.</span>
 <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">struct</span> <span class="ident">FactoryHandle</span><span class="op">&lt;</span><span class="ident">Widget</span>, <span class="ident">C</span>: <span class="ident">FactoryComponent</span><span class="op">&lt;</span><span class="ident">Widget</span>, <span class="ident">ParentMsg</span><span class="op">&gt;</span>, <span class="ident">ParentMsg</span><span class="op">&gt;</span>
 <span class="kw">where</span>
     <span class="ident">Widget</span>: <span class="ident">FactoryView</span>,
     <span class="ident">C</span>: <span class="ident">FactoryComponent</span><span class="op">&lt;</span><span class="ident">Widget</span>, <span class="ident">ParentMsg</span><span class="op">&gt;</span>,
 {
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">data</span>: <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">RefCell</span><span class="op">&lt;</span><span class="ident">C</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">data</span>: <span class="ident">DataGuard</span><span class="op">&lt;</span><span class="ident">C</span><span class="op">&gt;</span>,
     <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">root_widget</span>: <span class="ident">C::Root</span>,
     <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">returned_widget</span>: <span class="ident">Widget::ReturnedWidget</span>,
     <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">input</span>: <span class="ident">Sender</span><span class="op">&lt;</span><span class="ident">C::Input</span><span class="op">&gt;</span>,
     <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">notifier</span>: <span class="ident">Sender</span><span class="op">&lt;</span>()<span class="op">&gt;</span>,
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">runtime_id</span>: <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">RefCell</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::SourceId</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+}
+
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">Widget</span>, <span class="ident">C</span>, <span class="ident">ParentMsg</span><span class="op">&gt;</span> <span class="ident">FactoryHandle</span><span class="op">&lt;</span><span class="ident">Widget</span>, <span class="ident">C</span>, <span class="ident">ParentMsg</span><span class="op">&gt;</span>
+<span class="kw">where</span>
+    <span class="ident">Widget</span>: <span class="ident">FactoryView</span>,
+    <span class="ident">C</span>: <span class="ident">FactoryComponent</span><span class="op">&lt;</span><span class="ident">Widget</span>, <span class="ident">ParentMsg</span><span class="op">&gt;</span>,
+{
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">Widget</span>, <span class="ident">C</span>, <span class="ident">ParentMsg</span><span class="op">&gt;</span> <span class="ident">fmt::Debug</span> <span class="kw">for</span> <span class="ident">FactoryHandle</span><span class="op">&lt;</span><span class="ident">Widget</span>, <span class="ident">C</span>, <span class="ident">ParentMsg</span><span class="op">&gt;</span>
@@ -78,10 +95,9 @@
             .<span class="ident">field</span>(<span class="string">&quot;root_widget&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">root_widget</span>)
             .<span class="ident">field</span>(<span class="string">&quot;input&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">input</span>)
             .<span class="ident">field</span>(<span class="string">&quot;notifier&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">notifier</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;runtime_id&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">runtime_id</span>)
             .<span class="ident">finish</span>()
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="relm4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (7fe022f5a 2022-07-24)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="relm4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (6dbae3ad1 2022-07-25)" ></div>
 </body></html>
