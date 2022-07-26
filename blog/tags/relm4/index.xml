@@ -1,4 +1,168 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>relm4 on Relm4 blog</title><link>https://relm4.org/blog/tags/relm4/</link><description>Recent content in relm4 on Relm4 blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 17 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://relm4.org/blog/tags/relm4/index.xml" rel="self" type="application/rss+xml"/><item><title>A new Relm 4 you: announcing Relm4 v0.4!</title><link>https://relm4.org/blog/posts/announcing_relm4_v0.4/</link><pubDate>Mon, 17 Jan 2022 00:00:00 +0000</pubDate><guid>https://relm4.org/blog/posts/announcing_relm4_v0.4/</guid><description>A new realm is here for you to explore! I&amp;rsquo;m happy to announce Relm4 v0.4, our biggest release so far!
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>relm4 on Relm4 blog</title><link>https://relm4.org/blog/tags/relm4/</link><description>Recent content in relm4 on Relm4 blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 26 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://relm4.org/blog/tags/relm4/index.xml" rel="self" type="application/rss+xml"/><item><title>Off to new adventures - Announcing Relm4 v0.5 beta!</title><link>https://relm4.org/blog/posts/announcing_relm4_v0.5_beta/</link><pubDate>Tue, 26 Jul 2022 00:00:00 +0000</pubDate><guid>https://relm4.org/blog/posts/announcing_relm4_v0.5_beta/</guid><description>A new realm appears on the horizon, waiting for you with plenty of new features to discover! I&amp;rsquo;m exited to announce Relm4 v0.5, by far our biggest release so far.
+About Relm4 Relm4 is an idiomatic GUI library inspired by Elm and based on gtk4-rs.
+We believe that GUI development should be easy, productive and delightful.
+The gtk4-rs crate already provides everything you need to write modern, beautiful and cross-platform applications.</description><content:encoded><![CDATA[<p>A new realm appears on the horizon, waiting for you with plenty of new features to discover!
+I&rsquo;m exited to announce Relm4 v0.5, by far our biggest release so far.</p>
+<blockquote>
+<h2 id="about-relm4">About Relm4</h2>
+<p>Relm4 is an idiomatic GUI library inspired by <a href="https://elm-lang.org/">Elm</a> and based on <a href="https://crates.io/crates/gtk4">gtk4-rs</a>.</p>
+<p>We believe that GUI development should be easy, productive and delightful.<br>
+The <a href="https://crates.io/crates/gtk4">gtk4-rs</a> crate already provides everything you need to write modern, beautiful and cross-platform applications.
+Built on top of this foundation, Relm4 makes developing more idiomatic, simpler and faster and enables you to become productive in just a few hours.</p>
+</blockquote>
+<h1 id="whats-new">What&rsquo;s new?</h1>
+<p>Relm4 v0.5 features some fundamental changes that greatly simplify the API and solve some longstanding issues.
+More than half a year ago, <a href="https://github.com/mmstick">Michael Murphy</a> from <a href="https://system76.com">System76</a> started off the development of 0.5 with some great ideas to improve the structure of Relm4 applications.
+Over time, more developers joined the effort to redesign and refine Relm4&rsquo;s API.
+Now - almost 300 commits later - I&rsquo;m proud to present the results of our hard work.</p>
+<h2 id="fewer-traits-more-fun">Fewer traits, more fun!</h2>
+<p>So far, Relm4 had several traits for different use-cases.
+In total, 7 traits were unified into one interface, the <code>Component</code> trait.
+Furthermore, the new trait covers not only all previous use-cases, it even adds some features on top.</p>
+<h3 id="maximum-flexibility">Maximum flexibility</h3>
+<p>In version 0.4, Relm4&rsquo;s macros made Relm4 more attractive for gtk4-rs based applications.
+I&rsquo;m happy this trend continues in version 0.5.
+You can now mix Relm4 into any gtk-rs application and the other way around with hardly any limitations.</p>
+<h3 id="commands">Commands</h3>
+<p>Commands are a concept from the <a href="https://elm-lang.org">Elm</a> programming language that is often used to run web-requests in the background without blocking other UI updates.
+With Relm4, you now can take full advantage of Rust&rsquo;s async ecosystem to run asynchronous tasks in the background without blocking your application.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#75715e">// Add a new command future to be executed in the backgroud
+</span><span style="color:#75715e"></span>sender.command(<span style="color:#f92672">|</span>out, shutdown<span style="color:#f92672">|</span> {
+    <span style="color:#75715e">// Cancel the future if the component is shut down in the meantime
+</span><span style="color:#75715e"></span>    shutdown.register(<span style="color:#66d9ef">async</span> <span style="color:#66d9ef">move</span> {
+        <span style="color:#75715e">// Wait for one second
+</span><span style="color:#75715e"></span>        tokio::time::sleep(Duration::from_secs(<span style="color:#ae81ff">1</span>)).<span style="color:#66d9ef">await</span>;
+        <span style="color:#75715e">// Emit a delayed increment event
+</span><span style="color:#75715e"></span>        out.send(AppMsg::Increment);
+    }).drop_on_shutdown()
+})
+</code></pre></div><h3 id="seamless-communication">Seamless communication</h3>
+<p>Many applications written in Relm4 rely upon communication between components.
+Often one message needs to be forwarded to another component, e.g. to show a dialog.
+Previously, this required forwarding the message from the application logic.
+Now you can simply register a closure to modify and forward messages.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#66d9ef">let</span> component <span style="color:#f92672">=</span> MyComponent::builder()
+    <span style="color:#75715e">// Start the component service with an initial parameter
+</span><span style="color:#75715e"></span>    .launch(<span style="color:#e6db74">&#34;Hello world&#34;</span>)
+    <span style="color:#75715e">// Attach the returned receiver&#39;s messages to this closure.
+</span><span style="color:#75715e"></span>    .connect_receiver(<span style="color:#66d9ef">move</span> <span style="color:#f92672">|</span>sender, message<span style="color:#f92672">|</span> <span style="color:#66d9ef">match</span> message {
+        <span style="color:#75715e">// Transform and forward the message
+</span><span style="color:#75715e"></span>        Output::HelloThere <span style="color:#f92672">=&gt;</span> {
+            sender.send(Input::Answer(<span style="color:#e6db74">&#34;General Kenobi!&#34;</span>))
+        },
+        _ <span style="color:#f92672">=&gt;</span> (),
+    });
+</code></pre></div><h2 id="macroscopic-macro-improvements">Macroscopic macro improvements</h2>
+<p>The <code>view!</code> macro has been largely rewritten, making the codebase smaller, faster and more maintainable.
+Additionally, the macro gained a lot of exiting features and can continue the code generation even if it encounters errors.</p>
+<h3 id="rusty-blueprints">Rusty blueprints</h3>
+<p>With 0.5, the macro syntax was cleaned up and became even easier.
+By pure coincidence, it looks very similar to the <a href="https://jwestman.pages.gitlab.gnome.org/blueprint-compiler/">Blueprint language</a> that&rsquo;s specifically designed for GTK4 UIs.</p>
+<p>Yet, Relm4 has more to offer than just creating UIs.
+It integrates well into the surrounding Rust code by allowing you to update values automatically, to use local variables and to connect message handlers directly with the UI declaration.
+You can even use <code>match</code> and <code>if</code> conditions to show widgets depending upon certain conditions.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#75715e">// Create a new container
+</span><span style="color:#75715e"></span>gtk::Box {
+    <span style="color:#75715e">// Arrange widgets vertically
+</span><span style="color:#75715e"></span>    set_orientation: <span style="color:#a6e22e">Vertical</span>,
+
+    <span style="color:#75715e">// Watch `counter.value` to make the box invisible
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// if the value reaches 42
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">#[watch]</span>
+    set_visible: <span style="color:#a6e22e">counter</span>.value <span style="color:#f92672">!=</span> <span style="color:#ae81ff">42</span>,
+
+    <span style="color:#75715e">// Append a new label
+</span><span style="color:#75715e"></span>    gtk::Label {
+        set_label: <span style="color:#e6db74">&#34;Hello world!&#34;</span>,
+    },
+
+    <span style="color:#75715e">// Append a new label using a builder pattern
+</span><span style="color:#75715e"></span>    gtk::Label::builder()
+        .label(<span style="color:#e6db74">&#34;Builder pattern works!&#34;</span>)
+        .selectable(<span style="color:#66d9ef">true</span>)
+        .build(),
+
+    <span style="color:#75715e">// Use different widgets depending on a pattern
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// and show a transition in between
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">#[transition(SlideLeft)]</span>
+    <span style="color:#66d9ef">match</span> counter.value {
+        (<span style="color:#ae81ff">0</span>..<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>) <span style="color:#f92672">=&gt;</span> {
+            <span style="color:#75715e">// First match arm: show a button
+</span><span style="color:#75715e"></span>            gtk::Button {
+                set_label: <span style="color:#e6db74">&#34;Value is smaller than 3, click to increment it!&#34;</span>,
+                connect_clicked[sender] <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">move</span> <span style="color:#f92672">|</span>_<span style="color:#f92672">|</span> {
+                    sender.input(appmsg::increment);
+                }
+            }
+        },
+        _ <span style="color:#f92672">=&gt;</span> {
+            <span style="color:#75715e">// Second match arm: show a label
+</span><span style="color:#75715e"></span>            gtk::Label {
+                set_label: <span style="color:#e6db74">&#34;Value is higher than 2&#34;</span>,
+            }
+        }
+    }
+}
+</code></pre></div><p>Further features added in this release include:</p>
+<ul>
+<li>Support for multiple top-level widgets</li>
+<li>Support for adding widgets from local variables</li>
+<li>Automatically block signals while updating values</li>
+</ul>
+<h2 id="fabulous-factories">Fabulous factories</h2>
+<p>Along with components, factories saw a big update.
+The new <code>FactoryComponent</code> trait is very similar to <code>Component</code> and allows every entry of a factory to manage its own state.</p>
+<p>The updated <code>FactoryVecDeque</code> type comes extremely close to the goal of making collections of UI elements just as accessible as regular data collections.
+With implementations for <code>Index</code> and <code>IndexMut</code> as well as most methods from <code>VecDeque</code>, you&rsquo;ll hardly notice you&rsquo;re actually working with UI elements.
+Even external updates, e.g. when a user swaps two tabs, are now automatically synchronized with the order of elements in the <code>FactoryVecDeque</code>.
+A new RAII-guard completes the list of improvements and makes it impossible to forget to render the changes after modifying the data.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> guard <span style="color:#f92672">=</span> factory.guard();
+guard.push_back(<span style="color:#ae81ff">1</span>);
+guard.swap(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>);
+<span style="color:#66d9ef">let</span> last_value <span style="color:#f92672">=</span> guard.pop_back().unwrap();
+println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Value of the first element {}&#34;</span>, guard[<span style="color:#ae81ff">0</span>]);
+<span style="color:#75715e">// Changes are rendered as soon as the scope ends
+</span></code></pre></div><p>Let&rsquo;s see the new factories in action!
+The new <a href="https://github.com/Relm4/Relm4/blob/next/examples/libadwaita/tab_game.rs"><code>tab_game</code></a> example takes advantage of the new features to build a small game.</p>
+<video controls>
+    <source src="./tab_game.webm" type="video/webm">
+    Your browser does not support the video tag.
+</video> 
+<h1 id="try-it-out">Try it out!</h1>
+<p>Try out the new beta by adding the following lines to your project&rsquo;s Cargo.toml file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml"><span style="color:#a6e22e">relm4</span> = { <span style="color:#a6e22e">git</span> = <span style="color:#e6db74">&#34;https://github.com/Relm4/Relm4&#34;</span>, <span style="color:#a6e22e">tag</span> = <span style="color:#e6db74">&#34;v0.5.0-beta.1&#34;</span> }
+</code></pre></div><p>Yet, keep in mind that this is still a beta, so some things might be slightly adjusted before the stable release.
+Also, the book isn&rsquo;t fully ported to v0.5, but the examples in the repository are always up to date.</p>
+<h2 id="remaining-tasks">Remaining tasks</h2>
+<p>We&rsquo;re looking forward to release 0.5 as stable soon.
+However, there are still a few things left to do.
+<strong>Feedback and contributions are highly appreciated!</strong></p>
+<ul>
+<li>Polish some rough edges in the API</li>
+<li>Finish updating the book</li>
+<li>Port more examples to 0.5</li>
+<li>Port the rest of relm4-components to 0.5</li>
+</ul>
+<h2 id="where-to-get-started">Where to get started</h2>
+<ul>
+<li>⬆️ <strong><a href="https://relm4.org/book/next/0_4_to_0_5.html">Migration guide</a></strong></li>
+<li>🏠 <strong><a href="https://relm4.org">Website</a></strong></li>
+<li>⭐ <strong><a href="https://github.com/Relm4/Relm4">Repository</a></strong></li>
+<li>📖 <strong><a href="https://relm4.org/book/next">Book</a></strong></li>
+<li>📜 <strong><a href="https://relm4.org/docs/next/relm4">Rust documentation</a></strong></li>
+</ul>
+<h1 id="special-thanks">Special thanks</h1>
+<p>We highly appreciate feedback and contributions to Relm4.
+In the name of all members of the Relm4 organization I thank those who helped with this release:</p>
+<ul>
+<li><a href="https://github.com/mmstick">Michael Murphy</a> for coming up with several brilliant ideas and contributing most of the component rework.</li>
+<li><a href="https://github.com/cofee-on-the-desk">Maksym Shcherbak</a> for his ongoing and outstanding contributions around factories and other parts of Relm4.</li>
+<li><a href="https://github.com/euclio">Andy Russell</a> for contributing improvements all across Relm4.</li>
+<li><a href="https://github.com/edfloreshz">Eduardo Flores</a> for joining the discussions and porting the book to 0.5.</li>
+<li>Everyone else who contributed or gave feedback.</li>
+<li>The whole gtk-rs team for providing awesome Rust bindings for GTK and always being helpful.</li>
+</ul>
+]]></content:encoded></item><item><title>A new Relm 4 you: announcing Relm4 v0.4!</title><link>https://relm4.org/blog/posts/announcing_relm4_v0.4/</link><pubDate>Mon, 17 Jan 2022 00:00:00 +0000</pubDate><guid>https://relm4.org/blog/posts/announcing_relm4_v0.4/</guid><description>A new realm is here for you to explore! I&amp;rsquo;m happy to announce Relm4 v0.4, our biggest release so far!
 About Relm4 Relm4 is an idiomatic GUI library inspired by Elm and based on gtk4-rs.
 We believe that GUI development should be easy, productive and delightful.
 The gtk4-rs crate already provides everything you need to write modern, beautiful and cross-platform applications. Built on top of this foundation, Relm4 makes developing more idiomatic, simpler and faster and enables you to become productive in just a few hours.</description><content:encoded><![CDATA[<p>A new realm is here for you to explore! I&rsquo;m happy to announce Relm4 v0.4, our biggest release so far!</p>
