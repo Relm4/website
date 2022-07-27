@@ -162,7 +162,7 @@ fn init(counter: Self::InitParams, root: &amp;Self::Root, sender: &amp;Component
             CounterOutput::MoveDown(index) =&gt; AppMsg::MoveDown(index),
         })  
     };
-    let widgets = view_outout!();
+    let widgets = view_output!();
     ComponentParts { model, widgets }
 }
 </code></pre>

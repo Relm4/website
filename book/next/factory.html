@@ -364,7 +364,7 @@ impl FactoryComponent&lt;gtk::Box, AppMsg&gt; for Counter {
         &amp;mut self,
         msg: Self::Input,
         _input: &amp;Sender&lt;Self::Input&gt;,
-        _ouput: &amp;Sender&lt;Self::Output&gt;,
+        _output: &amp;Sender&lt;Self::Output&gt;,
     ) -&gt; Option&lt;Self::Command&gt; {
         match msg {
             CounterInput::Increment =&gt; {
