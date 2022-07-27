@@ -590,6 +590,11 @@
 <span id="582">582</span>
 <span id="583">583</span>
 <span id="584">584</span>
+<span id="585">585</span>
+<span id="586">586</span>
+<span id="587">587</span>
+<span id="588">588</span>
+<span id="589">589</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Sender</span>;
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::factory</span>::{
@@ -650,6 +655,11 @@
 
         <span class="ident">guard</span>
     }
+
+    <span class="doccomment">/// Drops the guard and renders all changes.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Use this to transfer full ownership back to the [`FactoryVecDeque`].</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">drop</span>(<span class="self">self</span>) {}
 
     <span class="doccomment">/// Apply external updates that happened between the last render.</span>
     <span class="doccomment">///</span>
@@ -1175,5 +1185,5 @@
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="relm4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (6dbae3ad1 2022-07-25)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="relm4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (4d6d601c8 2022-07-26)" ></div>
 </body></html>

@@ -595,7 +595,7 @@
         <span class="comment">// Explicitly drop the guard,</span>
         <span class="comment">// so that &#39;model&#39; is no longer borrowed</span>
         <span class="comment">// and can be moved inside ComponentParts</span>
-        <span class="ident">drop</span>(<span class="ident">counters_guard</span>);
+        <span class="ident">counters_guard</span>.<span class="ident">drop</span>();
 
         <span class="ident">ComponentParts</span> { <span class="ident">model</span>, <span class="ident">widgets</span> }
     }
@@ -655,5 +655,5 @@
     <span class="ident">app</span>.<span class="ident">run</span>::<span class="op">&lt;</span><span class="ident">AppModel</span><span class="op">&gt;</span>(());
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="tab_game" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (6dbae3ad1 2022-07-25)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="tab_game" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (4d6d601c8 2022-07-26)" ></div>
 </body></html>
