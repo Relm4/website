@@ -40,26 +40,26 @@ you modify the shared state using <a href="struct.SharedState.html#method.get_mu
 }
 
 <span class="macro">assert_eq!</span>(<span class="ident">receiver</span>.<span class="ident">recv_sync</span>().<span class="ident">unwrap</span>(), <span class="number">1</span>);</code></pre></div>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-1"><a href="#scraped-examples-1">Examples found in repository</a><a class="scrape-help" href="../../scrape-examples-help.html">?</a></h5><div class="scraped-example expanded" data-locs="[[[6,6],&quot;../../src/tab_game/tab_game.rs.html#162&quot;,&quot;line 162&quot;]]"><div class="scraped-example-title">examples/libadwaita/tab_game.rs (<a href="../../src/tab_game/tab_game.rs.html#162">line 162</a>)</div><div class="code-wrapper"><div class="example-wrap"><pre class="line-numbers"><span>156</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-1"><a href="#scraped-examples-1">Examples found in repository</a><a class="scrape-help" href="../../scrape-examples-help.html">?</a></h5><div class="scraped-example expanded" data-locs="[[[5,5],&quot;../../src/tab_game/tab_game.rs.html#160&quot;,&quot;line 160&quot;]]"><div class="scraped-example-title">examples/libadwaita/tab_game.rs (<a href="../../src/tab_game/tab_game.rs.html#160">line 160</a>)</div><div class="code-wrapper"><div class="example-wrap"><pre class="line-numbers"><span>155</span>
+<span>156</span>
 <span>157</span>
 <span>158</span>
 <span>159</span>
 <span>160</span>
 <span>161</span>
 <span>162</span>
-<span>163</span>
-<span>164</span>
 </pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">init_model</span>(
         <span class="ident">value</span>: <span class="ident"><span class="self">Self</span>::InitParams</span>,
         <span class="ident">_index</span>: <span class="kw-2">&amp;</span><span class="ident">DynamicIndex</span>,
-        <span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="ident">Sender</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Input</span><span class="op">&gt;</span>,
-        <span class="ident">_output</span>: <span class="kw-2">&amp;</span><span class="ident">Sender</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Output</span><span class="op">&gt;</span>,
+        <span class="ident">sender</span>: <span class="kw-2">&amp;</span><span class="ident">FactoryComponentSender</span><span class="op">&lt;</span><span class="ident">adw::TabView</span>, <span class="ident">AppMsg</span>, <span class="self">Self</span><span class="op">&gt;</span>,
     ) -&gt; <span class="self">Self</span> {
-        <span class="ident">GAME_STATE</span>.<span class="highlight focus"><span class="ident">subscribe</span></span>(<span class="ident">input</span>, <span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">CounterMsg::Update</span>);
+        <span class="ident">GAME_STATE</span>.<span class="highlight focus"><span class="ident">subscribe</span></span>(<span class="kw-2">&amp;</span><span class="ident">sender</span>.<span class="ident">input</span>, <span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">CounterMsg::Update</span>);
         <span class="self">Self</span> { <span class="ident">id</span>: <span class="ident">value</span> }
     }</code></pre></div>
 </div></div></div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.get" class="method has-srclink"><span class="rightside"><a class="srclink" href="../../src/relm4/shared_state.rs.html#95-99">source</a></span><h4 class="code-header">pub fn <a href="#method.get" class="fnname">get</a>(&amp;self) -&gt; <a class="struct" href="struct.SharedStateReadGuard.html" title="struct relm4::shared_state::SharedStateReadGuard">SharedStateReadGuard</a>&lt;'_, Data&gt;</h4></section></summary><div class="docblock"><p>Get immutable access to the shared data.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-2"><a href="#scraped-examples-2">Examples found in repository</a><a class="scrape-help" href="../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[8,8],&quot;../../src/tab_game/tab_game.rs.html#174&quot;,&quot;line 174&quot;]]"><div class="scraped-example-title">examples/libadwaita/tab_game.rs (<a href="../../src/tab_game/tab_game.rs.html#174">line 174</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>166</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-2"><a href="#scraped-examples-2">Examples found in repository</a><a class="scrape-help" href="../../scrape-examples-help.html">?</a></h5><div class="scraped-example expanded" data-locs="[[[7,7],&quot;../../src/tab_game/tab_game.rs.html#171&quot;,&quot;line 171&quot;]]"><div class="scraped-example-title">examples/libadwaita/tab_game.rs (<a href="../../src/tab_game/tab_game.rs.html#171">line 171</a>)</div><div class="code-wrapper"><div class="example-wrap"><pre class="line-numbers"><span>164</span>
+<span>165</span>
+<span>166</span>
 <span>167</span>
 <span>168</span>
 <span>169</span>
@@ -68,16 +68,12 @@ you modify the shared state using <a href="struct.SharedState.html#method.get_mu
 <span>172</span>
 <span>173</span>
 <span>174</span>
-<span>175</span>
-<span>176</span>
-<span>177</span>
 </pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">init_widgets</span>(
         <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
         <span class="ident">index</span>: <span class="kw-2">&amp;</span><span class="ident">DynamicIndex</span>,
         <span class="ident">root</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Root</span>,
         <span class="ident">returned_widget</span>: <span class="kw-2">&amp;</span><span class="ident">adw::TabPage</span>,
-        <span class="ident">_input</span>: <span class="kw-2">&amp;</span><span class="ident">Sender</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Input</span><span class="op">&gt;</span>,
-        <span class="ident">output</span>: <span class="kw-2">&amp;</span><span class="ident">Sender</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Output</span><span class="op">&gt;</span>,
+        <span class="ident">sender</span>: <span class="kw-2">&amp;</span><span class="ident">FactoryComponentSender</span><span class="op">&lt;</span><span class="ident">adw::TabView</span>, <span class="ident">AppMsg</span>, <span class="self">Self</span><span class="op">&gt;</span>,
     ) -&gt; <span class="ident"><span class="self">Self</span>::Widgets</span> {
         <span class="kw">let</span> <span class="ident">state</span> <span class="op">=</span> <span class="ident">GAME_STATE</span>.<span class="highlight focus"><span class="ident">get</span></span>();
         <span class="kw">let</span> <span class="ident">widgets</span> <span class="op">=</span> <span class="macro">view_output!</span>();
@@ -85,7 +81,12 @@ you modify the shared state using <a href="struct.SharedState.html#method.get_mu
     }</code></pre></div>
 </div></div></div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.get_mut" class="method has-srclink"><span class="rightside"><a class="srclink" href="../../src/relm4/shared_state.rs.html#103-108">source</a></span><h4 class="code-header">pub fn <a href="#method.get_mut" class="fnname">get_mut</a>(&amp;self) -&gt; <a class="struct" href="struct.SharedStateWriteGuard.html" title="struct relm4::shared_state::SharedStateWriteGuard">SharedStateWriteGuard</a>&lt;'_, Data&gt;</h4></section></summary><div class="docblock"><p>Get mutable access to the shared data.
 Once the lock is dropped all subscribers will be notified.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-3"><a href="#scraped-examples-3">Examples found in repository</a><a class="scrape-help" href="../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[6,6],&quot;../../src/tab_game/tab_game.rs.html#278&quot;,&quot;line 278&quot;],[[9,9],&quot;../../src/tab_game/tab_game.rs.html#281&quot;,&quot;line 281&quot;],[[19,19],&quot;../../src/tab_game/tab_game.rs.html#291&quot;,&quot;line 291&quot;],[[22,22],&quot;../../src/tab_game/tab_game.rs.html#294&quot;,&quot;line 294&quot;]]"><div class="scraped-example-title">examples/libadwaita/tab_game.rs (<a href="../../src/tab_game/tab_game.rs.html#278">line 278</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>272</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-3"><a href="#scraped-examples-3">Examples found in repository</a><a class="scrape-help" href="../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[6,6],&quot;../../src/tab_game/tab_game.rs.html#273&quot;,&quot;line 273&quot;],[[9,9],&quot;../../src/tab_game/tab_game.rs.html#276&quot;,&quot;line 276&quot;],[[19,19],&quot;../../src/tab_game/tab_game.rs.html#286&quot;,&quot;line 286&quot;],[[22,22],&quot;../../src/tab_game/tab_game.rs.html#289&quot;,&quot;line 289&quot;]]"><div class="scraped-example-title">examples/libadwaita/tab_game.rs (<a href="../../src/tab_game/tab_game.rs.html#273">line 273</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>267</span>
+<span>268</span>
+<span>269</span>
+<span>270</span>
+<span>271</span>
+<span>272</span>
 <span>273</span>
 <span>274</span>
 <span>275</span>
@@ -106,11 +107,6 @@ Once the lock is dropped all subscribers will be notified.</p>
 <span>290</span>
 <span>291</span>
 <span>292</span>
-<span>293</span>
-<span>294</span>
-<span>295</span>
-<span>296</span>
-<span>297</span>
 </pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident"><span class="self">Self</span>::Input</span>, <span class="ident">sender</span>: <span class="kw-2">&amp;</span><span class="ident">ComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="kw">match</span> <span class="ident">msg</span> {
             <span class="ident">AppMsg::StartGame</span>(<span class="ident">index</span>) =&gt; {
@@ -160,5 +156,5 @@ Once the lock is dropped all subscribers will be notified.</p>
 <a href="../../tracing/instrument/struct.WithDispatch.html" title="WithDispatch"><code>WithDispatch</code></a> wrapper. <a href="../../tracing/instrument/trait.WithSubscriber.html#method.with_subscriber">Read more</a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.with_current_subscriber" class="method trait-impl has-srclink"><span class="rightside"><a class="srclink" href="../../src/tracing/instrument.rs.html#221">source</a></span><a href="#method.with_current_subscriber" class="anchor"></a><h4 class="code-header">fn <a href="../../tracing/instrument/trait.WithSubscriber.html#method.with_current_subscriber" class="fnname">with_current_subscriber</a>(self) -&gt; <a class="struct" href="../../tracing/instrument/struct.WithDispatch.html" title="struct tracing::instrument::WithDispatch">WithDispatch</a>&lt;Self&gt;</h4></section></summary><div class='docblock'><p>Attaches the current <a href="../../tracing/dispatcher/index.html#setting-the-default-subscriber">default</a> <a href="../../tracing_core/subscriber/trait.Subscriber.html"><code>Subscriber</code></a> to this type, returning a
 <a href="../../tracing/instrument/struct.WithDispatch.html" title="WithDispatch"><code>WithDispatch</code></a> wrapper. <a href="../../tracing/instrument/trait.WithSubscriber.html#method.with_current_subscriber">Read more</a></p>
-</div></details></div></details></div></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="relm4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (4d6d601c8 2022-07-26)" ></div>
+</div></details></div></details></div></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="relm4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (2643b1646 2022-07-27)" ></div>
 </body></html>

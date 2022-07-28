@@ -202,6 +202,12 @@
 <span id="194">194</span>
 <span id="195">195</span>
 <span id="196">196</span>
+<span id="197">197</span>
+<span id="198">198</span>
+<span id="199">199</span>
+<span id="200">200</span>
+<span id="201">201</span>
+<span id="202">202</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">proc_macro2</span>::{<span class="ident">Span</span> <span class="kw">as</span> <span class="ident">Span2</span>, <span class="ident">TokenStream</span> <span class="kw">as</span> <span class="ident">TokenStream2</span>};
 <span class="kw">use</span> <span class="ident">quote</span>::{<span class="ident">quote</span>, <span class="ident">ToTokens</span>};
 <span class="kw">use</span> <span class="ident">syn::spanned::Spanned</span>;
@@ -339,19 +345,26 @@
     };
 
     <span class="kw">let</span> <span class="ident">last_segment</span> <span class="op">=</span> <span class="ident">trait_</span>.<span class="ident">segments</span>.<span class="ident">last</span>().<span class="ident">unwrap</span>();
-    <span class="kw">let</span> <span class="ident">container_widget</span> <span class="op">=</span> <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="ident">last_segment</span>.<span class="ident">arguments</span> {
-        <span class="ident">syn::PathArguments::AngleBracketed</span>(<span class="ident">args</span>) =&gt; {
-            <span class="ident">args</span>.<span class="ident">args</span>.<span class="ident">first</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">arg</span><span class="op">|</span> <span class="ident">arg</span>.<span class="ident">to_token_stream</span>())
+
+    <span class="kw">let</span> (<span class="ident">container_widget</span>, <span class="ident">parent_msg</span>) <span class="op">=</span> {
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">args</span> <span class="op">=</span> <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="ident">last_segment</span>.<span class="ident">arguments</span> {
+            <span class="ident">syn::PathArguments::AngleBracketed</span>(<span class="ident">args</span>) =&gt; <span class="prelude-val">Some</span>(<span class="ident">args</span>.<span class="ident">args</span>.<span class="ident">clone</span>()),
+            <span class="kw">_</span> =&gt; <span class="prelude-val">None</span>,
         }
-        <span class="kw">_</span> =&gt; <span class="prelude-val">None</span>,
-    }
-    .<span class="ident">unwrap_or_default</span>();
+        .<span class="ident">unwrap_or_default</span>()
+        .<span class="ident">into_iter</span>();
+        (
+            <span class="ident">args</span>.<span class="ident">next</span>().<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="macro">syn::parse_quote!</span>(())),
+            <span class="ident">args</span>.<span class="ident">next</span>().<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="macro">syn::parse_quote!</span>(())),
+        )
+    };
 
     <span class="kw">let</span> <span class="ident">init_injected</span> <span class="op">=</span> <span class="ident">inject_view_code</span>(
         <span class="ident">init_widgets</span>,
         <span class="ident">view_code</span>,
         <span class="ident">widgets_return_code</span>,
-        <span class="ident">container_widget</span>,
+        <span class="kw-2">&amp;</span><span class="ident">container_widget</span>,
+        <span class="kw-2">&amp;</span><span class="ident">parent_msg</span>,
     );
 
     <span class="macro">quote!</span> {
@@ -379,8 +392,7 @@
             <span class="kw">fn</span> <span class="ident">update_view</span>(
                 <span class="kw-2">&amp;</span><span class="self">self</span>,
                 <span class="ident">widgets</span>: <span class="kw-2">&amp;mut</span> <span class="ident"><span class="self">Self</span>::Widgets</span>,
-                <span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="ident">Sender</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Input</span><span class="op">&gt;</span>,
-                <span class="ident">output</span>: <span class="kw-2">&amp;</span><span class="ident">Sender</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Output</span><span class="op">&gt;</span>
+                <span class="ident">sender</span>: <span class="kw-2">&amp;</span><span class="ident">relm4::factory::FactoryComponentSender</span><span class="op">&lt;</span>#<span class="ident">container_widget</span>, #<span class="ident">parent_msg</span>, <span class="self">Self</span><span class="op">&gt;</span>,
             ) {
                 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_variables</span>)]</span>
                 <span class="kw">let</span> <span class="ident"><span class="self">Self</span>::Widgets</span> {
@@ -399,5 +411,5 @@
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="relm4_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (4d6d601c8 2022-07-26)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="relm4_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (2643b1646 2022-07-27)" ></div>
 </body></html>

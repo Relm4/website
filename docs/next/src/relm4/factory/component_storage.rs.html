@@ -144,7 +144,7 @@
 
     <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">send</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">msg</span>: <span class="ident">C::Input</span>) {
         <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::Builder</span>(<span class="ident">builder</span>) =&gt; <span class="ident">builder</span>.<span class="ident">input_tx</span>.<span class="ident">send</span>(<span class="ident">msg</span>),
+            <span class="ident"><span class="self">Self</span>::Builder</span>(<span class="ident">builder</span>) =&gt; <span class="ident">builder</span>.<span class="ident">component_sender</span>.<span class="ident">input</span>(<span class="ident">msg</span>),
             <span class="ident"><span class="self">Self</span>::Final</span>(<span class="ident">handle</span>) =&gt; <span class="ident">handle</span>.<span class="ident">input</span>.<span class="ident">send</span>(<span class="ident">msg</span>),
         }
     }
@@ -189,5 +189,5 @@
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="relm4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (4d6d601c8 2022-07-26)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="relm4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (2643b1646 2022-07-27)" ></div>
 </body></html>

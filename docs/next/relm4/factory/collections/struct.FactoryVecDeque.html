@@ -11,7 +11,13 @@
 data associated with components that implement <a href="../traits/trait.FactoryComponent.html" title="FactoryComponent"><code>FactoryComponent</code></a>.</p>
 <p>To access mutable methods of the factory, create a guard using <a href="struct.FactoryVecDeque.html#method.guard" title="Self::guard"><code>Self::guard</code></a>.</p>
 </div></details><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><div id="implementations-list"><details class="rustdoc-toggle implementors-toggle" open><summary><section id="impl-FactoryVecDeque%3CWidget%2C%20C%2C%20ParentMsg%3E" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../../../src/relm4/factory/collections/vec_deque.rs.html#424-589">source</a></span><a href="#impl-FactoryVecDeque%3CWidget%2C%20C%2C%20ParentMsg%3E" class="anchor"></a><h3 class="code-header in-band">impl&lt;Widget, C, ParentMsg&gt; <a class="struct" href="struct.FactoryVecDeque.html" title="struct relm4::factory::collections::FactoryVecDeque">FactoryVecDeque</a>&lt;Widget, C, ParentMsg&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;Widget: <a class="trait" href="../traits/trait.FactoryView.html" title="trait relm4::factory::traits::FactoryView">FactoryView</a>,<br>&nbsp;&nbsp;&nbsp;&nbsp;C: <a class="trait" href="../traits/trait.FactoryComponent.html" title="trait relm4::factory::traits::FactoryComponent">FactoryComponent</a>&lt;Widget, ParentMsg&gt; + <a class="trait" href="../traits/trait.Position.html" title="trait relm4::factory::traits::Position">Position</a>&lt;Widget::<a class="associatedtype" href="../traits/trait.FactoryView.html#associatedtype.Position" title="type relm4::factory::traits::FactoryView::Position">Position</a>&gt;,<br>&nbsp;&nbsp;&nbsp;&nbsp;C::<a class="associatedtype" href="../traits/trait.FactoryComponent.html#associatedtype.Root" title="type relm4::factory::traits::FactoryComponent::Root">Root</a>: <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;Widget::<a class="associatedtype" href="../traits/trait.FactoryView.html#associatedtype.Children" title="type relm4::factory::traits::FactoryView::Children">Children</a>&gt;,&nbsp;</span></h3></section></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><section id="method.new" class="method has-srclink"><span class="rightside"><a class="srclink" href="../../../src/relm4/factory/collections/vec_deque.rs.html#431-441">source</a></span><h4 class="code-header">pub fn <a href="#method.new" class="fnname">new</a>(widget: Widget, parent_sender: &amp;<a class="struct" href="../../struct.Sender.html" title="struct relm4::Sender">Sender</a>&lt;ParentMsg&gt;) -&gt; Self</h4></section></summary><div class="docblock"><p>Creates a new <a href="struct.FactoryVecDeque.html" title="FactoryVecDeque"><code>FactoryVecDeque</code></a>.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[10,10],&quot;../../../src/tab_factory/tab_factory.rs.html#239&quot;,&quot;line 239&quot;]]"><div class="scraped-example-title">examples/libadwaita/tab_factory.rs (<a href="../../../src/tab_factory/tab_factory.rs.html#239">line 239</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>229</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[10,10],&quot;../../../src/tab_factory/tab_factory.rs.html#233&quot;,&quot;line 233&quot;]]"><div class="scraped-example-title">examples/libadwaita/tab_factory.rs (<a href="../../../src/tab_factory/tab_factory.rs.html#233">line 233</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>223</span>
+<span>224</span>
+<span>225</span>
+<span>226</span>
+<span>227</span>
+<span>228</span>
+<span>229</span>
 <span>230</span>
 <span>231</span>
 <span>232</span>
@@ -20,12 +26,6 @@ data associated with components that implement <a href="../traits/trait.FactoryC
 <span>235</span>
 <span>236</span>
 <span>237</span>
-<span>238</span>
-<span>239</span>
-<span>240</span>
-<span>241</span>
-<span>242</span>
-<span>243</span>
 </pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">init</span>(
         <span class="ident">counter</span>: <span class="ident"><span class="self">Self</span>::InitParams</span>,
         <span class="ident">root</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Root</span>,
@@ -41,7 +41,11 @@ data associated with components that implement <a href="../traits/trait.FactoryC
 
         <span class="ident">ComponentParts</span> { <span class="ident">model</span>, <span class="ident">widgets</span> }
     }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[10,10],&quot;../../../src/grid_factory/grid_factory.rs.html#241&quot;,&quot;line 241&quot;]]"><div class="scraped-example-title">examples/grid_factory.rs (<a href="../../../src/grid_factory/grid_factory.rs.html#241">line 241</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>231</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[10,10],&quot;../../../src/grid_factory/grid_factory.rs.html#237&quot;,&quot;line 237&quot;]]"><div class="scraped-example-title">examples/grid_factory.rs (<a href="../../../src/grid_factory/grid_factory.rs.html#237">line 237</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>227</span>
+<span>228</span>
+<span>229</span>
+<span>230</span>
+<span>231</span>
 <span>232</span>
 <span>233</span>
 <span>234</span>
@@ -52,10 +56,6 @@ data associated with components that implement <a href="../traits/trait.FactoryC
 <span>239</span>
 <span>240</span>
 <span>241</span>
-<span>242</span>
-<span>243</span>
-<span>244</span>
-<span>245</span>
 </pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">init</span>(
         <span class="ident">counter</span>: <span class="ident"><span class="self">Self</span>::InitParams</span>,
         <span class="ident">root</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Root</span>,
@@ -71,7 +71,11 @@ data associated with components that implement <a href="../traits/trait.FactoryC
 
         <span class="ident">ComponentParts</span> { <span class="ident">model</span>, <span class="ident">widgets</span> }
     }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[10,10],&quot;../../../src/factory/factory.rs.html#190&quot;,&quot;line 190&quot;]]"><div class="scraped-example-title">examples/factory.rs (<a href="../../../src/factory/factory.rs.html#190">line 190</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>180</span>
+</div></div><div class="scraped-example " data-locs="[[[10,10],&quot;../../../src/factory/factory.rs.html#186&quot;,&quot;line 186&quot;]]"><div class="scraped-example-title">examples/factory.rs (<a href="../../../src/factory/factory.rs.html#186">line 186</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>176</span>
+<span>177</span>
+<span>178</span>
+<span>179</span>
+<span>180</span>
 <span>181</span>
 <span>182</span>
 <span>183</span>
@@ -82,10 +86,6 @@ data associated with components that implement <a href="../traits/trait.FactoryC
 <span>188</span>
 <span>189</span>
 <span>190</span>
-<span>191</span>
-<span>192</span>
-<span>193</span>
-<span>194</span>
 </pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">init</span>(
         <span class="ident">counter</span>: <span class="ident"><span class="self">Self</span>::InitParams</span>,
         <span class="ident">root</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Root</span>,
@@ -101,7 +101,12 @@ data associated with components that implement <a href="../traits/trait.FactoryC
 
         <span class="ident">ComponentParts</span> { <span class="ident">model</span>, <span class="ident">widgets</span> }
     }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[9,9],&quot;../../../src/tab_game/tab_game.rs.html#255&quot;,&quot;line 255&quot;]]"><div class="scraped-example-title">examples/libadwaita/tab_game.rs (<a href="../../../src/tab_game/tab_game.rs.html#255">line 255</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>246</span>
+</div></div><div class="scraped-example " data-locs="[[[9,9],&quot;../../../src/tab_game/tab_game.rs.html#250&quot;,&quot;line 250&quot;]]"><div class="scraped-example-title">examples/libadwaita/tab_game.rs (<a href="../../../src/tab_game/tab_game.rs.html#250">line 250</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>241</span>
+<span>242</span>
+<span>243</span>
+<span>244</span>
+<span>245</span>
+<span>246</span>
 <span>247</span>
 <span>248</span>
 <span>249</span>
@@ -121,11 +126,6 @@ data associated with components that implement <a href="../traits/trait.FactoryC
 <span>263</span>
 <span>264</span>
 <span>265</span>
-<span>266</span>
-<span>267</span>
-<span>268</span>
-<span>269</span>
-<span>270</span>
 </pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">init</span>(
         <span class="ident">_init_params</span>: (),
         <span class="ident">root</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Root</span>,
@@ -153,7 +153,12 @@ data associated with components that implement <a href="../traits/trait.FactoryC
     }</code></pre></div>
 </div></div></div></div></details></div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.guard" class="method has-srclink"><span class="rightside"><a class="srclink" href="../../../src/relm4/factory/collections/vec_deque.rs.html#446-448">source</a></span><h4 class="code-header">pub fn <a href="#method.guard" class="fnname">guard</a>(&amp;mut self) -&gt; <a class="struct" href="struct.FactoryVecDequeGuard.html" title="struct relm4::factory::collections::FactoryVecDequeGuard">FactoryVecDequeGuard</a>&lt;'_, Widget, C, ParentMsg&gt;</h4></section></summary><div class="docblock"><p>Provides a <a href="struct.FactoryVecDequeGuard.html" title="FactoryVecDequeGuard"><code>FactoryVecDequeGuard</code></a> that can be used to edit the factory.</p>
 <p>The changes will be rendered on the widgets after the guard goes out of scope.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-1"><a href="#scraped-examples-1">Examples found in repository</a><a class="scrape-help" href="../../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[13,13],&quot;../../../src/tab_game/tab_game.rs.html#259&quot;,&quot;line 259&quot;],[[57,57],&quot;../../../src/tab_game/tab_game.rs.html#303&quot;,&quot;line 303&quot;]]"><div class="scraped-example-title">examples/libadwaita/tab_game.rs (<a href="../../../src/tab_game/tab_game.rs.html#259">line 259</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>246</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-1"><a href="#scraped-examples-1">Examples found in repository</a><a class="scrape-help" href="../../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[13,13],&quot;../../../src/tab_game/tab_game.rs.html#254&quot;,&quot;line 254&quot;],[[57,57],&quot;../../../src/tab_game/tab_game.rs.html#298&quot;,&quot;line 298&quot;]]"><div class="scraped-example-title">examples/libadwaita/tab_game.rs (<a href="../../../src/tab_game/tab_game.rs.html#254">line 254</a>)</div><div class="code-wrapper"><span class="prev">&pr;</span> <span class="next">&sc;</span><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>241</span>
+<span>242</span>
+<span>243</span>
+<span>244</span>
+<span>245</span>
+<span>246</span>
 <span>247</span>
 <span>248</span>
 <span>249</span>
@@ -222,11 +227,6 @@ data associated with components that implement <a href="../traits/trait.FactoryC
 <span>312</span>
 <span>313</span>
 <span>314</span>
-<span>315</span>
-<span>316</span>
-<span>317</span>
-<span>318</span>
-<span>319</span>
 </pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">init</span>(
         <span class="ident">_init_params</span>: (),
         <span class="ident">root</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Root</span>,
@@ -301,7 +301,11 @@ data associated with components that implement <a href="../traits/trait.FactoryC
             }
         }
     }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[1,1],&quot;../../../src/factory/factory.rs.html#197&quot;,&quot;line 197&quot;]]"><div class="scraped-example-title">examples/factory.rs (<a href="../../../src/factory/factory.rs.html#197">line 197</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>196</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[1,1],&quot;../../../src/factory/factory.rs.html#193&quot;,&quot;line 193&quot;]]"><div class="scraped-example-title">examples/factory.rs (<a href="../../../src/factory/factory.rs.html#193">line 193</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>192</span>
+<span>193</span>
+<span>194</span>
+<span>195</span>
+<span>196</span>
 <span>197</span>
 <span>198</span>
 <span>199</span>
@@ -327,10 +331,6 @@ data associated with components that implement <a href="../traits/trait.FactoryC
 <span>219</span>
 <span>220</span>
 <span>221</span>
-<span>222</span>
-<span>223</span>
-<span>224</span>
-<span>225</span>
 </pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident"><span class="self">Self</span>::Input</span>, <span class="ident">_sender</span>: <span class="kw-2">&amp;</span><span class="ident">ComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">counters_guard</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">counters</span>.<span class="highlight focus"><span class="ident">guard</span></span>();
         <span class="kw">match</span> <span class="ident">msg</span> {
@@ -361,7 +361,11 @@ data associated with components that implement <a href="../traits/trait.FactoryC
             }
         }
     }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[1,1],&quot;../../../src/grid_factory/grid_factory.rs.html#248&quot;,&quot;line 248&quot;]]"><div class="scraped-example-title">examples/grid_factory.rs (<a href="../../../src/grid_factory/grid_factory.rs.html#248">line 248</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>247</span>
+</div></div><div class="scraped-example " data-locs="[[[1,1],&quot;../../../src/grid_factory/grid_factory.rs.html#244&quot;,&quot;line 244&quot;]]"><div class="scraped-example-title">examples/grid_factory.rs (<a href="../../../src/grid_factory/grid_factory.rs.html#244">line 244</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>243</span>
+<span>244</span>
+<span>245</span>
+<span>246</span>
+<span>247</span>
 <span>248</span>
 <span>249</span>
 <span>250</span>
@@ -388,10 +392,6 @@ data associated with components that implement <a href="../traits/trait.FactoryC
 <span>271</span>
 <span>272</span>
 <span>273</span>
-<span>274</span>
-<span>275</span>
-<span>276</span>
-<span>277</span>
 </pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident"><span class="self">Self</span>::Input</span>, <span class="ident">_sender</span>: <span class="kw-2">&amp;</span><span class="ident">ComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">counters_guard</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">counters</span>.<span class="highlight focus"><span class="ident">guard</span></span>();
 
@@ -423,7 +423,13 @@ data associated with components that implement <a href="../traits/trait.FactoryC
             }
         }
     }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[1,1],&quot;../../../src/tab_factory/tab_factory.rs.html#246&quot;,&quot;line 246&quot;]]"><div class="scraped-example-title">examples/libadwaita/tab_factory.rs (<a href="../../../src/tab_factory/tab_factory.rs.html#246">line 246</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>245</span>
+</div></div><div class="scraped-example " data-locs="[[[1,1],&quot;../../../src/tab_factory/tab_factory.rs.html#240&quot;,&quot;line 240&quot;]]"><div class="scraped-example-title">examples/libadwaita/tab_factory.rs (<a href="../../../src/tab_factory/tab_factory.rs.html#240">line 240</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>239</span>
+<span>240</span>
+<span>241</span>
+<span>242</span>
+<span>243</span>
+<span>244</span>
+<span>245</span>
 <span>246</span>
 <span>247</span>
 <span>248</span>
@@ -448,12 +454,6 @@ data associated with components that implement <a href="../traits/trait.FactoryC
 <span>267</span>
 <span>268</span>
 <span>269</span>
-<span>270</span>
-<span>271</span>
-<span>272</span>
-<span>273</span>
-<span>274</span>
-<span>275</span>
 </pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident"><span class="self">Self</span>::Input</span>, <span class="ident">_sender</span>: <span class="kw-2">&amp;</span><span class="ident">ComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">counters_guard</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">counters</span>.<span class="highlight focus"><span class="ident">guard</span></span>();
 
@@ -486,7 +486,11 @@ data associated with components that implement <a href="../traits/trait.FactoryC
         }
     }</code></pre></div>
 </div></div></div></div></details></div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.len" class="method has-srclink"><span class="rightside"><a class="srclink" href="../../../src/relm4/factory/collections/vec_deque.rs.html#549-551">source</a></span><h4 class="code-header">pub fn <a href="#method.len" class="fnname">len</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a></h4></section></summary><div class="docblock"><p>Returns the number of elements in the <a href="struct.FactoryVecDeque.html" title="FactoryVecDeque"><code>FactoryVecDeque</code></a>.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-2"><a href="#scraped-examples-2">Examples found in repository</a><a class="scrape-help" href="../../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[17,17],&quot;../../../src/factory/factory.rs.html#213&quot;,&quot;line 213&quot;]]"><div class="scraped-example-title">examples/factory.rs (<a href="../../../src/factory/factory.rs.html#213">line 213</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>196</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-2"><a href="#scraped-examples-2">Examples found in repository</a><a class="scrape-help" href="../../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[17,17],&quot;../../../src/factory/factory.rs.html#209&quot;,&quot;line 209&quot;]]"><div class="scraped-example-title">examples/factory.rs (<a href="../../../src/factory/factory.rs.html#209">line 209</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>192</span>
+<span>193</span>
+<span>194</span>
+<span>195</span>
+<span>196</span>
 <span>197</span>
 <span>198</span>
 <span>199</span>
@@ -512,10 +516,6 @@ data associated with components that implement <a href="../traits/trait.FactoryC
 <span>219</span>
 <span>220</span>
 <span>221</span>
-<span>222</span>
-<span>223</span>
-<span>224</span>
-<span>225</span>
 </pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident"><span class="self">Self</span>::Input</span>, <span class="ident">_sender</span>: <span class="kw-2">&amp;</span><span class="ident">ComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">counters_guard</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">guard</span>();
         <span class="kw">match</span> <span class="ident">msg</span> {
@@ -546,7 +546,13 @@ data associated with components that implement <a href="../traits/trait.FactoryC
             }
         }
     }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[18,18],&quot;../../../src/tab_factory/tab_factory.rs.html#263&quot;,&quot;line 263&quot;]]"><div class="scraped-example-title">examples/libadwaita/tab_factory.rs (<a href="../../../src/tab_factory/tab_factory.rs.html#263">line 263</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>245</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[18,18],&quot;../../../src/tab_factory/tab_factory.rs.html#257&quot;,&quot;line 257&quot;]]"><div class="scraped-example-title">examples/libadwaita/tab_factory.rs (<a href="../../../src/tab_factory/tab_factory.rs.html#257">line 257</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>239</span>
+<span>240</span>
+<span>241</span>
+<span>242</span>
+<span>243</span>
+<span>244</span>
+<span>245</span>
 <span>246</span>
 <span>247</span>
 <span>248</span>
@@ -571,12 +577,6 @@ data associated with components that implement <a href="../traits/trait.FactoryC
 <span>267</span>
 <span>268</span>
 <span>269</span>
-<span>270</span>
-<span>271</span>
-<span>272</span>
-<span>273</span>
-<span>274</span>
-<span>275</span>
 </pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident"><span class="self">Self</span>::Input</span>, <span class="ident">_sender</span>: <span class="kw-2">&amp;</span><span class="ident">ComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">counters_guard</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">guard</span>();
 
@@ -608,7 +608,11 @@ data associated with components that implement <a href="../traits/trait.FactoryC
             }
         }
     }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[18,18],&quot;../../../src/grid_factory/grid_factory.rs.html#265&quot;,&quot;line 265&quot;]]"><div class="scraped-example-title">examples/grid_factory.rs (<a href="../../../src/grid_factory/grid_factory.rs.html#265">line 265</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>247</span>
+</div></div><div class="scraped-example " data-locs="[[[18,18],&quot;../../../src/grid_factory/grid_factory.rs.html#261&quot;,&quot;line 261&quot;]]"><div class="scraped-example-title">examples/grid_factory.rs (<a href="../../../src/grid_factory/grid_factory.rs.html#261">line 261</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>243</span>
+<span>244</span>
+<span>245</span>
+<span>246</span>
+<span>247</span>
 <span>248</span>
 <span>249</span>
 <span>250</span>
@@ -635,10 +639,6 @@ data associated with components that implement <a href="../traits/trait.FactoryC
 <span>271</span>
 <span>272</span>
 <span>273</span>
-<span>274</span>
-<span>275</span>
-<span>276</span>
-<span>277</span>
 </pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident"><span class="self">Self</span>::Input</span>, <span class="ident">_sender</span>: <span class="kw-2">&amp;</span><span class="ident">ComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">counters_guard</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">counters</span>.<span class="ident">guard</span>();
 
@@ -680,7 +680,12 @@ the model of one element.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.front" class="method has-srclink"><span class="rightside"><a class="srclink" href="../../../src/relm4/factory/collections/vec_deque.rs.html#581-583">source</a></span><h4 class="code-header">pub fn <a href="#method.front" class="fnname">front</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>C&gt;</h4></section></summary><div class="docblock"><p>Provides a reference to the model of the front element.</p>
 <p>Returns None if the deque is empty.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.widget" class="method has-srclink"><span class="rightside"><a class="srclink" href="../../../src/relm4/factory/collections/vec_deque.rs.html#586-588">source</a></span><h4 class="code-header">pub fn <a href="#method.widget" class="fnname">widget</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Widget</h4></section></summary><div class="docblock"><p>Returns the widget all components are attached to.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-3"><a href="#scraped-examples-3">Examples found in repository</a><a class="scrape-help" href="../../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[13,13],&quot;../../../src/tab_game/tab_game.rs.html#312&quot;,&quot;line 312&quot;]]"><div class="scraped-example-title">examples/libadwaita/tab_game.rs (<a href="../../../src/tab_game/tab_game.rs.html#312">line 312</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>299</span>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-3"><a href="#scraped-examples-3">Examples found in repository</a><a class="scrape-help" href="../../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[13,13],&quot;../../../src/tab_game/tab_game.rs.html#307&quot;,&quot;line 307&quot;]]"><div class="scraped-example-title">examples/libadwaita/tab_game.rs (<a href="../../../src/tab_game/tab_game.rs.html#307">line 307</a>)</div><div class="code-wrapper"><span class="expand">&varr;</span><div class="example-wrap"><pre class="line-numbers"><span>294</span>
+<span>295</span>
+<span>296</span>
+<span>297</span>
+<span>298</span>
+<span>299</span>
 <span>300</span>
 <span>301</span>
 <span>302</span>
@@ -696,11 +701,6 @@ the model of one element.</p>
 <span>312</span>
 <span>313</span>
 <span>314</span>
-<span>315</span>
-<span>316</span>
-<span>317</span>
-<span>318</span>
-<span>319</span>
 </pre><pre class="rust"><code>    <span class="kw">fn</span> <span class="ident">update_cmd</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident"><span class="self">Self</span>::CommandOutput</span>, <span class="ident">sender</span>: <span class="kw-2">&amp;</span><span class="ident">ComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="kw">if</span> <span class="ident">msg</span> {
             <span class="ident">sender</span>.<span class="ident">input</span>(<span class="ident">AppMsg::StopGame</span>);
@@ -746,5 +746,5 @@ the model of one element.</p>
 <a href="../../../tracing/instrument/struct.WithDispatch.html" title="WithDispatch"><code>WithDispatch</code></a> wrapper. <a href="../../../tracing/instrument/trait.WithSubscriber.html#method.with_subscriber">Read more</a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.with_current_subscriber" class="method trait-impl has-srclink"><span class="rightside"><a class="srclink" href="../../../src/tracing/instrument.rs.html#221">source</a></span><a href="#method.with_current_subscriber" class="anchor"></a><h4 class="code-header">fn <a href="../../../tracing/instrument/trait.WithSubscriber.html#method.with_current_subscriber" class="fnname">with_current_subscriber</a>(self) -&gt; <a class="struct" href="../../../tracing/instrument/struct.WithDispatch.html" title="struct tracing::instrument::WithDispatch">WithDispatch</a>&lt;Self&gt;</h4></section></summary><div class='docblock'><p>Attaches the current <a href="../../../tracing/dispatcher/index.html#setting-the-default-subscriber">default</a> <a href="../../../tracing_core/subscriber/trait.Subscriber.html"><code>Subscriber</code></a> to this type, returning a
 <a href="../../../tracing/instrument/struct.WithDispatch.html" title="WithDispatch"><code>WithDispatch</code></a> wrapper. <a href="../../../tracing/instrument/trait.WithSubscriber.html#method.with_current_subscriber">Read more</a></p>
-</div></details></div></details></div></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="relm4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (4d6d601c8 2022-07-26)" ></div>
+</div></details></div></details></div></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="relm4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (2643b1646 2022-07-27)" ></div>
 </body></html>
