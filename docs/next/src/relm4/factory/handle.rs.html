@@ -37,21 +37,6 @@
 <span id="29">29</span>
 <span id="30">30</span>
 <span id="31">31</span>
-<span id="32">32</span>
-<span id="33">33</span>
-<span id="34">34</span>
-<span id="35">35</span>
-<span id="36">36</span>
-<span id="37">37</span>
-<span id="38">38</span>
-<span id="39">39</span>
-<span id="40">40</span>
-<span id="41">41</span>
-<span id="42">42</span>
-<span id="43">43</span>
-<span id="44">44</span>
-<span id="45">45</span>
-<span id="46">46</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">super</span>::data_guard::DataGuard</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::FactoryComponent</span>;
 
@@ -65,30 +50,15 @@
 <span class="doccomment">/// It might be unsafe to extract `data` or `runtime`.</span>
 <span class="doccomment">/// Inside this type, it is guaranteed that extracting `data` will drop `runtime` before to</span>
 <span class="doccomment">/// comply with all required safety guarantees.</span>
-<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">struct</span> <span class="ident">FactoryHandle</span><span class="op">&lt;</span><span class="ident">Widget</span>, <span class="ident">C</span>: <span class="ident">FactoryComponent</span><span class="op">&lt;</span><span class="ident">Widget</span>, <span class="ident">ParentMsg</span><span class="op">&gt;</span>, <span class="ident">ParentMsg</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">Widget</span>: <span class="ident">FactoryView</span>,
-    <span class="ident">C</span>: <span class="ident">FactoryComponent</span><span class="op">&lt;</span><span class="ident">Widget</span>, <span class="ident">ParentMsg</span><span class="op">&gt;</span>,
-{
+<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">struct</span> <span class="ident">FactoryHandle</span><span class="op">&lt;</span><span class="ident">C</span>: <span class="ident">FactoryComponent</span><span class="op">&gt;</span> {
     <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">data</span>: <span class="ident">DataGuard</span><span class="op">&lt;</span><span class="ident">C</span><span class="op">&gt;</span>,
     <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">root_widget</span>: <span class="ident">C::Root</span>,
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">returned_widget</span>: <span class="ident">Widget::ReturnedWidget</span>,
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">returned_widget</span>: <span class="op">&lt;</span><span class="ident">C::ParentWidget</span> <span class="kw">as</span> <span class="ident">FactoryView</span><span class="op">&gt;</span><span class="ident">::ReturnedWidget</span>,
     <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">input</span>: <span class="ident">Sender</span><span class="op">&lt;</span><span class="ident">C::Input</span><span class="op">&gt;</span>,
     <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">notifier</span>: <span class="ident">Sender</span><span class="op">&lt;</span>()<span class="op">&gt;</span>,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">Widget</span>, <span class="ident">C</span>, <span class="ident">ParentMsg</span><span class="op">&gt;</span> <span class="ident">FactoryHandle</span><span class="op">&lt;</span><span class="ident">Widget</span>, <span class="ident">C</span>, <span class="ident">ParentMsg</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">Widget</span>: <span class="ident">FactoryView</span>,
-    <span class="ident">C</span>: <span class="ident">FactoryComponent</span><span class="op">&lt;</span><span class="ident">Widget</span>, <span class="ident">ParentMsg</span><span class="op">&gt;</span>,
-{
-}
-
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">Widget</span>, <span class="ident">C</span>, <span class="ident">ParentMsg</span><span class="op">&gt;</span> <span class="ident">fmt::Debug</span> <span class="kw">for</span> <span class="ident">FactoryHandle</span><span class="op">&lt;</span><span class="ident">Widget</span>, <span class="ident">C</span>, <span class="ident">ParentMsg</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">Widget</span>: <span class="ident">FactoryView</span>,
-    <span class="ident">C</span>: <span class="ident">FactoryComponent</span><span class="op">&lt;</span><span class="ident">Widget</span>, <span class="ident">ParentMsg</span><span class="op">&gt;</span>,
-{
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">C</span>: <span class="ident">FactoryComponent</span><span class="op">&gt;</span> <span class="ident">fmt::Debug</span> <span class="kw">for</span> <span class="ident">FactoryHandle</span><span class="op">&lt;</span><span class="ident">C</span><span class="op">&gt;</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;FactoryHandle&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;data&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">data</span>)
@@ -99,5 +69,5 @@
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="relm4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (2643b1646 2022-07-27)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="relm4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (9067d5277 2022-07-28)" ></div>
 </body></html>

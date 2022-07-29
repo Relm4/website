@@ -192,13 +192,6 @@
 <span id="184">184</span>
 <span id="185">185</span>
 <span id="186">186</span>
-<span id="187">187</span>
-<span id="188">188</span>
-<span id="189">189</span>
-<span id="190">190</span>
-<span id="191">191</span>
-<span id="192">192</span>
-<span id="193">193</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Traits for for managing and updating factories.</span>
 
 <span class="kw">use</span> <span class="ident">gtk::prelude::IsA</span>;
@@ -285,7 +278,15 @@
 <span class="doccomment">/// A component that&#39;s stored inside a factory.</span>
 <span class="doccomment">/// Similar to [`Component`](crate::Component) but adjusted to fit the life cycle</span>
 <span class="doccomment">/// of factories.</span>
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">FactoryComponent</span><span class="op">&lt;</span><span class="ident">ParentWidget</span>: <span class="ident">FactoryView</span>, <span class="ident">ParentMsg</span><span class="op">&gt;</span>: <span class="ident">Sized</span> <span class="op">+</span> <span class="ident">Debug</span> <span class="op">+</span> <span class="lifetime">&#39;static</span> {
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">FactoryComponent</span>:
+    <span class="ident">Position</span><span class="op">&lt;</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::ParentWidget</span> <span class="kw">as</span> <span class="ident">FactoryView</span><span class="op">&gt;</span><span class="ident">::Position</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Sized</span> <span class="op">+</span> <span class="ident">Debug</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>
+{
+    <span class="doccomment">/// Widget to which all factory widgets are added.</span>
+    <span class="kw">type</span> <span class="ident">ParentWidget</span>: <span class="ident">FactoryView</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>;
+
+    <span class="doccomment">/// Messages sent to a parent component.</span>
+    <span class="kw">type</span> <span class="ident">ParentMsg</span>: <span class="ident">Debug</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>;
+
     <span class="doccomment">/// Messages which are received from commands executing in the background.</span>
     <span class="kw">type</span> <span class="ident">CommandOutput</span>: <span class="ident">Debug</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>;
 
@@ -299,7 +300,7 @@
     <span class="kw">type</span> <span class="ident">InitParams</span>;
 
     <span class="doccomment">/// The widget that was constructed by the component.</span>
-    <span class="kw">type</span> <span class="ident">Root</span>: <span class="ident">Debug</span> <span class="op">+</span> <span class="ident">OnDestroy</span> <span class="op">+</span> <span class="ident">Clone</span>;
+    <span class="kw">type</span> <span class="ident">Root</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::ParentWidget</span> <span class="kw">as</span> <span class="ident">FactoryView</span><span class="op">&gt;</span><span class="ident">::Children</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Debug</span> <span class="op">+</span> <span class="ident">OnDestroy</span> <span class="op">+</span> <span class="ident">Clone</span>;
 
     <span class="doccomment">/// The type that&#39;s used for storing widgets created for this component.</span>
     <span class="kw">type</span> <span class="ident">Widgets</span>: <span class="lifetime">&#39;static</span>;
@@ -308,7 +309,7 @@
     <span class="kw">fn</span> <span class="ident">init_model</span>(
         <span class="ident">params</span>: <span class="ident"><span class="self">Self</span>::InitParams</span>,
         <span class="ident">index</span>: <span class="kw-2">&amp;</span><span class="ident">DynamicIndex</span>,
-        <span class="ident">sender</span>: <span class="kw-2">&amp;</span><span class="ident">FactoryComponentSender</span><span class="op">&lt;</span><span class="ident">ParentWidget</span>, <span class="ident">ParentMsg</span>, <span class="self">Self</span><span class="op">&gt;</span>,
+        <span class="ident">sender</span>: <span class="kw-2">&amp;</span><span class="ident">FactoryComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>,
     ) -&gt; <span class="self">Self</span>;
 
     <span class="doccomment">/// Initializes the root widget</span>
@@ -319,42 +320,32 @@
         <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
         <span class="ident">index</span>: <span class="kw-2">&amp;</span><span class="ident">DynamicIndex</span>,
         <span class="ident">root</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Root</span>,
-        <span class="ident">returned_widget</span>: <span class="kw-2">&amp;</span><span class="ident">ParentWidget::ReturnedWidget</span>,
-        <span class="ident">sender</span>: <span class="kw-2">&amp;</span><span class="ident">FactoryComponentSender</span><span class="op">&lt;</span><span class="ident">ParentWidget</span>, <span class="ident">ParentMsg</span>, <span class="self">Self</span><span class="op">&gt;</span>,
+        <span class="ident">returned_widget</span>: <span class="kw-2">&amp;</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::ParentWidget</span> <span class="kw">as</span> <span class="ident">FactoryView</span><span class="op">&gt;</span><span class="ident">::ReturnedWidget</span>,
+        <span class="ident">sender</span>: <span class="kw-2">&amp;</span><span class="ident">FactoryComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>,
     ) -&gt; <span class="ident"><span class="self">Self</span>::Widgets</span>;
 
     <span class="doccomment">/// Convert [`Self::Output`] into `ParentMsg` in order to</span>
     <span class="doccomment">/// send message to the parent.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If [`None`] is returned, nothing is forwarded.</span>
-    <span class="kw">fn</span> <span class="ident">output_to_parent_msg</span>(<span class="ident">_output</span>: <span class="ident"><span class="self">Self</span>::Output</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ParentMsg</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">output_to_parent_msg</span>(<span class="ident">_output</span>: <span class="ident"><span class="self">Self</span>::Output</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::ParentMsg</span><span class="op">&gt;</span> {
         <span class="prelude-val">None</span>
     }
 
     <span class="doccomment">/// Processes inputs received by the component.</span>
     <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">update</span>(
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
-        <span class="ident">message</span>: <span class="ident"><span class="self">Self</span>::Input</span>,
-        <span class="ident">sender</span>: <span class="kw-2">&amp;</span><span class="ident">FactoryComponentSender</span><span class="op">&lt;</span><span class="ident">ParentWidget</span>, <span class="ident">ParentMsg</span>, <span class="self">Self</span><span class="op">&gt;</span>,
-    ) {
-    }
+    <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">message</span>: <span class="ident"><span class="self">Self</span>::Input</span>, <span class="ident">sender</span>: <span class="kw-2">&amp;</span><span class="ident">FactoryComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {}
 
     <span class="doccomment">/// Defines how the component should respond to command updates.</span>
     <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">update_cmd</span>(
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
-        <span class="ident">message</span>: <span class="ident"><span class="self">Self</span>::CommandOutput</span>,
-        <span class="ident">sender</span>: <span class="kw-2">&amp;</span><span class="ident">FactoryComponentSender</span><span class="op">&lt;</span><span class="ident">ParentWidget</span>, <span class="ident">ParentMsg</span>, <span class="self">Self</span><span class="op">&gt;</span>,
-    ) {
-    }
+    <span class="kw">fn</span> <span class="ident">update_cmd</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">message</span>: <span class="ident"><span class="self">Self</span>::CommandOutput</span>, <span class="ident">sender</span>: <span class="kw-2">&amp;</span><span class="ident">FactoryComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {}
 
     <span class="doccomment">/// Handles updates from a command.</span>
     <span class="kw">fn</span> <span class="ident">update_cmd_with_view</span>(
         <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
         <span class="ident">widgets</span>: <span class="kw-2">&amp;mut</span> <span class="ident"><span class="self">Self</span>::Widgets</span>,
         <span class="ident">message</span>: <span class="ident"><span class="self">Self</span>::CommandOutput</span>,
-        <span class="ident">sender</span>: <span class="kw-2">&amp;</span><span class="ident">FactoryComponentSender</span><span class="op">&lt;</span><span class="ident">ParentWidget</span>, <span class="ident">ParentMsg</span>, <span class="self">Self</span><span class="op">&gt;</span>,
+        <span class="ident">sender</span>: <span class="kw-2">&amp;</span><span class="ident">FactoryComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>,
     ) {
         <span class="self">self</span>.<span class="ident">update_cmd</span>(<span class="ident">message</span>, <span class="ident">sender</span>);
         <span class="self">self</span>.<span class="ident">update_view</span>(<span class="ident">widgets</span>, <span class="ident">sender</span>)
@@ -362,19 +353,14 @@
 
     <span class="doccomment">/// Updates the view after the model has been updated.</span>
     <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">update_view</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">widgets</span>: <span class="kw-2">&amp;mut</span> <span class="ident"><span class="self">Self</span>::Widgets</span>,
-        <span class="ident">sender</span>: <span class="kw-2">&amp;</span><span class="ident">FactoryComponentSender</span><span class="op">&lt;</span><span class="ident">ParentWidget</span>, <span class="ident">ParentMsg</span>, <span class="self">Self</span><span class="op">&gt;</span>,
-    ) {
-    }
+    <span class="kw">fn</span> <span class="ident">update_view</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widgets</span>: <span class="kw-2">&amp;mut</span> <span class="ident"><span class="self">Self</span>::Widgets</span>, <span class="ident">sender</span>: <span class="kw-2">&amp;</span><span class="ident">FactoryComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {}
 
     <span class="doccomment">/// Updates the model and view. Optionally returns a command to run.</span>
     <span class="kw">fn</span> <span class="ident">update_with_view</span>(
         <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
         <span class="ident">widgets</span>: <span class="kw-2">&amp;mut</span> <span class="ident"><span class="self">Self</span>::Widgets</span>,
         <span class="ident">message</span>: <span class="ident"><span class="self">Self</span>::Input</span>,
-        <span class="ident">sender</span>: <span class="kw-2">&amp;</span><span class="ident">FactoryComponentSender</span><span class="op">&lt;</span><span class="ident">ParentWidget</span>, <span class="ident">ParentMsg</span>, <span class="self">Self</span><span class="op">&gt;</span>,
+        <span class="ident">sender</span>: <span class="kw-2">&amp;</span><span class="ident">FactoryComponentSender</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>,
     ) {
         <span class="self">self</span>.<span class="ident">update</span>(<span class="ident">message</span>, <span class="ident">sender</span>);
         <span class="self">self</span>.<span class="ident">update_view</span>(<span class="ident">widgets</span>, <span class="ident">sender</span>);
@@ -393,5 +379,5 @@
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="relm4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (2643b1646 2022-07-27)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="relm4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (9067d5277 2022-07-28)" ></div>
 </body></html>

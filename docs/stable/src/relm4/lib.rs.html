@@ -186,7 +186,7 @@
 <span class="doccomment">//!</span>
 <span class="doccomment">//! Version: **`stable`**. Visit the docs of the **upcoming version** [here](/docs/next/relm4).</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! *This document was built at Thursday July 28, 13:26 UTC.*</span>
+<span class="doccomment">//! *This document was built at Friday July 29, 03:08 UTC.*</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! [GitHub](https://github.com/Relm4/relm4) | [Website](https://relm4.org) | [Book](https://relm4.org/book/stable) | [Blog](https://relm4.org/blog)</span>
 
@@ -260,7 +260,7 @@
 <span class="doccomment">/// or this function is not called on the thread that also called [`RelmApp::new`].</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_application</span>() -&gt; <span class="ident">Application</span> {
     <span class="ident">APP</span>.<span class="ident">get</span>()
-        .<span class="ident">expect</span>(<span class="string">&quot;The gloabl gtk application hasn&#39;t been initialized yet&quot;</span>)
+        .<span class="ident">expect</span>(<span class="string">&quot;The global gtk application hasn&#39;t been initialized yet&quot;</span>)
         .<span class="ident">try_get</span>()
         .<span class="ident">expect</span>(<span class="string">&quot;The global gtk application can only be read from the main thread&quot;</span>)
         .<span class="ident">clone</span>()
@@ -297,7 +297,7 @@
             <span class="ident">set_global_css</span>(<span class="kw-2">&amp;</span><span class="ident">bytes</span>);
         }
         <span class="prelude-val">Err</span>(<span class="ident">err</span>) =&gt; {
-            <span class="macro">log::error!</span>(<span class="string">&quot;Couln&#39;t load global CSS from file: {}&quot;</span>, <span class="ident">err</span>);
+            <span class="macro">log::error!</span>(<span class="string">&quot;Couldn&#39;t load global CSS from file: {}&quot;</span>, <span class="ident">err</span>);
         }
     }
 }
@@ -357,5 +357,5 @@
         <span class="ident">pool</span>
     });
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="relm4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (2643b1646 2022-07-27)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="relm4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (9067d5277 2022-07-28)" ></div>
 </body></html>
