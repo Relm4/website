@@ -110,7 +110,7 @@
     <span class="doccomment">/// Spawn a command managed by the lifetime of the component.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">command</span><span class="op">&lt;</span><span class="ident">Cmd</span>, <span class="ident">Fut</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cmd</span>: <span class="ident">Cmd</span>)
     <span class="kw">where</span>
-        <span class="ident">Cmd</span>: (<span class="ident">Fn</span>(<span class="ident">Sender</span><span class="op">&lt;</span><span class="ident">CommandOutput</span><span class="op">&gt;</span>, <span class="ident">ShutdownReceiver</span>) -&gt; <span class="ident">Fut</span>) <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="ident">Cmd</span>: (<span class="ident">FnOnce</span>(<span class="ident">Sender</span><span class="op">&lt;</span><span class="ident">CommandOutput</span><span class="op">&gt;</span>, <span class="ident">ShutdownReceiver</span>) -&gt; <span class="ident">Fut</span>) <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
         <span class="ident">Fut</span>: <span class="ident">Future</span><span class="op">&lt;</span><span class="ident">Output</span> <span class="op">=</span> ()<span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Send</span>,
     {
         <span class="kw">let</span> <span class="ident">recipient</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">shutdown</span>.<span class="ident">clone</span>();
@@ -139,7 +139,6 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">output_sender</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">Sender</span><span class="op">&lt;</span><span class="ident">Output</span><span class="op">&gt;</span> {
         <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">output</span>
     }
-}
-</code></pre></div>
+}</code></pre></div>
 </section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="relm4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0-nightly (3924dac7b 2022-07-29)" ></div>
 </body></html>
