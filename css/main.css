@@ -95,13 +95,14 @@
   }
 }
 
-.navbar-item .button {
+.navbar-item > a.button {
   background: #FFF2 !important;
   border-color: transparent !important;
   border-radius: 8px;
+  color: white !important;
 }
 
-.navbar-item .button:hover {
+.navbar-item > a.button:hover {
   background: #FFF4 !important;
   color: white !important;
 }
