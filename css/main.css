@@ -32,6 +32,7 @@
 }
 
 .bg-gradient-moving {
+  background: #000;
   animation: move-bg 30s linear infinite;
   transition: background 2s linear;
 }
