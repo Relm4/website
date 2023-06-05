@@ -1,0 +1,916 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>relm4 on Relm4 blog</title><link>https://relm4.org/blog/tags/relm4/</link><description>Recent content in relm4 on Relm4 blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 17 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://relm4.org/blog/tags/relm4/index.xml" rel="self" type="application/rss+xml"/><item><title>A long journey: Announcing Relm4 v0.5!</title><link>https://relm4.org/blog/posts/announcing_relm4_v0.5/</link><pubDate>Fri, 17 Feb 2023 00:00:00 +0000</pubDate><guid>https://relm4.org/blog/posts/announcing_relm4_v0.5/</guid><description>After more than one year of development, Relm4 0.5 has finally made it across the finish line with plenty of new features and improvements! Without a doubt, version 0.5 is by far our largest release so far making Relm4 even easier, more stable and productive than before.
+We can&amp;rsquo;t fit all the improvements into this post so we&amp;rsquo;ll only have a look at the most important new features added since the first beta release.</description><content:encoded><![CDATA[<p>After more than one year of development, Relm4 0.5 has finally made it across the finish line with plenty of new features and improvements!
+Without a doubt, version 0.5 is by far our largest release so far making Relm4 even easier, more stable and productive than before.</p>
+<p>We can&rsquo;t fit all the improvements into this post so we&rsquo;ll only have a look at the most important new features added since the <a href="https://relm4.org/blog/posts/announcing_relm4_v0.5_beta">first beta release</a>.
+Check out the <a href="https://github.com/Relm4/Relm4/blob/main/CHANGES.md">full changelog</a> for more information.</p>
+<blockquote>
+<h2 id="about-relm4">About Relm4</h2>
+<p>Relm4 is an idiomatic GUI library inspired by <a href="https://elm-lang.org/">Elm</a> and based on <a href="https://crates.io/crates/gtk4">gtk4-rs</a>.</p>
+<p>We believe that GUI development should be easy, productive and delightful.<br>
+The <a href="https://crates.io/crates/gtk4">gtk4-rs</a> crate already provides everything you need to write modern, beautiful and cross-platform applications.
+Built on top of this foundation, Relm4 makes developing more idiomatic, simpler and faster and enables you to become productive in just a few hours.</p>
+</blockquote>
+<h2 id="async-everything">Async everything</h2>
+<p>The first beta release of Relm4 v0.5 brought <a href="/blog/posts/announcing_relm4_v0.5_beta/#commands">commands</a> as a concept from Elm, which made asynchronous code very easy to integrate.
+Since then, we&rsquo;ve further extended async support, making it possible to use async from almost anywhere in Relm4.
+This fully unlocks the great potential of Rust&rsquo;s async ecosystem and makes common tasks like interacting with network APIs a breeze.</p>
+<p>In particular, asynchronous initialization of components greatly simplifies state management.
+Instead of immediately returning a model in an uninitialized state, you can fetch all the resources you need and eventually return a fully initialized model.
+On top of that, Relm4 allows you to show placeholder widgets while the model is being initialized.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#75715e">// Placeholder until `init_model` completes
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">init_loading_widgets</span>(root: <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">mut</span> Self::Root) -&gt; Option<span style="color:#f92672">&lt;</span>LoadingWidgets<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>    view<span style="color:#f92672">!</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#[local_ref]</span>
+</span></span><span style="display:flex;"><span>        root {
+</span></span><span style="display:flex;"><span>            set_orientation: <span style="color:#a6e22e">gtk</span>::Orientation::Horizontal,
+</span></span><span style="display:flex;"><span>            set_spacing: <span style="color:#ae81ff">10</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            gtk::Spinner {
+</span></span><span style="display:flex;"><span>                set_spinning: <span style="color:#a6e22e">true</span>,
+</span></span><span style="display:flex;"><span>                set_hexpand: <span style="color:#a6e22e">true</span>,
+</span></span><span style="display:flex;"><span>                set_halign: <span style="color:#a6e22e">gtk</span>::Align::Center,
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// Reserve vertical space
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                set_height_request: <span style="color:#ae81ff">34</span>,
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    Some(LoadingWidgets::new(root, spinner))
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Async initialization
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">init_model</span>(
+</span></span><span style="display:flex;"><span>    value: <span style="color:#a6e22e">Self</span>::Init,
+</span></span><span style="display:flex;"><span>    _index: <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">DynamicIndex</span>,
+</span></span><span style="display:flex;"><span>    _sender: <span style="color:#a6e22e">AsyncFactorySender</span><span style="color:#f92672">&lt;</span>Self<span style="color:#f92672">&gt;</span>,
+</span></span><span style="display:flex;"><span>) -&gt; <span style="color:#a6e22e">Self</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Asynchronously fetch data, sync information, etc.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    tokio::time::sleep(Duration::from_secs(<span style="color:#ae81ff">1</span>)).<span style="color:#66d9ef">await</span>;
+</span></span><span style="display:flex;"><span>    Self { value }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><video controls style="width: 100%;">
+    <source src="./async_factory.webm" type="video/webm">
+    Your browser does not support the video tag.
+</video> 
+<h2 id="widget-templates">Widget templates</h2>
+<p>Often, similar widgets and properties are used multiple times in the same application or even across different applications.
+With widget templates, you can define common UI elements as templates and reuse them easily.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#75715e">#[relm4::widget_template]</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">impl</span> WidgetTemplate <span style="color:#66d9ef">for</span> MyBox {
+</span></span><span style="display:flex;"><span>    view<span style="color:#f92672">!</span> {
+</span></span><span style="display:flex;"><span>        gtk::Box {
+</span></span><span style="display:flex;"><span>            set_margin_all: <span style="color:#ae81ff">10</span>,
+</span></span><span style="display:flex;"><span>            inline_css: <span style="color:#e6db74">&#34;border: 2px solid blue&#34;</span>,
+</span></span><span style="display:flex;"><span>            gtk::Label {
+</span></span><span style="display:flex;"><span>                set_content: <span style="color:#e6db74">&#34;My custom box template!&#34;</span>,
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Using the template just requires the <code>#[template]</code> attribute in the macro.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#75715e">#[relm4::component]</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">impl</span> SimpleComponent <span style="color:#66d9ef">for</span> AppModel {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Init</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">u8</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Input</span> <span style="color:#f92672">=</span> AppMsg;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Output</span> <span style="color:#f92672">=</span> ();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    view<span style="color:#f92672">!</span> {
+</span></span><span style="display:flex;"><span>        gtk::Window {
+</span></span><span style="display:flex;"><span>            set_title: Some(<span style="color:#e6db74">&#34;Widget template&#34;</span>),
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Using is my template
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#75715e">#[template]</span>
+</span></span><span style="display:flex;"><span>            MyBox {
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// We can still add additional children to out template!
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                gtk::Label {
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e">#[watch]</span>
+</span></span><span style="display:flex;"><span>                    set_label: <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">format</span><span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Counter: {}&#34;</span>, model.counter),
+</span></span><span style="display:flex;"><span>                },
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>You can find more details in <a href="https://github.com/Relm4/Relm4/pull/310">this PR</a>.</p>
+<h2 id="macro-improvements">Macro improvements</h2>
+<p>Sending messages from simple signal handlers has become a bit easier.
+Similar to the syntax of the <a href="https://github.com/antoyo/relm#widget-attribute">relm crate</a>, you can now send input messages with an arrow followed by the message.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span>gtk::Button {
+</span></span><span style="display:flex;"><span>    set_label: <span style="color:#e6db74">&#34;Increment&#34;</span>,
+</span></span><span style="display:flex;"><span>    connect_clicked <span style="color:#f92672">=&gt;</span> AppMsg::Increment,
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="tooling-additions">Tooling additions</h2>
+<p>Recently, we published <a href="https://github.com/Relm4/vscode-relm4-snippets">Relm4 snippets</a> as an IDE extension that provides helpful snippets for implementing Relm4&rsquo;s traits.
+This should help you saving some time while implementing common traits so you can fully focus on coding.
+The extension is available on the <a href="https://marketplace.visualstudio.com/items?itemName=Relm4.relm4-snippets">Visual Studio Marketplace</a> and <a href="https://open-vsx.org/extension/Relm4/relm4-snippets">OpenVSIX</a>.</p>
+<p><img loading="lazy" src="./snippets.gif" alt="Relm4 snippets"  />
+</p>
+<h2 id="other-improvements">Other improvements</h2>
+<ul>
+<li>Port relm4-components to 0.5</li>
+<li>Port the book to 0.5</li>
+<li>Move from custom documentation builds to <a href="https://docs.rs/relm4/">docs.rs</a></li>
+<li>Add <code>MessageBroker</code> to allow communication between components at different levels</li>
+<li>Add <code>Reducer</code> as message based alternative to <code>SharedState</code></li>
+<li>Lots of other improvements and fixes</li>
+</ul>
+<h2 id="on-the-horizon">On the horizon</h2>
+<p>Some tools haven&rsquo;t made it into this stable release but will follow soon.</p>
+<ul>
+<li><a href="https://github.com/Relm4/Relm4/pull/385">relm4-format</a> is a tool that can format code inside the <code>view</code> macro to address the shortcomings of <code>rustfmt</code> regarding macros.</li>
+<li>relm4-cli is a planned client for developing Relm4 application that will make project setup, build system configuration and cross-compilation easy.</li>
+</ul>
+<p>If you want to support the our team working on these projects, please consider supporting <a href="https://github.com/sponsors/edfloreshz">Eduardo Flores</a>.</p>
+<h2 id="where-to-get-started">Where to get started</h2>
+<ul>
+<li>⬆️ <strong><a href="https://relm4.org/book/stable/0_4_to_0_5.html">Migration guide</a></strong></li>
+<li>🏠 <strong><a href="https://relm4.org">Website</a></strong></li>
+<li>⭐ <strong><a href="https://github.com/Relm4/Relm4">Repository</a></strong></li>
+<li>📖 <strong><a href="https://relm4.org/book/stable">Book</a></strong></li>
+<li>📜 <strong><a href="https://docs.rs/relm4">Rust documentation</a></strong></li>
+<li>📨 <strong><a href="https://matrix.to/#/#relm4:matrix.org">Chat room</a></strong></li>
+</ul>
+<h1 id="special-thanks">Special thanks</h1>
+<p>We highly appreciate feedback and contributions to Relm4.
+In the name of all members of the Relm4 organization I thank those who helped with this release:</p>
+<ul>
+<li><a href="https://github.com/euclio">Andy Russell</a> for his continuous effort to improve Relm4.</li>
+<li><a href="https://github.com/edfloreshz">Eduardo Flores</a> for his longstanding contributions to Relm4 and his work on Relm4 snippets.</li>
+<li><a href="https://github.com/pentamassiv">Pentamassiv</a> for working on Relm4 and gtk-rs to bring our docs to docs.rs.</li>
+<li><a href="https://github.com/MaksymShcherbak">Maksym Shcherbak</a> for many improvements, especially to our examples.</li>
+<li><a href="https://github.com/tronta">Tronta</a> for contributing many book improvements.</li>
+<li><a href="https://github.com/sashinexists">Sashin Exists</a> for implementing several useful methods for <code>FactoryVecDeque</code>.</li>
+<li>Everyone else who contributed or gave feedback.</li>
+<li>The whole gtk-rs team for providing awesome Rust bindings for GTK.</li>
+</ul>
+]]></content:encoded></item><item><title>One year of Relm4</title><link>https://relm4.org/blog/posts/one_year_of_relm4/</link><pubDate>Tue, 06 Sep 2022 00:00:00 +0000</pubDate><guid>https://relm4.org/blog/posts/one_year_of_relm4/</guid><description>One year ago, the first stable version of Relm4 was released. Since then, it has been an incredible journey. From a small proof-of-concept library, Relm4 has grown to be a community-driven project with many thousands of downloads. Now it&amp;rsquo;s time to celebrate, look back and see what will come in the future.
+About Relm4 Relm4 is an idiomatic GUI library inspired by Elm and based on gtk4-rs.
+We believe that GUI development should be easy, productive and delightful.</description><content:encoded><![CDATA[<p>One year ago, the first stable version of Relm4 was released.
+Since then, it has been an incredible journey.
+From a small proof-of-concept library, Relm4 has grown to be a community-driven project with many thousands of downloads.
+Now it&rsquo;s time to celebrate, look back and see what will come in the future.</p>
+<blockquote>
+<h2 id="about-relm4">About Relm4</h2>
+<p>Relm4 is an idiomatic GUI library inspired by <a href="https://elm-lang.org/">Elm</a> and based on <a href="https://crates.io/crates/gtk4">gtk4-rs</a>.</p>
+<p>We believe that GUI development should be easy, productive and delightful.
+The <a href="https://crates.io/crates/gtk4">gtk4-rs</a> crate already provides everything you need to write modern, beautiful and cross-platform applications.
+Built on top of this foundation, Relm4 makes developing more idiomatic, simpler and faster and enables you to become productive in just a few hours.</p>
+</blockquote>
+<h2 id="the-history-of-relm4">The history of Relm4</h2>
+<p>As part of a job at my university, I was tasked with rewriting an old Qt4 based C++ application.
+The choice of language quickly fell on Rust, but choosing a GUI library turned out to be more difficult.
+After some back and forth, I settled on relm, which was easy to use and backed by the full-featured GTK3 toolkit.</p>
+<p>Yet at about the same time, gtk4-rs 0.1 was released as the first stable version of Rust bindings for GTK4.
+Naturally, I wanted to switch to GTK4 for my application as soon as possible to avoid porting the application later, but relm kept me back at GTK3.</p>
+<p>After experimenting with relm itself, I quickly realized that porting it to GTK4 would require a major redesign.
+With seemingly nobody else willing to put in the effort, I started with a small prototype from scratch.
+With just above 100 lines of code, I had a proof-of-concept implementation and started moving forward.
+Some months and 9 beta releases later, I was finally able to announce the first stable version of Relm4.</p>
+<h2 id="relm4-today">Relm4 today</h2>
+<p>Since its first stable release, Relm4 has grown significantly.
+We rewrote and redesigned large parts multiple times to better fulfill our goals: productivity, simplicity and maintainability.
+Version 0.5 which had its first beta release a few months ago is another big step forward.
+It was in development for almost half a year, but makes Relm4 as simple, flexible and productive as never before.</p>
+<p>Our last goal, outstanding documentation, suffered a bit from the long experimental development of 0.5.
+Especially the book still isn&rsquo;t 100% up to date, but we&rsquo;re working on closing this gap.
+And thanks to active feedback from the community, we are still polishing the API until 0.5 is released as stable.</p>
+<p>Overall, I&rsquo;m proud to say that Relm4 is now one of the best choices for native application development in Rust.
+The solid application structure and its declarative UI definitions that seamlessly integrate with regular Rust code make Relm4 unique and delightful to work with.</p>
+<h2 id="quotes">Quotes</h2>
+<blockquote>
+<p>No other library I could find can give me both the tremendous power of GTK4 and a simple and ergonomic way of writing my applications, even when I look outside of the Rust ecosystem.
+0.5 is a huge improvement over 0.4 both in terms of functionality and the quality and usefulness of the macros, which are a core part of the system.</p>
+<p>Another great part about Relm4 is the fact that I can easily ask questions in the official chat and I get great help.
+Most of the times it&rsquo;s simple things, like pointing me to a part of the documentation or a single paragraph, but such small things can often help avoid hours of debugging and googling.
+This friendliness makes me feel happy to use it too.</p>
+<p><em>dexterdy</em></p>
+</blockquote>
+<hr>
+<blockquote>
+<p>I was using relm before and Relm4 has taken the ease of use and expressiveness from there, while fixing most of the annoyances.
+I think the biggest improvement in 0.5 is async, it&rsquo;s become much easier to use now.
+Also, factories have gotten nicer to work with.
+Thanks for all the work and the great support from everyone!</p>
+<p><em>Eric Trombly</em></p>
+</blockquote>
+<hr>
+<blockquote>
+<p>The official book helped a lot, definitely delivering on the outstanding documentation goal.
+I liked the development experience.
+My biggest surprise was how well it blends with GTK ecosystem: it eliminates the burden of managing GTK objects manually, but it doesn&rsquo;t try to hide GTK API from you.
+You still use GTK and Libadwaita types directly, GTK documentation applies directly, you still learn GTK by using Relm4 if that&rsquo;s your goal.
+I think this explicitly defined limited scope is a great design decision.</p>
+<p><em>azymohliad</em></p>
+</blockquote>
+<h2 id="credit">Credit</h2>
+<p>Without a doubt, GTK and Rust are a very successful combination.
+The power of GTK and the robustness and guarantees of the Rust programming fit together incredibly well.
+It&rsquo;s no surprise that the gtk-rs crates are still the most popular UI crates (according to stats from <a href="lib.rs">lib.rs</a>).
+Without the awesome work of the GTK and gtk-rs developers, Relm4 and many other projects would not have been possible.</p>
+<p>Also, I want to thank all of our <a href="https://github.com/Relm4/Relm4/graphs/contributors">contributors</a> and everyone else in our community.
+Without contributions and feedback from the Relm4 community and our <a href="https://github.com/orgs/Relm4/people">team</a>, Relm4 would not be nearly as great as it is today.</p>
+]]></content:encoded></item><item><title>Off to new adventures - Announcing Relm4 v0.5 beta!</title><link>https://relm4.org/blog/posts/announcing_relm4_v0.5_beta/</link><pubDate>Tue, 26 Jul 2022 00:00:00 +0000</pubDate><guid>https://relm4.org/blog/posts/announcing_relm4_v0.5_beta/</guid><description>A new realm appears on the horizon, waiting for you with plenty of new features to discover! I&amp;rsquo;m exited to announce Relm4 v0.5, by far our biggest release so far.
+About Relm4 Relm4 is an idiomatic GUI library inspired by Elm and based on gtk4-rs.
+We believe that GUI development should be easy, productive and delightful.
+The gtk4-rs crate already provides everything you need to write modern, beautiful and cross-platform applications.</description><content:encoded><![CDATA[<p>A new realm appears on the horizon, waiting for you with plenty of new features to discover!
+I&rsquo;m exited to announce Relm4 v0.5, by far our biggest release so far.</p>
+<blockquote>
+<h2 id="about-relm4">About Relm4</h2>
+<p>Relm4 is an idiomatic GUI library inspired by <a href="https://elm-lang.org/">Elm</a> and based on <a href="https://crates.io/crates/gtk4">gtk4-rs</a>.</p>
+<p>We believe that GUI development should be easy, productive and delightful.<br>
+The <a href="https://crates.io/crates/gtk4">gtk4-rs</a> crate already provides everything you need to write modern, beautiful and cross-platform applications.
+Built on top of this foundation, Relm4 makes developing more idiomatic, simpler and faster and enables you to become productive in just a few hours.</p>
+</blockquote>
+<h1 id="whats-new">What&rsquo;s new?</h1>
+<p>Relm4 v0.5 features some fundamental changes that greatly simplify the API and solve some longstanding issues.
+More than half a year ago, <a href="https://github.com/mmstick">Michael Murphy</a> from <a href="https://system76.com">System76</a> started off the development of 0.5 with some great ideas to improve the structure of Relm4 applications.
+Over time, more developers joined the effort to redesign and refine Relm4&rsquo;s API.
+Now - almost 300 commits later - I&rsquo;m proud to present the results of our hard work.</p>
+<h2 id="fewer-traits-more-fun">Fewer traits, more fun!</h2>
+<p>So far, Relm4 had several traits for different use-cases.
+In total, 7 traits were unified into one interface, the <code>Component</code> trait.
+Furthermore, the new trait covers not only all previous use-cases, it even adds some features on top.</p>
+<h3 id="maximum-flexibility">Maximum flexibility</h3>
+<p>In version 0.4, Relm4&rsquo;s macros made Relm4 more attractive for gtk4-rs based applications.
+I&rsquo;m happy this trend continues in version 0.5.
+You can now mix Relm4 into any gtk-rs application and the other way around with hardly any limitations.</p>
+<h3 id="commands">Commands</h3>
+<p>Commands are a concept from the <a href="https://elm-lang.org">Elm</a> programming language that is often used to run web-requests in the background without blocking other UI updates.
+With Relm4, you now can take full advantage of Rust&rsquo;s async ecosystem to run asynchronous tasks in the background without blocking your application.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#75715e">// Add a new command future to be executed in the background
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>sender.command(<span style="color:#f92672">|</span>out, shutdown<span style="color:#f92672">|</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Cancel the future if the component is shut down in the meantime
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    shutdown.register(<span style="color:#66d9ef">async</span> <span style="color:#66d9ef">move</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Wait for one second
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        tokio::time::sleep(Duration::from_secs(<span style="color:#ae81ff">1</span>)).<span style="color:#66d9ef">await</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Emit a delayed increment event
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        out.send(AppMsg::Increment);
+</span></span><span style="display:flex;"><span>    }).drop_on_shutdown()
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="seamless-communication">Seamless communication</h3>
+<p>Many applications written in Relm4 rely upon communication between components.
+Often one message needs to be forwarded to another component, e.g. to show a dialog.
+Previously, this required forwarding the message from the application logic.
+Now you can simply register a closure to modify and forward messages.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> component <span style="color:#f92672">=</span> MyComponent::builder()
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Start the component service with an initial parameter
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    .launch(<span style="color:#e6db74">&#34;Hello world&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Attach the returned receiver&#39;s messages to this closure.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    .connect_receiver(<span style="color:#66d9ef">move</span> <span style="color:#f92672">|</span>sender, message<span style="color:#f92672">|</span> <span style="color:#66d9ef">match</span> message {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Transform and forward the message
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        Output::HelloThere <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>            sender.send(Input::Answer(<span style="color:#e6db74">&#34;General Kenobi!&#34;</span>))
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        _ <span style="color:#f92672">=&gt;</span> (),
+</span></span><span style="display:flex;"><span>    });
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="macroscopic-macro-improvements">Macroscopic macro improvements</h2>
+<p>The <code>view!</code> macro has been largely rewritten, making the codebase smaller, faster and more maintainable.
+Additionally, the macro gained a lot of exiting features and can continue the code generation even if it encounters errors.</p>
+<h3 id="rusty-blueprints">Rusty blueprints</h3>
+<p>With 0.5, the macro syntax was cleaned up and became even easier.
+By pure coincidence, it looks very similar to the <a href="https://jwestman.pages.gitlab.gnome.org/blueprint-compiler/">Blueprint language</a> that&rsquo;s specifically designed for GTK4 UIs.</p>
+<p>Yet, Relm4 has more to offer than just creating UIs.
+It integrates well into the surrounding Rust code by allowing you to update values automatically, to use local variables and to connect message handlers directly with the UI declaration.
+You can even use <code>match</code> and <code>if</code> conditions to show widgets depending upon certain conditions.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#75715e">// Create a new container
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>gtk::Box {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Arrange widgets vertically
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    set_orientation: <span style="color:#a6e22e">Vertical</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Watch `counter.value` to make the box invisible
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// if the value reaches 42
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">#[watch]</span>
+</span></span><span style="display:flex;"><span>    set_visible: <span style="color:#a6e22e">counter</span>.value <span style="color:#f92672">!=</span> <span style="color:#ae81ff">42</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Append a new label
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    gtk::Label {
+</span></span><span style="display:flex;"><span>        set_label: <span style="color:#e6db74">&#34;Hello world!&#34;</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Append a new label using a builder pattern
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    gtk::Label::builder()
+</span></span><span style="display:flex;"><span>        .label(<span style="color:#e6db74">&#34;Builder pattern works!&#34;</span>)
+</span></span><span style="display:flex;"><span>        .selectable(<span style="color:#66d9ef">true</span>)
+</span></span><span style="display:flex;"><span>        .build(),
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Use different widgets depending on a pattern
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// and show a transition in between
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">#[transition(SlideLeft)]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">match</span> counter.value {
+</span></span><span style="display:flex;"><span>        (<span style="color:#ae81ff">0</span><span style="color:#f92672">..=</span><span style="color:#ae81ff">2</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// First match arm: show a button
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            gtk::Button {
+</span></span><span style="display:flex;"><span>                set_label: <span style="color:#e6db74">&#34;Value is smaller than 3, click to increment it!&#34;</span>,
+</span></span><span style="display:flex;"><span>                connect_clicked[sender] <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">move</span> <span style="color:#f92672">|</span>_<span style="color:#f92672">|</span> {
+</span></span><span style="display:flex;"><span>                    sender.input(appmsg::increment);
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        _ <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Second match arm: show a label
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            gtk::Label {
+</span></span><span style="display:flex;"><span>                set_label: <span style="color:#e6db74">&#34;Value is higher than 2&#34;</span>,
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Further features added in this release include:</p>
+<ul>
+<li>Support for multiple top-level widgets</li>
+<li>Support for adding widgets from local variables</li>
+<li>Automatically block signals while updating values</li>
+</ul>
+<h2 id="fabulous-factories">Fabulous factories</h2>
+<p>Along with components, factories saw a big update.
+The new <code>FactoryComponent</code> trait is very similar to <code>Component</code> and allows every entry of a factory to manage its own state.</p>
+<p>The updated <code>FactoryVecDeque</code> type comes extremely close to the goal of making collections of UI elements just as accessible as regular data collections.
+With implementations for <code>Index</code> and <code>IndexMut</code> as well as most methods from <code>VecDeque</code>, you&rsquo;ll hardly notice you&rsquo;re actually working with UI elements.
+Even external updates, e.g. when a user swaps two tabs, are now automatically synchronized with the order of elements in the <code>FactoryVecDeque</code>.
+A new RAII-guard completes the list of improvements and makes it impossible to forget to render the changes after modifying the data.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> guard <span style="color:#f92672">=</span> factory.guard();
+</span></span><span style="display:flex;"><span>guard.push_back(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>guard.swap(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> last_value <span style="color:#f92672">=</span> guard.pop_back().unwrap();
+</span></span><span style="display:flex;"><span>println!(<span style="color:#e6db74">&#34;Value of the first element {}&#34;</span>, guard[<span style="color:#ae81ff">0</span>]);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Changes are rendered as soon as the scope ends
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Let&rsquo;s see the new factories in action!
+The new <a href="https://github.com/Relm4/Relm4/blob/next/examples/libadwaita/tab_game.rs"><code>tab_game</code></a> example takes advantage of the new features to build a small game.</p>
+<video controls>
+    <source src="./tab_game.webm" type="video/webm">
+    Your browser does not support the video tag.
+</video> 
+<h1 id="try-it-out">Try it out!</h1>
+<p>Try out the new beta by adding the following lines to your project&rsquo;s Cargo.toml file:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span><span style="color:#a6e22e">relm4</span> = { <span style="color:#a6e22e">git</span> = <span style="color:#e6db74">&#34;https://github.com/Relm4/Relm4&#34;</span>, <span style="color:#a6e22e">tag</span> = <span style="color:#e6db74">&#34;v0.5.0-beta.1&#34;</span> }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Yet, keep in mind that this is still a beta, so some things might be slightly adjusted before the stable release.
+Also, the book isn&rsquo;t fully ported to v0.5, but the examples in the repository are always up to date.</p>
+<h2 id="remaining-tasks">Remaining tasks</h2>
+<p>We&rsquo;re looking forward to release 0.5 as stable soon.
+However, there are still a few things left to do.
+<strong>Feedback and contributions are highly appreciated!</strong></p>
+<ul>
+<li>Polish some rough edges in the API</li>
+<li>Finish updating the book</li>
+<li>Port more examples to 0.5</li>
+<li>Port the rest of relm4-components to 0.5</li>
+</ul>
+<h2 id="where-to-get-started">Where to get started</h2>
+<ul>
+<li>⬆️ <strong><a href="https://relm4.org/book/next/0_4_to_0_5.html">Migration guide</a></strong></li>
+<li>🏠 <strong><a href="https://relm4.org">Website</a></strong></li>
+<li>⭐ <strong><a href="https://github.com/Relm4/Relm4">Repository</a></strong></li>
+<li>📖 <strong><a href="https://relm4.org/book/next">Book</a></strong></li>
+<li>📜 <strong><a href="https://relm4.org/docs/next/relm4">Rust documentation</a></strong></li>
+</ul>
+<h1 id="special-thanks">Special thanks</h1>
+<p>We highly appreciate feedback and contributions to Relm4.
+In the name of all members of the Relm4 organization I thank those who helped with this release:</p>
+<ul>
+<li><a href="https://github.com/mmstick">Michael Murphy</a> for coming up with several brilliant ideas and contributing most of the component rework.</li>
+<li><a href="https://github.com/MaksymShcherbak">Maksym Shcherbak</a> for his ongoing and outstanding contributions around factories and other parts of Relm4.</li>
+<li><a href="https://github.com/euclio">Andy Russell</a> for contributing improvements all across Relm4.</li>
+<li><a href="https://github.com/edfloreshz">Eduardo Flores</a> for joining the discussions and porting the book to 0.5.</li>
+<li>Everyone else who contributed or gave feedback.</li>
+<li>The whole gtk-rs team for providing awesome Rust bindings for GTK and always being helpful.</li>
+</ul>
+]]></content:encoded></item><item><title>A new Relm 4 you: announcing Relm4 v0.4!</title><link>https://relm4.org/blog/posts/announcing_relm4_v0.4/</link><pubDate>Mon, 17 Jan 2022 00:00:00 +0000</pubDate><guid>https://relm4.org/blog/posts/announcing_relm4_v0.4/</guid><description>A new realm is here for you to explore! I&amp;rsquo;m happy to announce Relm4 v0.4, our biggest release so far!
+About Relm4 Relm4 is an idiomatic GUI library inspired by Elm and based on gtk4-rs.
+We believe that GUI development should be easy, productive and delightful.
+The gtk4-rs crate already provides everything you need to write modern, beautiful and cross-platform applications. Built on top of this foundation, Relm4 makes developing more idiomatic, simpler and faster and enables you to become productive in just a few hours.</description><content:encoded><![CDATA[<p>A new realm is here for you to explore! I&rsquo;m happy to announce Relm4 v0.4, our biggest release so far!</p>
+<blockquote>
+<h2 id="about-relm4">About Relm4</h2>
+<p>Relm4 is an idiomatic GUI library inspired by <a href="https://elm-lang.org/">Elm</a> and based on <a href="https://crates.io/crates/gtk4">gtk4-rs</a>.</p>
+<p>We believe that GUI development should be easy, productive and delightful.<br>
+The <a href="https://crates.io/crates/gtk4">gtk4-rs</a> crate already provides everything you need to write modern, beautiful and cross-platform applications.
+Built on top of this foundation, Relm4 makes developing more idiomatic, simpler and faster and enables you to become productive in just a few hours.</p>
+</blockquote>
+<h1 id="whats-new">What&rsquo;s new?</h1>
+<p>Relm4 v0.4 brings a lot of new features and improvements. I&rsquo;m excited to present to you the highlights of this release!</p>
+<h2 id="macros-for-everyone">Macros for everyone!</h2>
+<p>In recent Relm4 releases, the macros were tightly integrated into the library itself. This limitation is now removed! Most importantly, users of gtk4-rs will be able to use the <code>view!</code> macro by only pulling in <code>relm4-macros</code> as dependency without the rest of Relm4. This gives you even more freedom to choose how much of Relm4&rsquo;s features you want to use.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#75715e">// Creating a box with a button inside.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>relm4_macros::view<span style="color:#f92672">!</span> {
+</span></span><span style="display:flex;"><span>    vbox <span style="color:#f92672">=</span> gtk::Box {
+</span></span><span style="display:flex;"><span>        append <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>gtk::Button {
+</span></span><span style="display:flex;"><span>            set_label: <span style="color:#e6db74">&#34;Click me!&#34;</span>,
+</span></span><span style="display:flex;"><span>            connect_clicked <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">|</span>_<span style="color:#f92672">|</span> {
+</span></span><span style="display:flex;"><span>                println!(<span style="color:#e6db74">&#34;Hello world!&#34;</span>);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// You can simply use the vbox created in the macro.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> spacing <span style="color:#f92672">=</span> vbox.spacing();
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>And there&rsquo;s even more. The <code>view!</code> macro isn&rsquo;t limited to gtk4-rs. You can use it for regular Rust structures, too!</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> std::process::Command;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> path <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;/&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>relm4_macros::view<span style="color:#f92672">!</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">mut</span> process <span style="color:#f92672">=</span> Command::new(<span style="color:#e6db74">&#34;ls&#34;</span>) {
+</span></span><span style="display:flex;"><span>        args: [<span style="color:#e6db74">&#34;-la&#34;</span>],
+</span></span><span style="display:flex;"><span>        current_dir <span style="color:#f92672">=</span> <span style="color:#66d9ef">mut</span> <span style="color:#f92672">&amp;</span>String {
+</span></span><span style="display:flex;"><span>            push_str: <span style="color:#a6e22e">path</span>,
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        env: <span style="color:#a6e22e">args</span><span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;HOME&#34;</span>, <span style="color:#e6db74">&#34;/home/relm4&#34;</span>),
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Output of &#34;ls -la&#34; at &#34;/&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>dbg!(process.output());
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="micro-components-for-flexibility-at-runtime">Micro components for flexibility at runtime</h2>
+<p>Regular components are relatively static, which gives you strong compile time guarantees, among other benefits. They cover most use cases, but they cannot be initialized or destructed manually at runtime.</p>
+<p>This is where micro components have their strength. They are simpler variants of components that require a bit more manual work, with the advantage of being fully dynamic at runtime.</p>
+<p>A code example can be found <a href="https://github.com/AaronErhardt/Relm4/blob/main/relm4-examples/examples/micro_components.rs#L7">here</a>.</p>
+<h2 id="type-safe-actions">Type-safe actions</h2>
+<p><a href="https://gtk-rs.org/gtk4-rs/git/book/actions.html">Actions</a> are used in GTK4 to simplify the handling of user interactions. Since you can always mix in as much pure gtk4-rs code into Relm4 applications as you want, actions were never a real problem. Yet, they lived outside of Rust&rsquo;s type checking.</p>
+<p>With the help of some traits and macros, it&rsquo;s now quite convenient to define wrapper types for actions that enable a lot of compile time guarantees for actions. Even typos for action names are eliminated as a source of errors.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#75715e">// Defines a new action group
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>new_action_group<span style="color:#f92672">!</span>(ActionGroup, <span style="color:#e6db74">&#34;win&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// A new stateless action type that belongs to `ActionGroup`
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>new_stateless_action<span style="color:#f92672">!</span>(Action, ActionGroup, <span style="color:#e6db74">&#34;action&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// A new action type with a `u8` as state and `u8` as target type
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>new_stateful_action<span style="color:#f92672">!</span>(U8Action, ActionGroup, <span style="color:#e6db74">&#34;u8_action&#34;</span>, <span style="color:#66d9ef">u8</span>, <span style="color:#66d9ef">u8</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/* ... */</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// This only works because `Action` is actually stateless
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> action: <span style="color:#a6e22e">RelmAction</span><span style="color:#f92672">&lt;</span>Action<span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span> RelmAction::new_stateless(<span style="color:#66d9ef">move</span> <span style="color:#f92672">|</span>_<span style="color:#f92672">|</span> {
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#e6db74">&#34;Action called!&#34;</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="menu-macro">Menu macro</h2>
+<p>Often, actions are used for menus, where each entry is connected to an action. The new <code>menu!</code> macro allows you to create menus conveniently with all the benefits of type-safe actions.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#75715e">// Create a `MenuModel` called `menu_model`
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>menu<span style="color:#f92672">!</span> {
+</span></span><span style="display:flex;"><span>    main_menu: {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;action&#34;</span> <span style="color:#f92672">=&gt;</span> Action,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;stateful action&#34;</span> <span style="color:#f92672">=&gt;</span> U8Action(<span style="color:#ae81ff">1_</span><span style="color:#66d9ef">u8</span>),
+</span></span><span style="display:flex;"><span>        section<span style="color:#f92672">!</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;nested action&#34;</span> <span style="color:#f92672">=&gt;</span> Action,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;nested stateful action&#34;</span> <span style="color:#f92672">=&gt;</span> U8Action(<span style="color:#ae81ff">1_</span><span style="color:#66d9ef">u8</span>),
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="more-macro-magic">More macro magic</h2>
+<p>The <code>widget</code> macro has been very helpful in creating readable and elegant UI definitions for regular components since the first release of Relm4.
+Now, factories and micro components have received their own variants of the <code>widget</code> macro!</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#75715e">// A simple `FactoryPrototype` implementation
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#[relm4::factory_prototype]</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">impl</span> FactoryPrototype <span style="color:#66d9ef">for</span> Counter {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Factory</span> <span style="color:#f92672">=</span> FactoryVec<span style="color:#f92672">&lt;</span>Self<span style="color:#f92672">&gt;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Widgets</span> <span style="color:#f92672">=</span> FactoryWidgets;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">View</span> <span style="color:#f92672">=</span> gtk::Box;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Msg</span> <span style="color:#f92672">=</span> AppMsg;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    view<span style="color:#f92672">!</span> {
+</span></span><span style="display:flex;"><span>        gtk::Button {
+</span></span><span style="display:flex;"><span>            set_label: <span style="color:#a6e22e">watch</span><span style="color:#f92672">!</span>(<span style="color:#f92672">&amp;</span>self.value.to_string()),
+</span></span><span style="display:flex;"><span>            connect_clicked(key) <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">move</span> <span style="color:#f92672">|</span>_<span style="color:#f92672">|</span> {
+</span></span><span style="display:flex;"><span>                sender.send(AppMsg::Clicked(key)).unwrap();
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">position</span>(<span style="color:#f92672">&amp;</span>self, _index: <span style="color:#66d9ef">&amp;</span><span style="color:#66d9ef">usize</span>) {}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="better-support-for-stack-and-tabview">Better support for Stack and TabView</h2>
+<p>Widgets such as <code>Stack</code> or <code>TabView</code> have methods that return a new widget, such as <code>StackPage</code>. The returned widget was previously inaccessibly in the <code>widget</code> macro and required manual code. This was addressed with <a href="https://github.com/AaronErhardt/Relm4/blob/main/relm4-examples/libadwaita/examples/view-switcher.rs#L93">a new syntax</a>.</p>
+<h2 id="cleaner-dependencies">Cleaner dependencies</h2>
+<p>Relm4 now re-exports more crates and has more feature flags. This means you don&rsquo;t have to include <code>gtk4</code>, <code>libadwaita</code> or <code>relm4-macros</code> anymore, if you have the correct feature flags set.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span><span style="color:#a6e22e">relm4</span> = { <span style="color:#a6e22e">version</span> = <span style="color:#e6db74">&#34;0.4&#34;</span>, <span style="color:#a6e22e">features</span> = [<span style="color:#e6db74">&#34;tokio-rt&#34;</span>, <span style="color:#e6db74">&#34;macros&#34;</span>] }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="miscellaneous">Miscellaneous</h2>
+<ul>
+<li>Several book improvements</li>
+<li>Reworked initialization process</li>
+<li>Some trait adjustments</li>
+<li>Many bug fixes, better error messages and other improvements</li>
+</ul>
+<p>The full change log can be found <a href="https://github.com/AaronErhardt/Relm4/blob/main/CHANGES.md#040---2022-1-16">here</a>.</p>
+<h1 id="where-to-get-started">Where to get started</h1>
+<ul>
+<li>
+<p>⬆️ <strong><a href="https://aaronerhardt.github.io/relm4-book/book/0_2_to_0_4.html">Migration guide</a></strong></p>
+</li>
+<li>
+<p>⭐ <strong><a href="https://github.com/AaronErhardt/relm4">Repository</a></strong></p>
+</li>
+<li>
+<p>📖 <strong><a href="https://aaronerhardt.github.io/relm4-book/book/">Book</a></strong></p>
+</li>
+<li>
+<p>📜 <strong><a href="https://aaronerhardt.github.io/docs/relm4/relm4/">Rust documentation</a></strong></p>
+</li>
+</ul>
+<blockquote>
+<p>Note: As of writing this, the book isn&rsquo;t fully ported to v0.4, but the examples in the repository are always up to date.</p>
+</blockquote>
+<h1 id="special-thanks">Special thanks</h1>
+<p>I highly appreciate feedback and contributions to Relm4 and thank those who helped me with this release:</p>
+<ul>
+<li><a href="https://github.com/euclio">@euclio</a> who contributed many fixes and features</li>
+<li><a href="https://github.com/mskorkowski">@mskorkowski</a> for his contributions and work on <a href="https://github.com/mskorkowski/relm4-store">relm4-store</a></li>
+<li><a href="https://github.com/tronta">@tronta</a> who contributed a lot to the examples and book improvements</li>
+<li>everyone else who gave feedback in the Matrix room or on GitHub</li>
+<li>the whole gtk-rs team for providing awesome Rust bindings for GTK and always being helpful</li>
+</ul>
+]]></content:encoded></item><item><title>Announcing Relm4 v0.2</title><link>https://relm4.org/blog/posts/announcing_relm4_v0.2/</link><pubDate>Sat, 09 Oct 2021 00:00:00 +0000</pubDate><guid>https://relm4.org/blog/posts/announcing_relm4_v0.2/</guid><description>Roughly one month after the first stable release a I&amp;rsquo;m happy to announce the second stable release of Relm4! 🚀🚀🚀
+About Relm4 We believe that GUI development should be easy, productive and delightful.
+The gtk4-rs crate already provides everything you need to write modern, beautiful and cross-platform applications. Built on top of this foundation, Relm4 makes developing more idiomatic, simpler and faster and enables you to become productive in just a few hours.</description><content:encoded><![CDATA[<p>Roughly one month after the first stable release a I&rsquo;m happy to announce the second stable release of Relm4! 🚀🚀🚀</p>
+<h2 id="about-relm4">About Relm4</h2>
+<p>We believe that GUI development should be easy, productive and delightful.<br>
+The <a href="https://github.com/gtk-rs/gtk4-rs">gtk4-rs</a> crate already provides everything you need to write modern, beautiful and cross-platform applications. Built on top of this foundation, Relm4 makes developing more idiomatic, simpler and faster and enables you to become productive in just a few hours.</p>
+<h3 id="whats-new">What&rsquo;s new?</h3>
+<p>Overall there have been a lot of fixes and improvements, most importantly:</p>
+<ul>
+<li>
+<p>Better error messages in the widget macro</p>
+</li>
+<li>
+<p>Widgets and components are now always added in the correct order by the widget macro (<a href="https://github.com/AaronErhardt/relm4/issues/20">#20</a>)</p>
+</li>
+<li>
+<p>Reusable components can now be used multiple times in the same application (thanks to <a href="https://github.com/mskorkowski">mskorkowski</a>)</p>
+</li>
+<li>
+<p>Factories were reworked to better handle TabViews in libadwaita</p>
+</li>
+</ul>
+<p>The full change log can be found <a href="https://github.com/AaronErhardt/relm4/blob/main/CHANGES.md">here</a>. Even though there are a few breaking changes, existing projects should be able to update with no or only minor changes.</p>
+<h2 id="where-to-get-started">Where to get started</h2>
+<p>Relm4 has an outstanding documentation. The official book covers every aspect of Relm4 and is made for everyone from beginners to experts. Also, there a lots of examples that can be found in the repository.</p>
+<ul>
+<li>⭐ <strong><a href="https://github.com/AaronErhardt/relm4">Repository</a></strong></li>
+<li>📖 <strong><a href="https://aaronerhardt.github.io/relm4-book/book/">The Relm4 book</a></strong></li>
+<li>📜 <strong><a href="https://aaronerhardt.github.io/docs/relm4/relm4/">Rust documentation</a></strong></li>
+</ul>
+<h2 id="special-thanks">Special thanks</h2>
+<p>Maintaining an open-source library next to a full time job is quite challenging. All the more I appreciate feedback and contributions to Relm4 and thank those who helped me with this release:</p>
+<ul>
+<li><a href="https://github.com/mskorkowski">mskorkowski</a> who pointed out several issues and also fixed them :)</li>
+<li><a href="https://github.com/tronta">tronta</a> who again contributed a lot to the book and added examples</li>
+<li><a href="https://github.com/maruns">maruns</a>, <a href="https://github.com/bunnegirl">bunnegirl</a> and <a href="https://github.com/a-kenji">a-kenji</a> who provided helpful feedback</li>
+<li>the whole gtk-rs team for providing awesome Rust bindings for GTK and always being helpful</li>
+</ul>
+]]></content:encoded></item><item><title>Announcing Relm4 v0.1</title><link>https://relm4.org/blog/posts/announcing_relm4/</link><pubDate>Mon, 06 Sep 2021 00:00:00 +0000</pubDate><guid>https://relm4.org/blog/posts/announcing_relm4/</guid><description>Roughly one month after the first beta release and countless hours of work I&amp;rsquo;m happy to announce the first stable release of Relm4! 🎉🎉🎉
+About Relm4 Relm4 is an idiomatic GUI library inspired by Elm and based on gtk4-rs. It is a new version of relm that&amp;rsquo;s built from scratch and is compatible with GTK4 and libadwaita. The main goals are productivity, flexibility, simplicity and maintainability.
+Over the last beta releases, the development slowly calmed down up to a point where I&amp;rsquo;m comfortable releasing the first stable version.</description><content:encoded><![CDATA[<p>Roughly one month after the first beta release and countless hours of work I&rsquo;m happy to announce the first stable release of Relm4! 🎉🎉🎉</p>
+<h2 id="about-relm4">About Relm4</h2>
+<p>Relm4 is an idiomatic GUI library inspired by <a href="https://elm-lang.org/">Elm</a> and based on <a href="https://crates.io/crates/gtk4">gtk4-rs</a>.
+It is a new version of <a href="https://github.com/antoyo/relm">relm</a> that&rsquo;s built from scratch and is compatible with <a href="https://www.gtk.org/">GTK4</a> and <a href="https://gitlab.gnome.org/GNOME/libadwaita">libadwaita</a>. The main goals are productivity, flexibility, simplicity and maintainability.</p>
+<p>Over the last beta releases, the development slowly calmed down up to a point where I&rsquo;m comfortable releasing the first stable version. I&rsquo;ve already started porting my existing app I wrote with GTK3 and relm to use GTK4, libadwaita and Relm4 and I was very pleased with the productivity I was able to archive. I believe Relm4 offers a truly outstanding experience for GUI development in Rust.</p>
+<h3 id="whats-new">What&rsquo;s new?</h3>
+<ul>
+<li>Support for <a href="https://gitlab.gnome.org/GNOME/libadwaita">libadwaita</a> was added</li>
+<li>The book is now complete 🎉</li>
+<li>There&rsquo;s a new message handler type for non-blocking IO and other use-cases</li>
+<li>Many reusable components were added</li>
+<li>Lots of other improvements and fixes</li>
+</ul>
+<p>The full change log can be found <a href="https://github.com/AaronErhardt/relm4/blob/main/CHANGES.md">here</a>.</p>
+<h2 id="where-to-get-started">Where to get started</h2>
+<p>Relm4 has an outstanding documentation. The official book covers every aspect of Relm4 and is made for everyone from beginners to experts. Also, there a lots of examples that can be found in the repository.</p>
+<ul>
+<li>⭐ <strong><a href="https://github.com/AaronErhardt/relm4">Repository</a></strong></li>
+<li>📖 <strong><a href="https://aaronerhardt.github.io/relm4-book/book/">Book</a></strong></li>
+<li>📜 <strong><a href="https://aaronerhardt.github.io/docs/relm4/relm4/">Rust documentation</a></strong></li>
+</ul>
+<h2 id="special-thanks">Special thanks</h2>
+<p>I highly appreciate feedback and contributions to Relm4 and thank those who helped me with this release:</p>
+<ul>
+<li><a href="https://github.com/tronta">tronta</a> who contributed <strong>a lot</strong> to the book</li>
+<li><a href="https://github.com/overlisted">overlisted</a>, <a href="https://github.com/bunnegirl">bunnegirl</a> and <a href="https://github.com/maruns">maruns</a> who provided helpful feedback</li>
+<li>the whole gtk-rs team for providing awesome Rust bindings for GTK and always being helpful</li>
+</ul>
+]]></content:encoded></item><item><title>Relm4 beta released 🎉</title><link>https://relm4.org/blog/posts/relm_beta/</link><pubDate>Wed, 11 Aug 2021 00:00:00 +0000</pubDate><guid>https://relm4.org/blog/posts/relm_beta/</guid><description>What&amp;rsquo;s relm? Relm is described on its repository as an &amp;ldquo;idiomatic, GTK+-based, GUI library, inspired by Elm, written in Rust&amp;rdquo; and has more than 2000 GitHub stars and over 36.000 downloads on crates.io.
+When I first started with GUI development in Rust and experimented with gtk-rs I had a rough time because I was completely new to GUI development and GTK. Relm on the other side provided me the examples and structure I needed to get productive in just a couple of hours.</description><content:encoded><![CDATA[<h2 id="whats-relmhttpsgithubcomantoyorelm">What&rsquo;s <a href="https://github.com/antoyo/relm">relm</a>?</h2>
+<p>Relm is described on its repository as an &ldquo;idiomatic, GTK+-based, GUI library, inspired by Elm, written in Rust&rdquo; and has more than 2000 GitHub stars and over 36.000 downloads on <a href="https://crates.io/crates/relm">crates.io</a>.</p>
+<p>When I first started with GUI development in Rust and experimented with <a href="https://github.com/gtk-rs/gtk3-rs">gtk-rs</a> I had a rough time because I was completely new to GUI development and GTK. Relm on the other side provided me the examples and structure I needed to get productive in just a couple of hours. Over the next weeks I continued using relm to work on an application I write at my job and was very pleased with the productivity I was able to archive.</p>
+<p>When GTK4 and a few weeks later <a href="https://github.com/gtk-rs/gtk4-rs">gtk4-rs</a> were released I was eager to use relm with this latest version of GTK to quickly update the dependencies of my application. However, it turned out that relm was not easy to port but it relied on features - most importantly the <a href="https://gtk-rs.org/gtk3-rs/stable/latest/docs/gtk/prelude/trait.ContainerExt.html">ContainerExt trait</a> - that were removed with GTK4.</p>
+<h2 id="the-story-of-relm4">The story of Relm4</h2>
+<p>Naturally, I started thinking about how to solve this issue and get relm working with GTK4. I quickly came up with several ideas and reached out for feedback by the community. Yet while hacking on relm I was quickly overwhelmed by its complexity but slowly realized how the underlying mechanisms worked. With this knowledge I started from scratch with a minimal version of Relm4.</p>
+<p>Over time I added many features and rewrote the core of the library dozens of times to fit all requirements. Many examples were added to test out the new features and to expose limitations.</p>
+<p>Now finally after weeks of work, I&rsquo;m satisfied with the result and released the first beta version of Relm4.</p>
+<h2 id="where-to-get-started">Where to get started</h2>
+<p>I&rsquo;m not going into depth about the changes and the new API in this post but there&rsquo;s a new book I&rsquo;m working on, the docs and a many examples to get started.</p>
+<ul>
+<li><strong><a href="https://github.com/AaronErhardt/relm4">Repository</a></strong></li>
+<li>📖 <strong><a href="https://aaronerhardt.github.io/relm4-book/book/">Book</a></strong></li>
+<li><strong><a href="https://aaronerhardt.github.io/docs/relm4/relm4/">Rust documentation</a></strong></li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>I hope that Relm4 can offer a pleasant experience for new users and those who want to port their existing relm apps to GTK4. I believe that gtk4-rs offers the most complete and mature GUI experience for Rust programmers right now and that Relm4 will help new and experienced users to productively write efficient GUI applications.</p>
+<p>I highly appreciate feedback and contributions on Relm4 and thank those who helped me so far, most importantly <a href="https://github.com/antoyo">antoyo</a>, <a href="https://github.com/MGlolenstine">MGlolenstine</a> and the whole gtk-rs team for providing awesome Rust bindings for GTK.</p>
+]]></content:encoded></item></channel></rss>

@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["OpenDialogMsg","OpenDialogResponse"],"struct":["MultiSelection","OpenDialogInner","OpenDialogInnerWidgets","OpenDialogSettings","SingleSelection"],"trait":["Select"],"type":["OpenDialog","OpenDialogMulti"]};

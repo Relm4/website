@@ -1,0 +1,71 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Macro that implements `relm4::Widgets` and generates the corresponding struct."><title>widget in relm4_macros - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../static.files/rustdoc-fbd14db5c88ed452.css" id="mainThemeStyle"><div id="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="relm4_macros" data-themes="" data-resource-suffix="" data-rustdoc-version="1.70.0-nightly (5e1d3299a 2023-03-31)" data-search-js="search-bc5a112813b5d712.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" data-theme-light-css="light-db279b6232be9c13.css" data-theme-dark-css="dark-cf923f49f397b216.css" data-theme-ayu-css="ayu-be46fdc453a55015.css" ></div><script src="../static.files/storage-d4a1a279bad1a0c0.js"></script><script defer src="sidebar-items.js"></script><script defer src="../static.files/main-8e6affb8c73a5ff1.js"></script><noscript><link rel="stylesheet" media="(prefers-color-scheme:light)" href="../static.files/light-db279b6232be9c13.css"><link rel="stylesheet" media="(prefers-color-scheme:dark)" href="../static.files/dark-cf923f49f397b216.css"><link rel="stylesheet" href="../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="icon" href="https://relm4.org/icons/relm4_org.svg"></head><body class="rustdoc attr"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="logo-container" href="../relm4_macros/index.html"><img src="https://relm4.org/icons/relm4_logo.svg" alt="logo"></a><h2></h2></nav><nav class="sidebar"><a class="logo-container" href="../relm4_macros/index.html"><img src="https://relm4.org/icons/relm4_logo.svg" alt="logo"></a><div class="sidebar-elems"><h2><a href="index.html">In relm4_macros</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Attribute Macro <a href="index.html">relm4_macros</a>::<wbr><a class="attr" href="#">widget</a><button id="copy-path" title="Copy item path to clipboard"><img src="../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="srclink" href="../src/relm4_macros/lib.rs.html#112-120">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><pre class="rust item-decl"><code>#[widget]</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Macro that implements <a href="https://relm4.org/docs/stable/relm4/trait.Widgets.html"><code>relm4::Widgets</code></a> and generates the corresponding struct.</p>
+<h2 id="attributes"><a href="#attributes">Attributes</a></h2>
+<p>To create public struct use <code>#[widget(pub)]</code> or <code>#[widget(visibility = pub)]</code>.</p>
+<p>If you use reexports to provide relm4, then you can use <code>#[widget(relm4= ::myreexports::my_relm)]</code> to override relm4 used during generating struct.</p>
+<h2 id="example"><a href="#example">Example</a></h2>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>gtk::prelude::{BoxExt, ButtonExt, GtkWindowExt, OrientableExt};
+<span class="kw">use </span>relm4::{gtk, send, AppUpdate, Model, RelmApp, Sender, WidgetPlus, Widgets};
+
+<span class="attr">#[derive(Default)]
+</span><span class="kw">struct </span>AppModel {
+    counter: u8,
+}
+
+<span class="kw">enum </span>AppMsg {
+    Increment,
+    Decrement,
+}
+
+<span class="kw">impl </span>Model <span class="kw">for </span>AppModel {
+    <span class="kw">type </span>Msg = AppMsg;
+    <span class="kw">type </span>Widgets = AppWidgets;
+    <span class="kw">type </span>Components = ();
+}
+
+<span class="kw">impl </span>AppUpdate <span class="kw">for </span>AppModel {
+    <span class="kw">fn </span>update(<span class="kw-2">&amp;mut </span><span class="self">self</span>, msg: AppMsg, _components: <span class="kw-2">&amp;</span>(), _sender: Sender&lt;AppMsg&gt;) -&gt; bool {
+        <span class="kw">match </span>msg {
+            AppMsg::Increment =&gt; {
+                <span class="self">self</span>.counter = <span class="self">self</span>.counter.wrapping_add(<span class="number">1</span>);
+            }
+            AppMsg::Decrement =&gt; {
+                <span class="self">self</span>.counter = <span class="self">self</span>.counter.wrapping_sub(<span class="number">1</span>);
+            }
+        }
+        <span class="bool-val">true
+    </span>}
+}
+
+<span class="attr">#[relm4_macros::widget]
+</span><span class="kw">impl </span>Widgets&lt;AppModel, ()&gt; <span class="kw">for </span>AppWidgets {
+    <span class="macro">view! </span>{
+        gtk::ApplicationWindow {
+            set_title: <span class="prelude-val">Some</span>(<span class="string">&quot;Simple app&quot;</span>),
+            set_default_width: <span class="number">300</span>,
+            set_default_height: <span class="number">100</span>,
+            set_child = <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span>gtk::Box) {
+                set_orientation: gtk::Orientation::Vertical,
+                set_margin_all: <span class="number">5</span>,
+                set_spacing: <span class="number">5</span>,
+
+                append = <span class="kw-2">&amp;</span>gtk::Button {
+                    set_label: <span class="string">&quot;Increment&quot;</span>,
+                    connect_clicked(sender) =&gt; <span class="kw">move </span>|<span class="kw">_</span>| {
+                        <span class="macro">send!</span>(sender, AppMsg::Increment);
+                    },
+                },
+                append = <span class="kw-2">&amp;</span>gtk::Button {
+                    set_label: <span class="string">&quot;Decrement&quot;</span>,
+                    connect_clicked(sender) =&gt; <span class="kw">move </span>|<span class="kw">_</span>| {
+                        <span class="macro">send!</span>(sender, AppMsg::Decrement);
+                    },
+                },
+                append = <span class="kw-2">&amp;</span>gtk::Label {
+                    set_margin_all: <span class="number">5</span>,
+                    set_label: <span class="macro">watch! </span>{ <span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;Counter: {}&quot;</span>, model.counter) },
+                }
+            },
+        }
+    }
+}</code></pre></div>
+</div></details></section></div></main></body></html>

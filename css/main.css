@@ -1,0 +1,119 @@
+:root {
+  --blend: 0.5;
+  --dark-red: 106;
+  --dark-blue: 105;
+  --dark-green: 85;
+  --light: 255;
+  --percent: 80%;  
+  --blue-bg: #73A0D0;
+
+  --first-bg: #0D1117;
+  --second-bg: #FFFFFF;
+  --third-bg: #1D1E2C;
+
+  --accent-bg-1: #2A7F62;
+  --accent-bg-2: #9B1D20;
+  --accent-bg-3: #2C497F;
+  --accent-bg-4: #E08E45;
+}
+
+.bg-gradient {
+  background:
+    radial-gradient(circle at 50% 0,
+      rgba(var(--dark-red), 0, 0, var(--blend)),
+      rgba(var(--dark-red), 0 ,0, 0) var(--percent)),
+    radial-gradient(circle at 6.7% 75%,
+      rgba(0, var(--dark-green), 0, var(--blend)),
+      rgba(0, var(--dark-green), 0, 0) var(--percent)),
+    radial-gradient(circle at 93.3% 75%,
+      rgba(0, 0, var(--dark-blue), var(--blend)),
+      rgba(0, 0, var(--dark-blue), 0) var(--percent)),
+        linear-gradient(#000, #000);
+}
+
+.bg-gradient-moving {
+  background: #000;
+  background:
+    radial-gradient(circle at 50% 0,
+      rgba(var(--dark-red), 0, 0, var(--blend)),
+      rgba(var(--dark-red), 0 ,0, 0) var(--percent)),
+    radial-gradient(circle at 6.7% 75%,
+      rgba(0, var(--dark-green), 0, var(--blend)),
+      rgba(0, var(--dark-green), 0, 0) var(--percent)),
+    radial-gradient(circle at 93.3% 75%,
+      rgba(0, 0, var(--dark-blue), var(--blend)),
+      rgba(0, 0, var(--dark-blue), 0) var(--percent)),
+        linear-gradient(#000, #000);
+  transition: background 2s linear;
+}
+          
+.text-gradient  {
+  background:
+    radial-gradient(circle at 50% 0,
+      rgba(0, var(--light), 0, var(--blend)),
+      rgba(0, var(--light), 0, 0) var(--percent)),
+    radial-gradient(circle at 6.7% 75%,
+      rgba(var(--light), 0, 0, var(--blend)),
+      rgba(var(--light), 0 ,0, 0) var(--percent)),
+    radial-gradient(circle at 93.3% 75%,
+      rgba(0, 0, var(--light), var(--blend)),
+      rgba(0, 0, var(--light), 0) var(--percent)),
+        linear-gradient(#000, #000);
+        
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.blue-bg {
+  background: var(--blue-bg);
+}
+
+.first-bg {
+  background: var(--first-bg);
+}
+
+.second-bg {
+  background: var(--second-bg);
+}
+
+.third-bg {
+  background: var(--third-bg);
+}
+          
+.feature-box {
+  height: 100%;
+  background-color: transparent;
+  text-align: left;
+}
+
+.spinner-img a {
+  display: contents;
+}
+
+.spinner-img img {
+  height: 6rem;
+  z-index: 10;
+  object-fit: contain;
+}
+
+@media screen and (min-width: 1024px)  {
+  .navbar-item .button {
+    border-top-width: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-radius: 0;
+  }
+}
+
+.navbar-item > a.button {
+  background: #FFF2 !important;
+  border-color: transparent !important;
+  border-radius: 8px;
+  color: white !important;
+}
+
+.navbar-item > a.button:hover {
+  background: #FFF4 !important;
+  color: white !important;
+}

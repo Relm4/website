@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"struct":["ComponentParts","ComponentSender","Controller","RelmApp"],"trait":["Component","ComponentController","RelmWidgetExt","SimpleComponent","WidgetRef","WidgetTemplate"]};

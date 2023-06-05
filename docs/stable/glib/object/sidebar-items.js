@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"struct":["BindingBuilder","Class","ClassRef","InitiallyUnowned","Interface","InterfaceRef","Object","ObjectBuilder","ObjectRef","ObjectValueTypeChecker","PropertyNotificationFreezeGuard","SendWeakRef","WeakRef"],"trait":["CanDowncast","Cast","IsA","IsClass","IsInterface","ObjectExt","ObjectSubclassIs","ObjectType","ParentClassIs"],"type":["ObjectClass"]};

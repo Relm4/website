@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="The `view!` macro allows you to construct your UI easily and cleanly."><title>view in relm4_macros - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../static.files/rustdoc-fbd14db5c88ed452.css" id="mainThemeStyle"><div id="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="relm4_macros" data-themes="" data-resource-suffix="" data-rustdoc-version="1.70.0-nightly (5e1d3299a 2023-03-31)" data-search-js="search-bc5a112813b5d712.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" data-theme-light-css="light-db279b6232be9c13.css" data-theme-dark-css="dark-cf923f49f397b216.css" data-theme-ayu-css="ayu-be46fdc453a55015.css" ></div><script src="../static.files/storage-d4a1a279bad1a0c0.js"></script><script defer src="sidebar-items.js"></script><script defer src="../static.files/main-8e6affb8c73a5ff1.js"></script><noscript><link rel="stylesheet" media="(prefers-color-scheme:light)" href="../static.files/light-db279b6232be9c13.css"><link rel="stylesheet" media="(prefers-color-scheme:dark)" href="../static.files/dark-cf923f49f397b216.css"><link rel="stylesheet" href="../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="icon" href="https://relm4.org/icons/relm4_org.svg"></head><body class="rustdoc macro"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="logo-container" href="../relm4_macros/index.html"><img src="https://relm4.org/icons/relm4_logo.svg" alt="logo"></a><h2></h2></nav><nav class="sidebar"><a class="logo-container" href="../relm4_macros/index.html"><img src="https://relm4.org/icons/relm4_logo.svg" alt="logo"></a><div class="sidebar-elems"><h2><a href="index.html">In relm4_macros</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Macro <a href="index.html">relm4_macros</a>::<wbr><a class="macro" href="#">view</a><button id="copy-path" title="Copy item path to clipboard"><img src="../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="srclink" href="../src/relm4_macros/lib.rs.html#249-278">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><pre class="rust item-decl"><code>view!() { /* proc-macro */ }</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>The <a href="macro.view.html" title="macro relm4_macros::view"><code>view!</code></a> macro allows you to construct your UI easily and cleanly.</p>
+<p>It does the same as inside the <a href="attr.widget.html" title="attr relm4_macros::widget"><code>widget</code></a> attribute macro,
+but with less features (no factories, components, etc).</p>
+<p>You can even use the <code>relm4-macros</code> crate independently from Relm4 to build your GTK4 UI.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>relm4::gtk;
+<span class="kw">use </span>gtk::prelude::{BoxExt, ButtonExt};
+
+<span class="comment">// Creating a box with a button inside.
+</span><span class="macro">relm4_macros::view! </span>{
+    vbox = gtk::Box {
+        append = <span class="kw-2">&amp;</span>gtk::Button {
+            set_label: <span class="string">&quot;Click me!&quot;</span>,
+            connect_clicked =&gt; |<span class="kw">_</span>| {
+                <span class="macro">println!</span>(<span class="string">&quot;Hello world!&quot;</span>);
+            }
+        },
+    }
+}
+
+<span class="comment">// You can simply use the vbox created in the macro.
+</span><span class="kw">let </span>spacing = vbox.spacing();</code></pre></div>
+<p>Also, the macro doesn’t rely on any special gtk4-rs features
+so you can even use the macro for other purposes.</p>
+<p>In this example, we use it to construct a <a href="https://doc.rust-lang.org/nightly/std/process/struct.Command.html" title="struct std::process::Command"><code>Command</code></a>.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>std::process::Command;
+
+<span class="kw">let </span>path = <span class="string">&quot;/&quot;</span>;
+
+<span class="macro">relm4_macros::view! </span>{
+    <span class="kw-2">mut </span>process = Command::new(<span class="string">&quot;ls&quot;</span>) {
+        args: [<span class="string">&quot;-la&quot;</span>],
+        current_dir = <span class="kw-2">mut &amp;</span>String {
+            push_str: path,
+        },
+        env: <span class="macro">args!</span>(<span class="string">&quot;HOME&quot;</span>, <span class="string">&quot;/home/relm4&quot;</span>),
+    }
+}
+
+<span class="comment">// Output of &quot;ls -la&quot; at &quot;/&quot;
+</span><span class="macro">dbg!</span>(process.output());</code></pre></div>
+</div></details></section></div></main></body></html>

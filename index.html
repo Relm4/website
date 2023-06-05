@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/x-icon" href="icons/relm4_org.svg" />
+  <title>Relm4</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" />
+  <link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/main.css" />
+  <link rel="stylesheet" type="text/css" href="css/fira-sans.css" />
+  <script src="main.js"></script>
+</head>
+<body>
+  <div class="bg-gradient-moving">
+    <section class="hero is-fullheight">
+      <div class="hero-head">
+        <nav class="navbar">
+          <div class="container px-1">
+            <div class="navbar-brand">
+              <h1 class="title is-2 m-2 has-text-white" style="display: inline-block; width: 100%;">
+                <img src="icons/relm4_logo.svg" style="display: inline; vertical-align: -32%; width: 1.4em;"/>
+                <span>Relm4</span>
+              </h1>
+              <span class="navbar-burger burger has-text-white" data-target="navbarMenu" onclick="toggle_menu()">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </span>
+            </div>
+            <div id="navbarMenu" class="navbar-menu" style="background: transparent;">
+              <div class="navbar-end">
+                <span class="navbar-item">
+                  <a class="button is-white is-outlined is-fullwidth" href="https://docs.rs/relm4/">
+                    <span class="icon">
+                      <i class="mdi mdi-file-document"></i>
+                    </span>
+                    <span>Documentation</span>
+                  </a>
+                </span>
+                <span class="navbar-item">
+                  <a class="button is-white is-outlined is-fullwidth" href="/book/stable">
+                    <span class="icon">
+                      <i class="mdi mdi-book-open-page-variant"></i>
+                    </span>
+                    <span>Book</span>
+                  </a>
+                </span>
+                <span class="navbar-item">
+                  <a class="button is-white is-outlined is-fullwidth" href="/blog">
+                    <span class="icon">
+                      <i class="mdi mdi-newspaper-variant-outline"></i>
+                    </span>
+                    <span>Blog</span>
+                  </a>
+                </span>
+                <span class="navbar-item">
+                  <a class="button is-white is-outlined is-fullwidth" href="https://github.com/Relm4/relm4">
+                    <span class="icon">
+                      <i class="mdi mdi-star"></i>
+                    </span>
+                    <span>GitHub</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <div class="columns is-mobile is-centered pb-5">
+            <div class="column is-two-thirds-desktop">
+              <h1 class="title is-1 has-text-white">Build truly native applications with ease</h1>
+              <p class="is-size-4 has-text-white mb-3">
+                Relm4 makes developing beautiful cross-platform applications idiomatic, simple and fast and enables you to become productive in just a few hours.
+              </p>
+            </div>
+          </div>
+          <div class="container pt-5">
+            <div class="columns has-text-white is-multiline">
+              <div class="column is-one-quarter-desktop is-half-tablet">
+                <article class="notification feature-box">
+                  <h4 class="title is-4">
+                    <span class="icon">
+                      <span class="mdi mdi-rocket-launch"></span>
+                    </span>
+                    Productivity
+                  </h4>
+                  <p>
+                    Use a declarative syntax to write your UI in pure Rust with ease.
+                  </p>
+                </article>
+              </div>
+              <div class="column is-one-quarter-desktop is-half-tablet">
+                  <article class="notification feature-box">
+                    <h4 class="title is-4">
+                      <span class="icon">
+                        <span class="mdi mdi-flare"></span>
+                      </span>
+                      Simplicity
+                    </h4>
+                    <p>
+                      The Elm programming model makes Relm4 applications simple to write and understand.
+                    </p>
+                  </article>
+                </div>
+              <div class="column is-one-quarter-desktop is-half-tablet">
+                  <article class="notification feature-box">
+                    <h4 class="title is-4">
+                      <span class="icon">
+                        <span class="mdi mdi-file-document"></span>
+                      </span>
+                      Documentation
+                    </h4>
+                    <p>
+                      Relm4 provides an outstanding documentation in the form of a dedicated book and Rust docs.
+                    </p>
+                  </article>
+                </div>
+              <div class="column is-one-quarter-desktop is-half-tablet">
+                  <article class="notification feature-box">
+                    <h4 class="title is-4">
+                      <span class="icon">
+                        <span class="mdi mdi-tools"></span>
+                      </span>
+                      Maintainability
+                    </h4>
+                    <p>
+                      Using Rust's type system,
+                      Relm4 allows you to write robust and maintainable code.
+                    </p>
+                  </article>
+                </div>
+              <div class="column is-one-quarter-desktop is-half-tablet">
+                  <article class="notification feature-box">
+                    <h4 class="title is-4">
+                      <span class="icon">
+                        <span class="mdi mdi-cellphone-link"></span>
+                      </span>
+                      Cross-platform
+                    </h4>
+                    <p>
+                      Relm4 is based on GTK which supports Windows, MacOS and Linux.
+                    </p>
+                  </article>
+                </div>
+              <div class="column is-one-quarter-desktop is-half-tablet">
+                  <article class="notification feature-box">
+                    <h4 class="title is-4">
+                      <span class="icon">
+                        <span class="mdi mdi-chip"></span>
+                      </span>
+                      Truly native
+                    </h4>
+                    <p>
+                      Built on GTK, Relm4 runs on bare metal with no additional runtime in between.
+                    </p>
+                  </article>
+                </div>
+              <div class="column is-one-quarter-desktop is-half-tablet">
+                  <article class="notification feature-box">
+                    <h4 class="title is-4">
+                      <span class="icon">
+                        <span class="mdi mdi-sync"></span>
+                      </span>
+                      Asynchronous
+                    </h4>
+                    <p>
+                      Built-in support for asynchronous background tasks and UI updates.
+                    </p>
+                  </article>
+                </div>
+              <div class="column is-one-quarter-desktop is-half-tablet">
+                  <article class="notification feature-box">
+                    <h4 class="title is-4">
+                      <span class="icon">
+                        <span class="mdi mdi-view-module"></span>
+                      </span>
+                      Modular
+                    </h4>
+                    <p>
+                      Write components that are re-usable across different applications.
+                    </p>
+                  </article>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </section>
+    <section class="second-bg py-6">
+      <div class="container px-5">
+        <h1 class="title is-1 has-text-centered has-text-black">
+          Built upon your favorite technologies!
+        </h1>
+        <div class="columns has-text-white">
+          <div class="column is-one-third">
+            <a href="https://rust-lang.org" target="_blank" rel="noopener">
+              <div id="rust-img" class="spinner-img is-flex is-align-items-center">
+                <img src="icons/rust-logo.svg" />
+              <div class="pl-3">
+                <h2 class="title is-4 has-text-black mb-2">Rust</h2>
+                <p class="is-6 has-text-black">The Rust programming language makes Relm4 apps reliable and efficient.</p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="column is-one-third">
+          <a href="https://gtk.org" target="_blank" rel="noopener">
+            <div id="gtk-img" class="spinner-img is-flex is-align-items-center">
+                <img src="icons/gtk-logo.svg"/>
+              <div class="pl-3">
+                <h2 class="title is-4 has-text-black mb-2">GTK4</h2>
+                <p class="is-6 has-text-black">With a complete set of UI elements, GTK provides everything you need for your app.</p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="column is-one-third">
+          <a href="https://gtk-rs.org" target="_blank" rel="noopener">
+            <div id="gtk-rs-img" class="spinner-img is-flex is-align-items-center">
+                <img src="icons/gtk-rs-logo.svg"/>
+              <div class="pl-3">
+                <h2 class="title is-4 has-text-black mb-2">gtk-rs</h2>
+                <p class="is-6 has-text-black">Relm4 builds on gtk-rs which provides outstanding Rust bindings for GTK.</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+  <footer class="footer third-bg">
+    <div class="content has-text-centered">
+      <p>
+        <strong class="has-text-white">Relm4</strong>
+        <div class="columns is-centered">
+          <div class="column is-narrow">
+            <a href="/blog">Blog</a>
+          </div>
+          <div class="column is-narrow">
+            <a href="https://github.com/Relm4">GitHub</a>
+          </div>
+          <div class="column is-narrow">
+            <a href="https://crates.io/crates/relm4">crates.io</a>
+          </div>
+          <div class="column is-narrow">
+            <a href="https://matrix.to/#/#relm4:matrix.org" target="_blank" rel="noreferrer noopener">Matrix chat</a>
+          </div>
+          <div class="column is-narrow">
+            <a href="https://github.com/Relm4/website" target="_blank" rel="noreferrer noopener">source</a>
+          </div>
+        <div>
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
+
+

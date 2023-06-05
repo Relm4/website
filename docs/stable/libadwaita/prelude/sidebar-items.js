@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"trait":["ActionRowExt","AdwApplicationExt","AdwApplicationWindowExt","AdwWindowExt","AnimationExt","BinExt","ComboRowExt","ExpanderRowExt","PreferencesGroupExt","PreferencesPageExt","PreferencesRowExt","PreferencesWindowExt","SwipeableExt"]};

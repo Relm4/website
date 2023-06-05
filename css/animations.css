@@ -1,0 +1,109 @@
+@keyframes move-bg {
+  0% {
+    background:
+      radial-gradient(circle at 50% 0,
+        rgba(var(--dark-red), 0, 0, var(--blend)),
+        rgba(var(--dark-red), 0 ,0, 0) var(--percent)),
+      radial-gradient(circle at 6.7% 75%,
+        rgba(0, var(--dark-green), 0, var(--blend)),
+        rgba(0, var(--dark-green), 0, 0) var(--percent)),
+      radial-gradient(circle at 93.3% 75%,
+        rgba(0, 0, var(--dark-blue), var(--blend)),
+        rgba(0, 0, var(--dark-blue), 0) var(--percent)),
+          linear-gradient(#000, #000);
+    box-shadow: inset 1000rem 1000rem black;
+  }
+  3% {
+    background:
+      radial-gradient(circle at 50% 0,
+        rgba(var(--dark-red), 0, 0, var(--blend)),
+        rgba(var(--dark-red), 0 ,0, 0) var(--percent)),
+      radial-gradient(circle at 6.7% 75%,
+        rgba(0, var(--dark-green), 0, var(--blend)),
+        rgba(0, var(--dark-green), 0, 0) var(--percent)),
+      radial-gradient(circle at 93.3% 75%,
+        rgba(0, 0, var(--dark-blue), var(--blend)),
+        rgba(0, 0, var(--dark-blue), 0) var(--percent)),
+          linear-gradient(#000, #000);
+    box-shadow: inset 1000rem 1000rem transparent;
+  }
+  30.3% {
+    background:
+      radial-gradient(circle at 50% 0,
+        rgba(var(--dark-red), 0, 0, var(--blend)),
+        rgba(var(--dark-red), 0 ,0, 0) var(--percent)),
+      radial-gradient(circle at 6.7% 75%,
+        rgba(0, var(--dark-green), 0, var(--blend)),
+        rgba(0, var(--dark-green), 0, 0) var(--percent)),
+      radial-gradient(circle at 93.3% 75%,
+        rgba(0, 0, var(--dark-blue), var(--blend)),
+        rgba(0, 0, var(--dark-blue), 0) var(--percent)),
+          linear-gradient(#000, #000);
+    box-shadow: inset 1000rem 1000rem transparent;
+  }
+  33.3% {
+    box-shadow: inset 1000rem 1000rem black;
+  }
+  36.3% {
+    background:
+      radial-gradient(circle at 50% 0,
+        rgba(0, 0, var(--dark-blue), var(--blend)),
+        rgba(0, 0, var(--dark-blue), 0) var(--percent)),
+      radial-gradient(circle at 6.7% 75%,
+        rgba(var(--dark-red), 0, 0, var(--blend)),
+        rgba(var(--dark-red), 0 ,0, 0) var(--percent)),
+      radial-gradient(circle at 93.3% 75%,
+        rgba(0, var(--dark-green), 0, var(--blend)),
+        rgba(0, var(--dark-green), 0, 0) var(--percent)),
+          linear-gradient(#000, #000);
+    box-shadow: inset 1000rem 1000rem transparent;
+  }
+  63.6% {
+    background:
+      radial-gradient(circle at 50% 0,
+        rgba(0, 0, var(--dark-blue), var(--blend)),
+        rgba(0, 0, var(--dark-blue), 0) var(--percent)),
+      radial-gradient(circle at 6.7% 75%,
+        rgba(var(--dark-red), 0, 0, var(--blend)),
+        rgba(var(--dark-red), 0 ,0, 0) var(--percent)),
+      radial-gradient(circle at 93.3% 75%,
+        rgba(0, var(--dark-green), 0, var(--blend)),
+        rgba(0, var(--dark-green), 0, 0) var(--percent)),
+          linear-gradient(#000, #000);
+    box-shadow: inset 1000rem 1000rem transparent;
+  }
+  66.6% {
+    box-shadow: inset 1000rem 1000rem black;
+  }
+  69.6% {
+    background:
+      radial-gradient(circle at 50% 0,
+        rgba(0, var(--dark-green), 0, var(--blend)),
+        rgba(0, var(--dark-green), 0, 0) var(--percent)),
+      radial-gradient(circle at 6.7% 75%,
+        rgba(0, 0, var(--dark-blue), var(--blend)),
+        rgba(0, 0, var(--dark-blue), 0) var(--percent)),
+      radial-gradient(circle at 93.3% 75%,
+        rgba(var(--dark-red), 0, 0, var(--blend)),
+        rgba(var(--dark-red), 0 ,0, 0) var(--percent)),
+          linear-gradient(#000, #000);
+    box-shadow: inset 1000rem 1000rem transparent;
+  }
+  97% {
+    box-shadow: inset 1000rem 1000rem transparent;
+  }
+  100% {
+    background:
+      radial-gradient(circle at 50% 0,
+        rgba(0, var(--dark-green), 0, var(--blend)),
+        rgba(0, var(--dark-green), 0, 0) var(--percent)),
+      radial-gradient(circle at 6.7% 75%,
+        rgba(0, 0, var(--dark-blue), var(--blend)),
+        rgba(0, 0, var(--dark-blue), 0) var(--percent)),
+      radial-gradient(circle at 93.3% 75%,
+        rgba(var(--dark-red), 0, 0, var(--blend)),
+        rgba(var(--dark-red), 0 ,0, 0) var(--percent)),
+          linear-gradient(#000, #000);
+    box-shadow: inset 1000rem 1000rem black;
+  }
+}

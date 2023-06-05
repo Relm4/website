@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"struct":["DockBuilder","FrameBuilder","FrameHeaderBarBuilder","FrameSwitcherBuilder","FrameTabBarBuilder","GridBuilder","GridColumnBuilder","OmniBarBuilder","PanedBuilder","PositionBuilder","SaveDelegateBuilder","SaveDialogBuilder","StatusbarBuilder","ThemeSelectorBuilder","ToggleButtonBuilder","WidgetBuilder"]};

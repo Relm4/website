@@ -1,0 +1,1342 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Macro expansion - GUI development with Relm4</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="../basic_concepts/index.html"><strong aria-hidden="true">1.</strong> Basic concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../basic_concepts/model.html"><strong aria-hidden="true">1.1.</strong> Model</a></li><li class="chapter-item expanded "><a href="../basic_concepts/messages.html"><strong aria-hidden="true">1.2.</strong> Messages</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../basic_concepts/messages/input.html"><strong aria-hidden="true">1.2.1.</strong> Input</a></li><li class="chapter-item expanded "><a href="../basic_concepts/messages/output.html"><strong aria-hidden="true">1.2.2.</strong> Output</a></li></ol></li><li class="chapter-item expanded "><a href="../basic_concepts/widgets.html"><strong aria-hidden="true">1.3.</strong> Widgets</a></li><li class="chapter-item expanded "><a href="../basic_concepts/components.html"><strong aria-hidden="true">1.4.</strong> Components</a></li></ol></li><li class="chapter-item expanded "><a href="../first_app.html"><strong aria-hidden="true">2.</strong> Your first app</a></li><li class="chapter-item expanded "><a href="../component_macro.html"><strong aria-hidden="true">3.</strong> The component macro</a></li><li class="chapter-item expanded "><a href="../tricks.html"><strong aria-hidden="true">4.</strong> Tips and tricks</a></li><li class="chapter-item expanded "><a href="../efficient_ui/index.html"><strong aria-hidden="true">5.</strong> Efficient UI updates</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../efficient_ui/tracker.html"><strong aria-hidden="true">5.1.</strong> Tracker</a></li><li class="chapter-item expanded "><a href="../efficient_ui/factory.html"><strong aria-hidden="true">5.2.</strong> Factories</a></li><li class="chapter-item expanded "><a href="../efficient_ui/factory_position.html"><strong aria-hidden="true">5.3.</strong> The position function</a></li></ol></li><li class="chapter-item expanded "><a href="../components.html"><strong aria-hidden="true">6.</strong> Components</a></li><li class="chapter-item expanded "><a href="../threads_and_async/index.html"><strong aria-hidden="true">7.</strong> Threads and async</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../threads_and_async/worker.html"><strong aria-hidden="true">7.1.</strong> Workers</a></li><li class="chapter-item expanded "><a href="../threads_and_async/commands.html"><strong aria-hidden="true">7.2.</strong> Commands</a></li><li class="chapter-item expanded "><a href="../threads_and_async/async.html"><strong aria-hidden="true">7.3.</strong> Async components and factories</a></li><li class="chapter-item expanded "><a href="../threads_and_async/overview.html"><strong aria-hidden="true">7.4.</strong> Overview</a></li></ol></li><li class="chapter-item expanded "><a href="../child_components.html"><strong aria-hidden="true">8.</strong> Child components</a></li><li class="chapter-item expanded "><a href="../widget_templates.html"><strong aria-hidden="true">9.</strong> Widget templates</a></li><li class="chapter-item expanded "><a href="../gtk_rs.html"><strong aria-hidden="true">10.</strong> gtk-rs overview</a></li><li class="chapter-item expanded "><a href="../component_macro/reference.html"><strong aria-hidden="true">11.</strong> Component macro reference</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../component_macro/expansion.html" class="active"><strong aria-hidden="true">11.1.</strong> Macro expansion</a></li></ol></li><li class="chapter-item expanded "><a href="../migrations/index.html"><strong aria-hidden="true">12.</strong> Migration guides</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../migrations/0_2_to_0_4.html"><strong aria-hidden="true">12.1.</strong> 0.2 to 0.4</a></li><li class="chapter-item expanded "><a href="../migrations/0_4_to_0_5.html"><strong aria-hidden="true">12.2.</strong> 0.4 to 0.5</a></li><li class="chapter-item expanded "><a href="../migrations/0_5_to_0_6.html"><strong aria-hidden="true">12.3.</strong> 0.5 to 0.6</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">GUI development with Relm4</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/Relm4/book" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/Relm4/book/edit/main/src/component_macro/expansion.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="macro-expansion"><a class="header" href="#macro-expansion">Macro expansion</a></h1>
+<p>To better understand the <code>component</code> macro, we will examine how the different parts of the macro are translated into real Rust code (aka the macro expansion). Therefore, we will write a small app that uses as many component macro features as possible.</p>
+<h2 id="the-boilerplate"><a class="header" href="#the-boilerplate">The boilerplate</a></h2>
+<p>First, let's have a look at the parts of the code that are later used by the macro.</p>
+<h3 id="the-model"><a class="header" href="#the-model">The model</a></h3>
+<p>The model simply stores a counter.</p>
+<pre><code class="language-rust ignore">#[tracker::track]
+struct AppModel {
+    value: u8,
+}</code></pre>
+<h3 id="the-message-type"><a class="header" href="#the-message-type">The message type</a></h3>
+<p>The message type is the same as in our first app. It includes a message to
+increment and decrement the counter.</p>
+<pre><code class="language-rust ignore">#[derive(Debug)]
+enum AppMsg {
+    Increment,
+    Decrement,
+}</code></pre>
+<h2 id="the-macro"><a class="header" href="#the-macro">The macro</a></h2>
+<p>Before we break it down into smaller parts, let's take a look at the macro as a whole. If you're unfamiliar with the macro syntax, check out the previous chapter. There's a lot here, but that's because the macro supports a lot of functions!</p>
+<pre><code class="language-rust ignore">#[relm4::component]
+impl SimpleComponent for AppModel {
+    type Init = AppInit;
+    type Input = AppMsg;
+    type Output = ();
+
+    view! {
+        #[root]
+        #[name(main_window)]
+        gtk::Window {
+            set_title: Some(&quot;Macro reference example&quot;),
+            set_default_width: 300,
+            set_default_height: 100,
+
+            gtk::Box {
+                set_orientation: gtk::Orientation::Vertical,
+                set_spacing: 5,
+                set_margin_all: 5,
+
+                append: inc_button = &amp;gtk::Button {
+                    set_label: &quot;Increment&quot;,
+                    // Only set this if `icon_name` is Some
+                    set_icon_name?: icon_name,
+                    connect_clicked[sender] =&gt; move |_| {
+                        sender.input(AppMsg::Increment);
+                    }
+                },
+
+                gtk::Button {
+                    set_label: &quot;Decrement&quot;,
+                    connect_clicked[sender] =&gt; move |_| {
+                        sender.input(AppMsg::Decrement);
+                    }
+                },
+
+                gtk::Grid {
+                    attach[1, 1, 1, 1] = &amp;gtk::Label {
+                        // Alternative: #[track = &quot;counter.value % 10 == 0&quot;]
+                        #[track(counter.value % 10 == 0)]
+                        set_label: &amp;format!(&quot;Grid works! ({})&quot;, counter.value),
+                    }
+                },
+
+                // A conditional widget
+                // Alternative: #[transition = &quot;SlideLeft&quot;]
+                #[transition(SlideLeft)]
+                append = if counter.value % 2 == 0 {
+                    gtk::Label {
+                        set_label: &quot;Value is even&quot;,
+                    }
+                } else if counter.value % 3 == 0 {
+                    gtk::Label {
+                        set_label: &quot;Value is dividable by 3&quot;,
+                    }
+                } else {
+                    gtk::Label {
+                        set_label: &quot;Value is odd&quot;,
+                    }
+                },
+
+                #[transition = &quot;SlideRight&quot;]
+                append: match_stack = match counter.value {
+                    (0..=2) =&gt; {
+                        gtk::Label {
+                            set_label: &quot;Value is smaller than 3&quot;,
+                        }
+                    },
+                    _ =&gt; {
+                        gtk::Label {
+                            set_label: &quot;Value is higher than 2&quot;,
+                        }
+                    }
+                },
+
+                append = &amp;gtk::Label,
+
+                gtk::Label::builder()
+                    .label(&quot;Builder pattern works!&quot;)
+                    .selectable(true)
+                    .build(),
+
+                gtk::Label::new(Some(&quot;Constructors work!&quot;)),
+
+                /// Counter label
+                gtk::Label {
+                    #[watch]
+                    set_label: &amp;format!(&quot;Counter: {}&quot;, counter.value),
+                    #[track]
+                    set_margin_all: counter.value.into(),
+                },
+
+                gtk::ToggleButton {
+                    set_label: &quot;Counter is even&quot;,
+                    #[watch]
+                    #[block_signal(toggle_handler)]
+                    set_active: counter.value % 2 == 0,
+
+                    connect_toggled[sender] =&gt; move |_| {
+                        sender.input(AppMsg::Increment);
+                    } @toggle_handler,
+                },
+
+                #[local]
+                local_label -&gt; gtk::Label {
+                    set_opacity: 0.7,
+                },
+
+                #[local_ref]
+                local_ref_label -&gt; gtk::Label {
+                    set_opacity: 0.7,
+                    set_size_request: (40, 40),
+                },
+            }
+        },
+        gtk::Window {
+            set_title: Some(&quot;Another window&quot;),
+            set_default_width: 300,
+            set_default_height: 100,
+            set_transient_for: Some(&amp;main_window),
+            // Empty args
+            hide: (),
+
+            #[watch]
+            set_visible: counter.value == 42,
+
+            #[name = &quot;my_label_name&quot;]
+            gtk::Label {
+                set_label: &quot;You made it to 42!&quot;,
+            }
+        }
+    }
+
+    additional_fields! {
+        test_field: u8,
+    }
+
+    // Initialize the UI.
+    fn init(
+        init: Self::Init,
+        renamed_root: &amp;Self::Root,
+        sender: ComponentSender&lt;Self&gt;,
+    ) -&gt; ComponentParts&lt;Self&gt; {
+        let counter = AppModel {
+            value: init.counter,
+            tracker: 0,
+        };
+
+        let test_field = 0;
+
+        // Set icon name randomly to Some(&quot;go-up-symbolic&quot;) or None
+        let icon_name = rand::random::&lt;bool&gt;().then_some(&quot;go-up-symbolic&quot;);
+
+        let local_label = gtk::Label::new(Some(&quot;local_label&quot;));
+        let local_ref_label_value = gtk::Label::new(Some(&quot;local_ref_label&quot;));
+        let local_ref_label = &amp;local_ref_label_value;
+        // Insert the macro code generation here
+        let widgets = view_output!();
+
+        ComponentParts {
+            model: counter,
+            widgets,
+        }
+    }
+
+    fn update(&amp;mut self, msg: Self::Input, _sender: ComponentSender&lt;Self&gt;) {
+        self.reset();
+        match msg {
+            AppMsg::Increment =&gt; {
+                self.set_value(self.value.wrapping_add(1));
+            }
+            AppMsg::Decrement =&gt; {
+                self.set_value(self.value.wrapping_sub(1));
+            }
+        }
+    }
+}</code></pre>
+<h2 id="the-expansion"><a class="header" href="#the-expansion">The expansion</a></h2>
+<p>The macro expansion is not supposed to be readable, so the code might look a bit ugly.</p>
+<h3 id="the-widgets-struct"><a class="header" href="#the-widgets-struct">The widgets struct</a></h3>
+<p>The fields of the widgets struct cover all widgets we created, plus the additional fields we added manually. Named fields like <code>main_window</code> and <code>inc_button</code> keep their names. Unnamed fields will get automatically generated names with an unique ID. You should never refer to unnamed fields in your code because their names might change. At the end, we can find the additional field called <code>test_field</code> that we added manually.</p>
+<pre><code class="language-rust ignore">#[allow(dead_code)]
+struct AppWidgets {
+    #[allow(missing_docs)]
+    main_window: gtk::Window,
+    #[allow(missing_docs)]
+    _gtk_box_14: gtk::Box,
+    #[allow(missing_docs)]
+    inc_button: gtk::Button,
+    #[allow(missing_docs)]
+    _gtk_button_0: gtk::Button,
+    #[allow(missing_docs)]
+    _gtk_grid_2: gtk::Grid,
+    #[allow(missing_docs)]
+    _gtk_label_1: gtk::Label,
+    #[allow(missing_docs)]
+    _conditional_widget_3: relm4::gtk::Stack,
+    #[allow(missing_docs)]
+    _gtk_label_4: gtk::Label,
+    #[allow(missing_docs)]
+    _gtk_label_5: gtk::Label,
+    #[allow(missing_docs)]
+    _gtk_label_6: gtk::Label,
+    #[allow(missing_docs)]
+    match_stack: relm4::gtk::Stack,
+    #[allow(missing_docs)]
+    _gtk_label_7: gtk::Label,
+    #[allow(missing_docs)]
+    _gtk_label_8: gtk::Label,
+    #[allow(missing_docs)]
+    _gtk_label_9: gtk::Label,
+    #[allow(missing_docs)]
+    _gtk_label_builder_10: gtk::Label,
+    #[allow(missing_docs)]
+    _gtk_label_new_11: gtk::Label,
+    /// Counter label
+    _gtk_label_12: gtk::Label,
+    #[allow(missing_docs)]
+    _gtk_togglebutton_13: gtk::ToggleButton,
+    #[allow(missing_docs)]
+    toggle_handler: relm4::gtk::glib::signal::SignalHandlerId,
+    #[allow(missing_docs)]
+    local_label: gtk::Label,
+    #[allow(missing_docs)]
+    local_ref_label: gtk::Label,
+    #[allow(missing_docs)]
+    _gtk_window_15: gtk::Window,
+    #[allow(missing_docs)]
+    my_label_name: gtk::Label,
+    test_field: u8,
+}</code></pre>
+<h3 id="the-simplecomponent-trait-implementation"><a class="header" href="#the-simplecomponent-trait-implementation">The <code>SimpleComponent</code> trait implementation</a></h3>
+<p>The next thing the macro does is generating the <code>SimpleComponent</code> trait implementation block.</p>
+<p>The start of the implementation block is very similar to the implementation block we use in the macro. Most notably, the <code>Root</code> type is automatically inserted, as is the implementation of <code>init_root</code>. All attributes and comments you add to the widget macro before the <code>impl</code> block should be kept as well.</p>
+<pre><code class="language-rust ignore">impl SimpleComponent for AppModel {
+    type Init = AppInit;
+    type Input = AppMsg;
+    type Output = ();
+    type Widgets = AppWidgets;
+    fn update(&amp;mut self, msg: Self::Input, _sender: ComponentSender&lt;Self&gt;) {
+        self.reset();
+        match msg {
+            AppMsg::Increment =&gt; {
+                self.set_value(self.value.wrapping_add(1));
+            }
+            AppMsg::Decrement =&gt; {
+                self.set_value(self.value.wrapping_sub(1));
+            }
+        }
+    }
+    type Root = gtk::Window;
+    fn init_root() -&gt; Self::Root {
+        let main_window = gtk::Window::default();
+        main_window
+    }</code></pre>
+<h4 id="initialization-before-the-view_output-entrypoint"><a class="header" href="#initialization-before-the-view_output-entrypoint">Initialization before the <code>view_output</code> entrypoint</a></h4>
+<p>A large part of the code generated by the macro is dedicated to the initialization of the view. This code is &quot;expanded&quot; from the <code>view_output!()</code> entrypoint. First, let's find the code we wrote before the entry point:</p>
+<pre><code class="language-rust ignore">    fn init(
+        init: Self::Init,
+        renamed_root: &amp;Self::Root,
+        sender: ComponentSender&lt;Self&gt;,
+    ) -&gt; ComponentParts&lt;Self&gt; {
+        let counter = AppModel {
+            value: init.counter,
+            tracker: 0,
+        };
+        let test_field = 0;
+        let icon_name = rand::random::&lt;bool&gt;().then(|| &quot;go-up-symbolic&quot;);
+        let local_label = gtk::Label::new(Some(&quot;local_label&quot;));
+        let local_ref_label_value = gtk::Label::new(Some(&quot;local_ref_label&quot;));
+        let local_ref_label = &amp;local_ref_label_value;</code></pre>
+<p>Next, the macro initializes all widgets. Widgets defined by their type are initialized with their <code>Default</code> implementation. Any constructors or functions that are invoked manually are left unchanged in the output.</p>
+<pre><code class="language-rust ignore">        let main_window = renamed_root.clone();
+        let _gtk_box_14 = gtk::Box::default();
+        let inc_button = gtk::Button::default();
+        let _gtk_button_0 = gtk::Button::default();
+        let _gtk_grid_2 = gtk::Grid::default();
+        let _gtk_label_1 = gtk::Label::default();
+        let _conditional_widget_3 = relm4::gtk::Stack::default();
+        _conditional_widget_3
+            .set_transition_type(relm4::gtk::StackTransitionType::SlideLeft);
+        let _gtk_label_4 = gtk::Label::default();
+        let _gtk_label_5 = gtk::Label::default();
+        let _gtk_label_6 = gtk::Label::default();
+        let match_stack = relm4::gtk::Stack::default();
+        match_stack.set_transition_type(relm4::gtk::StackTransitionType::SlideRight);
+        let _gtk_label_7 = gtk::Label::default();
+        let _gtk_label_8 = gtk::Label::default();
+        let _gtk_label_9 = gtk::Label::default();
+        let _gtk_label_builder_10 = gtk::Label::builder()
+            .label(&quot;Builder pattern works!&quot;)
+            .selectable(true)
+            .build();
+        let _gtk_label_new_11 = gtk::Label::new(Some(&quot;Constructors work!&quot;));
+        let _gtk_label_12 = gtk::Label::default();
+        let _gtk_togglebutton_13 = gtk::ToggleButton::default();
+        let _gtk_window_15 = gtk::Window::default();
+        let my_label_name = gtk::Label::default();</code></pre>
+<h4 id="assigning-properties"><a class="header" href="#assigning-properties">Assigning properties</a></h4>
+<p>Assigning properties looks pretty normal as well. In the middle we have an optional assignment that uses an <code>if let</code> statement to only assign properties that match <code>Some(data)</code>. In the macro we marked this line with a <code>?</code>.</p>
+<pre><code class="language-rust ignore">        main_window.set_title(Some(&quot;Macro reference example&quot;));
+        main_window.set_default_width(300);
+        main_window.set_default_height(100);
+        relm4::RelmContainerExt::container_add(&amp;main_window, &amp;_gtk_box_14);
+        _gtk_box_14.set_orientation(gtk::Orientation::Vertical);
+        _gtk_box_14.set_spacing(5);
+        _gtk_box_14.set_margin_all(5);
+        _gtk_box_14.append(&amp;inc_button);
+        inc_button.set_label(&quot;Increment&quot;);
+        if let Some(__p_assign) = icon_name {
+            inc_button.set_icon_name(__p_assign);
+        }
+        relm4::RelmContainerExt::container_add(&amp;_gtk_box_14, &amp;_gtk_button_0);
+        _gtk_button_0.set_label(&quot;Decrement&quot;);
+        relm4::RelmContainerExt::container_add(&amp;_gtk_box_14, &amp;_gtk_grid_2);
+        _gtk_grid_2.attach(&amp;_gtk_label_1, 1, 1, 1, 1);
+        _gtk_label_1
+            .set_label(
+                &amp;{
+                    let res = ::alloc::fmt::format(
+                        ::core::fmt::Arguments::new_v1(
+                            &amp;[&quot;Grid works! (&quot;, &quot;)&quot;],
+                            &amp;[::core::fmt::ArgumentV1::new_display(&amp;counter.value)],
+                        ),
+                    );
+                    res
+                },
+            );
+        _gtk_box_14.append(&amp;_conditional_widget_3);
+        _conditional_widget_3.add_named(&amp;_gtk_label_4, Some(&quot;0&quot;));
+        _gtk_label_4.set_label(&quot;Value is even&quot;);
+        _conditional_widget_3.add_named(&amp;_gtk_label_5, Some(&quot;1&quot;));
+        _gtk_label_5.set_label(&quot;Value is dividable by 3&quot;);
+        _conditional_widget_3.add_named(&amp;_gtk_label_6, Some(&quot;2&quot;));
+        _gtk_label_6.set_label(&quot;Value is odd&quot;);
+        _gtk_box_14.append(&amp;match_stack);
+        match_stack.add_named(&amp;_gtk_label_7, Some(&quot;0&quot;));
+        _gtk_label_7.set_label(&quot;Value is smaller than 3&quot;);
+        match_stack.add_named(&amp;_gtk_label_8, Some(&quot;1&quot;));
+        _gtk_label_8.set_label(&quot;Value is higher than 2&quot;);
+        _gtk_box_14.append(&amp;_gtk_label_9);</code></pre>
+<h4 id="events"><a class="header" href="#events">Events</a></h4>
+<p>Now the macro generates the code for connecting events.</p>
+<pre><code class="language-rust ignore">        {
+            #[allow(clippy::redundant_clone)]
+            #[allow(clippy::clone_on_copy)]
+            let sender = sender.clone();
+            inc_button
+                .connect_clicked(move |_| {
+                    sender.input(AppMsg::Increment);
+                });
+        }
+        {
+            #[allow(clippy::redundant_clone)]
+            #[allow(clippy::clone_on_copy)]
+            let sender = sender.clone();
+            _gtk_button_0
+                .connect_clicked(move |_| {
+                    sender.input(AppMsg::Decrement);
+                });
+        }
+        let toggle_handler = {
+            #[allow(clippy::redundant_clone)]
+            #[allow(clippy::clone_on_copy)]
+            let sender = sender.clone();
+            _gtk_togglebutton_13
+                .connect_toggled(move |_| {
+                    sender.input(AppMsg::Increment);
+                })
+        };</code></pre>
+<p>The code looks very similar to what we wrote in the macro.</p>
+<pre><code class="language-rust ignore">                append: inc_button = &amp;gtk::Button {
+                    set_label: &quot;Increment&quot;,
+                    // Only set this if `icon_name` is Some
+                    set_icon_name?: icon_name,
+                    connect_clicked[sender] =&gt; move |_| {
+                        sender.input(AppMsg::Increment);
+                    }
+                },
+
+                gtk::Button {
+                    set_label: &quot;Decrement&quot;,
+                    connect_clicked[sender] =&gt; move |_| {
+                        sender.input(AppMsg::Decrement);
+                    }
+                },</code></pre>
+<p>Most notably, the sender we put in the square brackets is cloned as we requested.</p>
+<h4 id="initialization-after-the-view_output-entrypoint"><a class="header" href="#initialization-after-the-view_output-entrypoint">Initialization after the <code>view_output</code> entrypoint</a></h4>
+<p>At the end we find the construction of the widgets struct and the construction of the <code>ComponentParts</code>, which was after the <code>view_output!</code> entrypoint.</p>
+<pre><code class="language-rust ignore">        let widgets = Self::Widgets {
+            main_window,
+            _gtk_box_14,
+            inc_button,
+            _gtk_button_0,
+            _gtk_grid_2,
+            _gtk_label_1,
+            _conditional_widget_3,
+            _gtk_label_4,
+            _gtk_label_5,
+            _gtk_label_6,
+            match_stack,
+            _gtk_label_7,
+            _gtk_label_8,
+            _gtk_label_9,
+            _gtk_label_builder_10,
+            _gtk_label_new_11,
+            _gtk_label_12,
+            _gtk_togglebutton_13,
+            toggle_handler,
+            local_label,
+            local_ref_label: local_ref_label.clone(),
+            _gtk_window_15,
+            my_label_name,
+            test_field,
+        };
+        ComponentParts {
+            model: counter,
+            widgets,
+        }</code></pre>
+<h4 id="ui-updates"><a class="header" href="#ui-updates">UI updates</a></h4>
+<p>The last step of the macro is to generate the update logic within the <code>update_view</code> function. Any code present in the <code>pre_view</code> and <code>post_view</code> &quot;functions&quot; will be expanded before or after the generated code. Note that the generated code returns a private struct to prevent early returns in <code>pre_view</code> from skipping the rest of the view update code.</p>
+<pre><code class="language-rust ignore">    /// Update the view to represent the updated model.
+    fn update_view(&amp;self, widgets: &amp;mut Self::Widgets, sender: ComponentSender&lt;Self&gt;) {
+        struct __DoNotReturnManually;
+        let _no_manual_return: __DoNotReturnManually = (move || {
+            #[allow(unused_variables)]
+            let Self::Widgets {
+                main_window,
+                _gtk_box_14,
+                inc_button,
+                _gtk_button_0,
+                _gtk_grid_2,
+                _gtk_label_1,
+                _conditional_widget_3,
+                _gtk_label_4,
+                _gtk_label_5,
+                _gtk_label_6,
+                match_stack,
+                _gtk_label_7,
+                _gtk_label_8,
+                _gtk_label_9,
+                _gtk_label_builder_10,
+                _gtk_label_new_11,
+                _gtk_label_12,
+                _gtk_togglebutton_13,
+                toggle_handler,
+                local_label,
+                local_ref_label,
+                _gtk_window_15,
+                my_label_name,
+                test_field,
+            } = widgets;
+            #[allow(unused_variables)]
+            let counter = self;
+            if (counter.value % 10 == 0) {
+                _gtk_label_1
+                    .set_label(
+                        &amp;{
+                            let res = ::alloc::fmt::format(
+                                ::core::fmt::Arguments::new_v1(
+                                    &amp;[&quot;Grid works! (&quot;, &quot;)&quot;],
+                                    &amp;[::core::fmt::ArgumentV1::new_display(&amp;counter.value)],
+                                ),
+                            );
+                            res
+                        },
+                    );
+            }
+            let __current_page = _conditional_widget_3
+                .visible_child_name()
+                .map_or(&quot;&quot;.to_string(), |s| s.as_str().to_string());
+            _conditional_widget_3
+                .set_visible_child_name(
+                    if counter.value % 2 == 0 {
+                        let __page_active: bool = (__current_page == &quot;0&quot;);
+                        &quot;0&quot;
+                    } else if counter.value % 3 == 0 {
+                        let __page_active: bool = (__current_page == &quot;1&quot;);
+                        &quot;1&quot;
+                    } else {
+                        let __page_active: bool = (__current_page == &quot;2&quot;);
+                        &quot;2&quot;
+                    },
+                );
+            let __current_page = match_stack
+                .visible_child_name()
+                .map_or(&quot;&quot;.to_string(), |s| s.as_str().to_string());
+            match_stack
+                .set_visible_child_name(
+                    match counter.value {
+                        (0..=2) =&gt; {
+                            let __page_active: bool = (__current_page == &quot;0&quot;);
+                            &quot;0&quot;
+                        }
+                        _ =&gt; {
+                            let __page_active: bool = (__current_page == &quot;1&quot;);
+                            &quot;1&quot;
+                        }
+                    },
+                );
+            _gtk_label_12
+                .set_label(
+                    &amp;{
+                        let res = ::alloc::fmt::format(
+                            ::core::fmt::Arguments::new_v1(
+                                &amp;[&quot;Counter: &quot;],
+                                &amp;[::core::fmt::ArgumentV1::new_display(&amp;counter.value)],
+                            ),
+                        );
+                        res
+                    },
+                );
+            if (counter.changed(Self::value())) {
+                _gtk_label_12.set_margin_all(counter.value.into());
+            }
+            {
+                use relm4::WidgetRef;
+                #[allow(clippy::needless_borrow)]
+                relm4::gtk::prelude::ObjectExt::block_signal(
+                    _gtk_togglebutton_13.widget_ref(),
+                    &amp;toggle_handler,
+                );
+            }
+            _gtk_togglebutton_13.set_active(counter.value % 2 == 0);
+            {
+                use relm4::WidgetRef;
+                #[allow(clippy::needless_borrow)]
+                relm4::gtk::prelude::ObjectExt::unblock_signal(
+                    _gtk_togglebutton_13.widget_ref(),
+                    &amp;toggle_handler,
+                );
+            }
+            _gtk_window_15.set_visible(counter.value == 42);
+            (move || {})();
+            __DoNotReturnManually
+        })();
+    }</code></pre>
+<h4 id="generated-ui-updates"><a class="header" href="#generated-ui-updates">Generated UI updates</a></h4>
+<p>Within the generated update logic, the macro generates its own code to support more efficient updates.</p>
+<p>Updates from the <code>#[watch]</code> attribute are unconditional.</p>
+<pre><code class="language-rust ignore">            _gtk_label_12
+                .set_label(
+                    &amp;{
+                        let res = ::alloc::fmt::format(
+                            ::core::fmt::Arguments::new_v1(
+                                &amp;[&quot;Counter: &quot;],
+                                &amp;[::core::fmt::ArgumentV1::new_display(&amp;counter.value)],
+                            ),
+                        );
+                        res
+                    },
+                );</code></pre>
+<p>Updates from expressions annotated with <code>#[track]</code> are conditional based on whether the value changed, or based on if an expression is a certain value.</p>
+<pre><code class="language-rust ignore">            if (counter.changed(Self::value())) {
+                _gtk_label_12.set_margin_all(counter.value.into());
+            }</code></pre>
+<pre><code class="language-rust ignore">            _conditional_widget_3
+                .set_visible_child_name(
+                    if counter.value % 2 == 0 {
+                        let __page_active: bool = (__current_page == &quot;0&quot;);
+                        &quot;0&quot;
+                    } else if counter.value % 3 == 0 {
+                        let __page_active: bool = (__current_page == &quot;1&quot;);
+                        &quot;1&quot;
+                    } else {
+                        let __page_active: bool = (__current_page == &quot;2&quot;);
+                        &quot;2&quot;
+                    },
+                );</code></pre>
+<h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
+<p>Congrats for making it this far 🎉! You're now a real expert of Relm4!</p>
+<p>As you have seen, the macro is nothing magical. It simply works with the information you give it.</p>
+<h2 id="the-whole-macro-expansion"><a class="header" href="#the-whole-macro-expansion">The whole macro expansion</a></h2>
+<p>If you want to look at the whole macro expansion at once, here it is.</p>
+<pre><code class="language-rust ignore">#![feature(prelude_import)]
+//! This example is a modified version of the `macro_reference` example in the [main Relm4
+//! repository][Relm4 repo].
+//!
+//! [Relm4 repo]: https://github.com/Relm4/Relm4/blob/main/examples/macro_reference.rs
+#[prelude_import]
+use std::prelude::rust_2021::*;
+#[macro_use]
+extern crate std;
+use gtk::prelude::{
+    BoxExt, ButtonExt, GridExt, GtkWindowExt, OrientableExt, ToggleButtonExt, WidgetExt,
+};
+use relm4::{gtk, ComponentParts, ComponentSender, RelmApp, SimpleComponent, WidgetPlus};
+struct AppModel {
+    value: u8,
+    tracker: u8,
+}
+impl AppModel {
+    #[allow(dead_code, non_snake_case)]
+    /// Get an immutable reference to this field.
+    fn get_value(&amp;self) -&gt; &amp;u8 {
+        &amp;self.value
+    }
+    #[allow(dead_code, non_snake_case)]
+    /// Get a mutable reference to this field. Marks the field as changed.
+    fn get_mut_value(&amp;mut self) -&gt; &amp;mut u8 {
+        self.tracker |= Self::value();
+        &amp;mut self.value
+    }
+    #[allow(dead_code, non_snake_case)]
+    /// Use a closure to update this field. Marks the field as changed.
+    fn update_value&lt;F: Fn(&amp;mut u8)&gt;(&amp;mut self, f: F) {
+        self.tracker |= Self::value();
+        f(&amp;mut self.value);
+    }
+    #[allow(dead_code, non_snake_case)]
+    /// Get bit mask to look for changes on this field.
+    fn value() -&gt; u8 {
+        1 &lt;&lt; 0usize
+    }
+    #[allow(dead_code, non_snake_case)]
+    /// Setter method. Will mark field as changed.
+    fn set_value(&amp;mut self, value: u8) {
+        if self.value != value {
+            self.tracker |= Self::value();
+        }
+        self.value = value;
+    }
+    #[allow(dead_code)]
+    /// Use this to check whether any changes made to this struct.
+    fn track_all() -&gt; u8 {
+        u8::MAX
+    }
+    #[allow(dead_code)]
+    /// Use this to mark all fields of the struct as changed.
+    fn mark_all_changed(&amp;mut self) {
+        self.tracker = u8::MAX;
+    }
+    /// Check for changes made to this struct.
+    fn changed(&amp;self, mask: u8) -&gt; bool {
+        self.tracker &amp; mask != 0
+    }
+    /// Resets the tracker of this struct.
+    fn reset(&amp;mut self) {
+        self.tracker = 0;
+    }
+}
+enum AppMsg {
+    Increment,
+    Decrement,
+}
+#[automatically_derived]
+impl ::core::fmt::Debug for AppMsg {
+    fn fmt(&amp;self, f: &amp;mut ::core::fmt::Formatter) -&gt; ::core::fmt::Result {
+        match self {
+            AppMsg::Increment =&gt; ::core::fmt::Formatter::write_str(f, &quot;Increment&quot;),
+            AppMsg::Decrement =&gt; ::core::fmt::Formatter::write_str(f, &quot;Decrement&quot;),
+        }
+    }
+}
+struct AppInit {
+    counter: u8,
+}
+#[allow(dead_code)]
+struct AppWidgets {
+    #[allow(missing_docs)]
+    main_window: gtk::Window,
+    #[allow(missing_docs)]
+    _gtk_box_14: gtk::Box,
+    #[allow(missing_docs)]
+    inc_button: gtk::Button,
+    #[allow(missing_docs)]
+    _gtk_button_0: gtk::Button,
+    #[allow(missing_docs)]
+    _gtk_grid_2: gtk::Grid,
+    #[allow(missing_docs)]
+    _gtk_label_1: gtk::Label,
+    #[allow(missing_docs)]
+    _conditional_widget_3: relm4::gtk::Stack,
+    #[allow(missing_docs)]
+    _gtk_label_4: gtk::Label,
+    #[allow(missing_docs)]
+    _gtk_label_5: gtk::Label,
+    #[allow(missing_docs)]
+    _gtk_label_6: gtk::Label,
+    #[allow(missing_docs)]
+    match_stack: relm4::gtk::Stack,
+    #[allow(missing_docs)]
+    _gtk_label_7: gtk::Label,
+    #[allow(missing_docs)]
+    _gtk_label_8: gtk::Label,
+    #[allow(missing_docs)]
+    _gtk_label_9: gtk::Label,
+    #[allow(missing_docs)]
+    _gtk_label_builder_10: gtk::Label,
+    #[allow(missing_docs)]
+    _gtk_label_new_11: gtk::Label,
+    /// Counter label
+    _gtk_label_12: gtk::Label,
+    #[allow(missing_docs)]
+    _gtk_togglebutton_13: gtk::ToggleButton,
+    #[allow(missing_docs)]
+    toggle_handler: relm4::gtk::glib::signal::SignalHandlerId,
+    #[allow(missing_docs)]
+    local_label: gtk::Label,
+    #[allow(missing_docs)]
+    local_ref_label: gtk::Label,
+    #[allow(missing_docs)]
+    _gtk_window_15: gtk::Window,
+    #[allow(missing_docs)]
+    my_label_name: gtk::Label,
+    test_field: u8,
+}
+#[automatically_derived]
+#[allow(dead_code)]
+impl ::core::fmt::Debug for AppWidgets {
+    fn fmt(&amp;self, f: &amp;mut ::core::fmt::Formatter) -&gt; ::core::fmt::Result {
+        let names: &amp;'static _ = &amp;[
+            &quot;main_window&quot;,
+            &quot;_gtk_box_14&quot;,
+            &quot;inc_button&quot;,
+            &quot;_gtk_button_0&quot;,
+            &quot;_gtk_grid_2&quot;,
+            &quot;_gtk_label_1&quot;,
+            &quot;_conditional_widget_3&quot;,
+            &quot;_gtk_label_4&quot;,
+            &quot;_gtk_label_5&quot;,
+            &quot;_gtk_label_6&quot;,
+            &quot;match_stack&quot;,
+            &quot;_gtk_label_7&quot;,
+            &quot;_gtk_label_8&quot;,
+            &quot;_gtk_label_9&quot;,
+            &quot;_gtk_label_builder_10&quot;,
+            &quot;_gtk_label_new_11&quot;,
+            &quot;_gtk_label_12&quot;,
+            &quot;_gtk_togglebutton_13&quot;,
+            &quot;toggle_handler&quot;,
+            &quot;local_label&quot;,
+            &quot;local_ref_label&quot;,
+            &quot;_gtk_window_15&quot;,
+            &quot;my_label_name&quot;,
+            &quot;test_field&quot;,
+        ];
+        let values: &amp;[&amp;dyn ::core::fmt::Debug] = &amp;[
+            &amp;&amp;self.main_window,
+            &amp;&amp;self._gtk_box_14,
+            &amp;&amp;self.inc_button,
+            &amp;&amp;self._gtk_button_0,
+            &amp;&amp;self._gtk_grid_2,
+            &amp;&amp;self._gtk_label_1,
+            &amp;&amp;self._conditional_widget_3,
+            &amp;&amp;self._gtk_label_4,
+            &amp;&amp;self._gtk_label_5,
+            &amp;&amp;self._gtk_label_6,
+            &amp;&amp;self.match_stack,
+            &amp;&amp;self._gtk_label_7,
+            &amp;&amp;self._gtk_label_8,
+            &amp;&amp;self._gtk_label_9,
+            &amp;&amp;self._gtk_label_builder_10,
+            &amp;&amp;self._gtk_label_new_11,
+            &amp;&amp;self._gtk_label_12,
+            &amp;&amp;self._gtk_togglebutton_13,
+            &amp;&amp;self.toggle_handler,
+            &amp;&amp;self.local_label,
+            &amp;&amp;self.local_ref_label,
+            &amp;&amp;self._gtk_window_15,
+            &amp;&amp;self.my_label_name,
+            &amp;&amp;self.test_field,
+        ];
+        ::core::fmt::Formatter::debug_struct_fields_finish(
+            f,
+            &quot;AppWidgets&quot;,
+            names,
+            values,
+        )
+    }
+}
+impl SimpleComponent for AppModel {
+    type Init = AppInit;
+    type Input = AppMsg;
+    type Output = ();
+    type Widgets = AppWidgets;
+    fn update(&amp;mut self, msg: Self::Input, _sender: ComponentSender&lt;Self&gt;) {
+        self.reset();
+        match msg {
+            AppMsg::Increment =&gt; {
+                self.set_value(self.value.wrapping_add(1));
+            }
+            AppMsg::Decrement =&gt; {
+                self.set_value(self.value.wrapping_sub(1));
+            }
+        }
+    }
+    type Root = gtk::Window;
+    fn init_root() -&gt; Self::Root {
+        let main_window = gtk::Window::default();
+        main_window
+    }
+    /// Update the view to represent the updated model.
+    fn update_view(&amp;self, widgets: &amp;mut Self::Widgets, sender: ComponentSender&lt;Self&gt;) {
+        struct __DoNotReturnManually;
+        let _no_manual_return: __DoNotReturnManually = (move || {
+            #[allow(unused_variables)]
+            let Self::Widgets {
+                main_window,
+                _gtk_box_14,
+                inc_button,
+                _gtk_button_0,
+                _gtk_grid_2,
+                _gtk_label_1,
+                _conditional_widget_3,
+                _gtk_label_4,
+                _gtk_label_5,
+                _gtk_label_6,
+                match_stack,
+                _gtk_label_7,
+                _gtk_label_8,
+                _gtk_label_9,
+                _gtk_label_builder_10,
+                _gtk_label_new_11,
+                _gtk_label_12,
+                _gtk_togglebutton_13,
+                toggle_handler,
+                local_label,
+                local_ref_label,
+                _gtk_window_15,
+                my_label_name,
+                test_field,
+            } = widgets;
+            #[allow(unused_variables)]
+            let counter = self;
+            if (counter.value % 10 == 0) {
+                _gtk_label_1
+                    .set_label(
+                        &amp;{
+                            let res = ::alloc::fmt::format(
+                                ::core::fmt::Arguments::new_v1(
+                                    &amp;[&quot;Grid works! (&quot;, &quot;)&quot;],
+                                    &amp;[::core::fmt::ArgumentV1::new_display(&amp;counter.value)],
+                                ),
+                            );
+                            res
+                        },
+                    );
+            }
+            let __current_page = _conditional_widget_3
+                .visible_child_name()
+                .map_or(&quot;&quot;.to_string(), |s| s.as_str().to_string());
+            _conditional_widget_3
+                .set_visible_child_name(
+                    if counter.value % 2 == 0 {
+                        let __page_active: bool = (__current_page == &quot;0&quot;);
+                        &quot;0&quot;
+                    } else if counter.value % 3 == 0 {
+                        let __page_active: bool = (__current_page == &quot;1&quot;);
+                        &quot;1&quot;
+                    } else {
+                        let __page_active: bool = (__current_page == &quot;2&quot;);
+                        &quot;2&quot;
+                    },
+                );
+            let __current_page = match_stack
+                .visible_child_name()
+                .map_or(&quot;&quot;.to_string(), |s| s.as_str().to_string());
+            match_stack
+                .set_visible_child_name(
+                    match counter.value {
+                        (0..=2) =&gt; {
+                            let __page_active: bool = (__current_page == &quot;0&quot;);
+                            &quot;0&quot;
+                        }
+                        _ =&gt; {
+                            let __page_active: bool = (__current_page == &quot;1&quot;);
+                            &quot;1&quot;
+                        }
+                    },
+                );
+            _gtk_label_12
+                .set_label(
+                    &amp;{
+                        let res = ::alloc::fmt::format(
+                            ::core::fmt::Arguments::new_v1(
+                                &amp;[&quot;Counter: &quot;],
+                                &amp;[::core::fmt::ArgumentV1::new_display(&amp;counter.value)],
+                            ),
+                        );
+                        res
+                    },
+                );
+            if (counter.changed(Self::value())) {
+                _gtk_label_12.set_margin_all(counter.value.into());
+            }
+            {
+                use relm4::WidgetRef;
+                #[allow(clippy::needless_borrow)]
+                relm4::gtk::prelude::ObjectExt::block_signal(
+                    _gtk_togglebutton_13.widget_ref(),
+                    &amp;toggle_handler,
+                );
+            }
+            _gtk_togglebutton_13.set_active(counter.value % 2 == 0);
+            {
+                use relm4::WidgetRef;
+                #[allow(clippy::needless_borrow)]
+                relm4::gtk::prelude::ObjectExt::unblock_signal(
+                    _gtk_togglebutton_13.widget_ref(),
+                    &amp;toggle_handler,
+                );
+            }
+            _gtk_window_15.set_visible(counter.value == 42);
+            (move || {})();
+            __DoNotReturnManually
+        })();
+    }
+    fn init(
+        init: Self::Init,
+        renamed_root: &amp;Self::Root,
+        sender: ComponentSender&lt;Self&gt;,
+    ) -&gt; ComponentParts&lt;Self&gt; {
+        let counter = AppModel {
+            value: init.counter,
+            tracker: 0,
+        };
+        let test_field = 0;
+        let icon_name = rand::random::&lt;bool&gt;().then(|| &quot;go-up-symbolic&quot;);
+        let local_label = gtk::Label::new(Some(&quot;local_label&quot;));
+        let local_ref_label_value = gtk::Label::new(Some(&quot;local_ref_label&quot;));
+        let local_ref_label = &amp;local_ref_label_value;
+        let main_window = renamed_root.clone();
+        let _gtk_box_14 = gtk::Box::default();
+        let inc_button = gtk::Button::default();
+        let _gtk_button_0 = gtk::Button::default();
+        let _gtk_grid_2 = gtk::Grid::default();
+        let _gtk_label_1 = gtk::Label::default();
+        let _conditional_widget_3 = relm4::gtk::Stack::default();
+        _conditional_widget_3
+            .set_transition_type(relm4::gtk::StackTransitionType::SlideLeft);
+        let _gtk_label_4 = gtk::Label::default();
+        let _gtk_label_5 = gtk::Label::default();
+        let _gtk_label_6 = gtk::Label::default();
+        let match_stack = relm4::gtk::Stack::default();
+        match_stack.set_transition_type(relm4::gtk::StackTransitionType::SlideRight);
+        let _gtk_label_7 = gtk::Label::default();
+        let _gtk_label_8 = gtk::Label::default();
+        let _gtk_label_9 = gtk::Label::default();
+        let _gtk_label_builder_10 = gtk::Label::builder()
+            .label(&quot;Builder pattern works!&quot;)
+            .selectable(true)
+            .build();
+        let _gtk_label_new_11 = gtk::Label::new(Some(&quot;Constructors work!&quot;));
+        let _gtk_label_12 = gtk::Label::default();
+        let _gtk_togglebutton_13 = gtk::ToggleButton::default();
+        let _gtk_window_15 = gtk::Window::default();
+        let my_label_name = gtk::Label::default();
+        {
+            #[allow(clippy::redundant_clone)]
+            #[allow(clippy::clone_on_copy)]
+            let sender = sender.clone();
+            inc_button
+                .connect_clicked(move |_| {
+                    sender.input(AppMsg::Increment);
+                });
+        }
+        {
+            #[allow(clippy::redundant_clone)]
+            #[allow(clippy::clone_on_copy)]
+            let sender = sender.clone();
+            _gtk_button_0
+                .connect_clicked(move |_| {
+                    sender.input(AppMsg::Decrement);
+                });
+        }
+        let toggle_handler = {
+            #[allow(clippy::redundant_clone)]
+            #[allow(clippy::clone_on_copy)]
+            let sender = sender.clone();
+            _gtk_togglebutton_13
+                .connect_toggled(move |_| {
+                    sender.input(AppMsg::Increment);
+                })
+        };
+        {}
+        main_window.set_title(Some(&quot;Macro reference example&quot;));
+        main_window.set_default_width(300);
+        main_window.set_default_height(100);
+        relm4::RelmContainerExt::container_add(&amp;main_window, &amp;_gtk_box_14);
+        _gtk_box_14.set_orientation(gtk::Orientation::Vertical);
+        _gtk_box_14.set_spacing(5);
+        _gtk_box_14.set_margin_all(5);
+        _gtk_box_14.append(&amp;inc_button);
+        inc_button.set_label(&quot;Increment&quot;);
+        if let Some(__p_assign) = icon_name {
+            inc_button.set_icon_name(__p_assign);
+        }
+        relm4::RelmContainerExt::container_add(&amp;_gtk_box_14, &amp;_gtk_button_0);
+        _gtk_button_0.set_label(&quot;Decrement&quot;);
+        relm4::RelmContainerExt::container_add(&amp;_gtk_box_14, &amp;_gtk_grid_2);
+        _gtk_grid_2.attach(&amp;_gtk_label_1, 1, 1, 1, 1);
+        _gtk_label_1
+            .set_label(
+                &amp;{
+                    let res = ::alloc::fmt::format(
+                        ::core::fmt::Arguments::new_v1(
+                            &amp;[&quot;Grid works! (&quot;, &quot;)&quot;],
+                            &amp;[::core::fmt::ArgumentV1::new_display(&amp;counter.value)],
+                        ),
+                    );
+                    res
+                },
+            );
+        _gtk_box_14.append(&amp;_conditional_widget_3);
+        _conditional_widget_3.add_named(&amp;_gtk_label_4, Some(&quot;0&quot;));
+        _gtk_label_4.set_label(&quot;Value is even&quot;);
+        _conditional_widget_3.add_named(&amp;_gtk_label_5, Some(&quot;1&quot;));
+        _gtk_label_5.set_label(&quot;Value is dividable by 3&quot;);
+        _conditional_widget_3.add_named(&amp;_gtk_label_6, Some(&quot;2&quot;));
+        _gtk_label_6.set_label(&quot;Value is odd&quot;);
+        _gtk_box_14.append(&amp;match_stack);
+        match_stack.add_named(&amp;_gtk_label_7, Some(&quot;0&quot;));
+        _gtk_label_7.set_label(&quot;Value is smaller than 3&quot;);
+        match_stack.add_named(&amp;_gtk_label_8, Some(&quot;1&quot;));
+        _gtk_label_8.set_label(&quot;Value is higher than 2&quot;);
+        _gtk_box_14.append(&amp;_gtk_label_9);
+        relm4::RelmContainerExt::container_add(&amp;_gtk_box_14, &amp;_gtk_label_builder_10);
+        relm4::RelmContainerExt::container_add(&amp;_gtk_box_14, &amp;_gtk_label_new_11);
+        relm4::RelmContainerExt::container_add(&amp;_gtk_box_14, &amp;_gtk_label_12);
+        _gtk_label_12
+            .set_label(
+                &amp;{
+                    let res = ::alloc::fmt::format(
+                        ::core::fmt::Arguments::new_v1(
+                            &amp;[&quot;Counter: &quot;],
+                            &amp;[::core::fmt::ArgumentV1::new_display(&amp;counter.value)],
+                        ),
+                    );
+                    res
+                },
+            );
+        _gtk_label_12.set_margin_all(counter.value.into());
+        relm4::RelmContainerExt::container_add(&amp;_gtk_box_14, &amp;_gtk_togglebutton_13);
+        _gtk_togglebutton_13.set_label(&quot;Counter is even&quot;);
+        {
+            use relm4::WidgetRef;
+            #[allow(clippy::needless_borrow)]
+            relm4::gtk::prelude::ObjectExt::block_signal(
+                _gtk_togglebutton_13.widget_ref(),
+                &amp;toggle_handler,
+            );
+        }
+        _gtk_togglebutton_13.set_active(counter.value % 2 == 0);
+        {
+            use relm4::WidgetRef;
+            #[allow(clippy::needless_borrow)]
+            relm4::gtk::prelude::ObjectExt::unblock_signal(
+                _gtk_togglebutton_13.widget_ref(),
+                &amp;toggle_handler,
+            );
+        }
+        relm4::RelmContainerExt::container_add(&amp;_gtk_box_14, &amp;local_label);
+        local_label.set_opacity(0.7);
+        relm4::RelmContainerExt::container_add(&amp;_gtk_box_14, &amp;local_ref_label);
+        local_ref_label.set_opacity(0.7);
+        local_ref_label.set_size_request(40, 40);
+        let __current_page = &quot;&quot;;
+        _conditional_widget_3
+            .set_visible_child_name(
+                if counter.value % 2 == 0 {
+                    let __page_active: bool = (__current_page == &quot;0&quot;);
+                    &quot;0&quot;
+                } else if counter.value % 3 == 0 {
+                    let __page_active: bool = (__current_page == &quot;1&quot;);
+                    &quot;1&quot;
+                } else {
+                    let __page_active: bool = (__current_page == &quot;2&quot;);
+                    &quot;2&quot;
+                },
+            );
+        let __current_page = &quot;&quot;;
+        match_stack
+            .set_visible_child_name(
+                match counter.value {
+                    (0..=2) =&gt; &quot;0&quot;,
+                    _ =&gt; &quot;1&quot;,
+                },
+            );
+        _gtk_window_15.set_title(Some(&quot;Another window&quot;));
+        _gtk_window_15.set_default_width(300);
+        _gtk_window_15.set_default_height(100);
+        _gtk_window_15.set_transient_for(Some(&amp;main_window));
+        _gtk_window_15.hide();
+        _gtk_window_15.set_visible(counter.value == 42);
+        relm4::RelmContainerExt::container_add(&amp;_gtk_window_15, &amp;my_label_name);
+        my_label_name.set_label(&quot;You made it to 42!&quot;);
+        let widgets = Self::Widgets {
+            main_window,
+            _gtk_box_14,
+            inc_button,
+            _gtk_button_0,
+            _gtk_grid_2,
+            _gtk_label_1,
+            _conditional_widget_3,
+            _gtk_label_4,
+            _gtk_label_5,
+            _gtk_label_6,
+            match_stack,
+            _gtk_label_7,
+            _gtk_label_8,
+            _gtk_label_9,
+            _gtk_label_builder_10,
+            _gtk_label_new_11,
+            _gtk_label_12,
+            _gtk_togglebutton_13,
+            toggle_handler,
+            local_label,
+            local_ref_label: local_ref_label.clone(),
+            _gtk_window_15,
+            my_label_name,
+            test_field,
+        };
+        ComponentParts {
+            model: counter,
+            widgets,
+        }
+    }
+}</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../component_macro/reference.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../migrations/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../component_macro/reference.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../migrations/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

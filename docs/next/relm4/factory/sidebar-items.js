@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":["positions","widgets"],"struct":["AsyncFactorySender","AsyncFactoryVecDeque","AsyncFactoryVecDequeGuard","DynamicIndex","FactorySender","FactoryVecDeque","FactoryVecDequeGuard"],"trait":["AsyncFactoryComponent","CloneableFactoryComponent","FactoryComponent"]};

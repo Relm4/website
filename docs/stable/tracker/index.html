@@ -1,0 +1,101 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Tracker - track changes to structs efficiently"><title>tracker - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../static.files/rustdoc-fbd14db5c88ed452.css" id="mainThemeStyle"><div id="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="tracker" data-themes="" data-resource-suffix="" data-rustdoc-version="1.70.0-nightly (5e1d3299a 2023-03-31)" data-search-js="search-bc5a112813b5d712.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" data-theme-light-css="light-db279b6232be9c13.css" data-theme-dark-css="dark-cf923f49f397b216.css" data-theme-ayu-css="ayu-be46fdc453a55015.css" ></div><script src="../static.files/storage-d4a1a279bad1a0c0.js"></script><script defer src="../crates.js"></script><script defer src="../static.files/main-8e6affb8c73a5ff1.js"></script><noscript><link rel="stylesheet" media="(prefers-color-scheme:light)" href="../static.files/light-db279b6232be9c13.css"><link rel="stylesheet" media="(prefers-color-scheme:dark)" href="../static.files/dark-cf923f49f397b216.css"><link rel="stylesheet" href="../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc mod crate"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="logo-container" href="../tracker/index.html"><img class="rust-logo" src="../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2></h2></nav><nav class="sidebar"><a class="logo-container" href="../tracker/index.html"><img class="rust-logo" src="../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2 class="location"><a href="#">Crate tracker</a></h2><div class="sidebar-elems"><ul class="block"><li class="version">Version 0.1.2</li><li><a id="all-types" href="all.html">All Items</a></li></ul><section><ul class="block"><li><a href="#attributes">Attribute Macros</a></li></ul></section></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Crate <a class="mod" href="#">tracker</a><button id="copy-path" title="Copy item path to clipboard"><img src="../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="srclink" href="../src/tracker/lib.rs.html#1-243">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="tracker---track-changes-to-structs-efficiently"><a href="#tracker---track-changes-to-structs-efficiently">Tracker - track changes to structs efficiently</a></h2>
+<p>Tracker is a small crate that allows you to track changes to struct fields.</p>
+<p>It implements the following methods for your struct fields:</p>
+<ul>
+<li>
+<p><code>get_#field_name()</code>
+Get a immutable reference to your field</p>
+</li>
+<li>
+<p><code>get_mut_#field_name()</code>
+Get a mutable reference to your field. Assumes the field will be modified and marks it as changed.</p>
+</li>
+<li>
+<p><code>set_#field_name(value)</code>
+Get a mutable reference to your field. Marks the field as changed only if the new value isn’t equal with the previous value.</p>
+</li>
+<li>
+<p><code>update_#field_name(fn)</code>
+Update your mutable field with a function or closure. Assumes the field will be modified and marks it as changed.</p>
+</li>
+</ul>
+<p>To check for changes you can call <code>var_name.changed(StructName::field_name())</code> and it will return a bool.</p>
+<p>To reset all previous changes you can call <code>var_name.reset()</code>.</p>
+<h3 id="how-it-works"><a href="#how-it-works">How it works</a></h3>
+<p>Let’s have a look at a small example.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="attr">#[tracker::track]
+</span><span class="kw">struct </span>Test {
+    x: u8,
+    y: u64,
+}
+
+<span class="kw">let </span><span class="kw-2">mut </span>t = Test {
+    x: <span class="number">0</span>,
+    y: <span class="number">0</span>,
+    <span class="comment">// the macro generates a new variable called
+    // &quot;tracker&quot; that stores the changes
+    </span>tracker: <span class="number">0</span>,
+};
+
+t.set_x(<span class="number">42</span>);
+<span class="comment">// let&#39;s check whether the change was detected
+</span><span class="macro">assert!</span>(t.changed(Test::x()));
+
+<span class="comment">// reset t so we don&#39;t track old changes
+</span>t.reset();
+
+t.set_x(<span class="number">42</span>);
+<span class="comment">// same value so no change
+</span><span class="macro">assert!</span>(!t.changed(Test::x()));</code></pre></div>
+<p>What happens behind the scenes when you call <code>set_x()</code> is that a bitflag is set in the tracker field of your struct:</p>
+
+<div class="example-wrap ignore"><a href="#" class="tooltip" title="This example is not tested">ⓘ</a><pre class="rust rust-example-rendered"><code>                                        y   x
+tracker: u8 = | <span class="number">0 </span>| <span class="number">0 </span>| <span class="number">0 </span>| <span class="number">0 </span>| <span class="number">0 </span>| <span class="number">0 </span>| <span class="number">0 </span>| <span class="number">0 </span>|
+set_x(<span class="number">42</span>)  -&gt; | <span class="number">0 </span>| <span class="number">0 </span>| <span class="number">0 </span>| <span class="number">0 </span>| <span class="number">0 </span>| <span class="number">0 </span>| <span class="number">0 </span>| <span class="number">1 </span>|
+reset()    -&gt; | <span class="number">0 </span>| <span class="number">0 </span>| <span class="number">0 </span>| <span class="number">0 </span>| <span class="number">0 </span>| <span class="number">0 </span>| <span class="number">0 </span>| <span class="number">0 </span>|</code></pre></div>
+<p>As you can see this works pretty efficient.
+The macro expansion looks like this:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">impl </span>Test {
+    <span class="kw">pub fn </span>get_x(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>u8 {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.x
+    }
+    <span class="kw">pub fn </span>get_mut_x(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut </span>u8 {
+        <span class="self">self</span>.tracker |= <span class="self">Self</span>::x();
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>.x
+    }
+    <span class="kw">pub fn </span>update_x&lt;F: Fn(<span class="kw-2">&amp;mut </span>u8)&gt;(<span class="kw-2">&amp;mut </span><span class="self">self</span>, f: F) {
+        <span class="self">self</span>.tracker |= <span class="self">Self</span>::x();
+        f(<span class="kw-2">&amp;mut </span><span class="self">self</span>.x);
+    }
+    <span class="kw">pub const fn </span>x() -&gt; u8 {
+        <span class="number">1 </span>&lt;&lt; <span class="number">0usize
+    </span>}
+    <span class="kw">pub fn </span>set_x(<span class="kw-2">&amp;mut </span><span class="self">self</span>, value: u8) {
+        <span class="kw">if </span><span class="self">self</span>.x != value {
+        <span class="self">self</span>.tracker |= <span class="self">Self</span>::x();
+        }
+        <span class="self">self</span>.x = value;
+    }
+}</code></pre></div>
+<h3 id="further-attributes"><a href="#further-attributes">Further attributes</a></h3>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="attr">#[tracker::track]
+</span><span class="kw">struct </span>Test {
+    <span class="attr">#[tracker::do_not_track]
+    </span>a: u8,
+    <span class="attr">#[do_not_track]
+    </span>b: u8,
+    <span class="attr">#[tracker::no_eq]
+    </span>c: u8,
+    <span class="attr">#[no_eq]
+    </span>d: u8,
+}</code></pre></div>
+<p>You can mark fields as</p>
+<ul>
+<li><code>do_not_track</code> if you don’t want tracker to implement anything for this field</li>
+<li><code>no_eq</code> if the type of the field doesn’t implement PartialEq or tracker should not check for equality when calling <code>set_#field_name(value)</code>
+so that even overwriting with the same value marks the field as changed.
+pub use tracker_macros::track;</li>
+</ul>
+</div></details><h2 id="attributes" class="small-section-header"><a href="#attributes">Attribute Macros</a></h2><ul class="item-table"><li><div class="item-name"><a class="attr" href="attr.track.html" title="attr tracker::track">track</a></div><div class="desc docblock-short">Implements tracker methods for structs.</div></li></ul></section></div></main></body></html>

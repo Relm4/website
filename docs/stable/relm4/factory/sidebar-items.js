@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":["collections","positions"],"trait":["Factory","FactoryListView","FactoryPrototype","FactoryView"]};

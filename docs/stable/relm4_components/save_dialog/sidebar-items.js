@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["SaveDialogMsg"],"struct":["SaveDialogModel","SaveDialogSettings","SaveDialogWidgets"],"trait":["SaveDialogConfig","SaveDialogParent"]};

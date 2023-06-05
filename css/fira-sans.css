@@ -1,0 +1,18 @@
+/* fira-sans-regular */
+@font-face {
+	font-family: 'Fira Sans Server';
+	font-style: normal;
+	font-weight: 400;
+	src: url(../fonts/fira-sans-regular.woff2) format("woff2");
+}
+/* fira-sans-bold */
+@font-face {
+	font-family: 'Fira Sans Server';
+	font-style: normal;
+	font-weight: 700;
+	src: url(../fonts/fira-sans-bold.woff2) format("woff2");
+}
+
+* {
+  font-family: 'Fira Sans Server';
+}

@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"struct":["DictEntry","FixedSizeVariantArray","Variant","VariantTypeMismatchError"],"trait":["FixedSizeVariantType","FromVariant","StaticVariantType","ToVariant"]};
