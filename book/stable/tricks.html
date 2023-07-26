@@ -194,7 +194,7 @@ If you found something interesting, you can look for more details in the <a href
 <h3 id="message-recursion"><a class="header" href="#message-recursion">Message recursion</a></h3>
 <p>Relm4 components use a simple update loop: Receive a message, update the model and then update the view.
 Usually, this works as intended, but if updating the view somehow creates a new, identical message, your code will be stuck in an infinite loop and your app will freeze.
-To prevent this, the view macro has the <code>block_signal</code> attribute which is explained <a href="/component_macro/reference.html#blocking-signals-temporarily">here</a>.</p>
+To prevent this, the view macro has the <code>block_signal</code> attribute which is explained <a href="./component_macro/reference.html#blocking-signals-temporarily">here</a>.</p>
 <h3 id="sending-errors"><a class="header" href="#sending-errors">Sending errors</a></h3>
 <p>Sending messages in Relm4 can lead to panics under certain circumstances.
 The most common mistake is dropping a <code>Controller</code>.
