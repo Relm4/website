@@ -1697,7 +1697,7 @@ fn main() {
 <h2 id="how-it-works"><a class="header" href="#how-it-works">How it works</a></h2>
 <p>Let's take a grid as an example. For a grid, there are many possibilities to place your widgets. You can, for example, place three, four or five widgets per row or you could place a certain amount of widgets per column. You can even create patterns like a chess grid if you want to.</p>
 <p>However, we want to use a factory for generating our widgets, which means we only have the index to calculate the desired two-dimensional position. In the simplest case, we create a layout that places a certain amount of widgets per row or per column.</p>
-<p><img src="efficient_ui/img/grid_layout.svg" alt="Grid layout example" /></p>
+<p><img src="efficient_ui/../img/grid_layout.svg" alt="Grid layout example" /></p>
 <p>To place three elements per row from left to right in a <code>gtk::Grid</code> we could use the following position function.</p>
 <pre><code class="language-rust no_run noplayground">    fn position(&amp;self, index: &amp;usize) -&gt; GridPosition {
         let index = *index as i32;
@@ -1713,11 +1713,11 @@ fn main() {
         }
     }</code></pre>
 <p>And indeed, it works as expected.</p>
-<p><img src="efficient_ui/img/row_grid_screenshot.png" alt="Row placement grid screenshot" /></p>
+<p><img src="efficient_ui/../img/row_grid_screenshot.png" alt="Row placement grid screenshot" /></p>
 <h2 id="a-chess-grid"><a class="header" href="#a-chess-grid">A chess grid</a></h2>
 <p>Let's have a look at a more complex layout. It's unlikely that this would be used in a real application, but it's still interesting to have a look at it.</p>
 <p>To create a chess grid layout, we need to place our widgets only on fields of one color and leave the other fields empty.</p>
-<p><img src="efficient_ui/img/chess_layout.svg" alt="Grid layout example" /></p>
+<p><img src="efficient_ui/../img/chess_layout.svg" alt="Grid layout example" /></p>
 <p>Actually, the code isn't too complicated.</p>
 <pre><code class="language-rust no_run noplayground">    fn position(&amp;self, index: &amp;usize) -&gt; GridPosition {
         let index = *index as i32;
@@ -1735,7 +1735,7 @@ fn main() {
         }
     }</code></pre>
 <p>And as you can see, it works!</p>
-<p><img src="efficient_ui/img/chess_grid_screenshot.png" alt="Chess grid layout screenshot" /></p>
+<p><img src="efficient_ui/../img/chess_grid_screenshot.png" alt="Chess grid layout screenshot" /></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="components-1"><a class="header" href="#components-1">Components</a></h1>
 <p>Technically, we already used components in the previous chapters.
 So far, we've only used one component per application, but in this chapter, we're going to use multiple components to structure our app.</p>
