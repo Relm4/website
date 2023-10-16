@@ -1,17 +1,17 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js light">
+<html lang="en" class="light" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>GUI development with Relm4</title>
-        <meta name="robots" content="noindex" />
+        <meta name="robots" content="noindex">
 
 
         <!-- Custom HTML head -->
         
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
@@ -32,7 +32,7 @@
         <!-- Custom theme stylesheets -->
 
     </head>
-    <body>
+    <body class="sidebar-visible no-js">
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
@@ -62,29 +62,34 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
-            html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
+            var body = document.querySelector('body');
             var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
             }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="basic_concepts/index.html"><strong aria-hidden="true">1.</strong> Basic concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="basic_concepts/model.html"><strong aria-hidden="true">1.1.</strong> Model</a></li><li class="chapter-item expanded "><a href="basic_concepts/messages.html"><strong aria-hidden="true">1.2.</strong> Messages</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="basic_concepts/messages/input.html"><strong aria-hidden="true">1.2.1.</strong> Input</a></li><li class="chapter-item expanded "><a href="basic_concepts/messages/output.html"><strong aria-hidden="true">1.2.2.</strong> Output</a></li></ol></li><li class="chapter-item expanded "><a href="basic_concepts/widgets.html"><strong aria-hidden="true">1.3.</strong> Widgets</a></li><li class="chapter-item expanded "><a href="basic_concepts/components.html"><strong aria-hidden="true">1.4.</strong> Components</a></li></ol></li><li class="chapter-item expanded "><a href="first_app.html"><strong aria-hidden="true">2.</strong> Your first app</a></li><li class="chapter-item expanded "><a href="component_macro.html"><strong aria-hidden="true">3.</strong> The component macro</a></li><li class="chapter-item expanded "><a href="tricks.html"><strong aria-hidden="true">4.</strong> Tips and tricks</a></li><li class="chapter-item expanded "><a href="efficient_ui/index.html"><strong aria-hidden="true">5.</strong> Efficient UI updates</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="efficient_ui/tracker.html"><strong aria-hidden="true">5.1.</strong> Tracker</a></li><li class="chapter-item expanded "><a href="efficient_ui/factory.html"><strong aria-hidden="true">5.2.</strong> Factories</a></li><li class="chapter-item expanded "><a href="efficient_ui/factory_position.html"><strong aria-hidden="true">5.3.</strong> The position function</a></li></ol></li><li class="chapter-item expanded "><a href="components.html"><strong aria-hidden="true">6.</strong> Components</a></li><li class="chapter-item expanded "><a href="threads_and_async/index.html"><strong aria-hidden="true">7.</strong> Threads and async</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="threads_and_async/worker.html"><strong aria-hidden="true">7.1.</strong> Workers</a></li><li class="chapter-item expanded "><a href="threads_and_async/commands.html"><strong aria-hidden="true">7.2.</strong> Commands</a></li><li class="chapter-item expanded "><a href="threads_and_async/async.html"><strong aria-hidden="true">7.3.</strong> Async components and factories</a></li><li class="chapter-item expanded "><a href="threads_and_async/overview.html"><strong aria-hidden="true">7.4.</strong> Overview</a></li></ol></li><li class="chapter-item expanded "><a href="child_components.html"><strong aria-hidden="true">8.</strong> Child components</a></li><li class="chapter-item expanded "><a href="widget_templates.html"><strong aria-hidden="true">9.</strong> Widget templates</a></li><li class="chapter-item expanded "><a href="gtk_rs.html"><strong aria-hidden="true">10.</strong> gtk-rs overview</a></li><li class="chapter-item expanded "><a href="resource_bundles.html"><strong aria-hidden="true">11.</strong> Resource Bundles</a></li><li class="chapter-item expanded "><a href="continuous_integration.html"><strong aria-hidden="true">12.</strong> Continuous Integration guide</a></li><li class="chapter-item expanded "><a href="component_macro/reference.html"><strong aria-hidden="true">13.</strong> Component macro reference</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="component_macro/expansion.html"><strong aria-hidden="true">13.1.</strong> Macro expansion</a></li></ol></li><li class="chapter-item expanded "><a href="migrations/index.html"><strong aria-hidden="true">14.</strong> Migration guides</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="migrations/0_2_to_0_4.html"><strong aria-hidden="true">14.1.</strong> 0.2 to 0.4</a></li><li class="chapter-item expanded "><a href="migrations/0_4_to_0_5.html"><strong aria-hidden="true">14.2.</strong> 0.4 to 0.5</a></li><li class="chapter-item expanded "><a href="migrations/0_5_to_0_6.html"><strong aria-hidden="true">14.3.</strong> 0.5 to 0.6</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="basic_concepts/index.html"><strong aria-hidden="true">1.</strong> Basic concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="basic_concepts/model.html"><strong aria-hidden="true">1.1.</strong> Model</a></li><li class="chapter-item expanded "><a href="basic_concepts/messages.html"><strong aria-hidden="true">1.2.</strong> Messages</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="basic_concepts/messages/input.html"><strong aria-hidden="true">1.2.1.</strong> Input</a></li><li class="chapter-item expanded "><a href="basic_concepts/messages/output.html"><strong aria-hidden="true">1.2.2.</strong> Output</a></li></ol></li><li class="chapter-item expanded "><a href="basic_concepts/widgets.html"><strong aria-hidden="true">1.3.</strong> Widgets</a></li><li class="chapter-item expanded "><a href="basic_concepts/components.html"><strong aria-hidden="true">1.4.</strong> Components</a></li></ol></li><li class="chapter-item expanded "><a href="first_app.html"><strong aria-hidden="true">2.</strong> Your first app</a></li><li class="chapter-item expanded "><a href="component_macro.html"><strong aria-hidden="true">3.</strong> The component macro</a></li><li class="chapter-item expanded "><a href="tricks.html"><strong aria-hidden="true">4.</strong> Tips and tricks</a></li><li class="chapter-item expanded "><a href="efficient_ui/index.html"><strong aria-hidden="true">5.</strong> Efficient UI updates</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="efficient_ui/tracker.html"><strong aria-hidden="true">5.1.</strong> Tracker</a></li><li class="chapter-item expanded "><a href="efficient_ui/factory.html"><strong aria-hidden="true">5.2.</strong> Factories</a></li><li class="chapter-item expanded "><a href="efficient_ui/factory_position.html"><strong aria-hidden="true">5.3.</strong> The position function</a></li></ol></li><li class="chapter-item expanded "><a href="components.html"><strong aria-hidden="true">6.</strong> Components</a></li><li class="chapter-item expanded "><a href="threads_and_async/index.html"><strong aria-hidden="true">7.</strong> Threads and async</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="threads_and_async/worker.html"><strong aria-hidden="true">7.1.</strong> Workers</a></li><li class="chapter-item expanded "><a href="threads_and_async/commands.html"><strong aria-hidden="true">7.2.</strong> Commands</a></li><li class="chapter-item expanded "><a href="threads_and_async/async.html"><strong aria-hidden="true">7.3.</strong> Async components and factories</a></li><li class="chapter-item expanded "><a href="threads_and_async/overview.html"><strong aria-hidden="true">7.4.</strong> Overview</a></li></ol></li><li class="chapter-item expanded "><a href="child_components.html"><strong aria-hidden="true">8.</strong> Child components</a></li><li class="chapter-item expanded "><a href="widget_templates/index.html"><strong aria-hidden="true">9.</strong> Widget templates</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="widget_templates/accessing_nested_template_elements.html"><strong aria-hidden="true">9.1.</strong> Accessing Nested Template Elements</a></li></ol></li><li class="chapter-item expanded "><a href="gtk_rs.html"><strong aria-hidden="true">10.</strong> gtk-rs overview</a></li><li class="chapter-item expanded "><a href="resource_bundles.html"><strong aria-hidden="true">11.</strong> Resource Bundles</a></li><li class="chapter-item expanded "><a href="continuous_integration.html"><strong aria-hidden="true">12.</strong> Continuous Integration guide</a></li><li class="chapter-item expanded "><a href="component_macro/reference.html"><strong aria-hidden="true">13.</strong> Component macro reference</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="component_macro/expansion.html"><strong aria-hidden="true">13.1.</strong> Macro expansion</a></li></ol></li><li class="chapter-item expanded "><a href="migrations/index.html"><strong aria-hidden="true">14.</strong> Migration guides</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="migrations/0_2_to_0_4.html"><strong aria-hidden="true">14.1.</strong> 0.2 to 0.4</a></li><li class="chapter-item expanded "><a href="migrations/0_4_to_0_5.html"><strong aria-hidden="true">14.2.</strong> 0.4 to 0.5</a></li><li class="chapter-item expanded "><a href="migrations/0_5_to_0_6.html"><strong aria-hidden="true">14.3.</strong> 0.5 to 0.6</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -117,9 +122,9 @@
                                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
@@ -669,7 +674,7 @@ So instead of this:</p>
 <pre><code class="language-rust no_run noplayground">                    #[watch]
                     set_label: &amp;format!(&quot;Counter: {}&quot;, model.counter),</code></pre>
 <blockquote>
-<p>The full reference for the syntax of the widget macro can be found <a href="https://aaronerhardt.github.io/relm4-book/book/widget_macro_reference.html">here</a>.</p>
+<p>The full reference for the syntax of the widget macro can be found <a href="component_macro/reference.html">here</a>.</p>
 </blockquote>
 <h2 id="constructing-the-widgets"><a class="header" href="#constructing-the-widgets">Constructing the Widgets</a></h2>
 <p>After we've defined our widgets, we need to construct them. This is done with the <code>view_output!</code> macro, which returns a fully-initialized instance of our <code>Widgets</code> struct.</p>
@@ -3536,6 +3541,287 @@ fn main() {
     let app = RelmApp::new(&quot;relm4.example.widget_template&quot;);
     app.run::&lt;AppModel&gt;(0);
 }</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="accessing-nested-template-elements"><a class="header" href="#accessing-nested-template-elements">Accessing Nested Template Elements</a></h1>
+<p>Starting from the version <strong>0.6.2</strong>, you can access nested elements on templates.</p>
+<p>Imagine a template called &quot;MainWindow&quot; which contains pages as Widget Templates:</p>
+<pre><code class="language-rust no_run noplayground">#[relm4::widget_template]
+impl WidgetTemplate for MainWindow {
+    view! {
+        gtk::Window {
+            set_title: Some(&quot;Nested Widget template&quot;),
+            set_default_width: 300,
+            set_default_height: 100,
+
+            gtk::Box {
+                set_orientation: gtk::Orientation::Vertical,
+
+                #[name(stk_pages)]
+                gtk::Stack {
+                    set_margin_all: 7,
+
+                    #[template]
+                    #[name = &quot;home_page&quot;]
+                    add_child = &amp;HomePage {} -&gt; {
+                        set_name: &quot;main&quot;,
+                    },
+
+                    #[template]
+                    #[name = &quot;settings_page&quot;]
+                    add_child = &amp;SettingsPage {} -&gt; {
+                        set_name: &quot;settings&quot;,
+                    },
+                },
+
+            },
+        }
+    }
+}</code></pre>
+<p><code>SettingsPage</code> and <code>HomePage</code> are also a widget template:</p>
+<pre><code class="language-rust no_run noplayground">#[relm4::widget_template]
+impl WidgetTemplate for HomePage {
+    view! {
+        gtk::Box {
+            set_orientation: gtk::Orientation::Vertical,
+            set_spacing: 3,
+
+            #[name = &quot;btn_go_settings&quot;]
+            gtk::Button {
+                #[wrap(Some)]
+                set_child = &amp;gtk::Image {
+                    set_icon_name: Some(&quot;emblem-system-symbolic&quot;),
+                },
+            },
+        }
+    }
+}</code></pre>
+<pre><code class="language-rust no_run noplayground">#[relm4::widget_template]
+impl WidgetTemplate for SettingsPage {
+    view! {
+        gtk::Box {
+            set_orientation: gtk::Orientation::Vertical,
+            set_spacing: 3,
+
+            #[name = &quot;btn_dark_mode&quot;]
+            gtk::Button {
+                #[wrap(Some)]
+                set_child = &amp;gtk::Image {
+                    set_icon_name: Some(&quot;night-light-symbolic&quot;),
+                },
+            },
+
+            #[name = &quot;btn_go_homepage&quot;]
+            gtk::Button {
+                #[wrap(Some)]
+                set_child = &amp;gtk::Image {
+                    set_icon_name: Some(&quot;user-home-symbolic&quot;),
+                },
+            },
+        }
+    }
+}</code></pre>
+<p>If you want to handle <code>MainWindow-&gt;SettingsPage-&gt;btn_dark_mode</code>'s clicked event, you can simply do it like this:</p>
+<pre><code class="language-rust no_run noplayground">#[derive(Default)]
+struct AppModel {
+    current_page: &amp;'static str,
+}
+
+#[derive(Debug)]
+enum Message {
+    PageHome,
+    PageSettings,
+    DarkMode,
+}
+
+#[relm4::component]
+impl SimpleComponent for AppModel {
+    type Init = ();
+    type Input = Message;
+    type Output = ();
+
+    view! {
+
+        #[template]
+        MainWindow {
+
+            #[template_child]
+            settings_page.btn_dark_mode {
+                connect_clicked =&gt; Message::DarkMode
+            },
+
+            #[template_child]
+            settings_page.btn_go_homepage {
+                connect_clicked =&gt; Message::PageHome
+            },
+
+            #[template_child]
+            home_page.btn_go_settings {
+                connect_clicked =&gt; Message::PageSettings
+            },
+
+            #[template_child]
+            stk_pages {
+                #[watch]
+                set_visible_child_name: model.current_page,
+            }
+        },
+    }</code></pre>
+<h2 id="the-complete-code-8"><a class="header" href="#the-complete-code-8">The complete code</a></h2>
+<pre><code class="language-rust no_run noplayground">use gtk::prelude::{BoxExt, ButtonExt, GtkWindowExt, OrientableExt};
+use relm4::{gtk, ComponentParts, ComponentSender, RelmWidgetExt, SimpleComponent, WidgetTemplate};
+
+#[relm4::widget_template]
+impl WidgetTemplate for HomePage {
+    view! {
+        gtk::Box {
+            set_orientation: gtk::Orientation::Vertical,
+            set_spacing: 3,
+
+            #[name = &quot;btn_go_settings&quot;]
+            gtk::Button {
+                #[wrap(Some)]
+                set_child = &amp;gtk::Image {
+                    set_icon_name: Some(&quot;emblem-system-symbolic&quot;),
+                },
+            },
+        }
+    }
+}
+
+#[relm4::widget_template]
+impl WidgetTemplate for SettingsPage {
+    view! {
+        gtk::Box {
+            set_orientation: gtk::Orientation::Vertical,
+            set_spacing: 3,
+
+            #[name = &quot;btn_dark_mode&quot;]
+            gtk::Button {
+                #[wrap(Some)]
+                set_child = &amp;gtk::Image {
+                    set_icon_name: Some(&quot;night-light-symbolic&quot;),
+                },
+            },
+
+            #[name = &quot;btn_go_homepage&quot;]
+            gtk::Button {
+                #[wrap(Some)]
+                set_child = &amp;gtk::Image {
+                    set_icon_name: Some(&quot;user-home-symbolic&quot;),
+                },
+            },
+        }
+    }
+}
+
+#[relm4::widget_template]
+impl WidgetTemplate for MainWindow {
+    view! {
+        gtk::Window {
+            set_title: Some(&quot;Nested Widget template&quot;),
+            set_default_width: 300,
+            set_default_height: 100,
+
+            gtk::Box {
+                set_orientation: gtk::Orientation::Vertical,
+
+                #[name(stk_pages)]
+                gtk::Stack {
+                    set_margin_all: 7,
+
+                    #[template]
+                    #[name = &quot;home_page&quot;]
+                    add_child = &amp;HomePage {} -&gt; {
+                        set_name: &quot;main&quot;,
+                    },
+
+                    #[template]
+                    #[name = &quot;settings_page&quot;]
+                    add_child = &amp;SettingsPage {} -&gt; {
+                        set_name: &quot;settings&quot;,
+                    },
+                },
+
+            },
+        }
+    }
+}
+
+#[derive(Default)]
+struct AppModel {
+    current_page: &amp;'static str,
+}
+
+#[derive(Debug)]
+enum Message {
+    PageHome,
+    PageSettings,
+    DarkMode,
+}
+
+#[relm4::component]
+impl SimpleComponent for AppModel {
+    type Init = ();
+    type Input = Message;
+    type Output = ();
+
+    view! {
+
+        #[template]
+        MainWindow {
+
+            #[template_child]
+            settings_page.btn_dark_mode {
+                connect_clicked =&gt; Message::DarkMode
+            },
+
+            #[template_child]
+            settings_page.btn_go_homepage {
+                connect_clicked =&gt; Message::PageHome
+            },
+
+            #[template_child]
+            home_page.btn_go_settings {
+                connect_clicked =&gt; Message::PageSettings
+            },
+
+            #[template_child]
+            stk_pages {
+                #[watch]
+                set_visible_child_name: model.current_page,
+            }
+        },
+    }
+
+    fn init(
+        _init_param: Self::Init,
+        root: &amp;Self::Root,
+        sender: ComponentSender&lt;Self&gt;,
+    ) -&gt; ComponentParts&lt;Self&gt; {
+        let model = Self {
+            current_page: &quot;main&quot;,
+        };
+
+        let widgets = view_output!();
+
+        ComponentParts { model, widgets }
+    }
+
+    fn update(&amp;mut self, msg: Message, _sender: ComponentSender&lt;Self&gt;) {
+        match msg {
+            Message::DarkMode =&gt; {
+                println!(&quot;Mode changed&quot;);
+            }
+            Message::PageHome =&gt; {
+                self.current_page = &quot;main&quot;;
+            }
+            Message::PageSettings =&gt; {
+                self.current_page = &quot;settings&quot;;
+            }
+        }
+    }
+}
+
+fn main() {}</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="gtk-rs-overview"><a class="header" href="#gtk-rs-overview">gtk-rs overview</a></h1>
 <p>So far, we only discussed which features Relm4 provides. Yet, Relm4 is based on GTK, which itself has many useful features. Let’s have a look at it!</p>
 <blockquote>
