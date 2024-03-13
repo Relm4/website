@@ -185,7 +185,7 @@
 <p><a href="https://matrix.to/#/#relm4:matrix.org"><img src="https://img.shields.io/matrix/relm4:matrix.org?label=matrix%20chat" alt="Matrix" /></a>
 <a href="https://crates.io/crates/relm4"><img src="https://img.shields.io/crates/v/relm4.svg" alt="Relm4 on crates.io" /></a>
 <a href="https://docs.rs/relm4/latest/relm4/"><img src="https://img.shields.io/badge/rust-documentation-blue" alt="Relm4 docs" /></a></p>
-<p>Relm4 is an idiomatic GUI library inspired by <a href="https://elm-lang.org/">Elm</a> and based on <a href="https://crates.io/crates/gtk4">gtk4-rs</a>. 
+<p>Relm4 is an idiomatic GUI library inspired by <a href="https://elm-lang.org/">Elm</a> and based on <a href="https://crates.io/crates/gtk4">gtk4-rs</a>.
 It is a new version of <a href="https://github.com/antoyo/relm">relm</a> that's built from scratch and is compatible with <a href="https://www.gtk.org/">GTK4</a> and <a href="https://gitlab.gnome.org/GNOME/libadwaita">libadwaita</a>.</p>
 <!--
 ### Visit the [book of the upcoming version](/book/next)!
@@ -205,8 +205,8 @@ Built on top of this foundation, Relm4 makes developing more idiomatic, simpler 
 </ul>
 <p><strong>Cargo:</strong></p>
 <p>Add the packages you need to your <code>Cargo.toml</code>:</p>
-<pre><code class="language-toml">relm4 = &quot;0.6.0&quot;
-relm4-components = &quot;0.6.0&quot;
+<pre><code class="language-toml">relm4 = "0.7.0"
+relm4-components = "0.7.0"
 </code></pre>
 <h2 id="issues-and-feedback"><a class="header" href="#issues-and-feedback">Issues and feedback</a></h2>
 <p>If you find a mistake or something unclear in Relm4 or this book, let us know! Simply open up an <a href="https://github.com/Relm4/Relm4/issues">issue</a> or start a <a href="https://github.com/Relm4/Relm4/discussions">discussion</a> over at <a href="https://github.com/Relm4/Relm4">GitHub</a> or chat with us on <a href="https://matrix.to/#/#relm4:matrix.org">Matrix</a>.</p>
@@ -246,14 +246,14 @@ relm4-components = &quot;0.6.0&quot;
 After this section, we will be building a simple counter app.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="model"><a class="header" href="#model">Model</a></h1>
 <p>Like a person, a computer needs a brain to be functional. It needs to process our messages and remember the results.</p>
-<p>Relm4 uses the term model as a data type that represents the application state, the memory of your application. </p>
+<p>Relm4 uses the term model as a data type that represents the application state, the memory of your application.</p>
 <p>For example, to store a counter value, we can store a <code>u8</code> in our model:</p>
 <pre><code class="language-rust no_run noplayground">struct AppModel {
     counter: u8,
 }</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="messages"><a class="header" href="#messages">Messages</a></h1>
 <p>To help the computer understand what we want to tell it, we first translate user interactions into messages.</p>
-<p>In Relm4, a message can be any data type, but most often, an <code>enum</code> is used. </p>
+<p>In Relm4, a message can be any data type, but most often, an <code>enum</code> is used.</p>
 <pre><code class="language-rust no_run noplayground">enum AppInput {
     Increment,
     Decrement,
@@ -305,7 +305,7 @@ Most importantly, this means that:</p>
 <h2 id="the-component-trait"><a class="header" href="#the-component-trait">The <code>Component</code> trait</a></h2>
 <p>The <code>Component</code> trait is the base of every component inside Relm4, it defines how a component should behave, communicate and produce widgets.</p>
 <h2 id="the-simplecomponent-trait"><a class="header" href="#the-simplecomponent-trait">The <code>SimpleComponent</code> trait</a></h2>
-<p>The <code>SimpleComponent</code> trait is a convenience trait that implements the <code>Component</code> trait, but removes some advanced features that are not relevant for most use-cases. </p>
+<p>The <code>SimpleComponent</code> trait is a convenience trait that implements the <code>Component</code> trait, but removes some advanced features that are not relevant for most use-cases.</p>
 <p>For each implementation of <code>SimpleComponent</code>, Relm4 will automatically implement <code>Component</code> as well. Thus, it can also be used instead of <code>Component</code>. This mechanism is called <a href="https://doc.rust-lang.org/book/ch10-02-traits.html#using-trait-bounds-to-conditionally-implement-methods">blanket implementation</a> and is used for traits like <code>From</code> in the standard library as well.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="your-first-app"><a class="header" href="#your-first-app">Your first app</a></h1>
 <p>For our first app, let's create something original: a <strong>counter app</strong>.</p>
@@ -322,7 +322,7 @@ Most importantly, this means that:</p>
 </blockquote>
 <h2 id="application-architecture"><a class="header" href="#application-architecture">Application architecture</a></h2>
 <p>Often, programming concepts are easier to understand when explained with examples or metaphors from the real world. To understand how Relm4 apps work, you can think about a computer as a person.</p>
-<p>Our job as a programmer is to ensure that the users of our app will be able to communicate with the computer through the UI. Since the computer can't understand our human language, it needs some help from us to get the communication going. </p>
+<p>Our job as a programmer is to ensure that the users of our app will be able to communicate with the computer through the UI. Since the computer can't understand our human language, it needs some help from us to get the communication going.</p>
 <p>Let's have a look at what we need to get this done!</p>
 <h3 id="messages-1"><a class="header" href="#messages-1">Messages</a></h3>
 <p>For our app, we just want to tell the computer to either increment or decrement a counter.</p>
@@ -364,7 +364,7 @@ Most importantly, this means that:</p>
 <p>Since the window widget is our root widget, we are going to create it in the <code>init_root</code> function.</p>
 <pre><code class="language-rust no_run noplayground">    fn init_root() -&gt; Self::Root {
         gtk::Window::builder()
-            .title(&quot;Simple app&quot;)
+            .title("Simple app")
             .default_width(300)
             .default_height(100)
             .build()
@@ -377,7 +377,7 @@ Most importantly, this means that:</p>
 <pre><code class="language-rust no_run noplayground">    /// Initialize the UI and model.
     fn init(
         counter: Self::Init,
-        window: &amp;Self::Root,
+        window: Self::Root,
         sender: ComponentSender&lt;Self&gt;,
     ) -&gt; relm4::ComponentParts&lt;Self&gt; {
         let model = AppModel { counter };
@@ -387,10 +387,10 @@ Most importantly, this means that:</p>
             .spacing(5)
             .build();
 
-        let inc_button = gtk::Button::with_label(&quot;Increment&quot;);
-        let dec_button = gtk::Button::with_label(&quot;Decrement&quot;);
+        let inc_button = gtk::Button::with_label("Increment");
+        let dec_button = gtk::Button::with_label("Decrement");
 
-        let label = gtk::Label::new(Some(&amp;format!(&quot;Counter: {}&quot;, model.counter)));
+        let label = gtk::Label::new(Some(&amp;format!("Counter: {}", model.counter)));
         label.set_margin_all(5);
 
         window.set_child(Some(&amp;vbox));
@@ -413,7 +413,7 @@ Most importantly, this means that:</p>
     }</code></pre>
 <p>First, we initialize each of our widgets, mostly by using builder patterns.</p>
 <p>Then we connect the widgets so that GTK4 knows how they are related to each other. The buttons and the label are added as children of the box, and the box is added as the child of the window.</p>
-<p>Next, we connect the &quot;clicked&quot; event for both buttons and send a message from the closures to the computer. To do this, we only need to move a cloned sender into the closures and send the message. Now every time we click our buttons, a message will be sent to update our counter!</p>
+<p>Next, we connect the "clicked" event for both buttons and send a message from the closures to the computer. To do this, we only need to move a cloned sender into the closures and send the message. Now every time we click our buttons, a message will be sent to update our counter!</p>
 <p>Of course, the computer needs to do more than just remembering things, it also needs to process information. Here, both the model and message types come into play.</p>
 <p>The <code>update</code> function of the <code>SimpleComponent</code> trait tells the computer how to process messages and how to update its memory.</p>
 <pre><code class="language-rust no_run noplayground">    fn update(&amp;mut self, message: Self::Input, _sender: ComponentSender&lt;Self&gt;) {
@@ -435,12 +435,12 @@ Most importantly, this means that:</p>
     fn update_view(&amp;self, widgets: &amp;mut Self::Widgets, _sender: ComponentSender&lt;Self&gt;) {
         widgets
             .label
-            .set_label(&amp;format!(&quot;Counter: {}&quot;, self.counter));
+            .set_label(&amp;format!("Counter: {}", self.counter));
     }</code></pre>
 <h2 id="running-the-app"><a class="header" href="#running-the-app">Running the App</a></h2>
 <p>The last step is to run the app we just wrote. To do so, we just need to initialize our model and pass it into <code>RelmApp::new()</code>.</p>
 <pre><code class="language-rust no_run noplayground">fn main() {
-    let app = RelmApp::new(&quot;relm4.test.simple_manual&quot;);
+    let app = RelmApp::new("relm4.test.simple_manual");
     app.run::&lt;AppModel&gt;(0);
 }</code></pre>
 <p>🎉 Congratulations! You just wrote your first app with Relm4! 🎉</p>
@@ -504,7 +504,7 @@ impl SimpleComponent for AppModel {
 
     fn init_root() -&gt; Self::Root {
         gtk::Window::builder()
-            .title(&quot;Simple app&quot;)
+            .title("Simple app")
             .default_width(300)
             .default_height(100)
             .build()
@@ -513,7 +513,7 @@ impl SimpleComponent for AppModel {
     /// Initialize the UI and model.
     fn init(
         counter: Self::Init,
-        window: &amp;Self::Root,
+        window: Self::Root,
         sender: ComponentSender&lt;Self&gt;,
     ) -&gt; relm4::ComponentParts&lt;Self&gt; {
         let model = AppModel { counter };
@@ -523,10 +523,10 @@ impl SimpleComponent for AppModel {
             .spacing(5)
             .build();
 
-        let inc_button = gtk::Button::with_label(&quot;Increment&quot;);
-        let dec_button = gtk::Button::with_label(&quot;Decrement&quot;);
+        let inc_button = gtk::Button::with_label("Increment");
+        let dec_button = gtk::Button::with_label("Decrement");
 
-        let label = gtk::Label::new(Some(&amp;format!(&quot;Counter: {}&quot;, model.counter)));
+        let label = gtk::Label::new(Some(&amp;format!("Counter: {}", model.counter)));
         label.set_margin_all(5);
 
         window.set_child(Some(&amp;vbox));
@@ -563,12 +563,12 @@ impl SimpleComponent for AppModel {
     fn update_view(&amp;self, widgets: &amp;mut Self::Widgets, _sender: ComponentSender&lt;Self&gt;) {
         widgets
             .label
-            .set_label(&amp;format!(&quot;Counter: {}&quot;, self.counter));
+            .set_label(&amp;format!("Counter: {}", self.counter));
     }
 }
 
 fn main() {
-    let app = RelmApp::new(&quot;relm4.test.simple_manual&quot;);
+    let app = RelmApp::new("relm4.test.simple_manual");
     app.run::&lt;AppModel&gt;(0);
 }</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="the-component-macro"><a class="header" href="#the-component-macro">The component macro</a></h1>
@@ -590,7 +590,7 @@ impl SimpleComponent for AppModel {
 
     view! {
         gtk::Window {
-            set_title: Some(&quot;Simple app&quot;),
+            set_title: Some("Simple app"),
             set_default_width: 300,
             set_default_height: 100,
 
@@ -600,17 +600,17 @@ impl SimpleComponent for AppModel {
                 set_margin_all: 5,
 
                 gtk::Button {
-                    set_label: &quot;Increment&quot;,
+                    set_label: "Increment",
                     connect_clicked =&gt; AppMsg::Increment
                 },
 
-                gtk::Button::with_label(&quot;Decrement&quot;) {
+                gtk::Button::with_label("Decrement") {
                     connect_clicked =&gt; AppMsg::Decrement
                 },
 
                 gtk::Label {
                     #[watch]
-                    set_label: &amp;format!(&quot;Counter: {}&quot;, model.counter),
+                    set_label: &amp;format!("Counter: {}", model.counter),
                     set_margin_all: 5,
                 }
             }
@@ -620,7 +620,7 @@ impl SimpleComponent for AppModel {
     // Initialize the UI.
     fn init(
         counter: Self::Init,
-        root: &amp;Self::Root,
+        root: Self::Root,
         sender: ComponentSender&lt;Self&gt;,
     ) -&gt; ComponentParts&lt;Self&gt; {
         let model = AppModel { counter };
@@ -647,12 +647,12 @@ impl SimpleComponent for AppModel {
 <p>Next up - the heart of the <code>component</code> macro - the nested <code>view!</code> macro. Here, we can easily define widgets and assign properties to them.</p>
 <h3 id="properties"><a class="header" href="#properties">Properties</a></h3>
 <p>As you see, we start with the <code>gtk::Window</code> which is our root. Then we open up brackets and assign properties to the window. There's not much magic here but actually <a href="https://gtk-rs.org/gtk4-rs/git/docs/gtk4/prelude/trait.GtkWindowExt.html#tymethod.set_title"><code>set_title</code></a> is a method provided by gtk4-rs. So technically, the macro creates code like this:</p>
-<pre><code class="language-rust no_run noplayground">window.set_title(Some(&quot;Simple app&quot;));</code></pre>
+<pre><code class="language-rust no_run noplayground">window.set_title(Some("Simple app"));</code></pre>
 <h3 id="widgets-1"><a class="header" href="#widgets-1">Widgets</a></h3>
 <p>We assign a child to the window by nesting another widget inside it. Widgets may be nested indefinitely:</p>
 <pre><code class="language-rust no_run noplayground">            gtk::Box {</code></pre>
-<p>Sometimes we want to use a constructor function to initialize our widgets. For the second button we used the <code>gtk::Button::with_label</code> function. This function returns a new button with the &quot;Decrement&quot; label already set, so we don't have to call <code>set_label</code> afterwards.</p>
-<pre><code class="language-rust no_run noplayground">                gtk::Button::with_label(&quot;Decrement&quot;) {</code></pre>
+<p>Sometimes we want to use a constructor function to initialize our widgets. For the second button we used the <code>gtk::Button::with_label</code> function. This function returns a new button with the "Decrement" label already set, so we don't have to call <code>set_label</code> afterwards.</p>
+<pre><code class="language-rust no_run noplayground">                gtk::Button::with_label("Decrement") {</code></pre>
 <h3 id="events"><a class="header" href="#events">Events</a></h3>
 <p>To connect events, we use this general syntax:</p>
 <pre><code class="language-rust no_run noplayground">method_name[cloned_var1, cloned_var2, ...] =&gt; move |args, ...| { code... }</code></pre>
@@ -667,7 +667,7 @@ So instead of this:</p>
 <h3 id="ui-updates"><a class="header" href="#ui-updates">UI updates</a></h3>
 <p>The last special syntax of the <code>component</code> macro we'll cover here is the <code>#[watch]</code> attribute. It's just like the normal initialization except that it also updates the property in the view function. Without it, the counter label would never be updated.</p>
 <pre><code class="language-rust no_run noplayground">                    #[watch]
-                    set_label: &amp;format!(&quot;Counter: {}&quot;, model.counter),</code></pre>
+                    set_label: &amp;format!("Counter: {}", model.counter),</code></pre>
 <blockquote>
 <p>The full reference for the syntax of the widget macro can be found <a href="component_macro/reference.html">here</a>.</p>
 </blockquote>
@@ -699,7 +699,7 @@ impl SimpleComponent for AppModel {
 
     view! {
         gtk::Window {
-            set_title: Some(&quot;Simple app&quot;),
+            set_title: Some("Simple app"),
             set_default_width: 300,
             set_default_height: 100,
 
@@ -709,17 +709,17 @@ impl SimpleComponent for AppModel {
                 set_margin_all: 5,
 
                 gtk::Button {
-                    set_label: &quot;Increment&quot;,
+                    set_label: "Increment",
                     connect_clicked =&gt; AppMsg::Increment
                 },
 
-                gtk::Button::with_label(&quot;Decrement&quot;) {
+                gtk::Button::with_label("Decrement") {
                     connect_clicked =&gt; AppMsg::Decrement
                 },
 
                 gtk::Label {
                     #[watch]
-                    set_label: &amp;format!(&quot;Counter: {}&quot;, model.counter),
+                    set_label: &amp;format!("Counter: {}", model.counter),
                     set_margin_all: 5,
                 }
             }
@@ -729,7 +729,7 @@ impl SimpleComponent for AppModel {
     // Initialize the UI.
     fn init(
         counter: Self::Init,
-        root: &amp;Self::Root,
+        root: Self::Root,
         sender: ComponentSender&lt;Self&gt;,
     ) -&gt; ComponentParts&lt;Self&gt; {
         let model = AppModel { counter };
@@ -753,7 +753,7 @@ impl SimpleComponent for AppModel {
 }
 
 fn main() {
-    let app = RelmApp::new(&quot;relm4.test.simple&quot;);
+    let app = RelmApp::new("relm4.test.simple");
     app.run::&lt;AppModel&gt;(0);
 }</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="tips-and-tricks"><a class="header" href="#tips-and-tricks">Tips and tricks</a></h1>
@@ -824,7 +824,7 @@ Because GTK is based on GObject, a C library that implements object-oriented pro
 <h3 id="reading-docs"><a class="header" href="#reading-docs">Reading docs</a></h3>
 <p>Looking at the documentation of <a href="https://gtk-rs.org/gtk4-rs/git/docs/gtk4/struct.Box.html"><code>gtk::Box</code></a> makes it look like this type has just a <code>new()</code> and a <code>builder()</code> method.
 However, this is not quite true as the <code>gtk::Box</code> type comes with plenty of methods.
-To find those methods, you have to look at <a href="https://gtk-rs.org/gtk4-rs/git/docs/gtk4/struct.Box.html#implements">&quot;implements&quot; section</a>, which contains a list of traits implemented by this type.
+To find those methods, you have to look at <a href="https://gtk-rs.org/gtk4-rs/git/docs/gtk4/struct.Box.html#implements">"implements" section</a>, which contains a list of traits implemented by this type.
 In particular, <a href="https://gtk-rs.org/gtk4-rs/git/docs/gtk4/prelude/trait.BoxExt.html"><code>BoxExt</code></a> gives you a lot of useful methods.
 Another very important trait in the list is <a href="https://gtk-rs.org/gtk4-rs/git/docs/gtk4/prelude/trait.WidgetExt.html"><code>WidgetExt</code></a> which is implemented by all widgets.
 In the same fashion, you can find the available methods of other widgets.</p>
@@ -907,7 +907,7 @@ Update your mutable field with a function or a closure. Assumes the field will b
 <p>To reset all previous changes, you can call <code>{struct_var_name}.reset()</code>.</p>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
 <p>First we have to add the tracker library to <code>Cargo.toml</code>:</p>
-<pre><code class="language-toml">tracker = &quot;0.1&quot;
+<pre><code class="language-toml">tracker = "0.1"
 </code></pre>
 <p>Now let's have a look at a small example.</p>
 <pre><code class="language-rust no_run noplayground">#[tracker::track]
@@ -921,7 +921,7 @@ fn main() {
         x: 0,
         y: 0,
         // the macro generates a new variable called
-        // &quot;tracker&quot; which stores the changes
+        // "tracker" which stores the changes
         tracker: 0,
     };
 
@@ -945,22 +945,22 @@ fn main() {
 <h2 id="the-icons"><a class="header" href="#the-icons">The icons</a></h2>
 <p>Before we can select random icons, we need to quickly implement a function that will return us random image names available in the default GTK icon theme.</p>
 <pre><code class="language-rust no_run noplayground">const ICON_LIST: &amp;[&amp;str] = &amp;[
-    &quot;bookmark-new-symbolic&quot;,
-    &quot;edit-copy-symbolic&quot;,
-    &quot;edit-cut-symbolic&quot;,
-    &quot;edit-find-symbolic&quot;,
-    &quot;starred-symbolic&quot;,
-    &quot;system-run-symbolic&quot;,
-    &quot;emoji-objects-symbolic&quot;,
-    &quot;emoji-nature-symbolic&quot;,
-    &quot;display-brightness-symbolic&quot;,
+    "bookmark-new-symbolic",
+    "edit-copy-symbolic",
+    "edit-cut-symbolic",
+    "edit-find-symbolic",
+    "starred-symbolic",
+    "system-run-symbolic",
+    "emoji-objects-symbolic",
+    "emoji-nature-symbolic",
+    "display-brightness-symbolic",
 ];
 
 fn random_icon_name() -&gt; &amp;'static str {
     ICON_LIST
         .iter()
         .choose(&amp;mut rand::thread_rng())
-        .expect(&quot;Could not choose a random icon&quot;)
+        .expect("Could not choose a random icon")
 }</code></pre>
 <h2 id="the-model-1"><a class="header" href="#the-model-1">The model</a></h2>
 <p>For our model we only need to store the two icon names and whether both of them are identical.</p>
@@ -998,8 +998,8 @@ First, we call <code>self.reset()</code> at the top of the function body. This e
 <pre><code class="language-rust no_run noplayground">    view! {
         #[root]
         gtk::ApplicationWindow {
-            #[track = &quot;model.changed(AppModel::identical())&quot;]
-            set_class_active: (&quot;identical&quot;, model.identical),
+            #[track = "model.changed(AppModel::identical())"]
+            set_class_active: ("identical", model.identical),
             gtk::Box {
                 set_orientation: gtk::Orientation::Horizontal,
                 set_spacing: 10,
@@ -1009,11 +1009,11 @@ First, we call <code>self.reset()</code> at the top of the function body. This e
                     set_spacing: 10,
                     gtk::Image {
                         set_pixel_size: 50,
-                        #[track = &quot;model.changed(AppModel::first_icon())&quot;]
+                        #[track = "model.changed(AppModel::first_icon())"]
                         set_icon_name: Some(model.first_icon),
                     },
                     gtk::Button {
-                        set_label: &quot;New random image&quot;,
+                        set_label: "New random image",
                         connect_clicked[sender] =&gt; move |_| {
                             sender.input(AppInput::UpdateFirst)
                         }
@@ -1024,11 +1024,11 @@ First, we call <code>self.reset()</code> at the top of the function body. This e
                     set_spacing: 10,
                     gtk::Image {
                         set_pixel_size: 50,
-                        #[track = &quot;model.changed(AppModel::second_icon())&quot;]
+                        #[track = "model.changed(AppModel::second_icon())"]
                         set_icon_name: Some(model.second_icon),
                     },
                     gtk::Button {
-                        set_label: &quot;New random image&quot;,
+                        set_label: "New random image",
                         connect_clicked[sender] =&gt; move |_| {
                             sender.input(AppInput::UpdateSecond)
                         }
@@ -1037,32 +1037,34 @@ First, we call <code>self.reset()</code> at the top of the function body. This e
             }
         }
     }</code></pre>
-<p>The overall UI is pretty simple: A window that contains a box. This box itself has two boxes that display the two icons and the two buttons to update them.</p>
-<p>We also added some additional code in <code>init</code> that runs before the view is constructed. In our case, we want to add <a href="https://docs.gtk.org/gtk4/css-properties.html">custom CSS</a> that sets the background color for elements with class name &quot;identical&quot;.</p>
-<pre><code class="language-rust no_run noplayground">        relm4::set_global_css(&quot;.identical { background: #00ad5c; }&quot;);
-
-        // Insert the macro code generation here
-        let widgets = view_output!();</code></pre>
+<h2 id="the-main-function"><a class="header" href="#the-main-function">The main function</a></h2>
+<p>In this example, we need some additional code in <code>fn main()</code> to add <a href="https://docs.gtk.org/gtk4/css-properties.html">custom CSS</a> that sets the background color for elements with class name "identical".
+Later, we just need to assign the "identical" class name to a widget to make it match the CSS selector.</p>
+<pre><code class="language-rust no_run noplayground">fn main() {
+    let app = RelmApp::new("relm4.test.simple");
+    app.set_global_css(".identical { background: #00ad5c; }");
+    app.run::&lt;AppModel&gt;(());
+}</code></pre>
 <h3 id="the-track-attribute"><a class="header" href="#the-track-attribute">The <code>#[track]</code> attribute</a></h3>
 <p>The <code>#[track]</code> attribute is applied to method invocations in our view code. It allows us to add a condition to the update: if the condition is true, the method will be called, otherwise, it will be skipped. The attribute syntax looks like this:</p>
-<pre><code class="language-rust no_run noplayground">#[track = &quot;&lt;boolean expression&gt;&quot;]</code></pre>
+<pre><code class="language-rust no_run noplayground">#[track = "&lt;boolean expression&gt;"]</code></pre>
 <p>Let's have a look at its first appearance:</p>
-<pre><code class="language-rust no_run noplayground">            #[track = &quot;model.changed(AppModel::identical())&quot;]
-            set_class_active: (&quot;identical&quot;, model.identical),</code></pre>
+<pre><code class="language-rust no_run noplayground">            #[track = "model.changed(AppModel::identical())"]
+            set_class_active: ("identical", model.identical),</code></pre>
 <p>The <a href="https://docs.rs/relm4/latest/relm4/trait.RelmWidgetExt.html#tymethod.set_class_active"><code>set_class_active</code></a> method is used to either activate or disable a CSS class. It takes two parameters, the first is the class itself and the second is a boolean which specifies if the class should be added (<code>true</code>) or removed (<code>false</code>).</p>
 <p>The value of the <code>#[track]</code> attribute is parsed as a boolean expression. This expression will be used  as a condition to check whether something has changed. If this condition is <code>true</code>, the <code>set_class_active</code> method will be called with the parameters it guards.</p>
 <p>The macro expansion for method calls annotated with the <code>#[track]</code> attribute look roughly like this:</p>
 <pre><code class="language-rust no_run noplayground">if model.changed(AppModel::identical()) {
-    self.main_window.set_class_active(&quot;identical&quot;, model.identical);
+    self.main_window.set_class_active("identical", model.identical);
 }</code></pre>
 <p>That's all. It's pretty simple, actually. We just use a condition that allows us to update our widgets only when needed.</p>
 <p>The second <code>#[track]</code> attribute works similarly:</p>
-<pre><code class="language-rust no_run noplayground">                        #[track = &quot;model.changed(AppModel::first_icon())&quot;]
+<pre><code class="language-rust no_run noplayground">                        #[track = "model.changed(AppModel::first_icon())"]
                         set_icon_name: Some(model.first_icon),</code></pre>
 <blockquote>
-<p><strong>Debugging Helper</strong></p>
+<p><strong>Using a tracker as debugging helper</strong></p>
 <p>Since the <code>#[track]</code> attribute parses expressions, you can use the following syntax to debug your trackers:</p>
-<p><code>#[track = &quot;{ println!(&quot;Update widget&quot;); argument }&quot;]</code></p>
+<p><code>#[track = "{ println!("Update widget"); argument }"]</code></p>
 </blockquote>
 <h2 id="initializing-the-model"><a class="header" href="#initializing-the-model">Initializing the model</a></h2>
 <p>There's one last thing to point out. When initializing our model, we need to initialize the <code>tracker</code> field as well. The initial value doesn't really matter because we call <code>reset()</code> in the update function anyway, but usually <code>0</code> is used.</p>
@@ -1079,22 +1081,22 @@ use rand::prelude::IteratorRandom;
 use relm4::{gtk, ComponentParts, ComponentSender, RelmApp, RelmWidgetExt, SimpleComponent};
 
 const ICON_LIST: &amp;[&amp;str] = &amp;[
-    &quot;bookmark-new-symbolic&quot;,
-    &quot;edit-copy-symbolic&quot;,
-    &quot;edit-cut-symbolic&quot;,
-    &quot;edit-find-symbolic&quot;,
-    &quot;starred-symbolic&quot;,
-    &quot;system-run-symbolic&quot;,
-    &quot;emoji-objects-symbolic&quot;,
-    &quot;emoji-nature-symbolic&quot;,
-    &quot;display-brightness-symbolic&quot;,
+    "bookmark-new-symbolic",
+    "edit-copy-symbolic",
+    "edit-cut-symbolic",
+    "edit-find-symbolic",
+    "starred-symbolic",
+    "system-run-symbolic",
+    "emoji-objects-symbolic",
+    "emoji-nature-symbolic",
+    "display-brightness-symbolic",
 ];
 
 fn random_icon_name() -&gt; &amp;'static str {
     ICON_LIST
         .iter()
         .choose(&amp;mut rand::thread_rng())
-        .expect(&quot;Could not choose a random icon&quot;)
+        .expect("Could not choose a random icon")
 }
 
 // The track proc macro allows to easily track changes to different
@@ -1121,8 +1123,8 @@ impl SimpleComponent for AppModel {
     view! {
         #[root]
         gtk::ApplicationWindow {
-            #[track = &quot;model.changed(AppModel::identical())&quot;]
-            set_class_active: (&quot;identical&quot;, model.identical),
+            #[track = "model.changed(AppModel::identical())"]
+            set_class_active: ("identical", model.identical),
             gtk::Box {
                 set_orientation: gtk::Orientation::Horizontal,
                 set_spacing: 10,
@@ -1132,11 +1134,11 @@ impl SimpleComponent for AppModel {
                     set_spacing: 10,
                     gtk::Image {
                         set_pixel_size: 50,
-                        #[track = &quot;model.changed(AppModel::first_icon())&quot;]
+                        #[track = "model.changed(AppModel::first_icon())"]
                         set_icon_name: Some(model.first_icon),
                     },
                     gtk::Button {
-                        set_label: &quot;New random image&quot;,
+                        set_label: "New random image",
                         connect_clicked[sender] =&gt; move |_| {
                             sender.input(AppInput::UpdateFirst)
                         }
@@ -1147,11 +1149,11 @@ impl SimpleComponent for AppModel {
                     set_spacing: 10,
                     gtk::Image {
                         set_pixel_size: 50,
-                        #[track = &quot;model.changed(AppModel::second_icon())&quot;]
+                        #[track = "model.changed(AppModel::second_icon())"]
                         set_icon_name: Some(model.second_icon),
                     },
                     gtk::Button {
-                        set_label: &quot;New random image&quot;,
+                        set_label: "New random image",
                         connect_clicked[sender] =&gt; move |_| {
                             sender.input(AppInput::UpdateSecond)
                         }
@@ -1164,7 +1166,7 @@ impl SimpleComponent for AppModel {
     // Initialize the UI.
     fn init(
         _params: Self::Init,
-        root: &amp;Self::Root,
+        root: Self::Root,
         sender: ComponentSender&lt;Self&gt;,
     ) -&gt; ComponentParts&lt;Self&gt; {
         let model = AppModel {
@@ -1173,8 +1175,6 @@ impl SimpleComponent for AppModel {
             identical: false,
             tracker: 0,
         };
-
-        relm4::set_global_css(&quot;.identical { background: #00ad5c; }&quot;);
 
         // Insert the macro code generation here
         let widgets = view_output!();
@@ -1199,11 +1199,12 @@ impl SimpleComponent for AppModel {
 }
 
 fn main() {
-    let app = RelmApp::new(&quot;relm4.test.simple&quot;);
+    let app = RelmApp::new("relm4.test.simple");
+    app.set_global_css(".identical { background: #00ad5c; }");
     app.run::&lt;AppModel&gt;(());
 }</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="factory"><a class="header" href="#factory">Factory</a></h1>
-<p>Factories define how to generate widgets from data collections. 
+<p>Factories define how to generate widgets from data collections.
 GTK also has factories, yet Relm4 uses its own factory implementation which is much easier to use in regular Rust code.</p>
 <p><img src="efficient_ui/../img/screenshots/factory-dark.png" alt="App screenshot dark" /></p>
 <p>This app will have a dynamic number of counters.
@@ -1238,7 +1239,7 @@ enum CounterMsg {
 <p>A neat feature of factories is that each element can easily forward their output messages to the input of their parent component.
 For example, this is necessary for modifications that require access to the whole <code>FactoryVecDeque</code>, like moving an element to a new position.
 Therefore, these actions are covered by the output type.</p>
-<p>The actions we want to perform &quot;from outside&quot; are</p>
+<p>The actions we want to perform "from outside" are</p>
 <ul>
 <li>Move a counter up</li>
 <li>Move a counter down</li>
@@ -1291,19 +1292,19 @@ The only difference is that we use <code>self</code> to refer to the model due t
 
             #[name(add_button)]
             gtk::Button {
-                set_label: &quot;+&quot;,
+                set_label: "+",
                 connect_clicked =&gt; CounterMsg::Increment,
             },
 
             #[name(remove_button)]
             gtk::Button {
-                set_label: &quot;-&quot;,
+                set_label: "-",
                 connect_clicked =&gt; CounterMsg::Decrement,
             },
 
             #[name(move_up_button)]
             gtk::Button {
-                set_label: &quot;Up&quot;,
+                set_label: "Up",
                 connect_clicked[sender, index] =&gt; move |_| {
                     sender.output(CounterOutput::MoveUp(index.clone())).unwrap();
                 }
@@ -1311,7 +1312,7 @@ The only difference is that we use <code>self</code> to refer to the model due t
 
             #[name(move_down_button)]
             gtk::Button {
-                set_label: &quot;Down&quot;,
+                set_label: "Down",
                 connect_clicked[sender, index] =&gt; move |_| {
                     sender.output(CounterOutput::MoveDown(index.clone())).unwrap();
                 }
@@ -1319,7 +1320,7 @@ The only difference is that we use <code>self</code> to refer to the model due t
 
             #[name(to_front_button)]
             gtk::Button {
-                set_label: &quot;To Start&quot;,
+                set_label: "To Start",
                 connect_clicked[sender, index] =&gt; move |_| {
                     sender.output(CounterOutput::SendFront(index.clone())).unwrap();
                 }
@@ -1327,7 +1328,7 @@ The only difference is that we use <code>self</code> to refer to the model due t
         }
     }</code></pre>
 <h3 id="initializing-the-model-1"><a class="header" href="#initializing-the-model-1">Initializing the model</a></h3>
-<p><code>FactoryComponent</code> has separate functions for initializing the model and the widgets. 
+<p><code>FactoryComponent</code> has separate functions for initializing the model and the widgets.
 This means, that we are a bit less flexible, but don't need <code>view_output!()</code> here.
 Also, we just need to implement the <code>init_model</code> function because <code>init_widgets</code> is already implemented by the macro.</p>
 <pre><code class="language-rust no_run noplayground">    fn init_model(value: Self::Init, _index: &amp;DynamicIndex, _sender: FactorySender&lt;Self&gt;) -&gt; Self {
@@ -1369,7 +1370,7 @@ We'll use it in the <code>view</code> macro in the next section.</p>
 <pre><code class="language-rust no_run noplayground">    // Initialize the UI.
     fn init(
         counter: Self::Init,
-        root: &amp;Self::Root,
+        root: Self::Root,
         sender: ComponentSender&lt;Self&gt;,
     ) -&gt; ComponentParts&lt;Self&gt; {
         let counters = FactoryVecDeque::builder()
@@ -1396,7 +1397,7 @@ Most things should look familiar, but this time we use a <code>#[local_ref]</cod
 This trick allows us to initialize the model with its <code>FactoryVecDeque</code> before the widgets, which is more convenient in most cases.</p>
 <pre><code class="language-rust no_run noplayground">    view! {
         gtk::Window {
-            set_title: Some(&quot;Factory example&quot;),
+            set_title: Some("Factory example"),
             set_default_size: (300, 100),
 
             gtk::Box {
@@ -1405,12 +1406,12 @@ This trick allows us to initialize the model with its <code>FactoryVecDeque</cod
                 set_margin_all: 5,
 
                 gtk::Button {
-                    set_label: &quot;Add counter&quot;,
+                    set_label: "Add counter",
                     connect_clicked =&gt; AppMsg::AddCounter,
                 },
 
                 gtk::Button {
-                    set_label: &quot;Remove counter&quot;,
+                    set_label: "Remove counter",
                     connect_clicked =&gt; AppMsg::RemoveCounter,
                 },
 
@@ -1461,11 +1462,11 @@ The neat thing: You can never forget to render changes, and the update algorithm
             }
         }
     }</code></pre>
-<h3 id="the-main-function"><a class="header" href="#the-main-function">The main function</a></h3>
+<h3 id="the-main-function-1"><a class="header" href="#the-main-function-1">The main function</a></h3>
 <p>Awesome, we almost made it!</p>
 <p>We only need to define the main function to run our application.</p>
 <pre><code class="language-rust no_run noplayground">fn main() {
-    let app = RelmApp::new(&quot;relm4.example.factory&quot;);
+    let app = RelmApp::new("relm4.example.factory");
     app.run::&lt;App&gt;(0);
 }</code></pre>
 <h2 id="the-complete-code-3"><a class="header" href="#the-complete-code-3">The complete code</a></h2>
@@ -1515,19 +1516,19 @@ impl FactoryComponent for Counter {
 
             #[name(add_button)]
             gtk::Button {
-                set_label: &quot;+&quot;,
+                set_label: "+",
                 connect_clicked =&gt; CounterMsg::Increment,
             },
 
             #[name(remove_button)]
             gtk::Button {
-                set_label: &quot;-&quot;,
+                set_label: "-",
                 connect_clicked =&gt; CounterMsg::Decrement,
             },
 
             #[name(move_up_button)]
             gtk::Button {
-                set_label: &quot;Up&quot;,
+                set_label: "Up",
                 connect_clicked[sender, index] =&gt; move |_| {
                     sender.output(CounterOutput::MoveUp(index.clone())).unwrap();
                 }
@@ -1535,7 +1536,7 @@ impl FactoryComponent for Counter {
 
             #[name(move_down_button)]
             gtk::Button {
-                set_label: &quot;Down&quot;,
+                set_label: "Down",
                 connect_clicked[sender, index] =&gt; move |_| {
                     sender.output(CounterOutput::MoveDown(index.clone())).unwrap();
                 }
@@ -1543,7 +1544,7 @@ impl FactoryComponent for Counter {
 
             #[name(to_front_button)]
             gtk::Button {
-                set_label: &quot;To Start&quot;,
+                set_label: "To Start",
                 connect_clicked[sender, index] =&gt; move |_| {
                     sender.output(CounterOutput::SendFront(index.clone())).unwrap();
                 }
@@ -1589,7 +1590,7 @@ impl SimpleComponent for App {
 
     view! {
         gtk::Window {
-            set_title: Some(&quot;Factory example&quot;),
+            set_title: Some("Factory example"),
             set_default_size: (300, 100),
 
             gtk::Box {
@@ -1598,12 +1599,12 @@ impl SimpleComponent for App {
                 set_margin_all: 5,
 
                 gtk::Button {
-                    set_label: &quot;Add counter&quot;,
+                    set_label: "Add counter",
                     connect_clicked =&gt; AppMsg::AddCounter,
                 },
 
                 gtk::Button {
-                    set_label: &quot;Remove counter&quot;,
+                    set_label: "Remove counter",
                     connect_clicked =&gt; AppMsg::RemoveCounter,
                 },
 
@@ -1619,7 +1620,7 @@ impl SimpleComponent for App {
     // Initialize the UI.
     fn init(
         counter: Self::Init,
-        root: &amp;Self::Root,
+        root: Self::Root,
         sender: ComponentSender&lt;Self&gt;,
     ) -&gt; ComponentParts&lt;Self&gt; {
         let counters = FactoryVecDeque::builder()
@@ -1673,7 +1674,7 @@ impl SimpleComponent for App {
 }
 
 fn main() {
-    let app = RelmApp::new(&quot;relm4.example.factory&quot;);
+    let app = RelmApp::new("relm4.example.factory");
     app.run::&lt;App&gt;(0);
 }</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="the-position-function"><a class="header" href="#the-position-function">The position function</a></h1>
@@ -1786,10 +1787,10 @@ enum HeaderOutput {
         gtk::HeaderBar {
             #[wrap(Some)]
             set_title_widget = &amp;gtk::Box {
-                add_css_class: &quot;linked&quot;,
-                #[name = &quot;group&quot;]
+                add_css_class: "linked",
+                #[name = "group"]
                 gtk::ToggleButton {
-                    set_label: &quot;View&quot;,
+                    set_label: "View",
                     set_active: true,
                     connect_toggled[sender] =&gt; move |btn| {
                         if btn.is_active() {
@@ -1798,7 +1799,7 @@ enum HeaderOutput {
                     },
                 },
                 gtk::ToggleButton {
-                    set_label: &quot;Edit&quot;,
+                    set_label: "Edit",
                     set_group: Some(&amp;group),
                     connect_toggled[sender] =&gt; move |btn| {
                         if btn.is_active() {
@@ -1807,7 +1808,7 @@ enum HeaderOutput {
                     },
                 },
                 gtk::ToggleButton {
-                    set_label: &quot;Export&quot;,
+                    set_label: "Export",
                     set_group: Some(&amp;group),
                     connect_toggled[sender] =&gt; move |btn| {
                         if btn.is_active() {
@@ -1852,10 +1853,10 @@ enum DialogOutput {
             set_modal: true,
             #[watch]
             set_visible: !model.hidden,
-            set_text: Some(&quot;Do you want to close before saving?&quot;),
-            set_secondary_text: Some(&quot;All unsaved changes will be lost&quot;),
-            add_button: (&quot;Close&quot;, gtk::ResponseType::Accept),
-            add_button: (&quot;Cancel&quot;, gtk::ResponseType::Cancel),
+            set_text: Some("Do you want to close before saving?"),
+            set_secondary_text: Some("All unsaved changes will be lost"),
+            add_button: ("Close", gtk::ResponseType::Accept),
+            add_button: ("Cancel", gtk::ResponseType::Cancel),
             connect_response[sender] =&gt; move |_, resp| {
                 sender.input(if resp == gtk::ResponseType::Accept {
                     DialogInput::Accept
@@ -1920,7 +1921,7 @@ struct AppModel {
 <p>When initializing the app component, we construct the child components by passing the appropriate <code>Init</code> and forwarding any desired inputs and outputs. This is done through a builder provided by <code>Component</code> implementations. We pass the initial parameters via the <code>launch</code> method, and then retrieve the final <code>Controller</code> by calling the <code>forward</code> method. In addition to starting the component, the <code>forward</code> method allows us to take the outputs of the component, transform them with a mapping function, and then pass the result as an input message to another sender (in this case, the input sender of the app component). If you don't need to forward any outputs, you can start the component with the <code>detach</code> method instead.</p>
 <pre><code class="language-rust no_run noplayground">    fn init(
         params: Self::Init,
-        root: &amp;Self::Root,
+        root: Self::Root,
         sender: ComponentSender&lt;Self&gt;,
     ) -&gt; ComponentParts&lt;Self&gt; {
         let header: Controller&lt;HeaderModel&gt; =
@@ -1933,7 +1934,7 @@ struct AppModel {
                 });
 
         let dialog = DialogModel::builder()
-            .transient_for(root)
+            .transient_for(&amp;root)
             .launch(true)
             .forward(sender.input_sender(), |msg| match msg {
                 DialogOutput::Close =&gt; AppMsg::Close,
@@ -1948,7 +1949,7 @@ struct AppModel {
         let widgets = view_output!();
         ComponentParts { model, widgets }
     }</code></pre>
-<p>Also, we set the <code>set_transient_for</code> property, which actually uses the main window. The dialog should set his parent window so that GTK can handle the dialog better. The GTK docs state: &quot;[set_transient_for] allows window managers to e.g. keep the dialog on top of the main window, or center the dialog over the main window&quot;.</p>
+<p>Also, we set the <code>set_transient_for</code> property, which actually uses the main window. The dialog should set his parent window so that GTK can handle the dialog better. The GTK docs state: "[set_transient_for] allows window managers to e.g. keep the dialog on top of the main window, or center the dialog over the main window".</p>
 <pre><code class="language-rust no_run noplayground">#[derive(Debug)]
 enum AppMode {
     View,
@@ -1978,7 +1979,7 @@ struct AppModel {
 
             gtk::Label {
                 #[watch]
-                set_label: &amp;format!(&quot;Placeholder for {:?}&quot;, model.mode),
+                set_label: &amp;format!("Placeholder for {:?}", model.mode),
             },
             connect_close_request[sender] =&gt; move |_| {
                 sender.input(AppMsg::CloseRequest);
@@ -2017,10 +2018,10 @@ impl SimpleComponent for HeaderModel {
         gtk::HeaderBar {
             #[wrap(Some)]
             set_title_widget = &amp;gtk::Box {
-                add_css_class: &quot;linked&quot;,
-                #[name = &quot;group&quot;]
+                add_css_class: "linked",
+                #[name = "group"]
                 gtk::ToggleButton {
-                    set_label: &quot;View&quot;,
+                    set_label: "View",
                     set_active: true,
                     connect_toggled[sender] =&gt; move |btn| {
                         if btn.is_active() {
@@ -2029,7 +2030,7 @@ impl SimpleComponent for HeaderModel {
                     },
                 },
                 gtk::ToggleButton {
-                    set_label: &quot;Edit&quot;,
+                    set_label: "Edit",
                     set_group: Some(&amp;group),
                     connect_toggled[sender] =&gt; move |btn| {
                         if btn.is_active() {
@@ -2038,7 +2039,7 @@ impl SimpleComponent for HeaderModel {
                     },
                 },
                 gtk::ToggleButton {
-                    set_label: &quot;Export&quot;,
+                    set_label: "Export",
                     set_group: Some(&amp;group),
                     connect_toggled[sender] =&gt; move |btn| {
                         if btn.is_active() {
@@ -2052,7 +2053,7 @@ impl SimpleComponent for HeaderModel {
 
     fn init(
         _params: Self::Init,
-        root: &amp;Self::Root,
+        root: Self::Root,
         sender: ComponentSender&lt;Self&gt;,
     ) -&gt; ComponentParts&lt;Self&gt; {
         let model = HeaderModel;
@@ -2089,10 +2090,10 @@ impl SimpleComponent for DialogModel {
             set_modal: true,
             #[watch]
             set_visible: !model.hidden,
-            set_text: Some(&quot;Do you want to close before saving?&quot;),
-            set_secondary_text: Some(&quot;All unsaved changes will be lost&quot;),
-            add_button: (&quot;Close&quot;, gtk::ResponseType::Accept),
-            add_button: (&quot;Cancel&quot;, gtk::ResponseType::Cancel),
+            set_text: Some("Do you want to close before saving?"),
+            set_secondary_text: Some("All unsaved changes will be lost"),
+            add_button: ("Close", gtk::ResponseType::Accept),
+            add_button: ("Cancel", gtk::ResponseType::Cancel),
             connect_response[sender] =&gt; move |_, resp| {
                 sender.input(if resp == gtk::ResponseType::Accept {
                     DialogInput::Accept
@@ -2105,7 +2106,7 @@ impl SimpleComponent for DialogModel {
 
     fn init(
         params: Self::Init,
-        root: &amp;Self::Root,
+        root: Self::Root,
         sender: ComponentSender&lt;Self&gt;,
     ) -&gt; ComponentParts&lt;Self&gt; {
         let model = DialogModel { hidden: params };
@@ -2159,7 +2160,7 @@ impl SimpleComponent for AppModel {
 
             gtk::Label {
                 #[watch]
-                set_label: &amp;format!(&quot;Placeholder for {:?}&quot;, model.mode),
+                set_label: &amp;format!("Placeholder for {:?}", model.mode),
             },
             connect_close_request[sender] =&gt; move |_| {
                 sender.input(AppMsg::CloseRequest);
@@ -2170,7 +2171,7 @@ impl SimpleComponent for AppModel {
 
     fn init(
         params: Self::Init,
-        root: &amp;Self::Root,
+        root: Self::Root,
         sender: ComponentSender&lt;Self&gt;,
     ) -&gt; ComponentParts&lt;Self&gt; {
         let header: Controller&lt;HeaderModel&gt; =
@@ -2183,7 +2184,7 @@ impl SimpleComponent for AppModel {
                 });
 
         let dialog = DialogModel::builder()
-            .transient_for(root)
+            .transient_for(&amp;root)
             .launch(true)
             .forward(sender.input_sender(), |msg| match msg {
                 DialogOutput::Close =&gt; AppMsg::Close,
@@ -2215,14 +2216,14 @@ impl SimpleComponent for AppModel {
 }
 
 fn main() {
-    let relm = RelmApp::new(&quot;ewlm4.test.components&quot;);
+    let relm = RelmApp::new("ewlm4.test.components");
     relm.run::&lt;AppModel&gt;(AppMode::Edit);
 }</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
 <p>Most user inputs are fairly easy to process.
 After receiving a message, you process it in the update function and update the view.
 Everything only takes a couple of milliseconds at most, so the user won't even notice the slight delay.</p>
-<p>However, when you have to perform complex calculations or I/O-bound operations that take more than a couple of milliseconds to complete, the user will start noticing that the app doesn't feel reactive or &quot;snappy&quot; anymore.
+<p>However, when you have to perform complex calculations or I/O-bound operations that take more than a couple of milliseconds to complete, the user will start noticing that the app doesn't feel reactive or "snappy" anymore.
 For example, such operations are performing network requests, filesystems operations or calculating the last digit of π.</p>
 <p>To better visualize what happens, let's look at the following image.
 The expected behavior is on the left, where processing of updates is fast and the app spends most of the time idle, waiting for new user inputs (aka events).
@@ -2319,7 +2320,7 @@ impl Worker for AsyncHandler {
 }</code></pre>
 <p>Workers are constructed similarly to components, too.
 Use the provided builder to retrieve a <code>WorkerController</code>.</p>
-<pre><code class="language-rust ignore">    fn init(_: (), root: &amp;Self::Root, sender: ComponentSender&lt;Self&gt;) -&gt; ComponentParts&lt;Self&gt; {
+<pre><code class="language-rust ignore">    fn init(_: (), root: Self::Root, sender: ComponentSender&lt;Self&gt;) -&gt; ComponentParts&lt;Self&gt; {
         let model = AppModel {
             counter: 0,
             worker: AsyncHandler::builder()
@@ -2463,11 +2464,11 @@ Therefore, Relm4 allows you to specify widgets that will be displayed while your
 <blockquote>
 <p>If your init function doesn't await or completes quickly, you don't need to implement <code>init_loading_widgets</code>.</p>
 </blockquote>
-<pre><code class="language-rust no_run noplayground">    fn init_loading_widgets(root: &amp;mut Self::Root) -&gt; Option&lt;LoadingWidgets&gt; {
+<pre><code class="language-rust no_run noplayground">    fn init_loading_widgets(root: Self::Root) -&gt; Option&lt;LoadingWidgets&gt; {
         view! {
-            #[local_ref]
+            #[local]
             root {
-                set_title: Some(&quot;Simple app&quot;),
+                set_title: Some("Simple app"),
                 set_default_size: (300, 100),
 
                 // This will be removed automatically by
@@ -2540,29 +2541,29 @@ impl AsyncComponent for App {
                 set_margin_all: 5,
 
                 gtk::Button {
-                    set_label: &quot;Increment&quot;,
+                    set_label: "Increment",
                     connect_clicked =&gt; Msg::Increment,
                 },
 
                 gtk::Button {
-                    set_label: &quot;Decrement&quot;,
+                    set_label: "Decrement",
                     connect_clicked =&gt; Msg::Decrement,
                 },
 
                 gtk::Label {
                     #[watch]
-                    set_label: &amp;format!(&quot;Counter: {}&quot;, model.counter),
+                    set_label: &amp;format!("Counter: {}", model.counter),
                     set_margin_all: 5,
                 }
             }
         }
     }
 
-    fn init_loading_widgets(root: &amp;mut Self::Root) -&gt; Option&lt;LoadingWidgets&gt; {
+    fn init_loading_widgets(root: Self::Root) -&gt; Option&lt;LoadingWidgets&gt; {
         view! {
-            #[local_ref]
+            #[local]
             root {
-                set_title: Some(&quot;Simple app&quot;),
+                set_title: Some("Simple app"),
                 set_default_size: (300, 100),
 
                 // This will be removed automatically by
@@ -2611,7 +2612,7 @@ impl AsyncComponent for App {
 }
 
 fn main() {
-    let app = RelmApp::new(&quot;relm4.example.simple_async&quot;);
+    let app = RelmApp::new("relm4.example.simple_async");
     app.run_async::&lt;App&gt;(0);
 }</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="overview"><a class="header" href="#overview">Overview</a></h1>
@@ -2736,7 +2737,7 @@ pub enum AlertResponse {
 <p>When initializing the model, we conditionally set up some widgets based on the settings passed by the caller. We set <code>is_active</code> to <code>false</code> since the dialog is not currently displayed.</p>
 <pre><code class="language-rust ignore">    fn init(
         settings: AlertSettings,
-        root: &amp;Self::Root,
+        root: Self::Root,
         sender: ComponentSender&lt;Self&gt;,
     ) -&gt; ComponentParts&lt;Self&gt; {
         let model = Alert {
@@ -2756,8 +2757,8 @@ pub enum AlertResponse {
             let accept_widget = widgets
                 .dialog
                 .widget_for_response(gtk::ResponseType::Accept)
-                .expect(&quot;No button for accept response set&quot;);
-            accept_widget.add_css_class(&quot;destructive-action&quot;);
+                .expect("No button for accept response set");
+            accept_widget.add_css_class("destructive-action");
         }
 
         ComponentParts { model, widgets }
@@ -2765,7 +2766,7 @@ pub enum AlertResponse {
 <p>Lastly, the view. Note that the component connects to the <a href="https://docs.gtk.org/gtk4/signal.Dialog.response.html"><code>response</code>
 signal</a> of the underlying dialog and sends an <em>input</em> to itself when a response is received.</p>
 <pre><code class="language-rust ignore">    view! {
-        #[name = &quot;dialog&quot;]
+        #[name = "dialog"]
         gtk::MessageDialog {
             set_message_type: gtk::MessageType::Question,
             #[watch]
@@ -2809,7 +2810,7 @@ impl SimpleComponent for App {
 
     view! {
         main_window = gtk::ApplicationWindow {
-            set_title: Some(&quot;Simple app&quot;),
+            set_title: Some("Simple app"),
             set_default_width: 300,
             set_default_height: 100,
 
@@ -2824,13 +2825,13 @@ impl SimpleComponent for App {
                 set_spacing: 5,
 
                 append = &amp;gtk::Button {
-                    set_label: &quot;Increment&quot;,
+                    set_label: "Increment",
                     connect_clicked[sender] =&gt; move |_| {
                         sender.input(AppMsg::Increment);
                     },
                 },
                 append = &amp;gtk::Button {
-                    set_label: &quot;Decrement&quot;,
+                    set_label: "Decrement",
                     connect_clicked[sender] =&gt; move |_| {
                         sender.input(AppMsg::Decrement);
                     },
@@ -2838,10 +2839,10 @@ impl SimpleComponent for App {
                 append = &amp;gtk::Label {
                     set_margin_all: 5,
                     #[watch]
-                    set_label: &amp;format!(&quot;Counter: {}&quot;, model.counter),
+                    set_label: &amp;format!("Counter: {}", model.counter),
                 },
                 append = &amp;gtk::Button {
-                    set_label: &quot;Close&quot;,
+                    set_label: "Close",
                     connect_clicked[sender] =&gt; move |_| {
                         sender.input(AppMsg::CloseRequest);
                     },
@@ -2871,7 +2872,7 @@ impl SimpleComponent for App {
                 }
             }
             AppMsg::Save =&gt; {
-                println!(&quot;* Open save dialog here *&quot;);
+                println!("* Open save dialog here *");
             }
             AppMsg::Close =&gt; {
                 relm4::main_application().quit();
@@ -2880,30 +2881,30 @@ impl SimpleComponent for App {
         }
     }
 
-    fn init(_: (), root: &amp;Self::Root, sender: ComponentSender&lt;Self&gt;) -&gt; ComponentParts&lt;Self&gt; {
+    fn init(_: (), root: Self::Root, sender: ComponentSender&lt;Self&gt;) -&gt; ComponentParts&lt;Self&gt; {
         let model = App {
             counter: 0,
             alert_toggle: false,
             dialog: Alert::builder()
-                .transient_for(root)
+                .transient_for(&amp;root)
                 .launch(AlertSettings {
-                    text: String::from(&quot;Do you want to quit without saving? (First alert)&quot;),
-                    secondary_text: Some(String::from(&quot;Your counter hasn't reached 42 yet&quot;)),
-                    confirm_label: String::from(&quot;Close without saving&quot;),
-                    cancel_label: String::from(&quot;Cancel&quot;),
-                    option_label: Some(String::from(&quot;Save&quot;)),
+                    text: String::from("Do you want to quit without saving? (First alert)"),
+                    secondary_text: Some(String::from("Your counter hasn't reached 42 yet")),
+                    confirm_label: String::from("Close without saving"),
+                    cancel_label: String::from("Cancel"),
+                    option_label: Some(String::from("Save")),
                     is_modal: true,
                     destructive_accept: true,
                 })
                 .forward(sender.input_sender(), convert_alert_response),
             second_dialog: Alert::builder()
-                .transient_for(root)
+                .transient_for(&amp;root)
                 .launch(AlertSettings {
-                    text: String::from(&quot;Do you want to quit without saving? (Second alert)&quot;),
-                    secondary_text: Some(String::from(&quot;Your counter hasn't reached 42 yet&quot;)),
-                    confirm_label: String::from(&quot;Close without saving&quot;),
-                    cancel_label: String::from(&quot;Cancel&quot;),
-                    option_label: Some(String::from(&quot;Save&quot;)),
+                    text: String::from("Do you want to quit without saving? (Second alert)"),
+                    secondary_text: Some(String::from("Your counter hasn't reached 42 yet")),
+                    confirm_label: String::from("Close without saving"),
+                    cancel_label: String::from("Cancel"),
+                    option_label: Some(String::from("Save")),
                     is_modal: true,
                     destructive_accept: true,
                 })
@@ -2925,7 +2926,7 @@ fn convert_alert_response(response: AlertResponse) -&gt; AppMsg {
 }
 
 fn main() {
-    let app = RelmApp::new(&quot;relm4.example.alert&quot;);
+    let app = RelmApp::new("relm4.example.alert");
     app.run::&lt;App&gt;(());
 }</code></pre>
 <p>This is mostly stuff that we've already done in previous chapters, but there are a few additional things to know about interacting with child components.</p>
@@ -2937,30 +2938,30 @@ fn main() {
     second_dialog: Controller&lt;Alert&gt;,
 }</code></pre>
 <p>We initialize them with the builder pattern in the <code>init</code> method.</p>
-<pre><code class="language-rust ignore">    fn init(_: (), root: &amp;Self::Root, sender: ComponentSender&lt;Self&gt;) -&gt; ComponentParts&lt;Self&gt; {
+<pre><code class="language-rust ignore">    fn init(_: (), root: Self::Root, sender: ComponentSender&lt;Self&gt;) -&gt; ComponentParts&lt;Self&gt; {
         let model = App {
             counter: 0,
             alert_toggle: false,
             dialog: Alert::builder()
-                .transient_for(root)
+                .transient_for(&amp;root)
                 .launch(AlertSettings {
-                    text: String::from(&quot;Do you want to quit without saving? (First alert)&quot;),
-                    secondary_text: Some(String::from(&quot;Your counter hasn't reached 42 yet&quot;)),
-                    confirm_label: String::from(&quot;Close without saving&quot;),
-                    cancel_label: String::from(&quot;Cancel&quot;),
-                    option_label: Some(String::from(&quot;Save&quot;)),
+                    text: String::from("Do you want to quit without saving? (First alert)"),
+                    secondary_text: Some(String::from("Your counter hasn't reached 42 yet")),
+                    confirm_label: String::from("Close without saving"),
+                    cancel_label: String::from("Cancel"),
+                    option_label: Some(String::from("Save")),
                     is_modal: true,
                     destructive_accept: true,
                 })
                 .forward(sender.input_sender(), convert_alert_response),
             second_dialog: Alert::builder()
-                .transient_for(root)
+                .transient_for(&amp;root)
                 .launch(AlertSettings {
-                    text: String::from(&quot;Do you want to quit without saving? (Second alert)&quot;),
-                    secondary_text: Some(String::from(&quot;Your counter hasn't reached 42 yet&quot;)),
-                    confirm_label: String::from(&quot;Close without saving&quot;),
-                    cancel_label: String::from(&quot;Cancel&quot;),
-                    option_label: Some(String::from(&quot;Save&quot;)),
+                    text: String::from("Do you want to quit without saving? (Second alert)"),
+                    secondary_text: Some(String::from("Your counter hasn't reached 42 yet")),
+                    confirm_label: String::from("Close without saving"),
+                    cancel_label: String::from("Cancel"),
+                    option_label: Some(String::from("Save")),
                     is_modal: true,
                     destructive_accept: true,
                 })
@@ -3050,7 +3051,7 @@ impl SimpleComponent for Alert {
     type Output = AlertResponse;
 
     view! {
-        #[name = &quot;dialog&quot;]
+        #[name = "dialog"]
         gtk::MessageDialog {
             set_message_type: gtk::MessageType::Question,
             #[watch]
@@ -3070,7 +3071,7 @@ impl SimpleComponent for Alert {
 
     fn init(
         settings: AlertSettings,
-        root: &amp;Self::Root,
+        root: Self::Root,
         sender: ComponentSender&lt;Self&gt;,
     ) -&gt; ComponentParts&lt;Self&gt; {
         let model = Alert {
@@ -3090,8 +3091,8 @@ impl SimpleComponent for Alert {
             let accept_widget = widgets
                 .dialog
                 .widget_for_response(gtk::ResponseType::Accept)
-                .expect(&quot;No button for accept response set&quot;);
-            accept_widget.add_css_class(&quot;destructive-action&quot;);
+                .expect("No button for accept response set");
+            accept_widget.add_css_class("destructive-action");
         }
 
         ComponentParts { model, widgets }
@@ -3141,7 +3142,7 @@ impl SimpleComponent for App {
 
     view! {
         main_window = gtk::ApplicationWindow {
-            set_title: Some(&quot;Simple app&quot;),
+            set_title: Some("Simple app"),
             set_default_width: 300,
             set_default_height: 100,
 
@@ -3156,13 +3157,13 @@ impl SimpleComponent for App {
                 set_spacing: 5,
 
                 append = &amp;gtk::Button {
-                    set_label: &quot;Increment&quot;,
+                    set_label: "Increment",
                     connect_clicked[sender] =&gt; move |_| {
                         sender.input(AppMsg::Increment);
                     },
                 },
                 append = &amp;gtk::Button {
-                    set_label: &quot;Decrement&quot;,
+                    set_label: "Decrement",
                     connect_clicked[sender] =&gt; move |_| {
                         sender.input(AppMsg::Decrement);
                     },
@@ -3170,10 +3171,10 @@ impl SimpleComponent for App {
                 append = &amp;gtk::Label {
                     set_margin_all: 5,
                     #[watch]
-                    set_label: &amp;format!(&quot;Counter: {}&quot;, model.counter),
+                    set_label: &amp;format!("Counter: {}", model.counter),
                 },
                 append = &amp;gtk::Button {
-                    set_label: &quot;Close&quot;,
+                    set_label: "Close",
                     connect_clicked[sender] =&gt; move |_| {
                         sender.input(AppMsg::CloseRequest);
                     },
@@ -3203,7 +3204,7 @@ impl SimpleComponent for App {
                 }
             }
             AppMsg::Save =&gt; {
-                println!(&quot;* Open save dialog here *&quot;);
+                println!("* Open save dialog here *");
             }
             AppMsg::Close =&gt; {
                 relm4::main_application().quit();
@@ -3212,30 +3213,30 @@ impl SimpleComponent for App {
         }
     }
 
-    fn init(_: (), root: &amp;Self::Root, sender: ComponentSender&lt;Self&gt;) -&gt; ComponentParts&lt;Self&gt; {
+    fn init(_: (), root: Self::Root, sender: ComponentSender&lt;Self&gt;) -&gt; ComponentParts&lt;Self&gt; {
         let model = App {
             counter: 0,
             alert_toggle: false,
             dialog: Alert::builder()
-                .transient_for(root)
+                .transient_for(&amp;root)
                 .launch(AlertSettings {
-                    text: String::from(&quot;Do you want to quit without saving? (First alert)&quot;),
-                    secondary_text: Some(String::from(&quot;Your counter hasn't reached 42 yet&quot;)),
-                    confirm_label: String::from(&quot;Close without saving&quot;),
-                    cancel_label: String::from(&quot;Cancel&quot;),
-                    option_label: Some(String::from(&quot;Save&quot;)),
+                    text: String::from("Do you want to quit without saving? (First alert)"),
+                    secondary_text: Some(String::from("Your counter hasn't reached 42 yet")),
+                    confirm_label: String::from("Close without saving"),
+                    cancel_label: String::from("Cancel"),
+                    option_label: Some(String::from("Save")),
                     is_modal: true,
                     destructive_accept: true,
                 })
                 .forward(sender.input_sender(), convert_alert_response),
             second_dialog: Alert::builder()
-                .transient_for(root)
+                .transient_for(&amp;root)
                 .launch(AlertSettings {
-                    text: String::from(&quot;Do you want to quit without saving? (Second alert)&quot;),
-                    secondary_text: Some(String::from(&quot;Your counter hasn't reached 42 yet&quot;)),
-                    confirm_label: String::from(&quot;Close without saving&quot;),
-                    cancel_label: String::from(&quot;Cancel&quot;),
-                    option_label: Some(String::from(&quot;Save&quot;)),
+                    text: String::from("Do you want to quit without saving? (Second alert)"),
+                    secondary_text: Some(String::from("Your counter hasn't reached 42 yet")),
+                    confirm_label: String::from("Close without saving"),
+                    cancel_label: String::from("Cancel"),
+                    option_label: Some(String::from("Save")),
                     is_modal: true,
                     destructive_accept: true,
                 })
@@ -3257,11 +3258,11 @@ fn convert_alert_response(response: AlertResponse) -&gt; AppMsg {
 }
 
 fn main() {
-    let app = RelmApp::new(&quot;relm4.example.alert&quot;);
+    let app = RelmApp::new("relm4.example.alert");
     app.run::&lt;App&gt;(());
 }</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="widget-templates"><a class="header" href="#widget-templates">Widget templates</a></h1>
-<p>Widget templates are a simple way to define reusable UI elements. 
+<p>Widget templates are a simple way to define reusable UI elements.
 When building complex UIs, they allow you to focus on the application logic instead of complex trees of widgets.
 Yet most importantly, widget templates help you to reduce redundant code.
 For example, if you use a widget with the same properties multiple times in your code, templates will make your code a lot shorter.</p>
@@ -3280,7 +3281,7 @@ impl WidgetTemplate for MyBox {
         gtk::Box {
             set_margin_all: 10,
             // Make the boxes visible
-            inline_css: &quot;border: 2px solid blue&quot;,
+            inline_css: "border: 2px solid blue",
         }
     }
 }</code></pre>
@@ -3329,9 +3330,9 @@ impl WidgetTemplate for CustomBox {
                         MySpinner,
 
                         // Deeply nested!
-                        #[name = &quot;child_label&quot;]
+                        #[name = "child_label"]
                         gtk::Label {
-                            set_label: &quot;This is a test&quot;,
+                            set_label: "This is a test",
                         }
                     }
                 }
@@ -3354,20 +3355,20 @@ impl SimpleComponent for AppModel {
 
     view! {
         gtk::Window {
-            set_title: Some(&quot;Widget template&quot;),
+            set_title: Some("Widget template"),
             set_default_width: 300,
             set_default_height: 100,
 
             #[template]
             CustomBox {
                 gtk::Button {
-                    set_label: &quot;Increment&quot;,
+                    set_label: "Increment",
                     connect_clicked[sender] =&gt; move |_| {
                         sender.input(AppMsg::Increment);
                     },
                 },
                 gtk::Button {
-                    set_label: &quot;Decrement&quot;,
+                    set_label: "Decrement",
                     connect_clicked[sender] =&gt; move |_| {
                         sender.input(AppMsg::Decrement);
                     },
@@ -3375,7 +3376,7 @@ impl SimpleComponent for AppModel {
                 #[template_child]
                 child_label {
                     #[watch]
-                    set_label: &amp;format!(&quot;Counter: {}&quot;, model.counter),
+                    set_label: &amp;format!("Counter: {}", model.counter),
                 }
             },
         }
@@ -3401,7 +3402,7 @@ impl WidgetTemplate for MyBox {
         gtk::Box {
             set_margin_all: 10,
             // Make the boxes visible
-            inline_css: &quot;border: 2px solid blue&quot;,
+            inline_css: "border: 2px solid blue",
         }
     }
 }
@@ -3439,9 +3440,9 @@ impl WidgetTemplate for CustomBox {
                         MySpinner,
 
                         // Deeply nested!
-                        #[name = &quot;child_label&quot;]
+                        #[name = "child_label"]
                         gtk::Label {
-                            set_label: &quot;This is a test&quot;,
+                            set_label: "This is a test",
                         }
                     }
                 }
@@ -3469,20 +3470,20 @@ impl SimpleComponent for AppModel {
 
     view! {
         gtk::Window {
-            set_title: Some(&quot;Widget template&quot;),
+            set_title: Some("Widget template"),
             set_default_width: 300,
             set_default_height: 100,
 
             #[template]
             CustomBox {
                 gtk::Button {
-                    set_label: &quot;Increment&quot;,
+                    set_label: "Increment",
                     connect_clicked[sender] =&gt; move |_| {
                         sender.input(AppMsg::Increment);
                     },
                 },
                 gtk::Button {
-                    set_label: &quot;Decrement&quot;,
+                    set_label: "Decrement",
                     connect_clicked[sender] =&gt; move |_| {
                         sender.input(AppMsg::Decrement);
                     },
@@ -3490,7 +3491,7 @@ impl SimpleComponent for AppModel {
                 #[template_child]
                 child_label {
                     #[watch]
-                    set_label: &amp;format!(&quot;Counter: {}&quot;, model.counter),
+                    set_label: &amp;format!("Counter: {}", model.counter),
                 }
             },
         }
@@ -3498,7 +3499,7 @@ impl SimpleComponent for AppModel {
 
     fn init(
         counter: Self::Init,
-        root: &amp;Self::Root,
+        root: Self::Root,
         sender: ComponentSender&lt;Self&gt;,
     ) -&gt; ComponentParts&lt;Self&gt; {
         let model = Self { counter };
@@ -3521,17 +3522,17 @@ impl SimpleComponent for AppModel {
 }
 
 fn main() {
-    let app = RelmApp::new(&quot;relm4.example.widget_template&quot;);
+    let app = RelmApp::new("relm4.example.widget_template");
     app.run::&lt;AppModel&gt;(0);
 }</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="accessing-nested-template-elements"><a class="header" href="#accessing-nested-template-elements">Accessing Nested Template Elements</a></h1>
 <p>Starting from the version <strong>0.6.2</strong>, you can access nested elements on templates.</p>
-<p>Imagine a template called &quot;MainWindow&quot; which contains pages as Widget Templates:</p>
+<p>Imagine a template called "MainWindow" which contains pages as Widget Templates:</p>
 <pre><code class="language-rust no_run noplayground">#[relm4::widget_template]
 impl WidgetTemplate for MainWindow {
     view! {
         gtk::Window {
-            set_title: Some(&quot;Nested Widget template&quot;),
+            set_title: Some("Nested Widget template"),
             set_default_width: 300,
             set_default_height: 100,
 
@@ -3543,15 +3544,15 @@ impl WidgetTemplate for MainWindow {
                     set_margin_all: 7,
 
                     #[template]
-                    #[name = &quot;home_page&quot;]
+                    #[name = "home_page"]
                     add_child = &amp;HomePage {} -&gt; {
-                        set_name: &quot;main&quot;,
+                        set_name: "main",
                     },
 
                     #[template]
-                    #[name = &quot;settings_page&quot;]
+                    #[name = "settings_page"]
                     add_child = &amp;SettingsPage {} -&gt; {
-                        set_name: &quot;settings&quot;,
+                        set_name: "settings",
                     },
                 },
 
@@ -3567,11 +3568,11 @@ impl WidgetTemplate for HomePage {
             set_orientation: gtk::Orientation::Vertical,
             set_spacing: 3,
 
-            #[name = &quot;btn_go_settings&quot;]
+            #[name = "btn_go_settings"]
             gtk::Button {
                 #[wrap(Some)]
                 set_child = &amp;gtk::Image {
-                    set_icon_name: Some(&quot;emblem-system-symbolic&quot;),
+                    set_icon_name: Some("emblem-system-symbolic"),
                 },
             },
         }
@@ -3584,19 +3585,19 @@ impl WidgetTemplate for SettingsPage {
             set_orientation: gtk::Orientation::Vertical,
             set_spacing: 3,
 
-            #[name = &quot;btn_dark_mode&quot;]
+            #[name = "btn_dark_mode"]
             gtk::Button {
                 #[wrap(Some)]
                 set_child = &amp;gtk::Image {
-                    set_icon_name: Some(&quot;night-light-symbolic&quot;),
+                    set_icon_name: Some("night-light-symbolic"),
                 },
             },
 
-            #[name = &quot;btn_go_homepage&quot;]
+            #[name = "btn_go_homepage"]
             gtk::Button {
                 #[wrap(Some)]
                 set_child = &amp;gtk::Image {
-                    set_icon_name: Some(&quot;user-home-symbolic&quot;),
+                    set_icon_name: Some("user-home-symbolic"),
                 },
             },
         }
@@ -3659,11 +3660,11 @@ impl WidgetTemplate for HomePage {
             set_orientation: gtk::Orientation::Vertical,
             set_spacing: 3,
 
-            #[name = &quot;btn_go_settings&quot;]
+            #[name = "btn_go_settings"]
             gtk::Button {
                 #[wrap(Some)]
                 set_child = &amp;gtk::Image {
-                    set_icon_name: Some(&quot;emblem-system-symbolic&quot;),
+                    set_icon_name: Some("emblem-system-symbolic"),
                 },
             },
         }
@@ -3677,19 +3678,19 @@ impl WidgetTemplate for SettingsPage {
             set_orientation: gtk::Orientation::Vertical,
             set_spacing: 3,
 
-            #[name = &quot;btn_dark_mode&quot;]
+            #[name = "btn_dark_mode"]
             gtk::Button {
                 #[wrap(Some)]
                 set_child = &amp;gtk::Image {
-                    set_icon_name: Some(&quot;night-light-symbolic&quot;),
+                    set_icon_name: Some("night-light-symbolic"),
                 },
             },
 
-            #[name = &quot;btn_go_homepage&quot;]
+            #[name = "btn_go_homepage"]
             gtk::Button {
                 #[wrap(Some)]
                 set_child = &amp;gtk::Image {
-                    set_icon_name: Some(&quot;user-home-symbolic&quot;),
+                    set_icon_name: Some("user-home-symbolic"),
                 },
             },
         }
@@ -3700,7 +3701,7 @@ impl WidgetTemplate for SettingsPage {
 impl WidgetTemplate for MainWindow {
     view! {
         gtk::Window {
-            set_title: Some(&quot;Nested Widget template&quot;),
+            set_title: Some("Nested Widget template"),
             set_default_width: 300,
             set_default_height: 100,
 
@@ -3712,15 +3713,15 @@ impl WidgetTemplate for MainWindow {
                     set_margin_all: 7,
 
                     #[template]
-                    #[name = &quot;home_page&quot;]
+                    #[name = "home_page"]
                     add_child = &amp;HomePage {} -&gt; {
-                        set_name: &quot;main&quot;,
+                        set_name: "main",
                     },
 
                     #[template]
-                    #[name = &quot;settings_page&quot;]
+                    #[name = "settings_page"]
                     add_child = &amp;SettingsPage {} -&gt; {
-                        set_name: &quot;settings&quot;,
+                        set_name: "settings",
                     },
                 },
 
@@ -3777,11 +3778,11 @@ impl SimpleComponent for AppModel {
 
     fn init(
         _init_param: Self::Init,
-        root: &amp;Self::Root,
+        root: Self::Root,
         sender: ComponentSender&lt;Self&gt;,
     ) -&gt; ComponentParts&lt;Self&gt; {
         let model = Self {
-            current_page: &quot;main&quot;,
+            current_page: "main",
         };
 
         let widgets = view_output!();
@@ -3792,13 +3793,13 @@ impl SimpleComponent for AppModel {
     fn update(&amp;mut self, msg: Message, _sender: ComponentSender&lt;Self&gt;) {
         match msg {
             Message::DarkMode =&gt; {
-                println!(&quot;Mode changed&quot;);
+                println!("Mode changed");
             }
             Message::PageHome =&gt; {
-                self.current_page = &quot;main&quot;;
+                self.current_page = "main";
             }
             Message::PageSettings =&gt; {
-                self.current_page = &quot;settings&quot;;
+                self.current_page = "settings";
             }
         }
     }
@@ -3813,19 +3814,19 @@ fn main() {}</code></pre>
 <h2 id="gobjects"><a class="header" href="#gobjects">GObjects</a></h2>
 <p>GTK is an object-oriented framework that uses the GObject library to implement objects. GObjects have some really useful features that we will discuss in the following sections.</p>
 <h3 id="subclassing"><a class="header" href="#subclassing">Subclassing</a></h3>
-<p>Like many other OOP frameworks or languages, GObjects can inherit from other GObjects. This is called subclassing. In the case of GTK, that’s really helpful because it allows us to create custom widgets. </p>
+<p>Like many other OOP frameworks or languages, GObjects can inherit from other GObjects. This is called subclassing. In the case of GTK, that’s really helpful because it allows us to create custom widgets.</p>
 <p>For example, you could use subclassing to create your own button widget that acts as a counter. Or you can create a custom application window that better suits your application.</p>
 <blockquote>
 <p>Read more about subclassing in the <a href="https://gtk-rs.org/gtk4-rs/git/book/g_object_subclassing.html">gtk-rs book</a>.</p>
 </blockquote>
 <h3 id="properties-1"><a class="header" href="#properties-1">Properties</a></h3>
 <p>Each GObject can have properties that work similar to the fields of a structure in Rust. You can set them and you can read (get) them. But one thing that's particularly cool is that properties can be bound to other properties.</p>
-<p>For example, you could bind the &quot;visible&quot; property of a widget to the &quot;active&quot; property of a <code>gtk::ToggleButton</code>. This would allow you to show or hide the widget using the toggle button and the best part is, that it's done fully automatically!</p>
+<p>For example, you could bind the "visible" property of a widget to the "active" property of a <code>gtk::ToggleButton</code>. This would allow you to show or hide the widget using the toggle button and the best part is, that it's done fully automatically!</p>
 <blockquote>
 <p>Read more about properties in the <a href="https://gtk-rs.org/gtk4-rs/git/book/g_object_properties.html">gtk-rs book</a>.</p>
 </blockquote>
 <h3 id="signals"><a class="header" href="#signals">Signals</a></h3>
-<p>GObjects can not only have properties but also signals. Actually, we've been using signals all the time, for example, by using the <code>connect_clicked</code> method on a button. This method simply adds an event handler function for the &quot;click&quot; signal.</p>
+<p>GObjects can not only have properties but also signals. Actually, we've been using signals all the time, for example, by using the <code>connect_clicked</code> method on a button. This method simply adds an event handler function for the "click" signal.</p>
 <p>You can create your own signals in custom widgets. You can also use <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html#tymethod.emit">emit</a> to emit signals on you widgets manually.</p>
 <blockquote>
 <p>Read more about signals in the <a href="https://gtk-rs.org/gtk4-rs/git/book/g_object_signals.html">gtk-rs book</a>.</p>
@@ -3861,21 +3862,21 @@ fn main() {}</code></pre>
 </code></pre>
 <p>The icons are placed under the <code>data/icons</code> directory.</p>
 <p>The <code>icons.gresource.xml</code> file looks like this (adapt it as required, e.g. using <code>-symbolic</code> icon names):</p>
-<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;gresources&gt;
-    &lt;gresource prefix=&quot;com/example/Foobar/icons/24x24/actions/&quot;&gt;
-        &lt;file preprocess=&quot;xml-stripblanks&quot; alias=&quot;icon-foo.svg&quot;&gt;icons/icon-foo.svg&lt;/file&gt;
-        &lt;file preprocess=&quot;xml-stripblanks&quot; alias=&quot;icon-bar.svg&quot;&gt;icons/icon-bar.svg&lt;/file&gt;
+    &lt;gresource prefix="com/example/Foobar/icons/24x24/actions/"&gt;
+        &lt;file preprocess="xml-stripblanks" alias="icon-foo.svg"&gt;icons/icon-foo.svg&lt;/file&gt;
+        &lt;file preprocess="xml-stripblanks" alias="icon-bar.svg"&gt;icons/icon-bar.svg&lt;/file&gt;
     &lt;/gresource&gt;
 &lt;/gresources&gt;
 </code></pre>
 <h3 id="cargotoml"><a class="header" href="#cargotoml"><code>Cargo.toml</code></a></h3>
 <p>In <code>Cargo.toml</code>, we add a build dependency on <code>glib-build-tools</code>. This gives us access to the <code>glib_build_tools::compile_resources</code> function which we will need later:</p>
 <pre><code class="language-toml">[package]
-name = &quot;foobar&quot;
+name = "foobar"
 
 [build-dependencies]
-glib-build-tools = &quot;0.17.10&quot;
+glib-build-tools = "0.17.10"
 </code></pre>
 <p>Note: you should ensure that the <code>glib-build-tools</code> version aligns with the general GLib version you are building for.</p>
 <h3 id="buildrs"><a class="header" href="#buildrs"><code>build.rs</code></a></h3>
@@ -3884,23 +3885,23 @@ glib-build-tools = &quot;0.17.10&quot;
 
 fn main() {
     compile_resources(
-        &amp;[&quot;data&quot;],
-        &quot;data/icons.gresource.xml&quot;,
-        &quot;icons.gresource&quot;,
+        &amp;["data"],
+        "data/icons.gresource.xml",
+        "icons.gresource",
     );
 }</code></pre></pre>
 <h3 id="mainrs"><a class="header" href="#mainrs"><code>main.rs</code></a></h3>
 <p>In <code>main.rs</code> (or wherever you initialise your Relm4 app), we load the <code>icons.gresource</code> bundle that Cargo generates:</p>
 <pre><pre class="playground"><code class="language-rust edition2021">fn initialize_custom_icons() {
-    gio::resources_register_include!(&quot;icons.gresource&quot;).unwrap();
+    gio::resources_register_include!("icons.gresource").unwrap();
 
     let display = gdk::Display::default().unwrap();
     let theme = gtk::IconTheme::for_display(&amp;display);
-    theme.add_resource_path(&quot;/com/example/Foobar/icons&quot;);
+    theme.add_resource_path("/com/example/Foobar/icons");
 }
 
 fn main() {
-    let app = RelmApp::new(&quot;com.example.Foobar&quot;);
+    let app = RelmApp::new("com.example.Foobar");
 
     // (optional) initialize default icons
     relm4_icons::initialize_icons();
@@ -3913,7 +3914,7 @@ fn main() {
 </span><span class="boring">fn main() {
 </span>view! {
     gtk::Button {
-        set_icon_name: &quot;icon-foo&quot;
+        set_icon_name: "icon-foo"
     }
 }
 <span class="boring">}</span></code></pre></pre>
@@ -3926,9 +3927,9 @@ fn main() {
 
 on:
   push:
-    branches: [ &quot;main&quot; ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ &quot;main&quot; ]
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -3967,11 +3968,11 @@ This will construct the widget using its <code>Default</code> implementation.</p
 <p>Some, widgets don't have a <code>Default</code> implementation or it may be more convenient to use a constructor method.
 In this case, you can use the following syntax:</p>
 <pre><code class="language-rust ignore">// Constructor method
-gtk::Label::new(Some(&quot;Label from constructor method&quot;)) { /* ... */ }
+gtk::Label::new(Some("Label from constructor method")) { /* ... */ }
 
 // Builder pattern
 gtk::Label::builder()
-    .label(&quot;Label from builder pattern&quot;)
+    .label("Label from builder pattern")
     .selectable(true)
     .build() { /* ... */ }</code></pre>
 <p>You can also use regular functions.
@@ -4003,10 +4004,10 @@ set_property_name = gtk::Box { ... }</code></pre>
     // Attach the label to a grid
     attach[0, 0, 1, 2]= &amp;gtk::Label { ... }
 }</code></pre>
-<p>This will expand to <code>__grid.attach(__label, 0, 0, 1, 2)</code> </p>
+<p>This will expand to <code>__grid.attach(__label, 0, 0, 1, 2)</code></p>
 <h3 id="naming-widgets"><a class="header" href="#naming-widgets">Naming widgets</a></h3>
 <p>Widgets may be given a name with the <code>name</code> attribute. These names are accessible as fields on the <code>Widgets</code> struct generated by the macro.</p>
-<pre><code class="language-rust ignore">#[name = &quot;important_label&quot;]
+<pre><code class="language-rust ignore">#[name = "important_label"]
 gtk::Label { ... }
 
 // ...
@@ -4020,24 +4021,24 @@ let label = &amp;widgets.important_label;</code></pre>
 Internally, the macro will use a <code>gtk::Stack</code>, so you can also use different <a href="https://gtk-rs.org/gtk4-rs/git/docs/gtk4/enum.StackTransitionType.html">transition types</a>.</p>
 <pre><code class="language-rust ignore">if model.value % 2 == 0 {
     gtk::Label {
-        set_label: &quot;The value is even&quot;,
+        set_label: "The value is even",
     },
     gtk::Label {
-        set_label: &quot;The value is odd&quot;,
+        set_label: "The value is odd",
     }
 }
 
 // Use a transition type to set an animation when the visible widget changes
-#[transition = &quot;SlideRight&quot;]
+#[transition = "SlideRight"]
 match model.value {
     0..=9 =&gt; {
         gtk::Label {
-            set_label: &quot;The value is below 10&quot;,
+            set_label: "The value is below 10",
         },
     }
     _ =&gt; {
         gtk::Label {
-            set_label: &quot;The value is equal or above 10&quot;,
+            set_label: "The value is equal or above 10",
         },
     }
 }</code></pre>
@@ -4047,10 +4048,10 @@ For example, <a href="https://gtk-rs.org/gtk4-rs/git/docs/gtk4/struct.Stack.html
 To get access to this widget, you can use a special syntax of the view macro:</p>
 <pre><code class="language-rust ignore">gtk::Stack {
     add_child = &amp;gtk::Label {
-        set_label: &quot;placeholder&quot;,
+        set_label: "placeholder",
     } -&gt; {
         // Access the returned widgets (in this case gtk::StackPage)
-        set_title: &quot;page title&quot;,
+        set_title: "page title",
     }
 }</code></pre>
 <h2 id="properties-2"><a class="header" href="#properties-2">Properties</a></h2>
@@ -4092,7 +4093,7 @@ This might not be the desired behavior and can even cause your application to fr
 <p>To avoid this, you can name signal handlers by using an <code>@</code> and a name after the signal closure.
 Then, you can use the signal handler name in the <code>#[block_signal(handler_name)]</code> attribute to deactivate the signal handler while you edit a value.</p>
 <pre><code class="language-rust ignore">                gtk::ToggleButton {
-                    set_label: &quot;Counter is even&quot;,
+                    set_label: "Counter is even",
                     #[watch]
                     #[block_signal(toggle_handler)]
                     set_active: counter.value % 2 == 0,
@@ -4138,7 +4139,7 @@ let widgets = view_output!();</code></pre>
 <p>You can also implement your own view logic, which will be added to the view code that the macro generates.
 Code inside <code>pre_view()</code> will run before the code of the macro, and <code>post_view()</code> will run after it.</p>
 <blockquote>
-<p>Code inside these &quot;functions&quot; isn't like a normal function!
+<p>Code inside these "functions" isn't like a normal function!
 The macro disallows returning early in <code>pre_view</code> to ensure that the code of the macro will always be executed.</p>
 </blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="macro-expansion"><a class="header" href="#macro-expansion">Macro expansion</a></h1>
@@ -4171,7 +4172,7 @@ impl SimpleComponent for AppModel {
         #[root]
         #[name(main_window)]
         gtk::Window {
-            set_title: Some(&quot;Macro reference example&quot;),
+            set_title: Some("Macro reference example"),
             set_default_width: 300,
             set_default_height: 100,
 
@@ -4181,7 +4182,7 @@ impl SimpleComponent for AppModel {
                 set_margin_all: 5,
 
                 append: inc_button = &amp;gtk::Button {
-                    set_label: &quot;Increment&quot;,
+                    set_label: "Increment",
                     // Only set this if `icon_name` is Some
                     set_icon_name?: icon_name,
                     connect_clicked[sender] =&gt; move |_| {
@@ -4190,7 +4191,7 @@ impl SimpleComponent for AppModel {
                 },
 
                 gtk::Button {
-                    set_label: &quot;Decrement&quot;,
+                    set_label: "Decrement",
                     connect_clicked[sender] =&gt; move |_| {
                         sender.input(AppMsg::Decrement);
                     }
@@ -4198,39 +4199,39 @@ impl SimpleComponent for AppModel {
 
                 gtk::Grid {
                     attach[1, 1, 1, 1] = &amp;gtk::Label {
-                        // Alternative: #[track = &quot;counter.value % 10 == 0&quot;]
+                        // Alternative: #[track = "counter.value % 10 == 0"]
                         #[track(counter.value % 10 == 0)]
-                        set_label: &amp;format!(&quot;Grid works! ({})&quot;, counter.value),
+                        set_label: &amp;format!("Grid works! ({})", counter.value),
                     }
                 },
 
                 // A conditional widget
-                // Alternative: #[transition = &quot;SlideLeft&quot;]
+                // Alternative: #[transition = "SlideLeft"]
                 #[transition(SlideLeft)]
                 append = if counter.value % 2 == 0 {
                     gtk::Label {
-                        set_label: &quot;Value is even&quot;,
+                        set_label: "Value is even",
                     }
                 } else if counter.value % 3 == 0 {
                     gtk::Label {
-                        set_label: &quot;Value is dividable by 3&quot;,
+                        set_label: "Value is dividable by 3",
                     }
                 } else {
                     gtk::Label {
-                        set_label: &quot;Value is odd&quot;,
+                        set_label: "Value is odd",
                     }
                 },
 
-                #[transition = &quot;SlideRight&quot;]
+                #[transition = "SlideRight"]
                 append: match_stack = match counter.value {
                     (0..=2) =&gt; {
                         gtk::Label {
-                            set_label: &quot;Value is smaller than 3&quot;,
+                            set_label: "Value is smaller than 3",
                         }
                     },
                     _ =&gt; {
                         gtk::Label {
-                            set_label: &quot;Value is higher than 2&quot;,
+                            set_label: "Value is higher than 2",
                         }
                     }
                 },
@@ -4238,22 +4239,22 @@ impl SimpleComponent for AppModel {
                 append = &amp;gtk::Label,
 
                 gtk::Label::builder()
-                    .label(&quot;Builder pattern works!&quot;)
+                    .label("Builder pattern works!")
                     .selectable(true)
                     .build(),
 
-                gtk::Label::new(Some(&quot;Constructors work!&quot;)),
+                gtk::Label::new(Some("Constructors work!")),
 
                 /// Counter label
                 gtk::Label {
                     #[watch]
-                    set_label: &amp;format!(&quot;Counter: {}&quot;, counter.value),
+                    set_label: &amp;format!("Counter: {}", counter.value),
                     #[track]
                     set_margin_all: counter.value.into(),
                 },
 
                 gtk::ToggleButton {
-                    set_label: &quot;Counter is even&quot;,
+                    set_label: "Counter is even",
                     #[watch]
                     #[block_signal(toggle_handler)]
                     set_active: counter.value % 2 == 0,
@@ -4276,7 +4277,7 @@ impl SimpleComponent for AppModel {
             }
         },
         gtk::Window {
-            set_title: Some(&quot;Another window&quot;),
+            set_title: Some("Another window"),
             set_default_width: 300,
             set_default_height: 100,
             set_transient_for: Some(&amp;main_window),
@@ -4286,9 +4287,9 @@ impl SimpleComponent for AppModel {
             #[watch]
             set_visible: counter.value == 42,
 
-            #[name = &quot;my_label_name&quot;]
+            #[name = "my_label_name"]
             gtk::Label {
-                set_label: &quot;You made it to 42!&quot;,
+                set_label: "You made it to 42!",
             }
         }
     }
@@ -4300,7 +4301,7 @@ impl SimpleComponent for AppModel {
     // Initialize the UI.
     fn init(
         init: Self::Init,
-        renamed_root: &amp;Self::Root,
+        renamed_root: Self::Root,
         sender: ComponentSender&lt;Self&gt;,
     ) -&gt; ComponentParts&lt;Self&gt; {
         let counter = AppModel {
@@ -4310,11 +4311,11 @@ impl SimpleComponent for AppModel {
 
         let test_field = 0;
 
-        // Set icon name randomly to Some(&quot;go-up-symbolic&quot;) or None
-        let icon_name = rand::random::&lt;bool&gt;().then_some(&quot;go-up-symbolic&quot;);
+        // Set icon name randomly to Some("go-up-symbolic") or None
+        let icon_name = rand::random::&lt;bool&gt;().then_some("go-up-symbolic");
 
-        let local_label = gtk::Label::new(Some(&quot;local_label&quot;));
-        let local_ref_label_value = gtk::Label::new(Some(&quot;local_ref_label&quot;));
+        let local_label = gtk::Label::new(Some("local_label"));
+        let local_ref_label_value = gtk::Label::new(Some("local_ref_label"));
         let local_ref_label = &amp;local_ref_label_value;
         // Insert the macro code generation here
         let widgets = view_output!();
@@ -4416,7 +4417,7 @@ struct AppWidgets {
         main_window
     }</code></pre>
 <h4 id="initialization-before-the-view_output-entrypoint"><a class="header" href="#initialization-before-the-view_output-entrypoint">Initialization before the <code>view_output</code> entrypoint</a></h4>
-<p>A large part of the code generated by the macro is dedicated to the initialization of the view. This code is &quot;expanded&quot; from the <code>view_output!()</code> entrypoint. First, let's find the code we wrote before the entry point:</p>
+<p>A large part of the code generated by the macro is dedicated to the initialization of the view. This code is "expanded" from the <code>view_output!()</code> entrypoint. First, let's find the code we wrote before the entry point:</p>
 <pre><code class="language-rust ignore">    fn init(
         init: Self::Init,
         renamed_root: &amp;Self::Root,
@@ -4427,9 +4428,9 @@ struct AppWidgets {
             tracker: 0,
         };
         let test_field = 0;
-        let icon_name = rand::random::&lt;bool&gt;().then(|| &quot;go-up-symbolic&quot;);
-        let local_label = gtk::Label::new(Some(&quot;local_label&quot;));
-        let local_ref_label_value = gtk::Label::new(Some(&quot;local_ref_label&quot;));
+        let icon_name = rand::random::&lt;bool&gt;().then(|| "go-up-symbolic");
+        let local_label = gtk::Label::new(Some("local_label"));
+        let local_ref_label_value = gtk::Label::new(Some("local_ref_label"));
         let local_ref_label = &amp;local_ref_label_value;</code></pre>
 <p>Next, the macro initializes all widgets. Widgets defined by their type are initialized with their <code>Default</code> implementation. Any constructors or functions that are invoked manually are left unchanged in the output.</p>
 <pre><code class="language-rust ignore">        let main_window = renamed_root.clone();
@@ -4450,17 +4451,17 @@ struct AppWidgets {
         let _gtk_label_8 = gtk::Label::default();
         let _gtk_label_9 = gtk::Label::default();
         let _gtk_label_builder_10 = gtk::Label::builder()
-            .label(&quot;Builder pattern works!&quot;)
+            .label("Builder pattern works!")
             .selectable(true)
             .build();
-        let _gtk_label_new_11 = gtk::Label::new(Some(&quot;Constructors work!&quot;));
+        let _gtk_label_new_11 = gtk::Label::new(Some("Constructors work!"));
         let _gtk_label_12 = gtk::Label::default();
         let _gtk_togglebutton_13 = gtk::ToggleButton::default();
         let _gtk_window_15 = gtk::Window::default();
         let my_label_name = gtk::Label::default();</code></pre>
 <h4 id="assigning-properties"><a class="header" href="#assigning-properties">Assigning properties</a></h4>
 <p>Assigning properties looks pretty normal as well. In the middle we have an optional assignment that uses an <code>if let</code> statement to only assign properties that match <code>Some(data)</code>. In the macro we marked this line with a <code>?</code>.</p>
-<pre><code class="language-rust ignore">        main_window.set_title(Some(&quot;Macro reference example&quot;));
+<pre><code class="language-rust ignore">        main_window.set_title(Some("Macro reference example"));
         main_window.set_default_width(300);
         main_window.set_default_height(100);
         relm4::RelmContainerExt::container_add(&amp;main_window, &amp;_gtk_box_14);
@@ -4468,12 +4469,12 @@ struct AppWidgets {
         _gtk_box_14.set_spacing(5);
         _gtk_box_14.set_margin_all(5);
         _gtk_box_14.append(&amp;inc_button);
-        inc_button.set_label(&quot;Increment&quot;);
+        inc_button.set_label("Increment");
         if let Some(__p_assign) = icon_name {
             inc_button.set_icon_name(__p_assign);
         }
         relm4::RelmContainerExt::container_add(&amp;_gtk_box_14, &amp;_gtk_button_0);
-        _gtk_button_0.set_label(&quot;Decrement&quot;);
+        _gtk_button_0.set_label("Decrement");
         relm4::RelmContainerExt::container_add(&amp;_gtk_box_14, &amp;_gtk_grid_2);
         _gtk_grid_2.attach(&amp;_gtk_label_1, 1, 1, 1, 1);
         _gtk_label_1
@@ -4481,7 +4482,7 @@ struct AppWidgets {
                 &amp;{
                     let res = ::alloc::fmt::format(
                         ::core::fmt::Arguments::new_v1(
-                            &amp;[&quot;Grid works! (&quot;, &quot;)&quot;],
+                            &amp;["Grid works! (", ")"],
                             &amp;[::core::fmt::ArgumentV1::new_display(&amp;counter.value)],
                         ),
                     );
@@ -4489,17 +4490,17 @@ struct AppWidgets {
                 },
             );
         _gtk_box_14.append(&amp;_conditional_widget_3);
-        _conditional_widget_3.add_named(&amp;_gtk_label_4, Some(&quot;0&quot;));
-        _gtk_label_4.set_label(&quot;Value is even&quot;);
-        _conditional_widget_3.add_named(&amp;_gtk_label_5, Some(&quot;1&quot;));
-        _gtk_label_5.set_label(&quot;Value is dividable by 3&quot;);
-        _conditional_widget_3.add_named(&amp;_gtk_label_6, Some(&quot;2&quot;));
-        _gtk_label_6.set_label(&quot;Value is odd&quot;);
+        _conditional_widget_3.add_named(&amp;_gtk_label_4, Some("0"));
+        _gtk_label_4.set_label("Value is even");
+        _conditional_widget_3.add_named(&amp;_gtk_label_5, Some("1"));
+        _gtk_label_5.set_label("Value is dividable by 3");
+        _conditional_widget_3.add_named(&amp;_gtk_label_6, Some("2"));
+        _gtk_label_6.set_label("Value is odd");
         _gtk_box_14.append(&amp;match_stack);
-        match_stack.add_named(&amp;_gtk_label_7, Some(&quot;0&quot;));
-        _gtk_label_7.set_label(&quot;Value is smaller than 3&quot;);
-        match_stack.add_named(&amp;_gtk_label_8, Some(&quot;1&quot;));
-        _gtk_label_8.set_label(&quot;Value is higher than 2&quot;);
+        match_stack.add_named(&amp;_gtk_label_7, Some("0"));
+        _gtk_label_7.set_label("Value is smaller than 3");
+        match_stack.add_named(&amp;_gtk_label_8, Some("1"));
+        _gtk_label_8.set_label("Value is higher than 2");
         _gtk_box_14.append(&amp;_gtk_label_9);</code></pre>
 <h4 id="events-1"><a class="header" href="#events-1">Events</a></h4>
 <p>Now the macro generates the code for connecting events.</p>
@@ -4532,7 +4533,7 @@ struct AppWidgets {
         };</code></pre>
 <p>The code looks very similar to what we wrote in the macro.</p>
 <pre><code class="language-rust ignore">                append: inc_button = &amp;gtk::Button {
-                    set_label: &quot;Increment&quot;,
+                    set_label: "Increment",
                     // Only set this if `icon_name` is Some
                     set_icon_name?: icon_name,
                     connect_clicked[sender] =&gt; move |_| {
@@ -4541,7 +4542,7 @@ struct AppWidgets {
                 },
 
                 gtk::Button {
-                    set_label: &quot;Decrement&quot;,
+                    set_label: "Decrement",
                     connect_clicked[sender] =&gt; move |_| {
                         sender.input(AppMsg::Decrement);
                     }
@@ -4580,7 +4581,7 @@ struct AppWidgets {
             widgets,
         }</code></pre>
 <h4 id="ui-updates-1"><a class="header" href="#ui-updates-1">UI updates</a></h4>
-<p>The last step of the macro is to generate the update logic within the <code>update_view</code> function. Any code present in the <code>pre_view</code> and <code>post_view</code> &quot;functions&quot; will be expanded before or after the generated code. Note that the generated code returns a private struct to prevent early returns in <code>pre_view</code> from skipping the rest of the view update code.</p>
+<p>The last step of the macro is to generate the update logic within the <code>update_view</code> function. Any code present in the <code>pre_view</code> and <code>post_view</code> "functions" will be expanded before or after the generated code. Note that the generated code returns a private struct to prevent early returns in <code>pre_view</code> from skipping the rest of the view update code.</p>
 <pre><code class="language-rust ignore">    /// Update the view to represent the updated model.
     fn update_view(&amp;self, widgets: &amp;mut Self::Widgets, sender: ComponentSender&lt;Self&gt;) {
         struct __DoNotReturnManually;
@@ -4620,7 +4621,7 @@ struct AppWidgets {
                         &amp;{
                             let res = ::alloc::fmt::format(
                                 ::core::fmt::Arguments::new_v1(
-                                    &amp;[&quot;Grid works! (&quot;, &quot;)&quot;],
+                                    &amp;["Grid works! (", ")"],
                                     &amp;[::core::fmt::ArgumentV1::new_display(&amp;counter.value)],
                                 ),
                             );
@@ -4630,33 +4631,33 @@ struct AppWidgets {
             }
             let __current_page = _conditional_widget_3
                 .visible_child_name()
-                .map_or(&quot;&quot;.to_string(), |s| s.as_str().to_string());
+                .map_or("".to_string(), |s| s.as_str().to_string());
             _conditional_widget_3
                 .set_visible_child_name(
                     if counter.value % 2 == 0 {
-                        let __page_active: bool = (__current_page == &quot;0&quot;);
-                        &quot;0&quot;
+                        let __page_active: bool = (__current_page == "0");
+                        "0"
                     } else if counter.value % 3 == 0 {
-                        let __page_active: bool = (__current_page == &quot;1&quot;);
-                        &quot;1&quot;
+                        let __page_active: bool = (__current_page == "1");
+                        "1"
                     } else {
-                        let __page_active: bool = (__current_page == &quot;2&quot;);
-                        &quot;2&quot;
+                        let __page_active: bool = (__current_page == "2");
+                        "2"
                     },
                 );
             let __current_page = match_stack
                 .visible_child_name()
-                .map_or(&quot;&quot;.to_string(), |s| s.as_str().to_string());
+                .map_or("".to_string(), |s| s.as_str().to_string());
             match_stack
                 .set_visible_child_name(
                     match counter.value {
                         (0..=2) =&gt; {
-                            let __page_active: bool = (__current_page == &quot;0&quot;);
-                            &quot;0&quot;
+                            let __page_active: bool = (__current_page == "0");
+                            "0"
                         }
                         _ =&gt; {
-                            let __page_active: bool = (__current_page == &quot;1&quot;);
-                            &quot;1&quot;
+                            let __page_active: bool = (__current_page == "1");
+                            "1"
                         }
                     },
                 );
@@ -4665,7 +4666,7 @@ struct AppWidgets {
                     &amp;{
                         let res = ::alloc::fmt::format(
                             ::core::fmt::Arguments::new_v1(
-                                &amp;[&quot;Counter: &quot;],
+                                &amp;["Counter: "],
                                 &amp;[::core::fmt::ArgumentV1::new_display(&amp;counter.value)],
                             ),
                         );
@@ -4705,7 +4706,7 @@ struct AppWidgets {
                     &amp;{
                         let res = ::alloc::fmt::format(
                             ::core::fmt::Arguments::new_v1(
-                                &amp;[&quot;Counter: &quot;],
+                                &amp;["Counter: "],
                                 &amp;[::core::fmt::ArgumentV1::new_display(&amp;counter.value)],
                             ),
                         );
@@ -4719,14 +4720,14 @@ struct AppWidgets {
 <pre><code class="language-rust ignore">            _conditional_widget_3
                 .set_visible_child_name(
                     if counter.value % 2 == 0 {
-                        let __page_active: bool = (__current_page == &quot;0&quot;);
-                        &quot;0&quot;
+                        let __page_active: bool = (__current_page == "0");
+                        "0"
                     } else if counter.value % 3 == 0 {
-                        let __page_active: bool = (__current_page == &quot;1&quot;);
-                        &quot;1&quot;
+                        let __page_active: bool = (__current_page == "1");
+                        "1"
                     } else {
-                        let __page_active: bool = (__current_page == &quot;2&quot;);
-                        &quot;2&quot;
+                        let __page_active: bool = (__current_page == "2");
+                        "2"
                     },
                 );</code></pre>
 <h2 id="conclusion-2"><a class="header" href="#conclusion-2">Conclusion</a></h2>
@@ -4809,8 +4810,8 @@ enum AppMsg {
 impl ::core::fmt::Debug for AppMsg {
     fn fmt(&amp;self, f: &amp;mut ::core::fmt::Formatter) -&gt; ::core::fmt::Result {
         match self {
-            AppMsg::Increment =&gt; ::core::fmt::Formatter::write_str(f, &quot;Increment&quot;),
-            AppMsg::Decrement =&gt; ::core::fmt::Formatter::write_str(f, &quot;Decrement&quot;),
+            AppMsg::Increment =&gt; ::core::fmt::Formatter::write_str(f, "Increment"),
+            AppMsg::Decrement =&gt; ::core::fmt::Formatter::write_str(f, "Decrement"),
         }
     }
 }
@@ -4872,30 +4873,30 @@ struct AppWidgets {
 impl ::core::fmt::Debug for AppWidgets {
     fn fmt(&amp;self, f: &amp;mut ::core::fmt::Formatter) -&gt; ::core::fmt::Result {
         let names: &amp;'static _ = &amp;[
-            &quot;main_window&quot;,
-            &quot;_gtk_box_14&quot;,
-            &quot;inc_button&quot;,
-            &quot;_gtk_button_0&quot;,
-            &quot;_gtk_grid_2&quot;,
-            &quot;_gtk_label_1&quot;,
-            &quot;_conditional_widget_3&quot;,
-            &quot;_gtk_label_4&quot;,
-            &quot;_gtk_label_5&quot;,
-            &quot;_gtk_label_6&quot;,
-            &quot;match_stack&quot;,
-            &quot;_gtk_label_7&quot;,
-            &quot;_gtk_label_8&quot;,
-            &quot;_gtk_label_9&quot;,
-            &quot;_gtk_label_builder_10&quot;,
-            &quot;_gtk_label_new_11&quot;,
-            &quot;_gtk_label_12&quot;,
-            &quot;_gtk_togglebutton_13&quot;,
-            &quot;toggle_handler&quot;,
-            &quot;local_label&quot;,
-            &quot;local_ref_label&quot;,
-            &quot;_gtk_window_15&quot;,
-            &quot;my_label_name&quot;,
-            &quot;test_field&quot;,
+            "main_window",
+            "_gtk_box_14",
+            "inc_button",
+            "_gtk_button_0",
+            "_gtk_grid_2",
+            "_gtk_label_1",
+            "_conditional_widget_3",
+            "_gtk_label_4",
+            "_gtk_label_5",
+            "_gtk_label_6",
+            "match_stack",
+            "_gtk_label_7",
+            "_gtk_label_8",
+            "_gtk_label_9",
+            "_gtk_label_builder_10",
+            "_gtk_label_new_11",
+            "_gtk_label_12",
+            "_gtk_togglebutton_13",
+            "toggle_handler",
+            "local_label",
+            "local_ref_label",
+            "_gtk_window_15",
+            "my_label_name",
+            "test_field",
         ];
         let values: &amp;[&amp;dyn ::core::fmt::Debug] = &amp;[
             &amp;&amp;self.main_window,
@@ -4925,7 +4926,7 @@ impl ::core::fmt::Debug for AppWidgets {
         ];
         ::core::fmt::Formatter::debug_struct_fields_finish(
             f,
-            &quot;AppWidgets&quot;,
+            "AppWidgets",
             names,
             values,
         )
@@ -4991,7 +4992,7 @@ impl SimpleComponent for AppModel {
                         &amp;{
                             let res = ::alloc::fmt::format(
                                 ::core::fmt::Arguments::new_v1(
-                                    &amp;[&quot;Grid works! (&quot;, &quot;)&quot;],
+                                    &amp;["Grid works! (", ")"],
                                     &amp;[::core::fmt::ArgumentV1::new_display(&amp;counter.value)],
                                 ),
                             );
@@ -5001,33 +5002,33 @@ impl SimpleComponent for AppModel {
             }
             let __current_page = _conditional_widget_3
                 .visible_child_name()
-                .map_or(&quot;&quot;.to_string(), |s| s.as_str().to_string());
+                .map_or("".to_string(), |s| s.as_str().to_string());
             _conditional_widget_3
                 .set_visible_child_name(
                     if counter.value % 2 == 0 {
-                        let __page_active: bool = (__current_page == &quot;0&quot;);
-                        &quot;0&quot;
+                        let __page_active: bool = (__current_page == "0");
+                        "0"
                     } else if counter.value % 3 == 0 {
-                        let __page_active: bool = (__current_page == &quot;1&quot;);
-                        &quot;1&quot;
+                        let __page_active: bool = (__current_page == "1");
+                        "1"
                     } else {
-                        let __page_active: bool = (__current_page == &quot;2&quot;);
-                        &quot;2&quot;
+                        let __page_active: bool = (__current_page == "2");
+                        "2"
                     },
                 );
             let __current_page = match_stack
                 .visible_child_name()
-                .map_or(&quot;&quot;.to_string(), |s| s.as_str().to_string());
+                .map_or("".to_string(), |s| s.as_str().to_string());
             match_stack
                 .set_visible_child_name(
                     match counter.value {
                         (0..=2) =&gt; {
-                            let __page_active: bool = (__current_page == &quot;0&quot;);
-                            &quot;0&quot;
+                            let __page_active: bool = (__current_page == "0");
+                            "0"
                         }
                         _ =&gt; {
-                            let __page_active: bool = (__current_page == &quot;1&quot;);
-                            &quot;1&quot;
+                            let __page_active: bool = (__current_page == "1");
+                            "1"
                         }
                     },
                 );
@@ -5036,7 +5037,7 @@ impl SimpleComponent for AppModel {
                     &amp;{
                         let res = ::alloc::fmt::format(
                             ::core::fmt::Arguments::new_v1(
-                                &amp;[&quot;Counter: &quot;],
+                                &amp;["Counter: "],
                                 &amp;[::core::fmt::ArgumentV1::new_display(&amp;counter.value)],
                             ),
                         );
@@ -5078,9 +5079,9 @@ impl SimpleComponent for AppModel {
             tracker: 0,
         };
         let test_field = 0;
-        let icon_name = rand::random::&lt;bool&gt;().then(|| &quot;go-up-symbolic&quot;);
-        let local_label = gtk::Label::new(Some(&quot;local_label&quot;));
-        let local_ref_label_value = gtk::Label::new(Some(&quot;local_ref_label&quot;));
+        let icon_name = rand::random::&lt;bool&gt;().then(|| "go-up-symbolic");
+        let local_label = gtk::Label::new(Some("local_label"));
+        let local_ref_label_value = gtk::Label::new(Some("local_ref_label"));
         let local_ref_label = &amp;local_ref_label_value;
         let main_window = renamed_root.clone();
         let _gtk_box_14 = gtk::Box::default();
@@ -5100,10 +5101,10 @@ impl SimpleComponent for AppModel {
         let _gtk_label_8 = gtk::Label::default();
         let _gtk_label_9 = gtk::Label::default();
         let _gtk_label_builder_10 = gtk::Label::builder()
-            .label(&quot;Builder pattern works!&quot;)
+            .label("Builder pattern works!")
             .selectable(true)
             .build();
-        let _gtk_label_new_11 = gtk::Label::new(Some(&quot;Constructors work!&quot;));
+        let _gtk_label_new_11 = gtk::Label::new(Some("Constructors work!"));
         let _gtk_label_12 = gtk::Label::default();
         let _gtk_togglebutton_13 = gtk::ToggleButton::default();
         let _gtk_window_15 = gtk::Window::default();
@@ -5136,7 +5137,7 @@ impl SimpleComponent for AppModel {
                 })
         };
         {}
-        main_window.set_title(Some(&quot;Macro reference example&quot;));
+        main_window.set_title(Some("Macro reference example"));
         main_window.set_default_width(300);
         main_window.set_default_height(100);
         relm4::RelmContainerExt::container_add(&amp;main_window, &amp;_gtk_box_14);
@@ -5144,12 +5145,12 @@ impl SimpleComponent for AppModel {
         _gtk_box_14.set_spacing(5);
         _gtk_box_14.set_margin_all(5);
         _gtk_box_14.append(&amp;inc_button);
-        inc_button.set_label(&quot;Increment&quot;);
+        inc_button.set_label("Increment");
         if let Some(__p_assign) = icon_name {
             inc_button.set_icon_name(__p_assign);
         }
         relm4::RelmContainerExt::container_add(&amp;_gtk_box_14, &amp;_gtk_button_0);
-        _gtk_button_0.set_label(&quot;Decrement&quot;);
+        _gtk_button_0.set_label("Decrement");
         relm4::RelmContainerExt::container_add(&amp;_gtk_box_14, &amp;_gtk_grid_2);
         _gtk_grid_2.attach(&amp;_gtk_label_1, 1, 1, 1, 1);
         _gtk_label_1
@@ -5157,7 +5158,7 @@ impl SimpleComponent for AppModel {
                 &amp;{
                     let res = ::alloc::fmt::format(
                         ::core::fmt::Arguments::new_v1(
-                            &amp;[&quot;Grid works! (&quot;, &quot;)&quot;],
+                            &amp;["Grid works! (", ")"],
                             &amp;[::core::fmt::ArgumentV1::new_display(&amp;counter.value)],
                         ),
                     );
@@ -5165,17 +5166,17 @@ impl SimpleComponent for AppModel {
                 },
             );
         _gtk_box_14.append(&amp;_conditional_widget_3);
-        _conditional_widget_3.add_named(&amp;_gtk_label_4, Some(&quot;0&quot;));
-        _gtk_label_4.set_label(&quot;Value is even&quot;);
-        _conditional_widget_3.add_named(&amp;_gtk_label_5, Some(&quot;1&quot;));
-        _gtk_label_5.set_label(&quot;Value is dividable by 3&quot;);
-        _conditional_widget_3.add_named(&amp;_gtk_label_6, Some(&quot;2&quot;));
-        _gtk_label_6.set_label(&quot;Value is odd&quot;);
+        _conditional_widget_3.add_named(&amp;_gtk_label_4, Some("0"));
+        _gtk_label_4.set_label("Value is even");
+        _conditional_widget_3.add_named(&amp;_gtk_label_5, Some("1"));
+        _gtk_label_5.set_label("Value is dividable by 3");
+        _conditional_widget_3.add_named(&amp;_gtk_label_6, Some("2"));
+        _gtk_label_6.set_label("Value is odd");
         _gtk_box_14.append(&amp;match_stack);
-        match_stack.add_named(&amp;_gtk_label_7, Some(&quot;0&quot;));
-        _gtk_label_7.set_label(&quot;Value is smaller than 3&quot;);
-        match_stack.add_named(&amp;_gtk_label_8, Some(&quot;1&quot;));
-        _gtk_label_8.set_label(&quot;Value is higher than 2&quot;);
+        match_stack.add_named(&amp;_gtk_label_7, Some("0"));
+        _gtk_label_7.set_label("Value is smaller than 3");
+        match_stack.add_named(&amp;_gtk_label_8, Some("1"));
+        _gtk_label_8.set_label("Value is higher than 2");
         _gtk_box_14.append(&amp;_gtk_label_9);
         relm4::RelmContainerExt::container_add(&amp;_gtk_box_14, &amp;_gtk_label_builder_10);
         relm4::RelmContainerExt::container_add(&amp;_gtk_box_14, &amp;_gtk_label_new_11);
@@ -5185,7 +5186,7 @@ impl SimpleComponent for AppModel {
                 &amp;{
                     let res = ::alloc::fmt::format(
                         ::core::fmt::Arguments::new_v1(
-                            &amp;[&quot;Counter: &quot;],
+                            &amp;["Counter: "],
                             &amp;[::core::fmt::ArgumentV1::new_display(&amp;counter.value)],
                         ),
                     );
@@ -5194,7 +5195,7 @@ impl SimpleComponent for AppModel {
             );
         _gtk_label_12.set_margin_all(counter.value.into());
         relm4::RelmContainerExt::container_add(&amp;_gtk_box_14, &amp;_gtk_togglebutton_13);
-        _gtk_togglebutton_13.set_label(&quot;Counter is even&quot;);
+        _gtk_togglebutton_13.set_label("Counter is even");
         {
             use relm4::WidgetRef;
             #[allow(clippy::needless_borrow)]
@@ -5217,36 +5218,36 @@ impl SimpleComponent for AppModel {
         relm4::RelmContainerExt::container_add(&amp;_gtk_box_14, &amp;local_ref_label);
         local_ref_label.set_opacity(0.7);
         local_ref_label.set_size_request(40, 40);
-        let __current_page = &quot;&quot;;
+        let __current_page = "";
         _conditional_widget_3
             .set_visible_child_name(
                 if counter.value % 2 == 0 {
-                    let __page_active: bool = (__current_page == &quot;0&quot;);
-                    &quot;0&quot;
+                    let __page_active: bool = (__current_page == "0");
+                    "0"
                 } else if counter.value % 3 == 0 {
-                    let __page_active: bool = (__current_page == &quot;1&quot;);
-                    &quot;1&quot;
+                    let __page_active: bool = (__current_page == "1");
+                    "1"
                 } else {
-                    let __page_active: bool = (__current_page == &quot;2&quot;);
-                    &quot;2&quot;
+                    let __page_active: bool = (__current_page == "2");
+                    "2"
                 },
             );
-        let __current_page = &quot;&quot;;
+        let __current_page = "";
         match_stack
             .set_visible_child_name(
                 match counter.value {
-                    (0..=2) =&gt; &quot;0&quot;,
-                    _ =&gt; &quot;1&quot;,
+                    (0..=2) =&gt; "0",
+                    _ =&gt; "1",
                 },
             );
-        _gtk_window_15.set_title(Some(&quot;Another window&quot;));
+        _gtk_window_15.set_title(Some("Another window"));
         _gtk_window_15.set_default_width(300);
         _gtk_window_15.set_default_height(100);
         _gtk_window_15.set_transient_for(Some(&amp;main_window));
         _gtk_window_15.hide();
         _gtk_window_15.set_visible(counter.value == 42);
         relm4::RelmContainerExt::container_add(&amp;_gtk_window_15, &amp;my_label_name);
-        my_label_name.set_label(&quot;You made it to 42!&quot;);
+        my_label_name.set_label("You made it to 42!");
         let widgets = Self::Widgets {
             main_window,
             _gtk_box_14,
@@ -5309,7 +5310,7 @@ struct AppComponents {
     dialog: RelmComponent&lt;DialogModel, AppModel&gt;,
 }</code></pre>
 <p>The derive macro will always use <code>RelmWorker::with_new_thread()</code> for workers.</p>
-<p>Also, <code>RelmComponent::with_new_thread()</code> was removed due to the restructuring. 
+<p>Also, <code>RelmComponent::with_new_thread()</code> was removed due to the restructuring.
 It's recommended to use workers or message handlers for blocking operations instead.</p>
 <blockquote>
 <p>If there's anything missing, let me know. You can simply open an issue on <a href="https://github.com/Relm4/Relm4">GitHub</a> or write a message in the <a href="https://matrix.to/#/#relm4:matrix.org">Matrix room</a>.</p>
@@ -5460,6 +5461,11 @@ When the guard is dropped, all changes are rendered automatically, so no render 
 <li>Use <a href="https://docs.rs/relm4/latest/relm4/actions/struct.RelmActionGroup.html#method.register_for_widget"><code>RelmActionGroup::register_for_widget()</code></a> and <a href="https://docs.rs/relm4/latest/relm4/actions/struct.RelmActionGroup.html#method.register_for_main_application"><code>RelmActionGroup::register_for_main_application()</code></a> instead of <a href="https://gtk-rs.org/gtk4-rs/git/docs/gtk4/prelude/trait.WidgetExt.html#method.insert_action_group"><code>WidgetExt::insert_action_group()</code></a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="migration-from-v06-to-v07"><a class="header" href="#migration-from-v06-to-v07">Migration from v0.6 to v0.7</a></h1>
+<h2 id="component-changes"><a class="header" href="#component-changes">Component changes</a></h2>
+<p>Switching between the <code>Component</code> and <code>AsyncComponent</code> traits has been a bit unpleasant in previous versions due to complex errors generated by the code generated by <code>async-trait</code>.
+To avoid this, the signatures of <code>Component</code> and <code>AsyncComponent</code> were unified.</p>
+<p>This means, that <code>Component::init()</code> and <code>SimpleComponent::init()</code> now take <code>Self::Root</code> as owned parameter instead of a reference (<code>&amp;Self::Root</code>).
+In most places, this just means that you have to remove a <code>&amp;</code>.</p>
 <h2 id="factory-changes"><a class="header" href="#factory-changes">Factory changes</a></h2>
 <p><code>ParentInput</code> and <code>forward_to_parent()</code> were removed from <code>FactoryComponent</code> and <code>AsyncFactoryComponent</code>.
 Instead, factories now support basically the same builder pattern as components.</p>
@@ -5519,6 +5525,11 @@ impl SimpleComponent for App {
     }
 }
 <span class="boring">}</span></code></pre></pre>
+<h2 id="other-changes"><a class="header" href="#other-changes">Other changes</a></h2>
+<ul>
+<li><code>set_global_css</code> and <code>set_global_css_from_file</code> are now methods of <code>RelmApp</code> to prevent calling them before initializing GTK</li>
+<li>The <code>drawing</code> module was moved into the new <code>abstractions</code> module</li>
+</ul>
 
                     </main>
 

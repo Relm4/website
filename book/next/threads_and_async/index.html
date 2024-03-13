@@ -183,7 +183,7 @@
 <p>Most user inputs are fairly easy to process.
 After receiving a message, you process it in the update function and update the view.
 Everything only takes a couple of milliseconds at most, so the user won't even notice the slight delay.</p>
-<p>However, when you have to perform complex calculations or I/O-bound operations that take more than a couple of milliseconds to complete, the user will start noticing that the app doesn't feel reactive or &quot;snappy&quot; anymore.
+<p>However, when you have to perform complex calculations or I/O-bound operations that take more than a couple of milliseconds to complete, the user will start noticing that the app doesn't feel reactive or "snappy" anymore.
 For example, such operations are performing network requests, filesystems operations or calculating the last digit of π.</p>
 <p>To better visualize what happens, let's look at the following image.
 The expected behavior is on the left, where processing of updates is fast and the app spends most of the time idle, waiting for new user inputs (aka events).

@@ -194,21 +194,21 @@
 </code></pre>
 <p>The icons are placed under the <code>data/icons</code> directory.</p>
 <p>The <code>icons.gresource.xml</code> file looks like this (adapt it as required, e.g. using <code>-symbolic</code> icon names):</p>
-<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;gresources&gt;
-    &lt;gresource prefix=&quot;com/example/Foobar/icons/24x24/actions/&quot;&gt;
-        &lt;file preprocess=&quot;xml-stripblanks&quot; alias=&quot;icon-foo.svg&quot;&gt;icons/icon-foo.svg&lt;/file&gt;
-        &lt;file preprocess=&quot;xml-stripblanks&quot; alias=&quot;icon-bar.svg&quot;&gt;icons/icon-bar.svg&lt;/file&gt;
+    &lt;gresource prefix="com/example/Foobar/icons/24x24/actions/"&gt;
+        &lt;file preprocess="xml-stripblanks" alias="icon-foo.svg"&gt;icons/icon-foo.svg&lt;/file&gt;
+        &lt;file preprocess="xml-stripblanks" alias="icon-bar.svg"&gt;icons/icon-bar.svg&lt;/file&gt;
     &lt;/gresource&gt;
 &lt;/gresources&gt;
 </code></pre>
 <h3 id="cargotoml"><a class="header" href="#cargotoml"><code>Cargo.toml</code></a></h3>
 <p>In <code>Cargo.toml</code>, we add a build dependency on <code>glib-build-tools</code>. This gives us access to the <code>glib_build_tools::compile_resources</code> function which we will need later:</p>
 <pre><code class="language-toml">[package]
-name = &quot;foobar&quot;
+name = "foobar"
 
 [build-dependencies]
-glib-build-tools = &quot;0.17.10&quot;
+glib-build-tools = "0.17.10"
 </code></pre>
 <p>Note: you should ensure that the <code>glib-build-tools</code> version aligns with the general GLib version you are building for.</p>
 <h3 id="buildrs"><a class="header" href="#buildrs"><code>build.rs</code></a></h3>
@@ -217,23 +217,23 @@ glib-build-tools = &quot;0.17.10&quot;
 
 fn main() {
     compile_resources(
-        &amp;[&quot;data&quot;],
-        &quot;data/icons.gresource.xml&quot;,
-        &quot;icons.gresource&quot;,
+        &amp;["data"],
+        "data/icons.gresource.xml",
+        "icons.gresource",
     );
 }</code></pre></pre>
 <h3 id="mainrs"><a class="header" href="#mainrs"><code>main.rs</code></a></h3>
 <p>In <code>main.rs</code> (or wherever you initialise your Relm4 app), we load the <code>icons.gresource</code> bundle that Cargo generates:</p>
 <pre><pre class="playground"><code class="language-rust edition2021">fn initialize_custom_icons() {
-    gio::resources_register_include!(&quot;icons.gresource&quot;).unwrap();
+    gio::resources_register_include!("icons.gresource").unwrap();
 
     let display = gdk::Display::default().unwrap();
     let theme = gtk::IconTheme::for_display(&amp;display);
-    theme.add_resource_path(&quot;/com/example/Foobar/icons&quot;);
+    theme.add_resource_path("/com/example/Foobar/icons");
 }
 
 fn main() {
-    let app = RelmApp::new(&quot;com.example.Foobar&quot;);
+    let app = RelmApp::new("com.example.Foobar");
 
     // (optional) initialize default icons
     relm4_icons::initialize_icons();
@@ -246,7 +246,7 @@ fn main() {
 </span><span class="boring">fn main() {
 </span>view! {
     gtk::Button {
-        set_icon_name: &quot;icon-foo&quot;
+        set_icon_name: "icon-foo"
     }
 }
 <span class="boring">}</span></code></pre></pre>

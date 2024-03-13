@@ -207,7 +207,7 @@ struct AppComponents {
     dialog: RelmComponent&lt;DialogModel, AppModel&gt;,
 }</code></pre>
 <p>The derive macro will always use <code>RelmWorker::with_new_thread()</code> for workers.</p>
-<p>Also, <code>RelmComponent::with_new_thread()</code> was removed due to the restructuring. 
+<p>Also, <code>RelmComponent::with_new_thread()</code> was removed due to the restructuring.
 It's recommended to use workers or message handlers for blocking operations instead.</p>
 <blockquote>
 <p>If there's anything missing, let me know. You can simply open an issue on <a href="https://github.com/Relm4/Relm4">GitHub</a> or write a message in the <a href="https://matrix.to/#/#relm4:matrix.org">Matrix room</a>.</p>

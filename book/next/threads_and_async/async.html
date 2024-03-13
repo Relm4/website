@@ -223,11 +223,11 @@ Therefore, Relm4 allows you to specify widgets that will be displayed while your
 <blockquote>
 <p>If your init function doesn't await or completes quickly, you don't need to implement <code>init_loading_widgets</code>.</p>
 </blockquote>
-<pre><code class="language-rust no_run noplayground">    fn init_loading_widgets(root: &amp;mut Self::Root) -&gt; Option&lt;LoadingWidgets&gt; {
+<pre><code class="language-rust no_run noplayground">    fn init_loading_widgets(root: Self::Root) -&gt; Option&lt;LoadingWidgets&gt; {
         view! {
-            #[local_ref]
+            #[local]
             root {
-                set_title: Some(&quot;Simple app&quot;),
+                set_title: Some("Simple app"),
                 set_default_size: (300, 100),
 
                 // This will be removed automatically by
@@ -300,29 +300,29 @@ impl AsyncComponent for App {
                 set_margin_all: 5,
 
                 gtk::Button {
-                    set_label: &quot;Increment&quot;,
+                    set_label: "Increment",
                     connect_clicked =&gt; Msg::Increment,
                 },
 
                 gtk::Button {
-                    set_label: &quot;Decrement&quot;,
+                    set_label: "Decrement",
                     connect_clicked =&gt; Msg::Decrement,
                 },
 
                 gtk::Label {
                     #[watch]
-                    set_label: &amp;format!(&quot;Counter: {}&quot;, model.counter),
+                    set_label: &amp;format!("Counter: {}", model.counter),
                     set_margin_all: 5,
                 }
             }
         }
     }
 
-    fn init_loading_widgets(root: &amp;mut Self::Root) -&gt; Option&lt;LoadingWidgets&gt; {
+    fn init_loading_widgets(root: Self::Root) -&gt; Option&lt;LoadingWidgets&gt; {
         view! {
-            #[local_ref]
+            #[local]
             root {
-                set_title: Some(&quot;Simple app&quot;),
+                set_title: Some("Simple app"),
                 set_default_size: (300, 100),
 
                 // This will be removed automatically by
@@ -371,7 +371,7 @@ impl AsyncComponent for App {
 }
 
 fn main() {
-    let app = RelmApp::new(&quot;relm4.example.simple_async&quot;);
+    let app = RelmApp::new("relm4.example.simple_async");
     app.run_async::&lt;App&gt;(0);
 }</code></pre>
 

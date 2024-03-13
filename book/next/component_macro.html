@@ -198,7 +198,7 @@ impl SimpleComponent for AppModel {
 
     view! {
         gtk::Window {
-            set_title: Some(&quot;Simple app&quot;),
+            set_title: Some("Simple app"),
             set_default_width: 300,
             set_default_height: 100,
 
@@ -208,17 +208,17 @@ impl SimpleComponent for AppModel {
                 set_margin_all: 5,
 
                 gtk::Button {
-                    set_label: &quot;Increment&quot;,
+                    set_label: "Increment",
                     connect_clicked =&gt; AppMsg::Increment
                 },
 
-                gtk::Button::with_label(&quot;Decrement&quot;) {
+                gtk::Button::with_label("Decrement") {
                     connect_clicked =&gt; AppMsg::Decrement
                 },
 
                 gtk::Label {
                     #[watch]
-                    set_label: &amp;format!(&quot;Counter: {}&quot;, model.counter),
+                    set_label: &amp;format!("Counter: {}", model.counter),
                     set_margin_all: 5,
                 }
             }
@@ -228,7 +228,7 @@ impl SimpleComponent for AppModel {
     // Initialize the UI.
     fn init(
         counter: Self::Init,
-        root: &amp;Self::Root,
+        root: Self::Root,
         sender: ComponentSender&lt;Self&gt;,
     ) -&gt; ComponentParts&lt;Self&gt; {
         let model = AppModel { counter };
@@ -255,12 +255,12 @@ impl SimpleComponent for AppModel {
 <p>Next up - the heart of the <code>component</code> macro - the nested <code>view!</code> macro. Here, we can easily define widgets and assign properties to them.</p>
 <h3 id="properties"><a class="header" href="#properties">Properties</a></h3>
 <p>As you see, we start with the <code>gtk::Window</code> which is our root. Then we open up brackets and assign properties to the window. There's not much magic here but actually <a href="https://gtk-rs.org/gtk4-rs/git/docs/gtk4/prelude/trait.GtkWindowExt.html#tymethod.set_title"><code>set_title</code></a> is a method provided by gtk4-rs. So technically, the macro creates code like this:</p>
-<pre><code class="language-rust no_run noplayground">window.set_title(Some(&quot;Simple app&quot;));</code></pre>
+<pre><code class="language-rust no_run noplayground">window.set_title(Some("Simple app"));</code></pre>
 <h3 id="widgets"><a class="header" href="#widgets">Widgets</a></h3>
 <p>We assign a child to the window by nesting another widget inside it. Widgets may be nested indefinitely:</p>
 <pre><code class="language-rust no_run noplayground">            gtk::Box {</code></pre>
-<p>Sometimes we want to use a constructor function to initialize our widgets. For the second button we used the <code>gtk::Button::with_label</code> function. This function returns a new button with the &quot;Decrement&quot; label already set, so we don't have to call <code>set_label</code> afterwards.</p>
-<pre><code class="language-rust no_run noplayground">                gtk::Button::with_label(&quot;Decrement&quot;) {</code></pre>
+<p>Sometimes we want to use a constructor function to initialize our widgets. For the second button we used the <code>gtk::Button::with_label</code> function. This function returns a new button with the "Decrement" label already set, so we don't have to call <code>set_label</code> afterwards.</p>
+<pre><code class="language-rust no_run noplayground">                gtk::Button::with_label("Decrement") {</code></pre>
 <h3 id="events"><a class="header" href="#events">Events</a></h3>
 <p>To connect events, we use this general syntax:</p>
 <pre><code class="language-rust no_run noplayground">method_name[cloned_var1, cloned_var2, ...] =&gt; move |args, ...| { code... }</code></pre>
@@ -275,7 +275,7 @@ So instead of this:</p>
 <h3 id="ui-updates"><a class="header" href="#ui-updates">UI updates</a></h3>
 <p>The last special syntax of the <code>component</code> macro we'll cover here is the <code>#[watch]</code> attribute. It's just like the normal initialization except that it also updates the property in the view function. Without it, the counter label would never be updated.</p>
 <pre><code class="language-rust no_run noplayground">                    #[watch]
-                    set_label: &amp;format!(&quot;Counter: {}&quot;, model.counter),</code></pre>
+                    set_label: &amp;format!("Counter: {}", model.counter),</code></pre>
 <blockquote>
 <p>The full reference for the syntax of the widget macro can be found <a href="component_macro/reference.html">here</a>.</p>
 </blockquote>
@@ -307,7 +307,7 @@ impl SimpleComponent for AppModel {
 
     view! {
         gtk::Window {
-            set_title: Some(&quot;Simple app&quot;),
+            set_title: Some("Simple app"),
             set_default_width: 300,
             set_default_height: 100,
 
@@ -317,17 +317,17 @@ impl SimpleComponent for AppModel {
                 set_margin_all: 5,
 
                 gtk::Button {
-                    set_label: &quot;Increment&quot;,
+                    set_label: "Increment",
                     connect_clicked =&gt; AppMsg::Increment
                 },
 
-                gtk::Button::with_label(&quot;Decrement&quot;) {
+                gtk::Button::with_label("Decrement") {
                     connect_clicked =&gt; AppMsg::Decrement
                 },
 
                 gtk::Label {
                     #[watch]
-                    set_label: &amp;format!(&quot;Counter: {}&quot;, model.counter),
+                    set_label: &amp;format!("Counter: {}", model.counter),
                     set_margin_all: 5,
                 }
             }
@@ -337,7 +337,7 @@ impl SimpleComponent for AppModel {
     // Initialize the UI.
     fn init(
         counter: Self::Init,
-        root: &amp;Self::Root,
+        root: Self::Root,
         sender: ComponentSender&lt;Self&gt;,
     ) -&gt; ComponentParts&lt;Self&gt; {
         let model = AppModel { counter };
@@ -361,7 +361,7 @@ impl SimpleComponent for AppModel {
 }
 
 fn main() {
-    let app = RelmApp::new(&quot;relm4.test.simple&quot;);
+    let app = RelmApp::new("relm4.test.simple");
     app.run::&lt;AppModel&gt;(0);
 }</code></pre>
 

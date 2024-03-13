@@ -209,7 +209,7 @@ impl SimpleComponent for AppModel {
         #[root]
         #[name(main_window)]
         gtk::Window {
-            set_title: Some(&quot;Macro reference example&quot;),
+            set_title: Some("Macro reference example"),
             set_default_width: 300,
             set_default_height: 100,
 
@@ -219,7 +219,7 @@ impl SimpleComponent for AppModel {
                 set_margin_all: 5,
 
                 append: inc_button = &amp;gtk::Button {
-                    set_label: &quot;Increment&quot;,
+                    set_label: "Increment",
                     // Only set this if `icon_name` is Some
                     set_icon_name?: icon_name,
                     connect_clicked[sender] =&gt; move |_| {
@@ -228,7 +228,7 @@ impl SimpleComponent for AppModel {
                 },
 
                 gtk::Button {
-                    set_label: &quot;Decrement&quot;,
+                    set_label: "Decrement",
                     connect_clicked[sender] =&gt; move |_| {
                         sender.input(AppMsg::Decrement);
                     }
@@ -236,39 +236,39 @@ impl SimpleComponent for AppModel {
 
                 gtk::Grid {
                     attach[1, 1, 1, 1] = &amp;gtk::Label {
-                        // Alternative: #[track = &quot;counter.value % 10 == 0&quot;]
+                        // Alternative: #[track = "counter.value % 10 == 0"]
                         #[track(counter.value % 10 == 0)]
-                        set_label: &amp;format!(&quot;Grid works! ({})&quot;, counter.value),
+                        set_label: &amp;format!("Grid works! ({})", counter.value),
                     }
                 },
 
                 // A conditional widget
-                // Alternative: #[transition = &quot;SlideLeft&quot;]
+                // Alternative: #[transition = "SlideLeft"]
                 #[transition(SlideLeft)]
                 append = if counter.value % 2 == 0 {
                     gtk::Label {
-                        set_label: &quot;Value is even&quot;,
+                        set_label: "Value is even",
                     }
                 } else if counter.value % 3 == 0 {
                     gtk::Label {
-                        set_label: &quot;Value is dividable by 3&quot;,
+                        set_label: "Value is dividable by 3",
                     }
                 } else {
                     gtk::Label {
-                        set_label: &quot;Value is odd&quot;,
+                        set_label: "Value is odd",
                     }
                 },
 
-                #[transition = &quot;SlideRight&quot;]
+                #[transition = "SlideRight"]
                 append: match_stack = match counter.value {
                     (0..=2) =&gt; {
                         gtk::Label {
-                            set_label: &quot;Value is smaller than 3&quot;,
+                            set_label: "Value is smaller than 3",
                         }
                     },
                     _ =&gt; {
                         gtk::Label {
-                            set_label: &quot;Value is higher than 2&quot;,
+                            set_label: "Value is higher than 2",
                         }
                     }
                 },
@@ -276,22 +276,22 @@ impl SimpleComponent for AppModel {
                 append = &amp;gtk::Label,
 
                 gtk::Label::builder()
-                    .label(&quot;Builder pattern works!&quot;)
+                    .label("Builder pattern works!")
                     .selectable(true)
                     .build(),
 
-                gtk::Label::new(Some(&quot;Constructors work!&quot;)),
+                gtk::Label::new(Some("Constructors work!")),
 
                 /// Counter label
                 gtk::Label {
                     #[watch]
-                    set_label: &amp;format!(&quot;Counter: {}&quot;, counter.value),
+                    set_label: &amp;format!("Counter: {}", counter.value),
                     #[track]
                     set_margin_all: counter.value.into(),
                 },
 
                 gtk::ToggleButton {
-                    set_label: &quot;Counter is even&quot;,
+                    set_label: "Counter is even",
                     #[watch]
                     #[block_signal(toggle_handler)]
                     set_active: counter.value % 2 == 0,
@@ -314,7 +314,7 @@ impl SimpleComponent for AppModel {
             }
         },
         gtk::Window {
-            set_title: Some(&quot;Another window&quot;),
+            set_title: Some("Another window"),
             set_default_width: 300,
             set_default_height: 100,
             set_transient_for: Some(&amp;main_window),
@@ -324,9 +324,9 @@ impl SimpleComponent for AppModel {
             #[watch]
             set_visible: counter.value == 42,
 
-            #[name = &quot;my_label_name&quot;]
+            #[name = "my_label_name"]
             gtk::Label {
-                set_label: &quot;You made it to 42!&quot;,
+                set_label: "You made it to 42!",
             }
         }
     }
@@ -338,7 +338,7 @@ impl SimpleComponent for AppModel {
     // Initialize the UI.
     fn init(
         init: Self::Init,
-        renamed_root: &amp;Self::Root,
+        renamed_root: Self::Root,
         sender: ComponentSender&lt;Self&gt;,
     ) -&gt; ComponentParts&lt;Self&gt; {
         let counter = AppModel {
@@ -348,11 +348,11 @@ impl SimpleComponent for AppModel {
 
         let test_field = 0;
 
-        // Set icon name randomly to Some(&quot;go-up-symbolic&quot;) or None
-        let icon_name = rand::random::&lt;bool&gt;().then_some(&quot;go-up-symbolic&quot;);
+        // Set icon name randomly to Some("go-up-symbolic") or None
+        let icon_name = rand::random::&lt;bool&gt;().then_some("go-up-symbolic");
 
-        let local_label = gtk::Label::new(Some(&quot;local_label&quot;));
-        let local_ref_label_value = gtk::Label::new(Some(&quot;local_ref_label&quot;));
+        let local_label = gtk::Label::new(Some("local_label"));
+        let local_ref_label_value = gtk::Label::new(Some("local_ref_label"));
         let local_ref_label = &amp;local_ref_label_value;
         // Insert the macro code generation here
         let widgets = view_output!();
@@ -454,7 +454,7 @@ struct AppWidgets {
         main_window
     }</code></pre>
 <h4 id="initialization-before-the-view_output-entrypoint"><a class="header" href="#initialization-before-the-view_output-entrypoint">Initialization before the <code>view_output</code> entrypoint</a></h4>
-<p>A large part of the code generated by the macro is dedicated to the initialization of the view. This code is &quot;expanded&quot; from the <code>view_output!()</code> entrypoint. First, let's find the code we wrote before the entry point:</p>
+<p>A large part of the code generated by the macro is dedicated to the initialization of the view. This code is "expanded" from the <code>view_output!()</code> entrypoint. First, let's find the code we wrote before the entry point:</p>
 <pre><code class="language-rust ignore">    fn init(
         init: Self::Init,
         renamed_root: &amp;Self::Root,
@@ -465,9 +465,9 @@ struct AppWidgets {
             tracker: 0,
         };
         let test_field = 0;
-        let icon_name = rand::random::&lt;bool&gt;().then(|| &quot;go-up-symbolic&quot;);
-        let local_label = gtk::Label::new(Some(&quot;local_label&quot;));
-        let local_ref_label_value = gtk::Label::new(Some(&quot;local_ref_label&quot;));
+        let icon_name = rand::random::&lt;bool&gt;().then(|| "go-up-symbolic");
+        let local_label = gtk::Label::new(Some("local_label"));
+        let local_ref_label_value = gtk::Label::new(Some("local_ref_label"));
         let local_ref_label = &amp;local_ref_label_value;</code></pre>
 <p>Next, the macro initializes all widgets. Widgets defined by their type are initialized with their <code>Default</code> implementation. Any constructors or functions that are invoked manually are left unchanged in the output.</p>
 <pre><code class="language-rust ignore">        let main_window = renamed_root.clone();
@@ -488,17 +488,17 @@ struct AppWidgets {
         let _gtk_label_8 = gtk::Label::default();
         let _gtk_label_9 = gtk::Label::default();
         let _gtk_label_builder_10 = gtk::Label::builder()
-            .label(&quot;Builder pattern works!&quot;)
+            .label("Builder pattern works!")
             .selectable(true)
             .build();
-        let _gtk_label_new_11 = gtk::Label::new(Some(&quot;Constructors work!&quot;));
+        let _gtk_label_new_11 = gtk::Label::new(Some("Constructors work!"));
         let _gtk_label_12 = gtk::Label::default();
         let _gtk_togglebutton_13 = gtk::ToggleButton::default();
         let _gtk_window_15 = gtk::Window::default();
         let my_label_name = gtk::Label::default();</code></pre>
 <h4 id="assigning-properties"><a class="header" href="#assigning-properties">Assigning properties</a></h4>
 <p>Assigning properties looks pretty normal as well. In the middle we have an optional assignment that uses an <code>if let</code> statement to only assign properties that match <code>Some(data)</code>. In the macro we marked this line with a <code>?</code>.</p>
-<pre><code class="language-rust ignore">        main_window.set_title(Some(&quot;Macro reference example&quot;));
+<pre><code class="language-rust ignore">        main_window.set_title(Some("Macro reference example"));
         main_window.set_default_width(300);
         main_window.set_default_height(100);
         relm4::RelmContainerExt::container_add(&amp;main_window, &amp;_gtk_box_14);
@@ -506,12 +506,12 @@ struct AppWidgets {
         _gtk_box_14.set_spacing(5);
         _gtk_box_14.set_margin_all(5);
         _gtk_box_14.append(&amp;inc_button);
-        inc_button.set_label(&quot;Increment&quot;);
+        inc_button.set_label("Increment");
         if let Some(__p_assign) = icon_name {
             inc_button.set_icon_name(__p_assign);
         }
         relm4::RelmContainerExt::container_add(&amp;_gtk_box_14, &amp;_gtk_button_0);
-        _gtk_button_0.set_label(&quot;Decrement&quot;);
+        _gtk_button_0.set_label("Decrement");
         relm4::RelmContainerExt::container_add(&amp;_gtk_box_14, &amp;_gtk_grid_2);
         _gtk_grid_2.attach(&amp;_gtk_label_1, 1, 1, 1, 1);
         _gtk_label_1
@@ -519,7 +519,7 @@ struct AppWidgets {
                 &amp;{
                     let res = ::alloc::fmt::format(
                         ::core::fmt::Arguments::new_v1(
-                            &amp;[&quot;Grid works! (&quot;, &quot;)&quot;],
+                            &amp;["Grid works! (", ")"],
                             &amp;[::core::fmt::ArgumentV1::new_display(&amp;counter.value)],
                         ),
                     );
@@ -527,17 +527,17 @@ struct AppWidgets {
                 },
             );
         _gtk_box_14.append(&amp;_conditional_widget_3);
-        _conditional_widget_3.add_named(&amp;_gtk_label_4, Some(&quot;0&quot;));
-        _gtk_label_4.set_label(&quot;Value is even&quot;);
-        _conditional_widget_3.add_named(&amp;_gtk_label_5, Some(&quot;1&quot;));
-        _gtk_label_5.set_label(&quot;Value is dividable by 3&quot;);
-        _conditional_widget_3.add_named(&amp;_gtk_label_6, Some(&quot;2&quot;));
-        _gtk_label_6.set_label(&quot;Value is odd&quot;);
+        _conditional_widget_3.add_named(&amp;_gtk_label_4, Some("0"));
+        _gtk_label_4.set_label("Value is even");
+        _conditional_widget_3.add_named(&amp;_gtk_label_5, Some("1"));
+        _gtk_label_5.set_label("Value is dividable by 3");
+        _conditional_widget_3.add_named(&amp;_gtk_label_6, Some("2"));
+        _gtk_label_6.set_label("Value is odd");
         _gtk_box_14.append(&amp;match_stack);
-        match_stack.add_named(&amp;_gtk_label_7, Some(&quot;0&quot;));
-        _gtk_label_7.set_label(&quot;Value is smaller than 3&quot;);
-        match_stack.add_named(&amp;_gtk_label_8, Some(&quot;1&quot;));
-        _gtk_label_8.set_label(&quot;Value is higher than 2&quot;);
+        match_stack.add_named(&amp;_gtk_label_7, Some("0"));
+        _gtk_label_7.set_label("Value is smaller than 3");
+        match_stack.add_named(&amp;_gtk_label_8, Some("1"));
+        _gtk_label_8.set_label("Value is higher than 2");
         _gtk_box_14.append(&amp;_gtk_label_9);</code></pre>
 <h4 id="events"><a class="header" href="#events">Events</a></h4>
 <p>Now the macro generates the code for connecting events.</p>
@@ -570,7 +570,7 @@ struct AppWidgets {
         };</code></pre>
 <p>The code looks very similar to what we wrote in the macro.</p>
 <pre><code class="language-rust ignore">                append: inc_button = &amp;gtk::Button {
-                    set_label: &quot;Increment&quot;,
+                    set_label: "Increment",
                     // Only set this if `icon_name` is Some
                     set_icon_name?: icon_name,
                     connect_clicked[sender] =&gt; move |_| {
@@ -579,7 +579,7 @@ struct AppWidgets {
                 },
 
                 gtk::Button {
-                    set_label: &quot;Decrement&quot;,
+                    set_label: "Decrement",
                     connect_clicked[sender] =&gt; move |_| {
                         sender.input(AppMsg::Decrement);
                     }
@@ -618,7 +618,7 @@ struct AppWidgets {
             widgets,
         }</code></pre>
 <h4 id="ui-updates"><a class="header" href="#ui-updates">UI updates</a></h4>
-<p>The last step of the macro is to generate the update logic within the <code>update_view</code> function. Any code present in the <code>pre_view</code> and <code>post_view</code> &quot;functions&quot; will be expanded before or after the generated code. Note that the generated code returns a private struct to prevent early returns in <code>pre_view</code> from skipping the rest of the view update code.</p>
+<p>The last step of the macro is to generate the update logic within the <code>update_view</code> function. Any code present in the <code>pre_view</code> and <code>post_view</code> "functions" will be expanded before or after the generated code. Note that the generated code returns a private struct to prevent early returns in <code>pre_view</code> from skipping the rest of the view update code.</p>
 <pre><code class="language-rust ignore">    /// Update the view to represent the updated model.
     fn update_view(&amp;self, widgets: &amp;mut Self::Widgets, sender: ComponentSender&lt;Self&gt;) {
         struct __DoNotReturnManually;
@@ -658,7 +658,7 @@ struct AppWidgets {
                         &amp;{
                             let res = ::alloc::fmt::format(
                                 ::core::fmt::Arguments::new_v1(
-                                    &amp;[&quot;Grid works! (&quot;, &quot;)&quot;],
+                                    &amp;["Grid works! (", ")"],
                                     &amp;[::core::fmt::ArgumentV1::new_display(&amp;counter.value)],
                                 ),
                             );
@@ -668,33 +668,33 @@ struct AppWidgets {
             }
             let __current_page = _conditional_widget_3
                 .visible_child_name()
-                .map_or(&quot;&quot;.to_string(), |s| s.as_str().to_string());
+                .map_or("".to_string(), |s| s.as_str().to_string());
             _conditional_widget_3
                 .set_visible_child_name(
                     if counter.value % 2 == 0 {
-                        let __page_active: bool = (__current_page == &quot;0&quot;);
-                        &quot;0&quot;
+                        let __page_active: bool = (__current_page == "0");
+                        "0"
                     } else if counter.value % 3 == 0 {
-                        let __page_active: bool = (__current_page == &quot;1&quot;);
-                        &quot;1&quot;
+                        let __page_active: bool = (__current_page == "1");
+                        "1"
                     } else {
-                        let __page_active: bool = (__current_page == &quot;2&quot;);
-                        &quot;2&quot;
+                        let __page_active: bool = (__current_page == "2");
+                        "2"
                     },
                 );
             let __current_page = match_stack
                 .visible_child_name()
-                .map_or(&quot;&quot;.to_string(), |s| s.as_str().to_string());
+                .map_or("".to_string(), |s| s.as_str().to_string());
             match_stack
                 .set_visible_child_name(
                     match counter.value {
                         (0..=2) =&gt; {
-                            let __page_active: bool = (__current_page == &quot;0&quot;);
-                            &quot;0&quot;
+                            let __page_active: bool = (__current_page == "0");
+                            "0"
                         }
                         _ =&gt; {
-                            let __page_active: bool = (__current_page == &quot;1&quot;);
-                            &quot;1&quot;
+                            let __page_active: bool = (__current_page == "1");
+                            "1"
                         }
                     },
                 );
@@ -703,7 +703,7 @@ struct AppWidgets {
                     &amp;{
                         let res = ::alloc::fmt::format(
                             ::core::fmt::Arguments::new_v1(
-                                &amp;[&quot;Counter: &quot;],
+                                &amp;["Counter: "],
                                 &amp;[::core::fmt::ArgumentV1::new_display(&amp;counter.value)],
                             ),
                         );
@@ -743,7 +743,7 @@ struct AppWidgets {
                     &amp;{
                         let res = ::alloc::fmt::format(
                             ::core::fmt::Arguments::new_v1(
-                                &amp;[&quot;Counter: &quot;],
+                                &amp;["Counter: "],
                                 &amp;[::core::fmt::ArgumentV1::new_display(&amp;counter.value)],
                             ),
                         );
@@ -757,14 +757,14 @@ struct AppWidgets {
 <pre><code class="language-rust ignore">            _conditional_widget_3
                 .set_visible_child_name(
                     if counter.value % 2 == 0 {
-                        let __page_active: bool = (__current_page == &quot;0&quot;);
-                        &quot;0&quot;
+                        let __page_active: bool = (__current_page == "0");
+                        "0"
                     } else if counter.value % 3 == 0 {
-                        let __page_active: bool = (__current_page == &quot;1&quot;);
-                        &quot;1&quot;
+                        let __page_active: bool = (__current_page == "1");
+                        "1"
                     } else {
-                        let __page_active: bool = (__current_page == &quot;2&quot;);
-                        &quot;2&quot;
+                        let __page_active: bool = (__current_page == "2");
+                        "2"
                     },
                 );</code></pre>
 <h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
@@ -847,8 +847,8 @@ enum AppMsg {
 impl ::core::fmt::Debug for AppMsg {
     fn fmt(&amp;self, f: &amp;mut ::core::fmt::Formatter) -&gt; ::core::fmt::Result {
         match self {
-            AppMsg::Increment =&gt; ::core::fmt::Formatter::write_str(f, &quot;Increment&quot;),
-            AppMsg::Decrement =&gt; ::core::fmt::Formatter::write_str(f, &quot;Decrement&quot;),
+            AppMsg::Increment =&gt; ::core::fmt::Formatter::write_str(f, "Increment"),
+            AppMsg::Decrement =&gt; ::core::fmt::Formatter::write_str(f, "Decrement"),
         }
     }
 }
@@ -910,30 +910,30 @@ struct AppWidgets {
 impl ::core::fmt::Debug for AppWidgets {
     fn fmt(&amp;self, f: &amp;mut ::core::fmt::Formatter) -&gt; ::core::fmt::Result {
         let names: &amp;'static _ = &amp;[
-            &quot;main_window&quot;,
-            &quot;_gtk_box_14&quot;,
-            &quot;inc_button&quot;,
-            &quot;_gtk_button_0&quot;,
-            &quot;_gtk_grid_2&quot;,
-            &quot;_gtk_label_1&quot;,
-            &quot;_conditional_widget_3&quot;,
-            &quot;_gtk_label_4&quot;,
-            &quot;_gtk_label_5&quot;,
-            &quot;_gtk_label_6&quot;,
-            &quot;match_stack&quot;,
-            &quot;_gtk_label_7&quot;,
-            &quot;_gtk_label_8&quot;,
-            &quot;_gtk_label_9&quot;,
-            &quot;_gtk_label_builder_10&quot;,
-            &quot;_gtk_label_new_11&quot;,
-            &quot;_gtk_label_12&quot;,
-            &quot;_gtk_togglebutton_13&quot;,
-            &quot;toggle_handler&quot;,
-            &quot;local_label&quot;,
-            &quot;local_ref_label&quot;,
-            &quot;_gtk_window_15&quot;,
-            &quot;my_label_name&quot;,
-            &quot;test_field&quot;,
+            "main_window",
+            "_gtk_box_14",
+            "inc_button",
+            "_gtk_button_0",
+            "_gtk_grid_2",
+            "_gtk_label_1",
+            "_conditional_widget_3",
+            "_gtk_label_4",
+            "_gtk_label_5",
+            "_gtk_label_6",
+            "match_stack",
+            "_gtk_label_7",
+            "_gtk_label_8",
+            "_gtk_label_9",
+            "_gtk_label_builder_10",
+            "_gtk_label_new_11",
+            "_gtk_label_12",
+            "_gtk_togglebutton_13",
+            "toggle_handler",
+            "local_label",
+            "local_ref_label",
+            "_gtk_window_15",
+            "my_label_name",
+            "test_field",
         ];
         let values: &amp;[&amp;dyn ::core::fmt::Debug] = &amp;[
             &amp;&amp;self.main_window,
@@ -963,7 +963,7 @@ impl ::core::fmt::Debug for AppWidgets {
         ];
         ::core::fmt::Formatter::debug_struct_fields_finish(
             f,
-            &quot;AppWidgets&quot;,
+            "AppWidgets",
             names,
             values,
         )
@@ -1029,7 +1029,7 @@ impl SimpleComponent for AppModel {
                         &amp;{
                             let res = ::alloc::fmt::format(
                                 ::core::fmt::Arguments::new_v1(
-                                    &amp;[&quot;Grid works! (&quot;, &quot;)&quot;],
+                                    &amp;["Grid works! (", ")"],
                                     &amp;[::core::fmt::ArgumentV1::new_display(&amp;counter.value)],
                                 ),
                             );
@@ -1039,33 +1039,33 @@ impl SimpleComponent for AppModel {
             }
             let __current_page = _conditional_widget_3
                 .visible_child_name()
-                .map_or(&quot;&quot;.to_string(), |s| s.as_str().to_string());
+                .map_or("".to_string(), |s| s.as_str().to_string());
             _conditional_widget_3
                 .set_visible_child_name(
                     if counter.value % 2 == 0 {
-                        let __page_active: bool = (__current_page == &quot;0&quot;);
-                        &quot;0&quot;
+                        let __page_active: bool = (__current_page == "0");
+                        "0"
                     } else if counter.value % 3 == 0 {
-                        let __page_active: bool = (__current_page == &quot;1&quot;);
-                        &quot;1&quot;
+                        let __page_active: bool = (__current_page == "1");
+                        "1"
                     } else {
-                        let __page_active: bool = (__current_page == &quot;2&quot;);
-                        &quot;2&quot;
+                        let __page_active: bool = (__current_page == "2");
+                        "2"
                     },
                 );
             let __current_page = match_stack
                 .visible_child_name()
-                .map_or(&quot;&quot;.to_string(), |s| s.as_str().to_string());
+                .map_or("".to_string(), |s| s.as_str().to_string());
             match_stack
                 .set_visible_child_name(
                     match counter.value {
                         (0..=2) =&gt; {
-                            let __page_active: bool = (__current_page == &quot;0&quot;);
-                            &quot;0&quot;
+                            let __page_active: bool = (__current_page == "0");
+                            "0"
                         }
                         _ =&gt; {
-                            let __page_active: bool = (__current_page == &quot;1&quot;);
-                            &quot;1&quot;
+                            let __page_active: bool = (__current_page == "1");
+                            "1"
                         }
                     },
                 );
@@ -1074,7 +1074,7 @@ impl SimpleComponent for AppModel {
                     &amp;{
                         let res = ::alloc::fmt::format(
                             ::core::fmt::Arguments::new_v1(
-                                &amp;[&quot;Counter: &quot;],
+                                &amp;["Counter: "],
                                 &amp;[::core::fmt::ArgumentV1::new_display(&amp;counter.value)],
                             ),
                         );
@@ -1116,9 +1116,9 @@ impl SimpleComponent for AppModel {
             tracker: 0,
         };
         let test_field = 0;
-        let icon_name = rand::random::&lt;bool&gt;().then(|| &quot;go-up-symbolic&quot;);
-        let local_label = gtk::Label::new(Some(&quot;local_label&quot;));
-        let local_ref_label_value = gtk::Label::new(Some(&quot;local_ref_label&quot;));
+        let icon_name = rand::random::&lt;bool&gt;().then(|| "go-up-symbolic");
+        let local_label = gtk::Label::new(Some("local_label"));
+        let local_ref_label_value = gtk::Label::new(Some("local_ref_label"));
         let local_ref_label = &amp;local_ref_label_value;
         let main_window = renamed_root.clone();
         let _gtk_box_14 = gtk::Box::default();
@@ -1138,10 +1138,10 @@ impl SimpleComponent for AppModel {
         let _gtk_label_8 = gtk::Label::default();
         let _gtk_label_9 = gtk::Label::default();
         let _gtk_label_builder_10 = gtk::Label::builder()
-            .label(&quot;Builder pattern works!&quot;)
+            .label("Builder pattern works!")
             .selectable(true)
             .build();
-        let _gtk_label_new_11 = gtk::Label::new(Some(&quot;Constructors work!&quot;));
+        let _gtk_label_new_11 = gtk::Label::new(Some("Constructors work!"));
         let _gtk_label_12 = gtk::Label::default();
         let _gtk_togglebutton_13 = gtk::ToggleButton::default();
         let _gtk_window_15 = gtk::Window::default();
@@ -1174,7 +1174,7 @@ impl SimpleComponent for AppModel {
                 })
         };
         {}
-        main_window.set_title(Some(&quot;Macro reference example&quot;));
+        main_window.set_title(Some("Macro reference example"));
         main_window.set_default_width(300);
         main_window.set_default_height(100);
         relm4::RelmContainerExt::container_add(&amp;main_window, &amp;_gtk_box_14);
@@ -1182,12 +1182,12 @@ impl SimpleComponent for AppModel {
         _gtk_box_14.set_spacing(5);
         _gtk_box_14.set_margin_all(5);
         _gtk_box_14.append(&amp;inc_button);
-        inc_button.set_label(&quot;Increment&quot;);
+        inc_button.set_label("Increment");
         if let Some(__p_assign) = icon_name {
             inc_button.set_icon_name(__p_assign);
         }
         relm4::RelmContainerExt::container_add(&amp;_gtk_box_14, &amp;_gtk_button_0);
-        _gtk_button_0.set_label(&quot;Decrement&quot;);
+        _gtk_button_0.set_label("Decrement");
         relm4::RelmContainerExt::container_add(&amp;_gtk_box_14, &amp;_gtk_grid_2);
         _gtk_grid_2.attach(&amp;_gtk_label_1, 1, 1, 1, 1);
         _gtk_label_1
@@ -1195,7 +1195,7 @@ impl SimpleComponent for AppModel {
                 &amp;{
                     let res = ::alloc::fmt::format(
                         ::core::fmt::Arguments::new_v1(
-                            &amp;[&quot;Grid works! (&quot;, &quot;)&quot;],
+                            &amp;["Grid works! (", ")"],
                             &amp;[::core::fmt::ArgumentV1::new_display(&amp;counter.value)],
                         ),
                     );
@@ -1203,17 +1203,17 @@ impl SimpleComponent for AppModel {
                 },
             );
         _gtk_box_14.append(&amp;_conditional_widget_3);
-        _conditional_widget_3.add_named(&amp;_gtk_label_4, Some(&quot;0&quot;));
-        _gtk_label_4.set_label(&quot;Value is even&quot;);
-        _conditional_widget_3.add_named(&amp;_gtk_label_5, Some(&quot;1&quot;));
-        _gtk_label_5.set_label(&quot;Value is dividable by 3&quot;);
-        _conditional_widget_3.add_named(&amp;_gtk_label_6, Some(&quot;2&quot;));
-        _gtk_label_6.set_label(&quot;Value is odd&quot;);
+        _conditional_widget_3.add_named(&amp;_gtk_label_4, Some("0"));
+        _gtk_label_4.set_label("Value is even");
+        _conditional_widget_3.add_named(&amp;_gtk_label_5, Some("1"));
+        _gtk_label_5.set_label("Value is dividable by 3");
+        _conditional_widget_3.add_named(&amp;_gtk_label_6, Some("2"));
+        _gtk_label_6.set_label("Value is odd");
         _gtk_box_14.append(&amp;match_stack);
-        match_stack.add_named(&amp;_gtk_label_7, Some(&quot;0&quot;));
-        _gtk_label_7.set_label(&quot;Value is smaller than 3&quot;);
-        match_stack.add_named(&amp;_gtk_label_8, Some(&quot;1&quot;));
-        _gtk_label_8.set_label(&quot;Value is higher than 2&quot;);
+        match_stack.add_named(&amp;_gtk_label_7, Some("0"));
+        _gtk_label_7.set_label("Value is smaller than 3");
+        match_stack.add_named(&amp;_gtk_label_8, Some("1"));
+        _gtk_label_8.set_label("Value is higher than 2");
         _gtk_box_14.append(&amp;_gtk_label_9);
         relm4::RelmContainerExt::container_add(&amp;_gtk_box_14, &amp;_gtk_label_builder_10);
         relm4::RelmContainerExt::container_add(&amp;_gtk_box_14, &amp;_gtk_label_new_11);
@@ -1223,7 +1223,7 @@ impl SimpleComponent for AppModel {
                 &amp;{
                     let res = ::alloc::fmt::format(
                         ::core::fmt::Arguments::new_v1(
-                            &amp;[&quot;Counter: &quot;],
+                            &amp;["Counter: "],
                             &amp;[::core::fmt::ArgumentV1::new_display(&amp;counter.value)],
                         ),
                     );
@@ -1232,7 +1232,7 @@ impl SimpleComponent for AppModel {
             );
         _gtk_label_12.set_margin_all(counter.value.into());
         relm4::RelmContainerExt::container_add(&amp;_gtk_box_14, &amp;_gtk_togglebutton_13);
-        _gtk_togglebutton_13.set_label(&quot;Counter is even&quot;);
+        _gtk_togglebutton_13.set_label("Counter is even");
         {
             use relm4::WidgetRef;
             #[allow(clippy::needless_borrow)]
@@ -1255,36 +1255,36 @@ impl SimpleComponent for AppModel {
         relm4::RelmContainerExt::container_add(&amp;_gtk_box_14, &amp;local_ref_label);
         local_ref_label.set_opacity(0.7);
         local_ref_label.set_size_request(40, 40);
-        let __current_page = &quot;&quot;;
+        let __current_page = "";
         _conditional_widget_3
             .set_visible_child_name(
                 if counter.value % 2 == 0 {
-                    let __page_active: bool = (__current_page == &quot;0&quot;);
-                    &quot;0&quot;
+                    let __page_active: bool = (__current_page == "0");
+                    "0"
                 } else if counter.value % 3 == 0 {
-                    let __page_active: bool = (__current_page == &quot;1&quot;);
-                    &quot;1&quot;
+                    let __page_active: bool = (__current_page == "1");
+                    "1"
                 } else {
-                    let __page_active: bool = (__current_page == &quot;2&quot;);
-                    &quot;2&quot;
+                    let __page_active: bool = (__current_page == "2");
+                    "2"
                 },
             );
-        let __current_page = &quot;&quot;;
+        let __current_page = "";
         match_stack
             .set_visible_child_name(
                 match counter.value {
-                    (0..=2) =&gt; &quot;0&quot;,
-                    _ =&gt; &quot;1&quot;,
+                    (0..=2) =&gt; "0",
+                    _ =&gt; "1",
                 },
             );
-        _gtk_window_15.set_title(Some(&quot;Another window&quot;));
+        _gtk_window_15.set_title(Some("Another window"));
         _gtk_window_15.set_default_width(300);
         _gtk_window_15.set_default_height(100);
         _gtk_window_15.set_transient_for(Some(&amp;main_window));
         _gtk_window_15.hide();
         _gtk_window_15.set_visible(counter.value == 42);
         relm4::RelmContainerExt::container_add(&amp;_gtk_window_15, &amp;my_label_name);
-        my_label_name.set_label(&quot;You made it to 42!&quot;);
+        my_label_name.set_label("You made it to 42!");
         let widgets = Self::Widgets {
             main_window,
             _gtk_box_14,

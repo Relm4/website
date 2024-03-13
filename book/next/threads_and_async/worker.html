@@ -223,7 +223,7 @@ impl Worker for AsyncHandler {
 }</code></pre>
 <p>Workers are constructed similarly to components, too.
 Use the provided builder to retrieve a <code>WorkerController</code>.</p>
-<pre><code class="language-rust ignore">    fn init(_: (), root: &amp;Self::Root, sender: ComponentSender&lt;Self&gt;) -&gt; ComponentParts&lt;Self&gt; {
+<pre><code class="language-rust ignore">    fn init(_: (), root: Self::Root, sender: ComponentSender&lt;Self&gt;) -&gt; ComponentParts&lt;Self&gt; {
         let model = AppModel {
             counter: 0,
             worker: AsyncHandler::builder()

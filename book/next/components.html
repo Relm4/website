@@ -241,10 +241,10 @@ enum HeaderOutput {
         gtk::HeaderBar {
             #[wrap(Some)]
             set_title_widget = &amp;gtk::Box {
-                add_css_class: &quot;linked&quot;,
-                #[name = &quot;group&quot;]
+                add_css_class: "linked",
+                #[name = "group"]
                 gtk::ToggleButton {
-                    set_label: &quot;View&quot;,
+                    set_label: "View",
                     set_active: true,
                     connect_toggled[sender] =&gt; move |btn| {
                         if btn.is_active() {
@@ -253,7 +253,7 @@ enum HeaderOutput {
                     },
                 },
                 gtk::ToggleButton {
-                    set_label: &quot;Edit&quot;,
+                    set_label: "Edit",
                     set_group: Some(&amp;group),
                     connect_toggled[sender] =&gt; move |btn| {
                         if btn.is_active() {
@@ -262,7 +262,7 @@ enum HeaderOutput {
                     },
                 },
                 gtk::ToggleButton {
-                    set_label: &quot;Export&quot;,
+                    set_label: "Export",
                     set_group: Some(&amp;group),
                     connect_toggled[sender] =&gt; move |btn| {
                         if btn.is_active() {
@@ -307,10 +307,10 @@ enum DialogOutput {
             set_modal: true,
             #[watch]
             set_visible: !model.hidden,
-            set_text: Some(&quot;Do you want to close before saving?&quot;),
-            set_secondary_text: Some(&quot;All unsaved changes will be lost&quot;),
-            add_button: (&quot;Close&quot;, gtk::ResponseType::Accept),
-            add_button: (&quot;Cancel&quot;, gtk::ResponseType::Cancel),
+            set_text: Some("Do you want to close before saving?"),
+            set_secondary_text: Some("All unsaved changes will be lost"),
+            add_button: ("Close", gtk::ResponseType::Accept),
+            add_button: ("Cancel", gtk::ResponseType::Cancel),
             connect_response[sender] =&gt; move |_, resp| {
                 sender.input(if resp == gtk::ResponseType::Accept {
                     DialogInput::Accept
@@ -375,7 +375,7 @@ struct AppModel {
 <p>When initializing the app component, we construct the child components by passing the appropriate <code>Init</code> and forwarding any desired inputs and outputs. This is done through a builder provided by <code>Component</code> implementations. We pass the initial parameters via the <code>launch</code> method, and then retrieve the final <code>Controller</code> by calling the <code>forward</code> method. In addition to starting the component, the <code>forward</code> method allows us to take the outputs of the component, transform them with a mapping function, and then pass the result as an input message to another sender (in this case, the input sender of the app component). If you don't need to forward any outputs, you can start the component with the <code>detach</code> method instead.</p>
 <pre><code class="language-rust no_run noplayground">    fn init(
         params: Self::Init,
-        root: &amp;Self::Root,
+        root: Self::Root,
         sender: ComponentSender&lt;Self&gt;,
     ) -&gt; ComponentParts&lt;Self&gt; {
         let header: Controller&lt;HeaderModel&gt; =
@@ -388,7 +388,7 @@ struct AppModel {
                 });
 
         let dialog = DialogModel::builder()
-            .transient_for(root)
+            .transient_for(&amp;root)
             .launch(true)
             .forward(sender.input_sender(), |msg| match msg {
                 DialogOutput::Close =&gt; AppMsg::Close,
@@ -403,7 +403,7 @@ struct AppModel {
         let widgets = view_output!();
         ComponentParts { model, widgets }
     }</code></pre>
-<p>Also, we set the <code>set_transient_for</code> property, which actually uses the main window. The dialog should set his parent window so that GTK can handle the dialog better. The GTK docs state: &quot;[set_transient_for] allows window managers to e.g. keep the dialog on top of the main window, or center the dialog over the main window&quot;.</p>
+<p>Also, we set the <code>set_transient_for</code> property, which actually uses the main window. The dialog should set his parent window so that GTK can handle the dialog better. The GTK docs state: "[set_transient_for] allows window managers to e.g. keep the dialog on top of the main window, or center the dialog over the main window".</p>
 <pre><code class="language-rust no_run noplayground">#[derive(Debug)]
 enum AppMode {
     View,
@@ -433,7 +433,7 @@ struct AppModel {
 
             gtk::Label {
                 #[watch]
-                set_label: &amp;format!(&quot;Placeholder for {:?}&quot;, model.mode),
+                set_label: &amp;format!("Placeholder for {:?}", model.mode),
             },
             connect_close_request[sender] =&gt; move |_| {
                 sender.input(AppMsg::CloseRequest);
@@ -472,10 +472,10 @@ impl SimpleComponent for HeaderModel {
         gtk::HeaderBar {
             #[wrap(Some)]
             set_title_widget = &amp;gtk::Box {
-                add_css_class: &quot;linked&quot;,
-                #[name = &quot;group&quot;]
+                add_css_class: "linked",
+                #[name = "group"]
                 gtk::ToggleButton {
-                    set_label: &quot;View&quot;,
+                    set_label: "View",
                     set_active: true,
                     connect_toggled[sender] =&gt; move |btn| {
                         if btn.is_active() {
@@ -484,7 +484,7 @@ impl SimpleComponent for HeaderModel {
                     },
                 },
                 gtk::ToggleButton {
-                    set_label: &quot;Edit&quot;,
+                    set_label: "Edit",
                     set_group: Some(&amp;group),
                     connect_toggled[sender] =&gt; move |btn| {
                         if btn.is_active() {
@@ -493,7 +493,7 @@ impl SimpleComponent for HeaderModel {
                     },
                 },
                 gtk::ToggleButton {
-                    set_label: &quot;Export&quot;,
+                    set_label: "Export",
                     set_group: Some(&amp;group),
                     connect_toggled[sender] =&gt; move |btn| {
                         if btn.is_active() {
@@ -507,7 +507,7 @@ impl SimpleComponent for HeaderModel {
 
     fn init(
         _params: Self::Init,
-        root: &amp;Self::Root,
+        root: Self::Root,
         sender: ComponentSender&lt;Self&gt;,
     ) -&gt; ComponentParts&lt;Self&gt; {
         let model = HeaderModel;
@@ -544,10 +544,10 @@ impl SimpleComponent for DialogModel {
             set_modal: true,
             #[watch]
             set_visible: !model.hidden,
-            set_text: Some(&quot;Do you want to close before saving?&quot;),
-            set_secondary_text: Some(&quot;All unsaved changes will be lost&quot;),
-            add_button: (&quot;Close&quot;, gtk::ResponseType::Accept),
-            add_button: (&quot;Cancel&quot;, gtk::ResponseType::Cancel),
+            set_text: Some("Do you want to close before saving?"),
+            set_secondary_text: Some("All unsaved changes will be lost"),
+            add_button: ("Close", gtk::ResponseType::Accept),
+            add_button: ("Cancel", gtk::ResponseType::Cancel),
             connect_response[sender] =&gt; move |_, resp| {
                 sender.input(if resp == gtk::ResponseType::Accept {
                     DialogInput::Accept
@@ -560,7 +560,7 @@ impl SimpleComponent for DialogModel {
 
     fn init(
         params: Self::Init,
-        root: &amp;Self::Root,
+        root: Self::Root,
         sender: ComponentSender&lt;Self&gt;,
     ) -&gt; ComponentParts&lt;Self&gt; {
         let model = DialogModel { hidden: params };
@@ -614,7 +614,7 @@ impl SimpleComponent for AppModel {
 
             gtk::Label {
                 #[watch]
-                set_label: &amp;format!(&quot;Placeholder for {:?}&quot;, model.mode),
+                set_label: &amp;format!("Placeholder for {:?}", model.mode),
             },
             connect_close_request[sender] =&gt; move |_| {
                 sender.input(AppMsg::CloseRequest);
@@ -625,7 +625,7 @@ impl SimpleComponent for AppModel {
 
     fn init(
         params: Self::Init,
-        root: &amp;Self::Root,
+        root: Self::Root,
         sender: ComponentSender&lt;Self&gt;,
     ) -&gt; ComponentParts&lt;Self&gt; {
         let header: Controller&lt;HeaderModel&gt; =
@@ -638,7 +638,7 @@ impl SimpleComponent for AppModel {
                 });
 
         let dialog = DialogModel::builder()
-            .transient_for(root)
+            .transient_for(&amp;root)
             .launch(true)
             .forward(sender.input_sender(), |msg| match msg {
                 DialogOutput::Close =&gt; AppMsg::Close,
@@ -670,7 +670,7 @@ impl SimpleComponent for AppModel {
 }
 
 fn main() {
-    let relm = RelmApp::new(&quot;ewlm4.test.components&quot;);
+    let relm = RelmApp::new("ewlm4.test.components");
     relm.run::&lt;AppModel&gt;(AppMode::Edit);
 }</code></pre>
 

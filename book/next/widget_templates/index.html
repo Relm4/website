@@ -180,7 +180,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="widget-templates"><a class="header" href="#widget-templates">Widget templates</a></h1>
-<p>Widget templates are a simple way to define reusable UI elements. 
+<p>Widget templates are a simple way to define reusable UI elements.
 When building complex UIs, they allow you to focus on the application logic instead of complex trees of widgets.
 Yet most importantly, widget templates help you to reduce redundant code.
 For example, if you use a widget with the same properties multiple times in your code, templates will make your code a lot shorter.</p>
@@ -199,7 +199,7 @@ impl WidgetTemplate for MyBox {
         gtk::Box {
             set_margin_all: 10,
             // Make the boxes visible
-            inline_css: &quot;border: 2px solid blue&quot;,
+            inline_css: "border: 2px solid blue",
         }
     }
 }</code></pre>
@@ -248,9 +248,9 @@ impl WidgetTemplate for CustomBox {
                         MySpinner,
 
                         // Deeply nested!
-                        #[name = &quot;child_label&quot;]
+                        #[name = "child_label"]
                         gtk::Label {
-                            set_label: &quot;This is a test&quot;,
+                            set_label: "This is a test",
                         }
                     }
                 }
@@ -273,20 +273,20 @@ impl SimpleComponent for AppModel {
 
     view! {
         gtk::Window {
-            set_title: Some(&quot;Widget template&quot;),
+            set_title: Some("Widget template"),
             set_default_width: 300,
             set_default_height: 100,
 
             #[template]
             CustomBox {
                 gtk::Button {
-                    set_label: &quot;Increment&quot;,
+                    set_label: "Increment",
                     connect_clicked[sender] =&gt; move |_| {
                         sender.input(AppMsg::Increment);
                     },
                 },
                 gtk::Button {
-                    set_label: &quot;Decrement&quot;,
+                    set_label: "Decrement",
                     connect_clicked[sender] =&gt; move |_| {
                         sender.input(AppMsg::Decrement);
                     },
@@ -294,7 +294,7 @@ impl SimpleComponent for AppModel {
                 #[template_child]
                 child_label {
                     #[watch]
-                    set_label: &amp;format!(&quot;Counter: {}&quot;, model.counter),
+                    set_label: &amp;format!("Counter: {}", model.counter),
                 }
             },
         }
@@ -320,7 +320,7 @@ impl WidgetTemplate for MyBox {
         gtk::Box {
             set_margin_all: 10,
             // Make the boxes visible
-            inline_css: &quot;border: 2px solid blue&quot;,
+            inline_css: "border: 2px solid blue",
         }
     }
 }
@@ -358,9 +358,9 @@ impl WidgetTemplate for CustomBox {
                         MySpinner,
 
                         // Deeply nested!
-                        #[name = &quot;child_label&quot;]
+                        #[name = "child_label"]
                         gtk::Label {
-                            set_label: &quot;This is a test&quot;,
+                            set_label: "This is a test",
                         }
                     }
                 }
@@ -388,20 +388,20 @@ impl SimpleComponent for AppModel {
 
     view! {
         gtk::Window {
-            set_title: Some(&quot;Widget template&quot;),
+            set_title: Some("Widget template"),
             set_default_width: 300,
             set_default_height: 100,
 
             #[template]
             CustomBox {
                 gtk::Button {
-                    set_label: &quot;Increment&quot;,
+                    set_label: "Increment",
                     connect_clicked[sender] =&gt; move |_| {
                         sender.input(AppMsg::Increment);
                     },
                 },
                 gtk::Button {
-                    set_label: &quot;Decrement&quot;,
+                    set_label: "Decrement",
                     connect_clicked[sender] =&gt; move |_| {
                         sender.input(AppMsg::Decrement);
                     },
@@ -409,7 +409,7 @@ impl SimpleComponent for AppModel {
                 #[template_child]
                 child_label {
                     #[watch]
-                    set_label: &amp;format!(&quot;Counter: {}&quot;, model.counter),
+                    set_label: &amp;format!("Counter: {}", model.counter),
                 }
             },
         }
@@ -417,7 +417,7 @@ impl SimpleComponent for AppModel {
 
     fn init(
         counter: Self::Init,
-        root: &amp;Self::Root,
+        root: Self::Root,
         sender: ComponentSender&lt;Self&gt;,
     ) -&gt; ComponentParts&lt;Self&gt; {
         let model = Self { counter };
@@ -440,7 +440,7 @@ impl SimpleComponent for AppModel {
 }
 
 fn main() {
-    let app = RelmApp::new(&quot;relm4.example.widget_template&quot;);
+    let app = RelmApp::new("relm4.example.widget_template");
     app.run::&lt;AppModel&gt;(0);
 }</code></pre>
 

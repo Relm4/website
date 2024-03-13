@@ -194,7 +194,7 @@
 </blockquote>
 <h2 id="application-architecture"><a class="header" href="#application-architecture">Application architecture</a></h2>
 <p>Often, programming concepts are easier to understand when explained with examples or metaphors from the real world. To understand how Relm4 apps work, you can think about a computer as a person.</p>
-<p>Our job as a programmer is to ensure that the users of our app will be able to communicate with the computer through the UI. Since the computer can't understand our human language, it needs some help from us to get the communication going. </p>
+<p>Our job as a programmer is to ensure that the users of our app will be able to communicate with the computer through the UI. Since the computer can't understand our human language, it needs some help from us to get the communication going.</p>
 <p>Let's have a look at what we need to get this done!</p>
 <h3 id="messages"><a class="header" href="#messages">Messages</a></h3>
 <p>For our app, we just want to tell the computer to either increment or decrement a counter.</p>
@@ -236,7 +236,7 @@
 <p>Since the window widget is our root widget, we are going to create it in the <code>init_root</code> function.</p>
 <pre><code class="language-rust no_run noplayground">    fn init_root() -&gt; Self::Root {
         gtk::Window::builder()
-            .title(&quot;Simple app&quot;)
+            .title("Simple app")
             .default_width(300)
             .default_height(100)
             .build()
@@ -249,7 +249,7 @@
 <pre><code class="language-rust no_run noplayground">    /// Initialize the UI and model.
     fn init(
         counter: Self::Init,
-        window: &amp;Self::Root,
+        window: Self::Root,
         sender: ComponentSender&lt;Self&gt;,
     ) -&gt; relm4::ComponentParts&lt;Self&gt; {
         let model = AppModel { counter };
@@ -259,10 +259,10 @@
             .spacing(5)
             .build();
 
-        let inc_button = gtk::Button::with_label(&quot;Increment&quot;);
-        let dec_button = gtk::Button::with_label(&quot;Decrement&quot;);
+        let inc_button = gtk::Button::with_label("Increment");
+        let dec_button = gtk::Button::with_label("Decrement");
 
-        let label = gtk::Label::new(Some(&amp;format!(&quot;Counter: {}&quot;, model.counter)));
+        let label = gtk::Label::new(Some(&amp;format!("Counter: {}", model.counter)));
         label.set_margin_all(5);
 
         window.set_child(Some(&amp;vbox));
@@ -285,7 +285,7 @@
     }</code></pre>
 <p>First, we initialize each of our widgets, mostly by using builder patterns.</p>
 <p>Then we connect the widgets so that GTK4 knows how they are related to each other. The buttons and the label are added as children of the box, and the box is added as the child of the window.</p>
-<p>Next, we connect the &quot;clicked&quot; event for both buttons and send a message from the closures to the computer. To do this, we only need to move a cloned sender into the closures and send the message. Now every time we click our buttons, a message will be sent to update our counter!</p>
+<p>Next, we connect the "clicked" event for both buttons and send a message from the closures to the computer. To do this, we only need to move a cloned sender into the closures and send the message. Now every time we click our buttons, a message will be sent to update our counter!</p>
 <p>Of course, the computer needs to do more than just remembering things, it also needs to process information. Here, both the model and message types come into play.</p>
 <p>The <code>update</code> function of the <code>SimpleComponent</code> trait tells the computer how to process messages and how to update its memory.</p>
 <pre><code class="language-rust no_run noplayground">    fn update(&amp;mut self, message: Self::Input, _sender: ComponentSender&lt;Self&gt;) {
@@ -307,12 +307,12 @@
     fn update_view(&amp;self, widgets: &amp;mut Self::Widgets, _sender: ComponentSender&lt;Self&gt;) {
         widgets
             .label
-            .set_label(&amp;format!(&quot;Counter: {}&quot;, self.counter));
+            .set_label(&amp;format!("Counter: {}", self.counter));
     }</code></pre>
 <h2 id="running-the-app"><a class="header" href="#running-the-app">Running the App</a></h2>
 <p>The last step is to run the app we just wrote. To do so, we just need to initialize our model and pass it into <code>RelmApp::new()</code>.</p>
 <pre><code class="language-rust no_run noplayground">fn main() {
-    let app = RelmApp::new(&quot;relm4.test.simple_manual&quot;);
+    let app = RelmApp::new("relm4.test.simple_manual");
     app.run::&lt;AppModel&gt;(0);
 }</code></pre>
 <p>🎉 Congratulations! You just wrote your first app with Relm4! 🎉</p>
@@ -376,7 +376,7 @@ impl SimpleComponent for AppModel {
 
     fn init_root() -&gt; Self::Root {
         gtk::Window::builder()
-            .title(&quot;Simple app&quot;)
+            .title("Simple app")
             .default_width(300)
             .default_height(100)
             .build()
@@ -385,7 +385,7 @@ impl SimpleComponent for AppModel {
     /// Initialize the UI and model.
     fn init(
         counter: Self::Init,
-        window: &amp;Self::Root,
+        window: Self::Root,
         sender: ComponentSender&lt;Self&gt;,
     ) -&gt; relm4::ComponentParts&lt;Self&gt; {
         let model = AppModel { counter };
@@ -395,10 +395,10 @@ impl SimpleComponent for AppModel {
             .spacing(5)
             .build();
 
-        let inc_button = gtk::Button::with_label(&quot;Increment&quot;);
-        let dec_button = gtk::Button::with_label(&quot;Decrement&quot;);
+        let inc_button = gtk::Button::with_label("Increment");
+        let dec_button = gtk::Button::with_label("Decrement");
 
-        let label = gtk::Label::new(Some(&amp;format!(&quot;Counter: {}&quot;, model.counter)));
+        let label = gtk::Label::new(Some(&amp;format!("Counter: {}", model.counter)));
         label.set_margin_all(5);
 
         window.set_child(Some(&amp;vbox));
@@ -435,12 +435,12 @@ impl SimpleComponent for AppModel {
     fn update_view(&amp;self, widgets: &amp;mut Self::Widgets, _sender: ComponentSender&lt;Self&gt;) {
         widgets
             .label
-            .set_label(&amp;format!(&quot;Counter: {}&quot;, self.counter));
+            .set_label(&amp;format!("Counter: {}", self.counter));
     }
 }
 
 fn main() {
-    let app = RelmApp::new(&quot;relm4.test.simple_manual&quot;);
+    let app = RelmApp::new("relm4.test.simple_manual");
     app.run::&lt;AppModel&gt;(0);
 }</code></pre>
 
