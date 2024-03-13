@@ -1,0 +1,559 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Tracker - GUI development with Relm4</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="../basic_concepts/index.html"><strong aria-hidden="true">1.</strong> Basic concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../basic_concepts/model.html"><strong aria-hidden="true">1.1.</strong> Model</a></li><li class="chapter-item expanded "><a href="../basic_concepts/messages.html"><strong aria-hidden="true">1.2.</strong> Messages</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../basic_concepts/messages/input.html"><strong aria-hidden="true">1.2.1.</strong> Input</a></li><li class="chapter-item expanded "><a href="../basic_concepts/messages/output.html"><strong aria-hidden="true">1.2.2.</strong> Output</a></li></ol></li><li class="chapter-item expanded "><a href="../basic_concepts/widgets.html"><strong aria-hidden="true">1.3.</strong> Widgets</a></li><li class="chapter-item expanded "><a href="../basic_concepts/components.html"><strong aria-hidden="true">1.4.</strong> Components</a></li></ol></li><li class="chapter-item expanded "><a href="../first_app.html"><strong aria-hidden="true">2.</strong> Your first app</a></li><li class="chapter-item expanded "><a href="../component_macro.html"><strong aria-hidden="true">3.</strong> The component macro</a></li><li class="chapter-item expanded "><a href="../tricks.html"><strong aria-hidden="true">4.</strong> Tips and tricks</a></li><li class="chapter-item expanded "><a href="../efficient_ui/index.html"><strong aria-hidden="true">5.</strong> Efficient UI updates</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../efficient_ui/tracker.html" class="active"><strong aria-hidden="true">5.1.</strong> Tracker</a></li><li class="chapter-item expanded "><a href="../efficient_ui/factory.html"><strong aria-hidden="true">5.2.</strong> Factories</a></li><li class="chapter-item expanded "><a href="../efficient_ui/factory_position.html"><strong aria-hidden="true">5.3.</strong> The position function</a></li></ol></li><li class="chapter-item expanded "><a href="../components.html"><strong aria-hidden="true">6.</strong> Components</a></li><li class="chapter-item expanded "><a href="../threads_and_async/index.html"><strong aria-hidden="true">7.</strong> Threads and async</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../threads_and_async/worker.html"><strong aria-hidden="true">7.1.</strong> Workers</a></li><li class="chapter-item expanded "><a href="../threads_and_async/commands.html"><strong aria-hidden="true">7.2.</strong> Commands</a></li><li class="chapter-item expanded "><a href="../threads_and_async/async.html"><strong aria-hidden="true">7.3.</strong> Async components and factories</a></li><li class="chapter-item expanded "><a href="../threads_and_async/overview.html"><strong aria-hidden="true">7.4.</strong> Overview</a></li></ol></li><li class="chapter-item expanded "><a href="../child_components.html"><strong aria-hidden="true">8.</strong> Child components</a></li><li class="chapter-item expanded "><a href="../widget_templates/index.html"><strong aria-hidden="true">9.</strong> Widget templates</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../widget_templates/accessing_nested_template_elements.html"><strong aria-hidden="true">9.1.</strong> Accessing Nested Template Elements</a></li></ol></li><li class="chapter-item expanded "><a href="../gtk_rs.html"><strong aria-hidden="true">10.</strong> gtk-rs overview</a></li><li class="chapter-item expanded "><a href="../resource_bundles.html"><strong aria-hidden="true">11.</strong> Resource Bundles</a></li><li class="chapter-item expanded "><a href="../continuous_integration.html"><strong aria-hidden="true">12.</strong> Continuous Integration guide</a></li><li class="chapter-item expanded "><a href="../component_macro/reference.html"><strong aria-hidden="true">13.</strong> Component macro reference</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../component_macro/expansion.html"><strong aria-hidden="true">13.1.</strong> Macro expansion</a></li></ol></li><li class="chapter-item expanded "><a href="../migrations/index.html"><strong aria-hidden="true">14.</strong> Migration guides</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../migrations/0_2_to_0_4.html"><strong aria-hidden="true">14.1.</strong> 0.2 to 0.4</a></li><li class="chapter-item expanded "><a href="../migrations/0_4_to_0_5.html"><strong aria-hidden="true">14.2.</strong> 0.4 to 0.5</a></li><li class="chapter-item expanded "><a href="../migrations/0_5_to_0_6.html"><strong aria-hidden="true">14.3.</strong> 0.5 to 0.6</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">GUI development with Relm4</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/Relm4/book" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/Relm4/book/edit/main/src/efficient_ui/tracker.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="tracker"><a class="header" href="#tracker">Tracker</a></h1>
+<p>A tracker in this context simply means a data type that's able to track changes to itself. For example, if we increment the counter of the model we used for our first app, the model might tell us later that the counter changed during the last update function.</p>
+<p>Relm4 does not promote any implementation of a tracker. You're free to use any implementation you like, you can even implement a tracker yourself. In this example however, we'll use the <a href="https://docs.rs/tracker/latest/tracker/"><code>tracker</code> crate</a> that provides a simple macro that implements a tracker for us automatically.</p>
+<p>Using this technique, we will implement a small program which displays two randomly picked icons controlled by two buttons:</p>
+<p><img src="../img/screenshots/tracker-dark-1.png" alt="App screenshot" /></p>
+<p>When pressing a button, the icon above it will change. The background of the application will become green when the two icons are identical:</p>
+<p><img src="../img/screenshots/tracker-dark-2.png" alt="App screenshot with with equal icons" /></p>
+<h2 id="the-tracker-crate"><a class="header" href="#the-tracker-crate">The tracker crate</a></h2>
+<p>The <a href="https://docs.rs/tracker/latest/tracker/attr.track.html"><code>tracker::track</code></a> macro implements the following methods for your struct fields:</p>
+<ul>
+<li>
+<p><code>get_{field_name}()</code><br />
+Get an immutable reference to your field.</p>
+</li>
+<li>
+<p><code>get_mut_{field_name}()</code><br />
+Get a mutable reference to your field. Assumes the field will be modified and marks it as changed.</p>
+</li>
+<li>
+<p><code>set_{field_name}(value)</code><br />
+Get a mutable reference to your field. Marks the field as changed only if the new value isn't equal with the previous value.</p>
+</li>
+<li>
+<p><code>update_{field_name}(fn)</code><br />
+Update your mutable field with a function or a closure. Assumes the field will be modified and marks it as changed.</p>
+</li>
+</ul>
+<p>To check for changes you can call <code>{struct_var_name}.changed(StructName::{field_name}())</code> and it will return a bool indication whether the field was updated.</p>
+<p>To reset all previous changes, you can call <code>{struct_var_name}.reset()</code>.</p>
+<h2 id="example"><a class="header" href="#example">Example</a></h2>
+<p>First we have to add the tracker library to <code>Cargo.toml</code>:</p>
+<pre><code class="language-toml">tracker = &quot;0.1&quot;
+</code></pre>
+<p>Now let's have a look at a small example.</p>
+<pre><code class="language-rust no_run noplayground">#[tracker::track]
+struct Test {
+    x: u8,
+    y: u64,
+}
+
+fn main() {
+    let mut t = Test {
+        x: 0,
+        y: 0,
+        // the macro generates a new variable called
+        // &quot;tracker&quot; which stores the changes
+        tracker: 0,
+    };
+
+    t.set_x(42);
+    // let's check whether the change was detected
+    assert!(t.changed(Test::x()));
+
+    // reset t so we don't track old changes
+    t.reset();
+ 
+    t.set_x(42);
+    // same value, so no change
+    assert!(!t.changed(Test::x()));
+}</code></pre>
+<p>So in short, the <code>tracker::track</code> macro provides various getters and setters that will mark struct fields as changed. You also get a method that checks for changes and a method to reset the changes.</p>
+<h1 id="using-trackers-in-relm4-apps"><a class="header" href="#using-trackers-in-relm4-apps">Using trackers in Relm4 apps</a></h1>
+<p>Let's build a simple app that shows two random icons and allows the user to set either of them to a new random icon. As a bonus, we want to show a fancy background color if both icons are the same.</p>
+<blockquote>
+<p>The app we will write in this chapter is also available <a href="https://github.com/Relm4/Relm4/blob/main/examples/tracker.rs">here</a>. Run <code>cargo run --example tracker</code> from the <a href="https://github.com/Relm4/Relm4/tree/main/examples">example directory</a> if you want to see the code in action.</p>
+</blockquote>
+<h2 id="the-icons"><a class="header" href="#the-icons">The icons</a></h2>
+<p>Before we can select random icons, we need to quickly implement a function that will return us random image names available in the default GTK icon theme.</p>
+<pre><code class="language-rust no_run noplayground">const ICON_LIST: &amp;[&amp;str] = &amp;[
+    &quot;bookmark-new-symbolic&quot;,
+    &quot;edit-copy-symbolic&quot;,
+    &quot;edit-cut-symbolic&quot;,
+    &quot;edit-find-symbolic&quot;,
+    &quot;starred-symbolic&quot;,
+    &quot;system-run-symbolic&quot;,
+    &quot;emoji-objects-symbolic&quot;,
+    &quot;emoji-nature-symbolic&quot;,
+    &quot;display-brightness-symbolic&quot;,
+];
+
+fn random_icon_name() -&gt; &amp;'static str {
+    ICON_LIST
+        .iter()
+        .choose(&amp;mut rand::thread_rng())
+        .expect(&quot;Could not choose a random icon&quot;)
+}</code></pre>
+<h2 id="the-model"><a class="header" href="#the-model">The model</a></h2>
+<p>For our model we only need to store the two icon names and whether both of them are identical.</p>
+<pre><code class="language-rust no_run noplayground">#[tracker::track]
+struct AppModel {
+    first_icon: &amp;'static str,
+    second_icon: &amp;'static str,
+    identical: bool,
+}</code></pre>
+<p>The message type is also pretty simple: we just want to update one of the icons.</p>
+<pre><code class="language-rust no_run noplayground">#[derive(Debug)]
+enum AppInput {
+    UpdateFirst,
+    UpdateSecond,
+}</code></pre>
+<p>There are a few notable things for the <code>Component</code>'s <code>update</code> implementation.
+First, we call <code>self.reset()</code> at the top of the function body. This ensures that the tracker will be reset so we don't track old changes.</p>
+<p>Also, we use setters instead of assignments because we want to track these changes. Yet, you could still use the assignment operator if you want to apply changes without notifying the tracker.</p>
+<pre><code class="language-rust no_run noplayground">    fn update(&amp;mut self, message: Self::Input, _sender: ComponentSender&lt;Self&gt;) {
+        // reset tracker value of the model
+        self.reset();
+
+        match message {
+            AppInput::UpdateFirst =&gt; {
+                self.set_first_icon(random_icon_name());
+            }
+            AppInput::UpdateSecond =&gt; {
+                self.set_second_icon(random_icon_name());
+            }
+        }
+        self.set_identical(self.first_icon == self.second_icon);
+    }</code></pre>
+<h2 id="the-view"><a class="header" href="#the-view">The view</a></h2>
+<p>Now we reached the interesting part of the code where we can actually make use of the tracker. Let's have a look at the complete <code>view!</code> macro call:</p>
+<pre><code class="language-rust no_run noplayground">    view! {
+        #[root]
+        gtk::ApplicationWindow {
+            #[track = &quot;model.changed(AppModel::identical())&quot;]
+            set_class_active: (&quot;identical&quot;, model.identical),
+            gtk::Box {
+                set_orientation: gtk::Orientation::Horizontal,
+                set_spacing: 10,
+                set_margin_all: 10,
+                gtk::Box {
+                    set_orientation: gtk::Orientation::Vertical,
+                    set_spacing: 10,
+                    gtk::Image {
+                        set_pixel_size: 50,
+                        #[track = &quot;model.changed(AppModel::first_icon())&quot;]
+                        set_icon_name: Some(model.first_icon),
+                    },
+                    gtk::Button {
+                        set_label: &quot;New random image&quot;,
+                        connect_clicked[sender] =&gt; move |_| {
+                            sender.input(AppInput::UpdateFirst)
+                        }
+                    }
+                },
+                append = &amp;gtk::Box {
+                    set_orientation: gtk::Orientation::Vertical,
+                    set_spacing: 10,
+                    gtk::Image {
+                        set_pixel_size: 50,
+                        #[track = &quot;model.changed(AppModel::second_icon())&quot;]
+                        set_icon_name: Some(model.second_icon),
+                    },
+                    gtk::Button {
+                        set_label: &quot;New random image&quot;,
+                        connect_clicked[sender] =&gt; move |_| {
+                            sender.input(AppInput::UpdateSecond)
+                        }
+                    }
+                },
+            }
+        }
+    }</code></pre>
+<p>The overall UI is pretty simple: A window that contains a box. This box itself has two boxes that display the two icons and the two buttons to update them.</p>
+<p>We also added some additional code in <code>init</code> that runs before the view is constructed. In our case, we want to add <a href="https://docs.gtk.org/gtk4/css-properties.html">custom CSS</a> that sets the background color for elements with class name &quot;identical&quot;.</p>
+<pre><code class="language-rust no_run noplayground">        relm4::set_global_css(&quot;.identical { background: #00ad5c; }&quot;);
+
+        // Insert the macro code generation here
+        let widgets = view_output!();</code></pre>
+<h3 id="the-track-attribute"><a class="header" href="#the-track-attribute">The <code>#[track]</code> attribute</a></h3>
+<p>The <code>#[track]</code> attribute is applied to method invocations in our view code. It allows us to add a condition to the update: if the condition is true, the method will be called, otherwise, it will be skipped. The attribute syntax looks like this:</p>
+<pre><code class="language-rust no_run noplayground">#[track = &quot;&lt;boolean expression&gt;&quot;]</code></pre>
+<p>Let's have a look at its first appearance:</p>
+<pre><code class="language-rust no_run noplayground">            #[track = &quot;model.changed(AppModel::identical())&quot;]
+            set_class_active: (&quot;identical&quot;, model.identical),</code></pre>
+<p>The <a href="https://docs.rs/relm4/latest/relm4/trait.RelmWidgetExt.html#tymethod.set_class_active"><code>set_class_active</code></a> method is used to either activate or disable a CSS class. It takes two parameters, the first is the class itself and the second is a boolean which specifies if the class should be added (<code>true</code>) or removed (<code>false</code>).</p>
+<p>The value of the <code>#[track]</code> attribute is parsed as a boolean expression. This expression will be used  as a condition to check whether something has changed. If this condition is <code>true</code>, the <code>set_class_active</code> method will be called with the parameters it guards.</p>
+<p>The macro expansion for method calls annotated with the <code>#[track]</code> attribute look roughly like this:</p>
+<pre><code class="language-rust no_run noplayground">if model.changed(AppModel::identical()) {
+    self.main_window.set_class_active(&quot;identical&quot;, model.identical);
+}</code></pre>
+<p>That's all. It's pretty simple, actually. We just use a condition that allows us to update our widgets only when needed.</p>
+<p>The second <code>#[track]</code> attribute works similarly:</p>
+<pre><code class="language-rust no_run noplayground">                        #[track = &quot;model.changed(AppModel::first_icon())&quot;]
+                        set_icon_name: Some(model.first_icon),</code></pre>
+<blockquote>
+<p><strong>Debugging Helper</strong></p>
+<p>Since the <code>#[track]</code> attribute parses expressions, you can use the following syntax to debug your trackers:</p>
+<p><code>#[track = &quot;{ println!(&quot;Update widget&quot;); argument }&quot;]</code></p>
+</blockquote>
+<h2 id="initializing-the-model"><a class="header" href="#initializing-the-model">Initializing the model</a></h2>
+<p>There's one last thing to point out. When initializing our model, we need to initialize the <code>tracker</code> field as well. The initial value doesn't really matter because we call <code>reset()</code> in the update function anyway, but usually <code>0</code> is used.</p>
+<pre><code class="language-rust no_run noplayground">        let model = AppModel {
+            first_icon: random_icon_name(),
+            second_icon: random_icon_name(),
+            identical: false,
+            tracker: 0,
+        };</code></pre>
+<h2 id="the-complete-code"><a class="header" href="#the-complete-code">The complete code</a></h2>
+<p>Let's look at our code again in one piece to see how all these parts work together:</p>
+<pre><code class="language-rust no_run noplayground">use gtk::prelude::{BoxExt, ButtonExt, OrientableExt};
+use rand::prelude::IteratorRandom;
+use relm4::{gtk, ComponentParts, ComponentSender, RelmApp, RelmWidgetExt, SimpleComponent};
+
+const ICON_LIST: &amp;[&amp;str] = &amp;[
+    &quot;bookmark-new-symbolic&quot;,
+    &quot;edit-copy-symbolic&quot;,
+    &quot;edit-cut-symbolic&quot;,
+    &quot;edit-find-symbolic&quot;,
+    &quot;starred-symbolic&quot;,
+    &quot;system-run-symbolic&quot;,
+    &quot;emoji-objects-symbolic&quot;,
+    &quot;emoji-nature-symbolic&quot;,
+    &quot;display-brightness-symbolic&quot;,
+];
+
+fn random_icon_name() -&gt; &amp;'static str {
+    ICON_LIST
+        .iter()
+        .choose(&amp;mut rand::thread_rng())
+        .expect(&quot;Could not choose a random icon&quot;)
+}
+
+// The track proc macro allows to easily track changes to different
+// fields of the model
+#[tracker::track]
+struct AppModel {
+    first_icon: &amp;'static str,
+    second_icon: &amp;'static str,
+    identical: bool,
+}
+
+#[derive(Debug)]
+enum AppInput {
+    UpdateFirst,
+    UpdateSecond,
+}
+
+#[relm4::component]
+impl SimpleComponent for AppModel {
+    type Init = ();
+    type Input = AppInput;
+    type Output = ();
+
+    view! {
+        #[root]
+        gtk::ApplicationWindow {
+            #[track = &quot;model.changed(AppModel::identical())&quot;]
+            set_class_active: (&quot;identical&quot;, model.identical),
+            gtk::Box {
+                set_orientation: gtk::Orientation::Horizontal,
+                set_spacing: 10,
+                set_margin_all: 10,
+                gtk::Box {
+                    set_orientation: gtk::Orientation::Vertical,
+                    set_spacing: 10,
+                    gtk::Image {
+                        set_pixel_size: 50,
+                        #[track = &quot;model.changed(AppModel::first_icon())&quot;]
+                        set_icon_name: Some(model.first_icon),
+                    },
+                    gtk::Button {
+                        set_label: &quot;New random image&quot;,
+                        connect_clicked[sender] =&gt; move |_| {
+                            sender.input(AppInput::UpdateFirst)
+                        }
+                    }
+                },
+                append = &amp;gtk::Box {
+                    set_orientation: gtk::Orientation::Vertical,
+                    set_spacing: 10,
+                    gtk::Image {
+                        set_pixel_size: 50,
+                        #[track = &quot;model.changed(AppModel::second_icon())&quot;]
+                        set_icon_name: Some(model.second_icon),
+                    },
+                    gtk::Button {
+                        set_label: &quot;New random image&quot;,
+                        connect_clicked[sender] =&gt; move |_| {
+                            sender.input(AppInput::UpdateSecond)
+                        }
+                    }
+                },
+            }
+        }
+    }
+
+    // Initialize the UI.
+    fn init(
+        _params: Self::Init,
+        root: &amp;Self::Root,
+        sender: ComponentSender&lt;Self&gt;,
+    ) -&gt; ComponentParts&lt;Self&gt; {
+        let model = AppModel {
+            first_icon: random_icon_name(),
+            second_icon: random_icon_name(),
+            identical: false,
+            tracker: 0,
+        };
+
+        relm4::set_global_css(&quot;.identical { background: #00ad5c; }&quot;);
+
+        // Insert the macro code generation here
+        let widgets = view_output!();
+
+        ComponentParts { model, widgets }
+    }
+
+    fn update(&amp;mut self, message: Self::Input, _sender: ComponentSender&lt;Self&gt;) {
+        // reset tracker value of the model
+        self.reset();
+
+        match message {
+            AppInput::UpdateFirst =&gt; {
+                self.set_first_icon(random_icon_name());
+            }
+            AppInput::UpdateSecond =&gt; {
+                self.set_second_icon(random_icon_name());
+            }
+        }
+        self.set_identical(self.first_icon == self.second_icon);
+    }
+}
+
+fn main() {
+    let app = RelmApp::new(&quot;relm4.test.simple&quot;);
+    app.run::&lt;AppModel&gt;(());
+}</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../efficient_ui/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../efficient_ui/factory.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../efficient_ui/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../efficient_ui/factory.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

@@ -1,0 +1,368 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>0.4 to 0.5 - GUI development with Relm4</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="../basic_concepts/index.html"><strong aria-hidden="true">1.</strong> Basic concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../basic_concepts/model.html"><strong aria-hidden="true">1.1.</strong> Model</a></li><li class="chapter-item expanded "><a href="../basic_concepts/messages.html"><strong aria-hidden="true">1.2.</strong> Messages</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../basic_concepts/messages/input.html"><strong aria-hidden="true">1.2.1.</strong> Input</a></li><li class="chapter-item expanded "><a href="../basic_concepts/messages/output.html"><strong aria-hidden="true">1.2.2.</strong> Output</a></li></ol></li><li class="chapter-item expanded "><a href="../basic_concepts/widgets.html"><strong aria-hidden="true">1.3.</strong> Widgets</a></li><li class="chapter-item expanded "><a href="../basic_concepts/components.html"><strong aria-hidden="true">1.4.</strong> Components</a></li></ol></li><li class="chapter-item expanded "><a href="../first_app.html"><strong aria-hidden="true">2.</strong> Your first app</a></li><li class="chapter-item expanded "><a href="../component_macro.html"><strong aria-hidden="true">3.</strong> The component macro</a></li><li class="chapter-item expanded "><a href="../tricks.html"><strong aria-hidden="true">4.</strong> Tips and tricks</a></li><li class="chapter-item expanded "><a href="../efficient_ui/index.html"><strong aria-hidden="true">5.</strong> Efficient UI updates</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../efficient_ui/tracker.html"><strong aria-hidden="true">5.1.</strong> Tracker</a></li><li class="chapter-item expanded "><a href="../efficient_ui/factory.html"><strong aria-hidden="true">5.2.</strong> Factories</a></li><li class="chapter-item expanded "><a href="../efficient_ui/factory_position.html"><strong aria-hidden="true">5.3.</strong> The position function</a></li></ol></li><li class="chapter-item expanded "><a href="../components.html"><strong aria-hidden="true">6.</strong> Components</a></li><li class="chapter-item expanded "><a href="../threads_and_async/index.html"><strong aria-hidden="true">7.</strong> Threads and async</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../threads_and_async/worker.html"><strong aria-hidden="true">7.1.</strong> Workers</a></li><li class="chapter-item expanded "><a href="../threads_and_async/commands.html"><strong aria-hidden="true">7.2.</strong> Commands</a></li><li class="chapter-item expanded "><a href="../threads_and_async/async.html"><strong aria-hidden="true">7.3.</strong> Async components and factories</a></li><li class="chapter-item expanded "><a href="../threads_and_async/overview.html"><strong aria-hidden="true">7.4.</strong> Overview</a></li></ol></li><li class="chapter-item expanded "><a href="../child_components.html"><strong aria-hidden="true">8.</strong> Child components</a></li><li class="chapter-item expanded "><a href="../widget_templates/index.html"><strong aria-hidden="true">9.</strong> Widget templates</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../widget_templates/accessing_nested_template_elements.html"><strong aria-hidden="true">9.1.</strong> Accessing Nested Template Elements</a></li></ol></li><li class="chapter-item expanded "><a href="../gtk_rs.html"><strong aria-hidden="true">10.</strong> gtk-rs overview</a></li><li class="chapter-item expanded "><a href="../resource_bundles.html"><strong aria-hidden="true">11.</strong> Resource Bundles</a></li><li class="chapter-item expanded "><a href="../continuous_integration.html"><strong aria-hidden="true">12.</strong> Continuous Integration guide</a></li><li class="chapter-item expanded "><a href="../component_macro/reference.html"><strong aria-hidden="true">13.</strong> Component macro reference</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../component_macro/expansion.html"><strong aria-hidden="true">13.1.</strong> Macro expansion</a></li></ol></li><li class="chapter-item expanded "><a href="../migrations/index.html"><strong aria-hidden="true">14.</strong> Migration guides</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../migrations/0_2_to_0_4.html"><strong aria-hidden="true">14.1.</strong> 0.2 to 0.4</a></li><li class="chapter-item expanded "><a href="../migrations/0_4_to_0_5.html" class="active"><strong aria-hidden="true">14.2.</strong> 0.4 to 0.5</a></li><li class="chapter-item expanded "><a href="../migrations/0_5_to_0_6.html"><strong aria-hidden="true">14.3.</strong> 0.5 to 0.6</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">GUI development with Relm4</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/Relm4/book" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/Relm4/book/edit/main/src/migrations/0_4_to_0_5.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="migration-from-v04-to-v05"><a class="header" href="#migration-from-v04-to-v05">Migration from v0.4 to v0.5</a></h1>
+<p>Version 0.5 brings many exciting changes but also a few major breaking changes.
+In this chapter, all changes should be covered to help you migrating your existing code quickly.</p>
+<h2 id="components"><a class="header" href="#components">Components</a></h2>
+<p><code>Component</code> unifies several traits that existed before.
+It entirely replaces <code>AppUpdate</code>, <code>ComponentUpdate</code>, <code>AsyncComponentUpdate</code>, <code>MessageHandler</code>, <code>MicroModel</code>, <code>MicroWidgets</code>, <code>Components</code> and <code>Widgets</code>.
+Components are now more similar to <code>MicroComponent</code> which means they are much more flexible and don't need a typed connection to their parent component.
+This makes using the same component with different parent components much easier.
+Instead of accessing the parent model, you define <code>Init</code> as a type that includes all information to initialize the component.</p>
+<p>The life cycle has changed a bit, too.</p>
+<ol>
+<li><a href="https://docs.rs/relm4/latest/relm4/component/trait.Component.html#tymethod.init_root">Initialization of the root widget</a>.
+The reason behind this is to allow parent components to access the root widget before the rest of the component is initialized.</li>
+<li><a href="https://docs.rs/relm4/latest/relm4/component/trait.Component.html#tymethod.init">Initialize the component itself and the widgets</a>.
+This happens in one method now, which makes it easier especially for more difficult initializations.</li>
+<li>Regarding updates, there hasn't been a lot of changes. However you can now optionally update view and model at once using <a href="https://docs.rs/relm4/latest/relm4/component/trait.Component.html#method.update_with_view"><code>update_with_view</code></a>.</li>
+<li>The <a href="https://docs.rs/relm4/latest/relm4/component/trait.Component.html#method.shutdown">shutdown</a> method is called when the component is destroyed. Components don't have to live for the entire application lifespan anymore.</li>
+</ol>
+<h3 id="senders-and-messages"><a class="header" href="#senders-and-messages">Senders and messages</a></h3>
+<p>Components have three kinds of messages now:</p>
+<ol>
+<li><code>Input</code> is the regular <code>Msg</code> type from the <code>Model</code> trait in 0.4.</li>
+<li><code>Output</code> is the message type, that can be used to forward information to other components automatically (or <code>()</code> if you don't care about forwarding).
+You will find more information about initializing components in the next section.</li>
+<li><code>CmdOutput</code> is the output of commands.
+Commands are futures that are executed in the background.
+<strong>They fully replace async workers.</strong>
+The result of this future is the <code>CmdOutput</code> message handled in <a href="https://docs.rs/relm4/latest/relm4/component/trait.Component.html#method.update_cmd"><code>update_cmd</code></a>, similar to the regular update function.</li>
+</ol>
+<p>The <code>send!</code> macro is obsolete. Please use <code>sender.input(msg)</code> instead.</p>
+<h3 id="initializing-components"><a class="header" href="#initializing-components">Initializing components</a></h3>
+<p>Components are initialized in the <a href="https://docs.rs/relm4/latest/relm4/component/trait.Component.html#tymethod.init">init</a> method of their parent.
+You simply call <code>MyComponentType::builder()</code> to get a <a href="https://docs.rs/relm4/latest/relm4/component/struct.ComponentBuilder.html"><code>ComponentBuilder</code></a>.
+Then you launch the component by calling <code>builder.launch(init_params)</code> to receive a <a href="https://docs.rs/relm4/latest/relm4/component/struct.Connector.html"><code>Connector</code></a>.
+From the connector you can decide to automatically forward messages to another component or just <a href="https://docs.rs/relm4/latest/relm4/component/struct.Connector.html#method.detach">detach</a> the connector to get a <a href="https://docs.rs/relm4/latest/relm4/component/struct.Controller.html"><code>Controller</code></a>.
+The <strong>controller</strong> is the type you now <strong>store in the model of the parent component</strong> instead of creating a separate components struct.
+There's no <code>Components</code> trait necessary.</p>
+<p>For types that implement <code>Component</code> that don't have any widgets (such as implementers of the <a href="https://docs.rs/relm4/latest/relm4/component/worker/trait.Worker.html"><code>Worker</code></a> trait), you can call <a href="https://docs.rs/relm4/latest/relm4/component/struct.ComponentBuilder.html#method.detach_worker"><code>detach_worker</code></a> from a <code>ComponentBuilder</code>.
+This spawns the internal runtime on a separate thread and gives you a <a href="https://docs.rs/relm4/latest/relm4/component/worker/struct.WorkerController.html"><code>WorkerController</code></a>.</p>
+<h3 id="helper-traits"><a class="header" href="#helper-traits">Helper traits</a></h3>
+<h4 id="simplecomponent"><a class="header" href="#simplecomponent"><code>SimpleComponent</code></a></h4>
+<p><code>SimpleComponent</code> is a simpler variant of <code>Component</code> that helps with the implementation of <code>Component</code>.
+Particularly, it doesn't support commands.</p>
+<h4 id="worker"><a class="header" href="#worker"><code>Worker</code></a></h4>
+<p><code>Worker</code> is an even simpler variant of <code>SimpleComponent</code> that helps with the implementation of <code>Component</code>.
+Particularly, it doesn't support widgets and allows running the components update loop on a different thread by using <a href="https://docs.rs/relm4/latest/relm4/component/struct.ComponentBuilder.html#method.detach_worker"><code>detach_worker</code></a>.
+<strong>This is the replacement for the previously separated <code>RelmWorker</code> type.</strong></p>
+<h2 id="factories"><a class="header" href="#factories">Factories</a></h2>
+<p>Factories now work very similar to components.
+In fact, the new <a href="https://docs.rs/relm4/latest/relm4/factory/trait.FactoryComponent.html"><code>FactoryComponent</code></a> trait that replaces <code>FactoryPrototype</code> is almost identical to the <code>Component</code> trait.
+Messages can now be optionally passed by using the <a href="https://docs.rs/relm4/latest/relm4/factory/trait.FactoryComponent.html#method.forward_to_parent"><code>forward_to_parent</code></a> method.</p>
+<p><code>FactoryVec</code> was entirely removed in favor of <code>FactoryVecDeque</code>.
+Edits to factories are now similar to <code>Mutex</code> and require a guard.
+When the guard is dropped, all changes are rendered automatically, so no render method is required anymore.</p>
+<h2 id="the-view-macro"><a class="header" href="#the-view-macro">The <code>view</code> macro</a></h2>
+<ul>
+<li>In general, a lot of internal macros were moved to be just attributes like <code>watch!</code> and <code>track!</code> now written as <code>#[watch]</code> and <code>#[track(optional_condition)]</code>.</li>
+<li>Multiple arguments now don't need <code>args!()</code> but just <code>()</code> whereas tuples need two parenthesis <code>(())</code>.</li>
+<li>Wrapping widgets into <code>Some</code> is now also an attribute <code>#[wrap(Some)]</code>.</li>
+<li>Additional arguments are now passed with square brackets <code>[]</code> instead of parenthesis <code>()</code>.</li>
+<li>Cloning variables for closures is always done with square brackets <code>[]</code> instead of parenthesis <code>()</code>.</li>
+</ul>
+<table>
+<tr>
+<th> Old </th>
+<th> New </th>
+</tr>
+<tr>
+<td>
+<pre><code class="language-rust ignore">view! {
+    gtk::HeaderBar {
+        set_title_widget = Some(&amp;gtk::Box) {
+            append: group = &amp;gtk::ToggleButton {
+                set_label: watch!(model.label),
+
+                connect_toggled(sender) =&gt; move |btn| {
+                    // ...
+                },
+            },
+        }
+    }
+}</code></pre>
+</td>
+<td>
+<pre><code class="language-rust ignore">view! {
+    gtk::HeaderBar {
+        #[wrap(Some)]
+        set_title_widget = &amp;gtk::Box {
+            append: group = &amp;gtk::ToggleButton {
+                #[watch]
+                set_label: model.label,
+
+                connect_toggled[sender] =&gt; move |btn| {
+                    // ...
+                },
+            },
+        }
+    }
+}</code></pre>
+</td>
+</tr>
+</table>
+<h3 id="the-widget-macro"><a class="header" href="#the-widget-macro">The <code>widget</code> macro</a></h3>
+<ul>
+<li>The macro in now called <code>#[component]</code>.</li>
+<li>You need to use <code>let widgets = view_output!();</code> in the <code>init</code> function to inject the code from the <code>view</code> macro.</li>
+<li><code>pre_init</code> -&gt; Code before <code>view_output!()</code>.</li>
+<li><code>post_init</code> -&gt; Code after <code>view_output!()</code>.</li>
+</ul>
+<h2 id="relmapp"><a class="header" href="#relmapp">RelmApp</a></h2>
+<p>Now you need to specify an application id and a generic parameter is required when calling <code>run()</code>.</p>
+<h2 id="miscellaneous"><a class="header" href="#miscellaneous">Miscellaneous</a></h2>
+<ul>
+<li><code>WidgetPlus::inline_css</code> now takes <code>&amp;str</code> as parameter instead of <code>&amp;[u8]</code>.</li>
+</ul>
+<h2 id="summary"><a class="header" href="#summary">Summary</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>v0.4</th><th>v0.5</th></tr></thead><tbody>
+<tr><td><code>Model</code></td><td><code>Component</code></td></tr>
+<tr><td><code>AppUpdate</code></td><td><code>Component</code></td></tr>
+<tr><td><code>ComponentUpdate</code></td><td><code>Component</code></td></tr>
+<tr><td><code>AsyncComponentUpdate</code></td><td><code>Component</code></td></tr>
+<tr><td><code>MicroComponent</code></td><td><code>Component</code></td></tr>
+<tr><td><code>MicroWidgets</code></td><td><code>Component</code></td></tr>
+<tr><td><code>MessageHandler</code></td><td><code>Component</code></td></tr>
+<tr><td><code>FactoryPrototype</code></td><td><code>FactoryComponent</code></td></tr>
+<tr><td><code>Model::Msg</code></td><td><code>Component::Input</code></td></tr>
+<tr><td><code>Model::Widgets</code></td><td><code>Component::Widgets</code></td></tr>
+<tr><td><code>Model::Components</code></td><td>removed</td></tr>
+<tr><td><code>Components</code></td><td>Store a <code>Controller</code> for each component in your model</td></tr>
+<tr><td><code>parent_sender</code></td><td>Forward output messages from one component to another by using <code>Connector</code></td></tr>
+</tbody></table>
+</div>
+<blockquote>
+<p>In case there's something missing, please let me know. You can simply open an issue on <a href="https://github.com/Relm4/Relm4">GitHub</a> or write a message in the <a href="https://matrix.to/#/#relm4:matrix.org">Matrix room</a>.</p>
+</blockquote>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../migrations/0_2_to_0_4.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../migrations/0_5_to_0_6.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../migrations/0_2_to_0_4.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../migrations/0_5_to_0_6.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
