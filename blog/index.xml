@@ -84,7 +84,7 @@ By always using owned root widgets, it now takes even fewer steps to refactor be
 </ul>
 <h2 id="where-to-get-started">Where to get started</h2>
 <ul>
-<li>⬆️ <strong><a href="https://relm4.org/book/stable/0_6_to_0_7.html">Migration guide</a></strong></li>
+<li>⬆️ <strong><a href="https://relm4.org/book/stable/migrations/0_6_to_0_7.html">Migration guide</a></strong></li>
 <li>🏠 <strong><a href="https://relm4.org">Website</a></strong></li>
 <li>⭐ <strong><a href="https://github.com/Relm4/Relm4">Repository</a></strong></li>
 <li>📖 <strong><a href="https://relm4.org/book/stable">Book</a></strong></li>
