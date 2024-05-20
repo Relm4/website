@@ -4017,8 +4017,8 @@ let label = &amp;widgets.important_label;</code></pre>
 <p>Names can also be assigned with this syntax:</p>
 <pre><code class="language-rust ignore">set_child: important_label = gtk::Label { ... }</code></pre>
 <h3 id="conditional-widgets"><a class="header" href="#conditional-widgets">Conditional widgets</a></h3>
-<p>The <code>view</code> macro allows you to include <code>if</code> and <code>match</code> statements for conditionally showing widgets.
-Internally, the macro will use a <code>gtk::Stack</code>, so you can also use different <a href="https://gtk-rs.org/gtk4-rs/git/docs/gtk4/enum.StackTransitionType.html">transition types</a>.</p>
+<p>The <code>view</code> macro allows you to include <code>if</code> and <code>match</code> statements for conditionally showing widgets.</p>
+<p>Internally, the macro will use a <code>gtk::Stack</code>, so you can also use different <a href="https://gtk-rs.org/gtk4-rs/git/docs/gtk4/enum.StackTransitionType.html">transition types</a>.</p>
 <pre><code class="language-rust ignore">if model.value % 2 == 0 {
     gtk::Label {
         set_label: "The value is even",
@@ -4026,9 +4026,8 @@ Internally, the macro will use a <code>gtk::Stack</code>, so you can also use di
     gtk::Label {
         set_label: "The value is odd",
     }
-}
-
-// Use a transition type to set an animation when the visible widget changes
+}</code></pre>
+<pre><code class="language-rust ignore">// Use a transition type to set an animation when the visible widget changes
 #[transition = "SlideRight"]
 match model.value {
     0..=9 =&gt; {
@@ -4042,6 +4041,45 @@ match model.value {
         },
     }
 }</code></pre>
+<p>If your conditional widget uses a <code>match</code> statement over an enum, you can destructure the enum in the <code>match</code> arms to access its variables with the help of the <code>#[track]</code> or <code>#[watch]</code> macros:</p>
+<pre><code class="language-rust ignore">enum Foo {
+    Bar(f32),
+    Baz(String),
+}
+
+struct FooView {
+    foo: Foo
+}
+
+impl Component for FooView {
+    type Init = Foo;
+
+    // snip
+
+    view! {
+        #[root]
+        gtk::Box {
+            append = match &amp;model.foo {
+                Foo::Bar(num_value) =&gt; {
+                    gtk::SpinButton {
+                        // adding the `watch` macro lets you reference the destructured variables
+                        #[watch]
+                        set_value: num_value
+                    }
+                }
+                Foo::Baz(str_value) =&gt; {
+                    gtk::Label {
+                        #[watch]
+                        set_text: &amp;str_value
+                    }
+                }
+            }
+        }
+    }
+
+    // snip
+}</code></pre>
+<p>Please note: if you attempt to destructure in the normal way - without the <code>track</code> or <code>watch</code> macros - you will get a compilation error, and Rust will 'fail to see' the destructured variables at the point where your code uses them. This is due to limitations in Relm4's component initialization strategy. Please ensure that you use one of those macros to avoid this.</p>
 <h3 id="returned-widgets"><a class="header" href="#returned-widgets">Returned widgets</a></h3>
 <p>Sometimes, methods used for assigning widgets return another widget.
 For example, <a href="https://gtk-rs.org/gtk4-rs/git/docs/gtk4/struct.Stack.html#method.add_child"><code>gtk::Stack::add_child()</code></a> allows you to add a widget to the stack, but also returns a <code>gtk::StackPage</code> widget.
