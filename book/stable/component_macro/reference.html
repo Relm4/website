@@ -323,6 +323,9 @@ To get access to this widget, you can use a special syntax of the view macro:</p
         set_title: "page title",
     }
 }</code></pre>
+<p>The returned widget can be named with the following syntax:</p>
+<pre><code class="language-rust ignore">method = &amp;Widget { ... } -&gt; NAME: RETURNED_TYPE { ... }</code></pre>
+<p>and can be subsequently accessed via the Widgets struct.</p>
 <h2 id="properties"><a class="header" href="#properties">Properties</a></h2>
 <p>Properties are initialized and mutated by calling methods within the widget types.
 Check the documentation for each widget type to see what methods are available.
@@ -356,6 +359,10 @@ To specify the intended trait, use the <code>TraitName::method</code> syntax, si
 <h2 id="signals"><a class="header" href="#signals">Signals</a></h2>
 <p>When connecting signals emitted by widgets you can clone fields that you need in the closure (for example, the component sender) by listing the corresponding fields in square brackets.</p>
 <pre><code class="language-rust ignore">connect_name[cloned_var1, cloned_var2, ...] =&gt; move |arg1, arg2, ...| { ... }</code></pre>
+<p>There is a shorthand for sending a message per event handlers like <code>ComponentSender</code> or <code>AsyncComponentSender</code>.</p>
+<pre><code class="language-rust ignore">connect_clicked =&gt; AppMsg::Increase,</code></pre>
+<p>A member of a struct or the result of a method can also be used inside the closure by assigning it to a variable.</p>
+<pre><code class="language-rust ignore">connect_name[sender = components.sender.clone()] =&gt; move |...| { ... }</code></pre>
 <h3 id="blocking-signals-temporarily"><a class="header" href="#blocking-signals-temporarily">Blocking signals temporarily</a></h3>
 <p>Some signals are not only emitted after a user interaction, but also when you change values though your code, for example by using <code>#[watch]</code>.
 This might not be the desired behavior and can even cause your application to freeze under certain circumstances.</p>
