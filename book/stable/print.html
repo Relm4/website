@@ -809,12 +809,12 @@ Other types such as <code>gtk::Grid</code> even need more information to place c
 In this case, you can simply pass the method name before declaring the child widget.
 Also, we often need a reference (<code>&amp;</code>) because most methods in gtk-rs take references.</p>
 <pre><code class="language-rust ignore">gtk::HeaderBar {
-    pack_start: &amp;gtk::Label {
+    pack_start = &amp;gtk::Label {
         // ...
     }
 },
 gtk::Grid {
-    attach[0, 0, 1, 1]: &amp;gtk::Label {
+    attach[0, 0, 1, 1] = &amp;gtk::Label {
         // ...
     }
 }</code></pre>
