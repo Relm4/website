@@ -262,7 +262,7 @@ impl WidgetTemplate for CustomBox {
 <p>To use templates in a component, we use the <code>#[template]</code> and <code>#[template_child]</code> attributes.
 In this case, we use the <code>CustomBox</code> type we just defined with the <code>#[template]</code> attribute we already used.
 To access its <code>child_label</code> template child, we only need to use the <code>#[template_child]</code> attribute and the name of the child.
-As you can see, we now have access to the <code>whild_label</code> widget, which actually is wrapped into 4 <code>gtk::Box</code> widgets.
+As you can see, we now have access to the <code>child_label</code> widget, which actually is wrapped into 4 <code>gtk::Box</code> widgets.
 We can even use assign or overwrite properties of the template and its children, similar to regular widgets.
 Here, we use the <code>#[watch]</code> attribute to update the label with the latest counter value.</p>
 <pre><code class="language-rust no_run noplayground">#[relm4::component]
