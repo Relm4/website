@@ -205,8 +205,8 @@ Built on top of this foundation, Relm4 makes developing more idiomatic, simpler 
 </ul>
 <p><strong>Cargo:</strong></p>
 <p>Add the packages you need to your <code>Cargo.toml</code>:</p>
-<pre><code class="language-toml">relm4 = "0.8.0"
-relm4-components = "0.8.0"
+<pre><code class="language-toml">relm4 = "0.9.1"
+relm4-components = "0.9.1"
 </code></pre>
 <h2 id="issues-and-feedback"><a class="header" href="#issues-and-feedback">Issues and feedback</a></h2>
 <p>If you find a mistake or something unclear in Relm4 or this book, let us know! Simply open up an <a href="https://github.com/Relm4/Relm4/issues">issue</a> or start a <a href="https://github.com/Relm4/Relm4/discussions">discussion</a> over at <a href="https://github.com/Relm4/Relm4">GitHub</a> or chat with us on <a href="https://matrix.to/#/#relm4:matrix.org">Matrix</a>.</p>
@@ -399,13 +399,21 @@ Most importantly, this means that:</p>
         vbox.append(&amp;dec_button);
         vbox.append(&amp;label);
 
-        inc_button.connect_clicked(clone!(@strong sender =&gt; move |_| {
-            sender.input(AppInput::Increment);
-        }));
+        inc_button.connect_clicked(clone!(
+            #[strong]
+            sender,
+            move |_| {
+                sender.input(Msg::Increment);
+            }
+        ));
 
-        dec_button.connect_clicked(clone!(@strong sender =&gt; move |_| {
-            sender.input(AppInput::Decrement);
-        }));
+        dec_button.connect_clicked(clone!(
+            #[strong]
+            sender,
+            move |_| {
+                sender.input(Msg::Decrement);
+            }
+        ));
 
         let widgets = AppWidgets { label };
 
@@ -535,13 +543,21 @@ impl SimpleComponent for AppModel {
         vbox.append(&amp;dec_button);
         vbox.append(&amp;label);
 
-        inc_button.connect_clicked(clone!(@strong sender =&gt; move |_| {
-            sender.input(AppInput::Increment);
-        }));
+        inc_button.connect_clicked(clone!(
+            #[strong]
+            sender,
+            move |_| {
+                sender.input(Msg::Increment);
+            }
+        ));
 
-        dec_button.connect_clicked(clone!(@strong sender =&gt; move |_| {
-            sender.input(AppInput::Decrement);
-        }));
+        dec_button.connect_clicked(clone!(
+            #[strong]
+            sender,
+            move |_| {
+                sender.input(Msg::Decrement);
+            }
+        ));
 
         let widgets = AppWidgets { label };
 
