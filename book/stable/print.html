@@ -254,7 +254,7 @@ After this section, we will be building a simple counter app.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="messages"><a class="header" href="#messages">Messages</a></h1>
 <p>To help the computer understand what we want to tell it, we first translate user interactions into messages.</p>
 <p>In Relm4, a message can be any data type, but most often, an <code>enum</code> is used.</p>
-<pre><code class="language-rust no_run noplayground">enum AppInput {
+<pre><code class="language-rust no_run noplayground">enum AppMsg {
     Increment,
     Decrement,
 }</code></pre>
@@ -326,7 +326,7 @@ Most importantly, this means that:</p>
 <p>Let's have a look at what we need to get this done!</p>
 <h3 id="messages-1"><a class="header" href="#messages-1">Messages</a></h3>
 <p>For our app, we just want to tell the computer to either increment or decrement a counter.</p>
-<pre><code class="language-rust no_run noplayground">enum AppInput {
+<pre><code class="language-rust no_run noplayground">enum AppMsg {
     Increment,
     Decrement,
 }</code></pre>
@@ -350,7 +350,7 @@ Most importantly, this means that:</p>
 <pre><code class="language-rust no_run noplayground">impl SimpleComponent for AppModel {</code></pre>
 <p>The first thing you need to do is to define some generic types necessary to make our component work.</p>
 <pre><code class="language-rust no_run noplayground">    /// The type of the messages that this component can receive.
-    type Input = AppInput;
+    type Input = AppMsg;
     /// The type of the messages that this component can send.
     type Output = ();
     /// The type of data with which this component will be initialized.
@@ -426,10 +426,10 @@ Most importantly, this means that:</p>
 <p>The <code>update</code> function of the <code>SimpleComponent</code> trait tells the computer how to process messages and how to update its memory.</p>
 <pre><code class="language-rust no_run noplayground">    fn update(&amp;mut self, message: Self::Input, _sender: ComponentSender&lt;Self&gt;) {
         match message {
-            AppInput::Increment =&gt; {
+            AppMsg::Increment =&gt; {
                 self.counter = self.counter.wrapping_add(1);
             }
-            AppInput::Decrement =&gt; {
+            AppMsg::Decrement =&gt; {
                 self.counter = self.counter.wrapping_sub(1);
             }
         }
@@ -488,7 +488,7 @@ struct AppModel {
 }
 
 #[derive(Debug)]
-enum AppInput {
+enum AppMsg {
     Increment,
     Decrement,
 }
@@ -500,7 +500,7 @@ struct AppWidgets {
 impl SimpleComponent for AppModel {
 
     /// The type of the messages that this component can receive.
-    type Input = AppInput;
+    type Input = AppMsg;
     /// The type of the messages that this component can send.
     type Output = ();
     /// The type of data with which this component will be initialized.
@@ -566,10 +566,10 @@ impl SimpleComponent for AppModel {
 
     fn update(&amp;mut self, message: Self::Input, _sender: ComponentSender&lt;Self&gt;) {
         match message {
-            AppInput::Increment =&gt; {
+            AppMsg::Increment =&gt; {
                 self.counter = self.counter.wrapping_add(1);
             }
-            AppInput::Decrement =&gt; {
+            AppMsg::Decrement =&gt; {
                 self.counter = self.counter.wrapping_sub(1);
             }
         }
@@ -921,9 +921,9 @@ Update your mutable field with a function or a closure. Assumes the field will b
 </ul>
 <p>To check for changes you can call <code>{struct_var_name}.changed(StructName::{field_name}())</code> and it will return a bool indication whether the field was updated.</p>
 <p>To reset all previous changes, you can call <code>{struct_var_name}.reset()</code>.</p>
-<h2 id="example"><a class="header" href="#example">Example</a></h2>
+<h2 id="a-tracker-example"><a class="header" href="#a-tracker-example">A tracker example</a></h2>
 <p>First we have to add the tracker library to <code>Cargo.toml</code>:</p>
-<pre><code class="language-toml">tracker = "0.1"
+<pre><code class="language-toml">tracker = "0.2.2"
 </code></pre>
 <p>Now let's have a look at a small example.</p>
 <pre><code class="language-rust no_run noplayground">#[tracker::track]
@@ -5660,7 +5660,7 @@ In most places, this just means that you have to remove a <code>&amp;</code>.</p
 <h2 id="factory-changes"><a class="header" href="#factory-changes">Factory changes</a></h2>
 <p><code>ParentInput</code> and <code>forward_to_parent()</code> were removed from <code>FactoryComponent</code> and <code>AsyncFactoryComponent</code>.
 Instead, factories now support basically the same builder pattern as components.</p>
-<h3 id="example-1"><a class="header" href="#example-1">Example</a></h3>
+<h3 id="example"><a class="header" href="#example">Example</a></h3>
 <p>Replace this:</p>
 <pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
