@@ -198,7 +198,7 @@
 <p>Let's have a look at what we need to get this done!</p>
 <h3 id="messages"><a class="header" href="#messages">Messages</a></h3>
 <p>For our app, we just want to tell the computer to either increment or decrement a counter.</p>
-<pre><code class="language-rust no_run noplayground">enum AppInput {
+<pre><code class="language-rust no_run noplayground">enum AppMsg {
     Increment,
     Decrement,
 }</code></pre>
@@ -222,7 +222,7 @@
 <pre><code class="language-rust no_run noplayground">impl SimpleComponent for AppModel {</code></pre>
 <p>The first thing you need to do is to define some generic types necessary to make our component work.</p>
 <pre><code class="language-rust no_run noplayground">    /// The type of the messages that this component can receive.
-    type Input = AppInput;
+    type Input = AppMsg;
     /// The type of the messages that this component can send.
     type Output = ();
     /// The type of data with which this component will be initialized.
@@ -271,13 +271,21 @@
         vbox.append(&amp;dec_button);
         vbox.append(&amp;label);
 
-        inc_button.connect_clicked(clone!(@strong sender =&gt; move |_| {
-            sender.input(AppInput::Increment);
-        }));
+        inc_button.connect_clicked(clone!(
+            #[strong]
+            sender,
+            move |_| {
+                sender.input(AppMsg::Increment);
+            }
+        ));
 
-        dec_button.connect_clicked(clone!(@strong sender =&gt; move |_| {
-            sender.input(AppInput::Decrement);
-        }));
+        dec_button.connect_clicked(clone!(
+            #[strong]
+            sender,
+            move |_| {
+                sender.input(AppMsg::Decrement);
+            }
+        ));
 
         let widgets = AppWidgets { label };
 
@@ -290,10 +298,10 @@
 <p>The <code>update</code> function of the <code>SimpleComponent</code> trait tells the computer how to process messages and how to update its memory.</p>
 <pre><code class="language-rust no_run noplayground">    fn update(&amp;mut self, message: Self::Input, _sender: ComponentSender&lt;Self&gt;) {
         match message {
-            AppInput::Increment =&gt; {
+            AppMsg::Increment =&gt; {
                 self.counter = self.counter.wrapping_add(1);
             }
-            AppInput::Decrement =&gt; {
+            AppMsg::Decrement =&gt; {
                 self.counter = self.counter.wrapping_sub(1);
             }
         }
@@ -352,7 +360,7 @@ struct AppModel {
 }
 
 #[derive(Debug)]
-enum AppInput {
+enum AppMsg {
     Increment,
     Decrement,
 }
@@ -364,7 +372,7 @@ struct AppWidgets {
 impl SimpleComponent for AppModel {
 
     /// The type of the messages that this component can receive.
-    type Input = AppInput;
+    type Input = AppMsg;
     /// The type of the messages that this component can send.
     type Output = ();
     /// The type of data with which this component will be initialized.
@@ -407,13 +415,21 @@ impl SimpleComponent for AppModel {
         vbox.append(&amp;dec_button);
         vbox.append(&amp;label);
 
-        inc_button.connect_clicked(clone!(@strong sender =&gt; move |_| {
-            sender.input(AppInput::Increment);
-        }));
+        inc_button.connect_clicked(clone!(
+            #[strong]
+            sender,
+            move |_| {
+                sender.input(AppMsg::Increment);
+            }
+        ));
 
-        dec_button.connect_clicked(clone!(@strong sender =&gt; move |_| {
-            sender.input(AppInput::Decrement);
-        }));
+        dec_button.connect_clicked(clone!(
+            #[strong]
+            sender,
+            move |_| {
+                sender.input(AppMsg::Decrement);
+            }
+        ));
 
         let widgets = AppWidgets { label };
 
@@ -422,10 +438,10 @@ impl SimpleComponent for AppModel {
 
     fn update(&amp;mut self, message: Self::Input, _sender: ComponentSender&lt;Self&gt;) {
         match message {
-            AppInput::Increment =&gt; {
+            AppMsg::Increment =&gt; {
                 self.counter = self.counter.wrapping_add(1);
             }
-            AppInput::Decrement =&gt; {
+            AppMsg::Decrement =&gt; {
                 self.counter = self.counter.wrapping_sub(1);
             }
         }

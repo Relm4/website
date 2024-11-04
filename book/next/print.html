@@ -205,8 +205,8 @@ Built on top of this foundation, Relm4 makes developing more idiomatic, simpler 
 </ul>
 <p><strong>Cargo:</strong></p>
 <p>Add the packages you need to your <code>Cargo.toml</code>:</p>
-<pre><code class="language-toml">relm4 = "0.8.0"
-relm4-components = "0.8.0"
+<pre><code class="language-toml">relm4 = "0.9.1"
+relm4-components = "0.9.1"
 </code></pre>
 <h2 id="issues-and-feedback"><a class="header" href="#issues-and-feedback">Issues and feedback</a></h2>
 <p>If you find a mistake or something unclear in Relm4 or this book, let us know! Simply open up an <a href="https://github.com/Relm4/Relm4/issues">issue</a> or start a <a href="https://github.com/Relm4/Relm4/discussions">discussion</a> over at <a href="https://github.com/Relm4/Relm4">GitHub</a> or chat with us on <a href="https://matrix.to/#/#relm4:matrix.org">Matrix</a>.</p>
@@ -254,7 +254,7 @@ After this section, we will be building a simple counter app.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="messages"><a class="header" href="#messages">Messages</a></h1>
 <p>To help the computer understand what we want to tell it, we first translate user interactions into messages.</p>
 <p>In Relm4, a message can be any data type, but most often, an <code>enum</code> is used.</p>
-<pre><code class="language-rust no_run noplayground">enum AppInput {
+<pre><code class="language-rust no_run noplayground">enum AppMsg {
     Increment,
     Decrement,
 }</code></pre>
@@ -326,7 +326,7 @@ Most importantly, this means that:</p>
 <p>Let's have a look at what we need to get this done!</p>
 <h3 id="messages-1"><a class="header" href="#messages-1">Messages</a></h3>
 <p>For our app, we just want to tell the computer to either increment or decrement a counter.</p>
-<pre><code class="language-rust no_run noplayground">enum AppInput {
+<pre><code class="language-rust no_run noplayground">enum AppMsg {
     Increment,
     Decrement,
 }</code></pre>
@@ -350,7 +350,7 @@ Most importantly, this means that:</p>
 <pre><code class="language-rust no_run noplayground">impl SimpleComponent for AppModel {</code></pre>
 <p>The first thing you need to do is to define some generic types necessary to make our component work.</p>
 <pre><code class="language-rust no_run noplayground">    /// The type of the messages that this component can receive.
-    type Input = AppInput;
+    type Input = AppMsg;
     /// The type of the messages that this component can send.
     type Output = ();
     /// The type of data with which this component will be initialized.
@@ -399,13 +399,21 @@ Most importantly, this means that:</p>
         vbox.append(&amp;dec_button);
         vbox.append(&amp;label);
 
-        inc_button.connect_clicked(clone!(@strong sender =&gt; move |_| {
-            sender.input(AppInput::Increment);
-        }));
+        inc_button.connect_clicked(clone!(
+            #[strong]
+            sender,
+            move |_| {
+                sender.input(AppMsg::Increment);
+            }
+        ));
 
-        dec_button.connect_clicked(clone!(@strong sender =&gt; move |_| {
-            sender.input(AppInput::Decrement);
-        }));
+        dec_button.connect_clicked(clone!(
+            #[strong]
+            sender,
+            move |_| {
+                sender.input(AppMsg::Decrement);
+            }
+        ));
 
         let widgets = AppWidgets { label };
 
@@ -418,10 +426,10 @@ Most importantly, this means that:</p>
 <p>The <code>update</code> function of the <code>SimpleComponent</code> trait tells the computer how to process messages and how to update its memory.</p>
 <pre><code class="language-rust no_run noplayground">    fn update(&amp;mut self, message: Self::Input, _sender: ComponentSender&lt;Self&gt;) {
         match message {
-            AppInput::Increment =&gt; {
+            AppMsg::Increment =&gt; {
                 self.counter = self.counter.wrapping_add(1);
             }
-            AppInput::Decrement =&gt; {
+            AppMsg::Decrement =&gt; {
                 self.counter = self.counter.wrapping_sub(1);
             }
         }
@@ -480,7 +488,7 @@ struct AppModel {
 }
 
 #[derive(Debug)]
-enum AppInput {
+enum AppMsg {
     Increment,
     Decrement,
 }
@@ -492,7 +500,7 @@ struct AppWidgets {
 impl SimpleComponent for AppModel {
 
     /// The type of the messages that this component can receive.
-    type Input = AppInput;
+    type Input = AppMsg;
     /// The type of the messages that this component can send.
     type Output = ();
     /// The type of data with which this component will be initialized.
@@ -535,13 +543,21 @@ impl SimpleComponent for AppModel {
         vbox.append(&amp;dec_button);
         vbox.append(&amp;label);
 
-        inc_button.connect_clicked(clone!(@strong sender =&gt; move |_| {
-            sender.input(AppInput::Increment);
-        }));
+        inc_button.connect_clicked(clone!(
+            #[strong]
+            sender,
+            move |_| {
+                sender.input(AppMsg::Increment);
+            }
+        ));
 
-        dec_button.connect_clicked(clone!(@strong sender =&gt; move |_| {
-            sender.input(AppInput::Decrement);
-        }));
+        dec_button.connect_clicked(clone!(
+            #[strong]
+            sender,
+            move |_| {
+                sender.input(AppMsg::Decrement);
+            }
+        ));
 
         let widgets = AppWidgets { label };
 
@@ -550,10 +566,10 @@ impl SimpleComponent for AppModel {
 
     fn update(&amp;mut self, message: Self::Input, _sender: ComponentSender&lt;Self&gt;) {
         match message {
-            AppInput::Increment =&gt; {
+            AppMsg::Increment =&gt; {
                 self.counter = self.counter.wrapping_add(1);
             }
-            AppInput::Decrement =&gt; {
+            AppMsg::Decrement =&gt; {
                 self.counter = self.counter.wrapping_sub(1);
             }
         }
@@ -905,9 +921,9 @@ Update your mutable field with a function or a closure. Assumes the field will b
 </ul>
 <p>To check for changes you can call <code>{struct_var_name}.changed(StructName::{field_name}())</code> and it will return a bool indication whether the field was updated.</p>
 <p>To reset all previous changes, you can call <code>{struct_var_name}.reset()</code>.</p>
-<h2 id="example"><a class="header" href="#example">Example</a></h2>
+<h2 id="a-tracker-example"><a class="header" href="#a-tracker-example">A tracker example</a></h2>
 <p>First we have to add the tracker library to <code>Cargo.toml</code>:</p>
-<pre><code class="language-toml">tracker = "0.1"
+<pre><code class="language-toml">tracker = "0.2.2"
 </code></pre>
 <p>Now let's have a look at a small example.</p>
 <pre><code class="language-rust no_run noplayground">#[tracker::track]
@@ -1042,7 +1058,7 @@ First, we call <code>self.reset()</code> at the top of the function body. This e
 Later, we just need to assign the "identical" class name to a widget to make it match the CSS selector.</p>
 <pre><code class="language-rust no_run noplayground">fn main() {
     let app = RelmApp::new("relm4.test.simple");
-    app.set_global_css(".identical { background: #00ad5c; }");
+    relm4::set_global_css(".identical { background: #00ad5c; }");
     app.run::&lt;AppModel&gt;(());
 }</code></pre>
 <h3 id="the-track-attribute"><a class="header" href="#the-track-attribute">The <code>#[track]</code> attribute</a></h3>
@@ -1200,7 +1216,7 @@ impl SimpleComponent for AppModel {
 
 fn main() {
     let app = RelmApp::new("relm4.test.simple");
-    app.set_global_css(".identical { background: #00ad5c; }");
+    relm4::set_global_css(".identical { background: #00ad5c; }");
     app.run::&lt;AppModel&gt;(());
 }</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="factory"><a class="header" href="#factory">Factory</a></h1>
@@ -4225,6 +4241,31 @@ To get access to this widget, you can use a special syntax of the view macro:</p
 <p>The returned widget can be named with the following syntax:</p>
 <pre><code class="language-rust ignore">method = &amp;Widget { ... } -&gt; NAME: RETURNED_TYPE { ... }</code></pre>
 <p>and can be subsequently accessed via the Widgets struct.</p>
+<p>In factories the returned widget is a parameter of the <a href="https://docs.rs/relm4/latest/relm4/factory/trait.FactoryComponent.html#tymethod.init_widgets"><code>FactoryComponent::init_widgets()</code></a> method.
+You can use the <code>#[local_ref]</code> attribute to access it in the view macro, for example when the factory widget is a  <code>Stack</code> which returns a <code>StackPage</code>:</p>
+<pre><code class="language-rust  ignore">    view! {
+        #[root]
+        root = gtk::Box {
+            set_orientation: gtk::Orientation::Horizontal,
+            set_halign: gtk::Align::Center,
+            set_spacing: 10,
+            set_margin_all: 12,
+
+            #[name(label)]
+            gtk::Label {
+                set_use_markup: true,
+                #[watch]
+                set_label: &amp;format!("&lt;b&gt;Counter value: {}&lt;/b&gt;", self.value),
+                set_width_chars: 3,
+            },
+
+        },
+        #[local_ref]
+        returned_widget -&gt; gtk::StackPage {
+            set_name: &amp;self.name,
+            set_title: &amp;self.name,
+        }
+    }</code></pre>
 <h2 id="properties-2"><a class="header" href="#properties-2">Properties</a></h2>
 <p>Properties are initialized and mutated by calling methods within the widget types.
 Check the documentation for each widget type to see what methods are available.
@@ -5644,7 +5685,7 @@ In most places, this just means that you have to remove a <code>&amp;</code>.</p
 <h2 id="factory-changes"><a class="header" href="#factory-changes">Factory changes</a></h2>
 <p><code>ParentInput</code> and <code>forward_to_parent()</code> were removed from <code>FactoryComponent</code> and <code>AsyncFactoryComponent</code>.
 Instead, factories now support basically the same builder pattern as components.</p>
-<h3 id="example-1"><a class="header" href="#example-1">Example</a></h3>
+<h3 id="example"><a class="header" href="#example">Example</a></h3>
 <p>Replace this:</p>
 <pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
