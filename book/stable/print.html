@@ -4241,6 +4241,31 @@ To get access to this widget, you can use a special syntax of the view macro:</p
 <p>The returned widget can be named with the following syntax:</p>
 <pre><code class="language-rust ignore">method = &amp;Widget { ... } -&gt; NAME: RETURNED_TYPE { ... }</code></pre>
 <p>and can be subsequently accessed via the Widgets struct.</p>
+<p>In factories the returned widget is a parameter of the <a href="https://docs.rs/relm4/latest/relm4/factory/trait.FactoryComponent.html#tymethod.init_widgets"><code>FactoryComponent::init_widgets()</code></a> method.
+You can use the <code>#[local_ref]</code> attribute to access it in the view macro, for example when the factory widget is a  <code>Stack</code> which returns a <code>StackPage</code>:</p>
+<pre><code class="language-rust  ignore">    view! {
+        #[root]
+        root = gtk::Box {
+            set_orientation: gtk::Orientation::Horizontal,
+            set_halign: gtk::Align::Center,
+            set_spacing: 10,
+            set_margin_all: 12,
+
+            #[name(label)]
+            gtk::Label {
+                set_use_markup: true,
+                #[watch]
+                set_label: &amp;format!("&lt;b&gt;Counter value: {}&lt;/b&gt;", self.value),
+                set_width_chars: 3,
+            },
+
+        },
+        #[local_ref]
+        returned_widget -&gt; gtk::StackPage {
+            set_name: &amp;self.name,
+            set_title: &amp;self.name,
+        }
+    }</code></pre>
 <h2 id="properties-2"><a class="header" href="#properties-2">Properties</a></h2>
 <p>Properties are initialized and mutated by calling methods within the widget types.
 Check the documentation for each widget type to see what methods are available.
