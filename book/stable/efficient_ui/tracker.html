@@ -345,7 +345,7 @@ First, we call <code>self.reset()</code> at the top of the function body. This e
 Later, we just need to assign the "identical" class name to a widget to make it match the CSS selector.</p>
 <pre><code class="language-rust no_run noplayground">fn main() {
     let app = RelmApp::new("relm4.test.simple");
-    app.set_global_css(".identical { background: #00ad5c; }");
+    relm4::set_global_css(".identical { background: #00ad5c; }");
     app.run::&lt;AppModel&gt;(());
 }</code></pre>
 <h3 id="the-track-attribute"><a class="header" href="#the-track-attribute">The <code>#[track]</code> attribute</a></h3>
@@ -503,7 +503,7 @@ impl SimpleComponent for AppModel {
 
 fn main() {
     let app = RelmApp::new("relm4.test.simple");
-    app.set_global_css(".identical { background: #00ad5c; }");
+    relm4::set_global_css(".identical { background: #00ad5c; }");
     app.run::&lt;AppModel&gt;(());
 }</code></pre>
 
