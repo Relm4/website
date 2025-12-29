@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Contains senders to send and receive messages from a `Component`."><title>ComponentSender in relm4 - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../static.files/rustdoc-80aa586b.css"><meta name="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="relm4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.94.0-nightly (21cf7fb3f 2025-12-28)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../static.files/storage-e2aeef58.js"></script><script defer src="sidebar-items.js"></script><script defer src="../static.files/main-7bab91a1.js"></script><script defer src="../static.files/scrape-examples-2bbcccac.js"></script><noscript><link rel="stylesheet" href="../static.files/noscript-ffcac47a.css"></noscript><link rel="icon" href="https://relm4.org/icons/relm4_org.svg"></head><body class="rustdoc struct"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><rustdoc-topbar><h2><a href="#">ComponentSender</a></h2></rustdoc-topbar><nav class="sidebar"><div class="sidebar-crate"><a class="logo-container" href="../relm4/index.html"><img src="https://relm4.org/icons/relm4_logo.svg" alt="logo"></a><h2><a href="../relm4/index.html">relm4</a><span class="version">0.10.0</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">Component<wbr>Sender</a></h2><h3><a href="#implementations">Methods</a></h3><ul class="block method"><li><a href="#method.command" title="command">command</a></li><li><a href="#method.command_sender" title="command_sender">command_sender</a></li><li><a href="#method.input" title="input">input</a></li><li><a href="#method.input_sender" title="input_sender">input_sender</a></li><li><a href="#method.oneshot_command" title="oneshot_command">oneshot_command</a></li><li><a href="#method.output" title="output">output</a></li><li><a href="#method.output_sender" title="output_sender">output_sender</a></li><li><a href="#method.spawn_command" title="spawn_command">spawn_command</a></li><li><a href="#method.spawn_oneshot_command" title="spawn_oneshot_command">spawn_oneshot_command</a></li></ul><h3><a href="#trait-implementations">Trait Implementations</a></h3><ul class="block trait-implementation"><li><a href="#impl-Clone-for-ComponentSender%3CC%3E" title="Clone">Clone</a></li><li><a href="#impl-Debug-for-ComponentSender%3CC%3E" title="Debug">Debug</a></li></ul><h3><a href="#synthetic-implementations">Auto Trait Implementations</a></h3><ul class="block synthetic-implementation"><li><a href="#impl-Freeze-for-ComponentSender%3CC%3E" title="Freeze">Freeze</a></li><li><a href="#impl-RefUnwindSafe-for-ComponentSender%3CC%3E" title="RefUnwindSafe">RefUnwindSafe</a></li><li><a href="#impl-Send-for-ComponentSender%3CC%3E" title="Send">Send</a></li><li><a href="#impl-Sync-for-ComponentSender%3CC%3E" title="Sync">Sync</a></li><li><a href="#impl-Unpin-for-ComponentSender%3CC%3E" title="Unpin">Unpin</a></li><li><a href="#impl-UnwindSafe-for-ComponentSender%3CC%3E" title="UnwindSafe">UnwindSafe</a></li></ul><h3><a href="#blanket-implementations">Blanket Implementations</a></h3><ul class="block blanket-implementation"><li><a href="#impl-Any-for-T" title="Any">Any</a></li><li><a href="#impl-AsyncPosition%3C()%3E-for-C" title="AsyncPosition&#60;()&#62;">AsyncPosition&#60;()&#62;</a></li><li><a href="#impl-Borrow%3CT%3E-for-T" title="Borrow&#60;T&#62;">Borrow&#60;T&#62;</a></li><li><a href="#impl-BorrowMut%3CT%3E-for-T" title="BorrowMut&#60;T&#62;">BorrowMut&#60;T&#62;</a></li><li><a href="#impl-CloneToUninit-for-T" title="CloneToUninit">CloneToUninit</a></li><li><a href="#impl-From%3CT%3E-for-T" title="From&#60;T&#62;">From&#60;T&#62;</a></li><li><a href="#impl-Instrument-for-T" title="Instrument">Instrument</a></li><li><a href="#impl-Into%3CU%3E-for-T" title="Into&#60;U&#62;">Into&#60;U&#62;</a></li><li><a href="#impl-Position%3C(),+I%3E-for-C" title="Position&#60;(), I&#62;">Position&#60;(), I&#62;</a></li><li><a href="#impl-ToOwned-for-T" title="ToOwned">ToOwned</a></li><li><a href="#impl-TryFrom%3CU%3E-for-T" title="TryFrom&#60;U&#62;">TryFrom&#60;U&#62;</a></li><li><a href="#impl-TryInto%3CU%3E-for-T" title="TryInto&#60;U&#62;">TryInto&#60;U&#62;</a></li><li><a href="#impl-WithSubscriber-for-T" title="WithSubscriber">WithSubscriber</a></li></ul></section><div id="rustdoc-modnav"><h2 class="in-crate"><a href="index.html">In crate relm4</a></h2></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="index.html">relm4</a></div><h1>Struct <span class="struct">Component<wbr>Sender</span>&nbsp;<button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../src/relm4/channel/component.rs.html#255">Source</a> </span></div><pre class="rust item-decl"><code>pub struct ComponentSender&lt;C: <a class="trait" href="component/trait.Component.html" title="trait relm4::component::Component">Component</a>&gt; { <span class="comment">/* private fields */</span> }</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Contains senders to send and receive messages from a <a href="component/trait.Component.html" title="trait relm4::component::Component"><code>Component</code></a>.</p>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Contains senders to send and receive messages from a `Component`."><title>ComponentSender in relm4 - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../static.files/rustdoc-80aa586b.css"><meta name="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="relm4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.94.0-nightly (21cf7fb3f 2025-12-28)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../static.files/storage-e2aeef58.js"></script><script defer src="sidebar-items.js"></script><script defer src="../static.files/main-7bab91a1.js"></script><script defer src="../static.files/scrape-examples-2bbcccac.js"></script><noscript><link rel="stylesheet" href="../static.files/noscript-ffcac47a.css"></noscript><link rel="icon" href="https://relm4.org/icons/relm4_org.svg"></head><body class="rustdoc struct"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><rustdoc-topbar><h2><a href="#">ComponentSender</a></h2></rustdoc-topbar><nav class="sidebar"><div class="sidebar-crate"><a class="logo-container" href="../relm4/index.html"><img src="https://relm4.org/icons/relm4_logo.svg" alt="logo"></a><h2><a href="../relm4/index.html">relm4</a><span class="version">0.10.1</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">Component<wbr>Sender</a></h2><h3><a href="#implementations">Methods</a></h3><ul class="block method"><li><a href="#method.command" title="command">command</a></li><li><a href="#method.command_sender" title="command_sender">command_sender</a></li><li><a href="#method.input" title="input">input</a></li><li><a href="#method.input_sender" title="input_sender">input_sender</a></li><li><a href="#method.oneshot_command" title="oneshot_command">oneshot_command</a></li><li><a href="#method.output" title="output">output</a></li><li><a href="#method.output_sender" title="output_sender">output_sender</a></li><li><a href="#method.spawn_command" title="spawn_command">spawn_command</a></li><li><a href="#method.spawn_oneshot_command" title="spawn_oneshot_command">spawn_oneshot_command</a></li></ul><h3><a href="#trait-implementations">Trait Implementations</a></h3><ul class="block trait-implementation"><li><a href="#impl-Clone-for-ComponentSender%3CC%3E" title="Clone">Clone</a></li><li><a href="#impl-Debug-for-ComponentSender%3CC%3E" title="Debug">Debug</a></li></ul><h3><a href="#synthetic-implementations">Auto Trait Implementations</a></h3><ul class="block synthetic-implementation"><li><a href="#impl-Freeze-for-ComponentSender%3CC%3E" title="Freeze">Freeze</a></li><li><a href="#impl-RefUnwindSafe-for-ComponentSender%3CC%3E" title="RefUnwindSafe">RefUnwindSafe</a></li><li><a href="#impl-Send-for-ComponentSender%3CC%3E" title="Send">Send</a></li><li><a href="#impl-Sync-for-ComponentSender%3CC%3E" title="Sync">Sync</a></li><li><a href="#impl-Unpin-for-ComponentSender%3CC%3E" title="Unpin">Unpin</a></li><li><a href="#impl-UnwindSafe-for-ComponentSender%3CC%3E" title="UnwindSafe">UnwindSafe</a></li></ul><h3><a href="#blanket-implementations">Blanket Implementations</a></h3><ul class="block blanket-implementation"><li><a href="#impl-Any-for-T" title="Any">Any</a></li><li><a href="#impl-AsyncPosition%3C()%3E-for-C" title="AsyncPosition&#60;()&#62;">AsyncPosition&#60;()&#62;</a></li><li><a href="#impl-Borrow%3CT%3E-for-T" title="Borrow&#60;T&#62;">Borrow&#60;T&#62;</a></li><li><a href="#impl-BorrowMut%3CT%3E-for-T" title="BorrowMut&#60;T&#62;">BorrowMut&#60;T&#62;</a></li><li><a href="#impl-CloneToUninit-for-T" title="CloneToUninit">CloneToUninit</a></li><li><a href="#impl-From%3CT%3E-for-T" title="From&#60;T&#62;">From&#60;T&#62;</a></li><li><a href="#impl-Instrument-for-T" title="Instrument">Instrument</a></li><li><a href="#impl-Into%3CU%3E-for-T" title="Into&#60;U&#62;">Into&#60;U&#62;</a></li><li><a href="#impl-Position%3C(),+I%3E-for-C" title="Position&#60;(), I&#62;">Position&#60;(), I&#62;</a></li><li><a href="#impl-ToOwned-for-T" title="ToOwned">ToOwned</a></li><li><a href="#impl-TryFrom%3CU%3E-for-T" title="TryFrom&#60;U&#62;">TryFrom&#60;U&#62;</a></li><li><a href="#impl-TryInto%3CU%3E-for-T" title="TryInto&#60;U&#62;">TryInto&#60;U&#62;</a></li><li><a href="#impl-WithSubscriber-for-T" title="WithSubscriber">WithSubscriber</a></li></ul></section><div id="rustdoc-modnav"><h2 class="in-crate"><a href="index.html">In crate relm4</a></h2></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="index.html">relm4</a></div><h1>Struct <span class="struct">Component<wbr>Sender</span>&nbsp;<button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../src/relm4/channel/component.rs.html#255">Source</a> </span></div><pre class="rust item-decl"><code>pub struct ComponentSender&lt;C: <a class="trait" href="component/trait.Component.html" title="trait relm4::component::Component">Component</a>&gt; { <span class="comment">/* private fields */</span> }</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Contains senders to send and receive messages from a <a href="component/trait.Component.html" title="trait relm4::component::Component"><code>Component</code></a>.</p>
 </div></details><h2 id="implementations" class="section-header">Implementations<a href="#implementations" class="anchor">§</a></h2><div id="implementations-list"><details class="toggle implementors-toggle" open><summary><section id="impl-ComponentSender%3CC%3E" class="impl"><a class="src rightside" href="../src/relm4/channel/component.rs.html#255">Source</a><a href="#impl-ComponentSender%3CC%3E" class="anchor">§</a><h3 class="code-header">impl&lt;C: <a class="trait" href="component/trait.Component.html" title="trait relm4::component::Component">Component</a>&gt; <a class="struct" href="struct.ComponentSender.html" title="struct relm4::ComponentSender">ComponentSender</a>&lt;C&gt;</h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.input_sender" class="method"><a class="src rightside" href="../src/relm4/channel/component.rs.html#255">Source</a><h4 class="code-header">pub fn <a href="#method.input_sender" class="fn">input_sender</a>(&amp;self) -&gt; &amp;<a class="struct" href="struct.Sender.html" title="struct relm4::Sender">Sender</a>&lt;C::<a class="associatedtype" href="component/trait.Component.html#associatedtype.Input" title="type relm4::component::Component::Input">Input</a>&gt;</h4></section></summary><div class="docblock"><p>Retrieve the sender for input messages.</p>
 <p>Useful to forward inputs from another component. If you just need to send input messages,
 <a href="struct.ComponentSender.html#method.input" title="method relm4::ComponentSender::input"><code>input()</code></a> is more concise.</p>
@@ -115,14 +115,27 @@
 <span data-nosnippet>61</span>        <span class="kw">let </span>widgets = <span class="macro">view_output!</span>();
 <span data-nosnippet>62</span>
 <span data-nosnippet>63</span>        ComponentParts { model, widgets }
-<span data-nosnippet>64</span>    }</code></pre></div></div><div class="example-links">Additional examples can be found in:<br><ul><li><a href="../src/transient_dialog/transient_dialog.rs.html#113">relm4/examples/transient_dialog.rs</a></li><li><a href="../src/combo_box/combo_box.rs.html#88">relm4-components/examples/combo_box.rs</a></li><li><a href="../src/tab_factory/tab_factory.rs.html#164">relm4/examples/tab_factory.rs</a></li><li><a href="../src/grid_factory/grid_factory.rs.html#192">relm4/examples/grid_factory.rs</a></li><li><a href="../src/factory_async/factory_async.rs.html#193">relm4/examples/factory_async.rs</a></li><li><a href="../src/factory/factory.rs.html#167">relm4/examples/factory.rs</a></li><li><a href="../src/components/components.rs.html#184">relm4/examples/components.rs</a></li><li><a href="../src/navigation_splitview_with_stack/navigation_splitview_with_stack.rs.html#95">relm4/examples/navigation_splitview_with_stack.rs</a></li><li><a href="../src/tab_game/tab_game.rs.html#224">relm4/examples/tab_game.rs</a></li><li><a href="../src/file_dialogs/file_dialogs.rs.html#101">relm4-components/examples/file_dialogs.rs</a></li><li><a href="../src/drop_sub_components/drop_sub_components.rs.html#75">relm4/examples/drop_sub_components.rs</a></li><li><a href="../src/alert/alert.rs.html#120">relm4-components/examples/alert.rs</a></li><li><a href="../src/state_management/state_management.rs.html#552">relm4/examples/state_management.rs</a></li></ul></div></div></details></div></details><details class="toggle method-toggle" open><summary><section id="method.output_sender" class="method"><a class="src rightside" href="../src/relm4/channel/component.rs.html#255">Source</a><h4 class="code-header">pub fn <a href="#method.output_sender" class="fn">output_sender</a>(&amp;self) -&gt; &amp;<a class="struct" href="struct.Sender.html" title="struct relm4::Sender">Sender</a>&lt;C::<a class="associatedtype" href="component/trait.Component.html#associatedtype.Output" title="type relm4::component::Component::Output">Output</a>&gt;</h4></section></summary><div class="docblock"><p>Retrieve the sender for output messages.</p>
+<span data-nosnippet>64</span>    }</code></pre></div></div><div class="example-links">Additional examples can be found in:<br><ul><li><a href="../src/transient_dialog/transient_dialog.rs.html#113">relm4/examples/transient_dialog.rs</a></li><li><a href="../src/combo_box/combo_box.rs.html#88">relm4-components/examples/combo_box.rs</a></li><li><a href="../src/tab_factory/tab_factory.rs.html#164">relm4/examples/tab_factory.rs</a></li><li><a href="../src/grid_factory/grid_factory.rs.html#192">relm4/examples/grid_factory.rs</a></li><li><a href="../src/factory_async/factory_async.rs.html#193">relm4/examples/factory_async.rs</a></li><li><a href="../src/factory/factory.rs.html#167">relm4/examples/factory.rs</a></li><li><a href="../src/components/components.rs.html#184">relm4/examples/components.rs</a></li><li><a href="../src/navigation_splitview_with_stack/navigation_splitview_with_stack.rs.html#95">relm4/examples/navigation_splitview_with_stack.rs</a></li><li><a href="../src/tab_game/tab_game.rs.html#220">relm4/examples/tab_game.rs</a></li><li><a href="../src/file_dialogs/file_dialogs.rs.html#101">relm4-components/examples/file_dialogs.rs</a></li><li><a href="../src/drop_sub_components/drop_sub_components.rs.html#75">relm4/examples/drop_sub_components.rs</a></li><li><a href="../src/alert/alert.rs.html#120">relm4-components/examples/alert.rs</a></li><li><a href="../src/state_management/state_management.rs.html#551">relm4/examples/state_management.rs</a></li></ul></div></div></details></div></details><details class="toggle method-toggle" open><summary><section id="method.output_sender" class="method"><a class="src rightside" href="../src/relm4/channel/component.rs.html#255">Source</a><h4 class="code-header">pub fn <a href="#method.output_sender" class="fn">output_sender</a>(&amp;self) -&gt; &amp;<a class="struct" href="struct.Sender.html" title="struct relm4::Sender">Sender</a>&lt;C::<a class="associatedtype" href="component/trait.Component.html#associatedtype.Output" title="type relm4::component::Component::Output">Output</a>&gt;</h4></section></summary><div class="docblock"><p>Retrieve the sender for output messages.</p>
 <p>Useful to forward outputs from another component. If you just need to send output messages,
 <a href="struct.ComponentSender.html#method.output" title="method relm4::ComponentSender::output"><code>output()</code></a> is more concise.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.command_sender" class="method"><a class="src rightside" href="../src/relm4/channel/component.rs.html#255">Source</a><h4 class="code-header">pub fn <a href="#method.command_sender" class="fn">command_sender</a>(&amp;self) -&gt; &amp;<a class="struct" href="struct.Sender.html" title="struct relm4::Sender">Sender</a>&lt;C::<a class="associatedtype" href="component/trait.Component.html#associatedtype.CommandOutput" title="type relm4::component::Component::CommandOutput">CommandOutput</a>&gt;</h4></section></summary><div class="docblock"><p>Retrieve the sender for command output messages.</p>
 <p>Useful to forward outputs from another component. If you just need to send output messages,
 <a href="struct.ComponentSender.html#method.command" title="method relm4::ComponentSender::command"><code>command()</code></a> is more concise.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.input" class="method"><a class="src rightside" href="../src/relm4/channel/component.rs.html#255">Source</a><h4 class="code-header">pub fn <a href="#method.input" class="fn">input</a>(&amp;self, message: C::<a class="associatedtype" href="component/trait.Component.html#associatedtype.Input" title="type relm4::component::Component::Input">Input</a>)</h4></section></summary><div class="docblock"><p>Emit an input to the component.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-1"><a href="#scraped-examples-1">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example" data-locs="[[[11,11],&#34;../src/toast/toast.rs.html#98&#34;,&#34;line 98&#34;]]"><div class="scraped-example-title">relm4/examples/toast.rs (<a href="../src/toast/toast.rs.html#98">line 98</a>)</div><div class="example-wrap digits-3"><pre class="rust"><code><span data-nosnippet>87</span>    <span class="kw">fn </span>update(<span class="kw-2">&amp;mut </span><span class="self">self</span>, msg: <span class="self">Self</span>::Input, sender: ComponentSender&lt;<span class="self">Self</span>&gt;) {
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-1"><a href="#scraped-examples-1">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example" data-locs="[[[8,8],&#34;../src/message_from_grid_view/message_from_grid_view.rs.html#85&#34;,&#34;line 85&#34;]]"><div class="scraped-example-title">relm4/examples/message_from_grid_view.rs (<a href="../src/message_from_grid_view/message_from_grid_view.rs.html#85">line 85</a>)</div><div class="example-wrap digits-2"><pre class="rust"><code><span data-nosnippet>77</span>    <span class="kw">fn </span>bind(<span class="kw-2">&amp;mut </span><span class="self">self</span>, widgets: <span class="kw-2">&amp;mut </span><span class="self">Self</span>::Widgets, _root: <span class="kw-2">&amp;mut </span><span class="self">Self</span>::Root) {
+<span data-nosnippet>78</span>        widgets.label.set_label(<span class="self">self</span>.name);
+<span data-nosnippet>79</span>        <span class="kw">let </span>name = <span class="self">self</span>.name;
+<span data-nosnippet>80</span>        <span class="kw">let </span>button_click_handler_id = widgets.button.connect_clicked(<span class="macro">glib::clone!</span>(
+<span data-nosnippet>81</span>            <span class="attr">#[strong(rename_to = sender)]
+<span data-nosnippet>82</span>            </span><span class="self">self</span>.sender,
+<span data-nosnippet>83</span>            <span class="kw">move </span>|_btn| {
+<span data-nosnippet>84</span>                <span class="comment">// Use the cloned sender to send a message
+<span data-nosnippet>85</span>                </span>sender.<span class="highlight focus">input</span>(Msg::Print(name));
+<span data-nosnippet>86</span>            }
+<span data-nosnippet>87</span>        ));
+<span data-nosnippet>88</span>        <span class="self">self</span>.button_click_handler_id
+<span data-nosnippet>89</span>            .replace(button_click_handler_id);
+<span data-nosnippet>90</span>    }</code></pre></div></div><details class="toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="scraped-example" data-locs="[[[11,11],&#34;../src/toast/toast.rs.html#98&#34;,&#34;line 98&#34;]]"><div class="scraped-example-title">relm4/examples/toast.rs (<a href="../src/toast/toast.rs.html#98">line 98</a>)</div><div class="example-wrap digits-3"><pre class="rust"><code><span data-nosnippet>87</span>    <span class="kw">fn </span>update(<span class="kw-2">&amp;mut </span><span class="self">self</span>, msg: <span class="self">Self</span>::Input, sender: ComponentSender&lt;<span class="self">Self</span>&gt;) {
 <span data-nosnippet>88</span>        <span class="kw">match </span>msg {
 <span data-nosnippet>89</span>            Msg::Activate =&gt; {
 <span data-nosnippet>90</span>                <span class="self">self</span>.activated = <span class="string">"Active"</span>;
@@ -139,32 +152,32 @@
 <span data-nosnippet>101</span>            }
 <span data-nosnippet>102</span>            Msg::Cancel =&gt; <span class="self">self</span>.activated = <span class="string">"Idle"</span>,
 <span data-nosnippet>103</span>        }
-<span data-nosnippet>104</span>    }</code></pre></div></div><details class="toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="scraped-example" data-locs="[[[7,7],&#34;../src/tab_game/tab_game.rs.html#284&#34;,&#34;line 284&#34;]]"><div class="scraped-example-title">relm4/examples/tab_game.rs (<a href="../src/tab_game/tab_game.rs.html#284">line 284</a>)</div><div class="example-wrap digits-3"><pre class="rust"><code><span data-nosnippet>277</span>    <span class="kw">fn </span>update_cmd(
-<span data-nosnippet>278</span>        <span class="kw-2">&amp;mut </span><span class="self">self</span>,
-<span data-nosnippet>279</span>        msg: <span class="self">Self</span>::CommandOutput,
-<span data-nosnippet>280</span>        sender: ComponentSender&lt;<span class="self">Self</span>&gt;,
-<span data-nosnippet>281</span>        _root: <span class="kw-2">&amp;</span><span class="self">Self</span>::Root,
-<span data-nosnippet>282</span>    ) {
-<span data-nosnippet>283</span>        <span class="kw">if </span>msg {
-<span data-nosnippet>284</span>            sender.<span class="highlight focus">input</span>(AppMsg::StopGame);
-<span data-nosnippet>285</span>        } <span class="kw">else </span>{
-<span data-nosnippet>286</span>            <span class="kw">let </span><span class="kw-2">mut </span>counters_guard = <span class="self">self</span>.counters.guard();
-<span data-nosnippet>287</span>            <span class="kw">match </span>rand::random::&lt;u8&gt;() % <span class="number">3 </span>{
-<span data-nosnippet>288</span>                <span class="number">0 </span>=&gt; {
-<span data-nosnippet>289</span>                    counters_guard.swap(<span class="number">1</span>, <span class="number">2</span>);
-<span data-nosnippet>290</span>                }
-<span data-nosnippet>291</span>                <span class="number">1 </span>=&gt; {
-<span data-nosnippet>292</span>                    counters_guard.swap(<span class="number">0</span>, <span class="number">1</span>);
-<span data-nosnippet>293</span>                }
-<span data-nosnippet>294</span>                <span class="kw">_ </span>=&gt; {
-<span data-nosnippet>295</span>                    <span class="kw">let </span>widget = counters_guard.widget();
-<span data-nosnippet>296</span>                    <span class="kw">if </span>!widget.select_next_page() {
-<span data-nosnippet>297</span>                        widget.select_previous_page();
-<span data-nosnippet>298</span>                    }
-<span data-nosnippet>299</span>                }
-<span data-nosnippet>300</span>            }
-<span data-nosnippet>301</span>        }
-<span data-nosnippet>302</span>    }</code></pre></div></div><div class="scraped-example" data-locs="[[[17,17],&#34;../src/actions/actions.rs.html#72&#34;,&#34;line 72&#34;]]"><div class="scraped-example-title">relm4/examples/actions.rs (<a href="../src/actions/actions.rs.html#72">line 72</a>)</div><div class="example-wrap digits-2"><pre class="rust"><code><span data-nosnippet>55</span>    <span class="kw">fn </span>init(
+<span data-nosnippet>104</span>    }</code></pre></div></div><div class="scraped-example" data-locs="[[[7,7],&#34;../src/tab_game/tab_game.rs.html#280&#34;,&#34;line 280&#34;]]"><div class="scraped-example-title">relm4/examples/tab_game.rs (<a href="../src/tab_game/tab_game.rs.html#280">line 280</a>)</div><div class="example-wrap digits-3"><pre class="rust"><code><span data-nosnippet>273</span>    <span class="kw">fn </span>update_cmd(
+<span data-nosnippet>274</span>        <span class="kw-2">&amp;mut </span><span class="self">self</span>,
+<span data-nosnippet>275</span>        msg: <span class="self">Self</span>::CommandOutput,
+<span data-nosnippet>276</span>        sender: ComponentSender&lt;<span class="self">Self</span>&gt;,
+<span data-nosnippet>277</span>        _root: <span class="kw-2">&amp;</span><span class="self">Self</span>::Root,
+<span data-nosnippet>278</span>    ) {
+<span data-nosnippet>279</span>        <span class="kw">if </span>msg {
+<span data-nosnippet>280</span>            sender.<span class="highlight focus">input</span>(AppMsg::StopGame);
+<span data-nosnippet>281</span>        } <span class="kw">else </span>{
+<span data-nosnippet>282</span>            <span class="kw">let </span><span class="kw-2">mut </span>counters_guard = <span class="self">self</span>.counters.guard();
+<span data-nosnippet>283</span>            <span class="kw">match </span>rand::random::&lt;u8&gt;() % <span class="number">3 </span>{
+<span data-nosnippet>284</span>                <span class="number">0 </span>=&gt; {
+<span data-nosnippet>285</span>                    counters_guard.swap(<span class="number">1</span>, <span class="number">2</span>);
+<span data-nosnippet>286</span>                }
+<span data-nosnippet>287</span>                <span class="number">1 </span>=&gt; {
+<span data-nosnippet>288</span>                    counters_guard.swap(<span class="number">0</span>, <span class="number">1</span>);
+<span data-nosnippet>289</span>                }
+<span data-nosnippet>290</span>                <span class="kw">_ </span>=&gt; {
+<span data-nosnippet>291</span>                    <span class="kw">let </span>widget = counters_guard.widget();
+<span data-nosnippet>292</span>                    <span class="kw">if </span>!widget.select_next_page() {
+<span data-nosnippet>293</span>                        widget.select_previous_page();
+<span data-nosnippet>294</span>                    }
+<span data-nosnippet>295</span>                }
+<span data-nosnippet>296</span>            }
+<span data-nosnippet>297</span>        }
+<span data-nosnippet>298</span>    }</code></pre></div></div><div class="scraped-example" data-locs="[[[17,17],&#34;../src/actions/actions.rs.html#72&#34;,&#34;line 72&#34;]]"><div class="scraped-example-title">relm4/examples/actions.rs (<a href="../src/actions/actions.rs.html#72">line 72</a>)</div><div class="example-wrap digits-2"><pre class="rust"><code><span data-nosnippet>55</span>    <span class="kw">fn </span>init(
 <span data-nosnippet>56</span>        _init: <span class="self">Self</span>::Init,
 <span data-nosnippet>57</span>        root: <span class="self">Self</span>::Root,
 <span data-nosnippet>58</span>        sender: ComponentSender&lt;<span class="self">Self</span>&gt;,
@@ -318,57 +331,7 @@
 <span data-nosnippet>169</span>            }
 <span data-nosnippet>170</span>            Input::Ignore =&gt; {}
 <span data-nosnippet>171</span>        }
-<span data-nosnippet>172</span>    }</code></pre></div></div><div class="scraped-example" data-locs="[[[35,35],&#34;../src/progress/progress.rs.html#103&#34;,&#34;line 103&#34;]]"><div class="scraped-example-title">relm4/examples/progress.rs (<a href="../src/progress/progress.rs.html#103">line 103</a>)</div><div class="example-wrap digits-3"><pre class="rust"><code><span data-nosnippet>68</span>    <span class="kw">fn </span>init(
-<span data-nosnippet>69</span>        _args: <span class="self">Self</span>::Init,
-<span data-nosnippet>70</span>        root: <span class="self">Self</span>::Root,
-<span data-nosnippet>71</span>        sender: ComponentSender&lt;<span class="self">Self</span>&gt;,
-<span data-nosnippet>72</span>    ) -&gt; ComponentParts&lt;<span class="self">Self</span>&gt; {
-<span data-nosnippet>73</span>        <span class="macro">relm4::view!</span> {
-<span data-nosnippet>74</span>            container = gtk::Box {
-<span data-nosnippet>75</span>                set_halign: gtk::Align::Center,
-<span data-nosnippet>76</span>                set_valign: gtk::Align::Center,
-<span data-nosnippet>77</span>                set_width_request: <span class="number">300</span>,
-<span data-nosnippet>78</span>                set_spacing: <span class="number">12</span>,
-<span data-nosnippet>79</span>                set_margin_top: <span class="number">4</span>,
-<span data-nosnippet>80</span>                set_margin_bottom: <span class="number">4</span>,
-<span data-nosnippet>81</span>                set_margin_start: <span class="number">12</span>,
-<span data-nosnippet>82</span>                set_margin_end: <span class="number">12</span>,
-<span data-nosnippet>83</span>                set_orientation: gtk::Orientation::Horizontal,
-<span data-nosnippet>84</span>
-<span data-nosnippet>85</span>                gtk::Box {
-<span data-nosnippet>86</span>                    set_spacing: <span class="number">4</span>,
-<span data-nosnippet>87</span>                    set_hexpand: <span class="bool-val">true</span>,
-<span data-nosnippet>88</span>                    set_valign: gtk::Align::Center,
-<span data-nosnippet>89</span>                    set_orientation: gtk::Orientation::Vertical,
-<span data-nosnippet>90</span>
-<span data-nosnippet>91</span>                    append: label = <span class="kw-2">&amp;</span>gtk::Label {
-<span data-nosnippet>92</span>                        set_xalign: <span class="number">0.0</span>,
-<span data-nosnippet>93</span>                        set_label: <span class="string">"Find the answer to life:"</span>,
-<span data-nosnippet>94</span>                    },
-<span data-nosnippet>95</span>
-<span data-nosnippet>96</span>                    append: progress = <span class="kw-2">&amp;</span>gtk::ProgressBar {
-<span data-nosnippet>97</span>                        set_visible: <span class="bool-val">false</span>,
-<span data-nosnippet>98</span>                    },
-<span data-nosnippet>99</span>                },
-<span data-nosnippet>100</span>
-<span data-nosnippet>101</span>                append: button = <span class="kw-2">&amp;</span>gtk::Button {
-<span data-nosnippet>102</span>                    set_label: <span class="string">"Compute"</span>,
-<span data-nosnippet>103</span>                    <span class="highlight focus">connect_clicked </span>=&gt; Input::Compute,
-<span data-nosnippet>104</span>                }
-<span data-nosnippet>105</span>            }
-<span data-nosnippet>106</span>        }
-<span data-nosnippet>107</span>
-<span data-nosnippet>108</span>        root.set_child(<span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span>container));
-<span data-nosnippet>109</span>
-<span data-nosnippet>110</span>        ComponentParts {
-<span data-nosnippet>111</span>            model: App::default(),
-<span data-nosnippet>112</span>            widgets: Widgets {
-<span data-nosnippet>113</span>                label,
-<span data-nosnippet>114</span>                button,
-<span data-nosnippet>115</span>                progress,
-<span data-nosnippet>116</span>            },
-<span data-nosnippet>117</span>        }
-<span data-nosnippet>118</span>    }</code></pre></div></div><div class="example-links">Additional examples can be found in:<br><ul><li><a href="../src/menu/menu.rs.html#132">relm4/examples/menu.rs</a></li></ul></div></div></details></div></details><details class="toggle method-toggle" open><summary><section id="method.output" class="method"><a class="src rightside" href="../src/relm4/channel/component.rs.html#255">Source</a><h4 class="code-header">pub fn <a href="#method.output" class="fn">output</a>(&amp;self, message: C::<a class="associatedtype" href="component/trait.Component.html#associatedtype.Output" title="type relm4::component::Component::Output">Output</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, C::<a class="associatedtype" href="component/trait.Component.html#associatedtype.Output" title="type relm4::component::Component::Output">Output</a>&gt;</h4></section></summary><div class="docblock"><p>Emit an output to the component.</p>
+<span data-nosnippet>172</span>    }</code></pre></div></div><div class="example-links">Additional examples can be found in:<br><ul><li><a href="../src/progress/progress.rs.html#103">relm4/examples/progress.rs</a></li><li><a href="../src/menu/menu.rs.html#132">relm4/examples/menu.rs</a></li></ul></div></div></details></div></details><details class="toggle method-toggle" open><summary><section id="method.output" class="method"><a class="src rightside" href="../src/relm4/channel/component.rs.html#255">Source</a><h4 class="code-header">pub fn <a href="#method.output" class="fn">output</a>(&amp;self, message: C::<a class="associatedtype" href="component/trait.Component.html#associatedtype.Output" title="type relm4::component::Component::Output">Output</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, C::<a class="associatedtype" href="component/trait.Component.html#associatedtype.Output" title="type relm4::component::Component::Output">Output</a>&gt;</h4></section></summary><div class="docblock"><p>Emit an output to the component.</p>
 <p>Returns <a href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html#variant.Err" title="variant core::result::Result::Err"><code>Err</code></a> if all receivers were dropped,
 for example by <a href="component/struct.Connector.html#method.detach" title="method relm4::component::Connector::detach"><code>detach</code></a>.</p>
 </div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-2"><a href="#scraped-examples-2">Examples found in repository</a><a class="scrape-help" href="../scrape-examples-help.html">?</a></h5><div class="scraped-example expanded" data-locs="[[[3,3],&#34;../src/message_stream/message_stream.rs.html#66&#34;,&#34;line 66&#34;],[[6,6],&#34;../src/message_stream/message_stream.rs.html#69&#34;,&#34;line 69&#34;]]"><div class="scraped-example-title">relm4/examples/message_stream.rs (<a href="../src/message_stream/message_stream.rs.html#66">line 66</a>)</div><div class="example-wrap digits-2"><pre class="rust"><code><span data-nosnippet>63</span>    <span class="kw">fn </span>update(<span class="kw-2">&amp;mut </span><span class="self">self</span>, msg: <span class="self">Self</span>::Input, sender: ComponentSender&lt;<span class="self">Self</span>&gt;) {
@@ -396,7 +359,7 @@ for example by <a href="component/struct.Connector.html#method.detach" title="me
 <span data-nosnippet>128</span>            }
 <span data-nosnippet>129</span>            DialogMsg::Cancel =&gt; <span class="self">self</span>.hidden = <span class="bool-val">true</span>,
 <span data-nosnippet>130</span>        }
-<span data-nosnippet>131</span>    }</code></pre></div></div><div class="scraped-example" data-locs="[[[6,6],&#34;../src/settings_list/settings_list.rs.html#132&#34;,&#34;line 132&#34;],[[51,51],&#34;../src/settings_list/settings_list.rs.html#177&#34;,&#34;line 177&#34;],[[64,64],&#34;../src/settings_list/settings_list.rs.html#190&#34;,&#34;line 190&#34;],[[97,97],&#34;../src/settings_list/settings_list.rs.html#223&#34;,&#34;line 223&#34;]]"><div class="scraped-example-title">relm4/examples/settings_list.rs (<a href="../src/settings_list/settings_list.rs.html#132">line 132</a>)</div><div class="example-wrap digits-3"><pre class="rust"><code><span data-nosnippet>126</span>    <span class="kw">fn </span>init(
+<span data-nosnippet>131</span>    }</code></pre></div></div><div class="scraped-example" data-locs="[[[6,6],&#34;../src/settings_list/settings_list.rs.html#132&#34;,&#34;line 132&#34;],[[51,51],&#34;../src/settings_list/settings_list.rs.html#177&#34;,&#34;line 177&#34;],[[64,64],&#34;../src/settings_list/settings_list.rs.html#190&#34;,&#34;line 190&#34;],[[98,98],&#34;../src/settings_list/settings_list.rs.html#224&#34;,&#34;line 224&#34;]]"><div class="scraped-example-title">relm4/examples/settings_list.rs (<a href="../src/settings_list/settings_list.rs.html#132">line 132</a>)</div><div class="example-wrap digits-3"><pre class="rust"><code><span data-nosnippet>126</span>    <span class="kw">fn </span>init(
 <span data-nosnippet>127</span>        title: <span class="self">Self</span>::Init,
 <span data-nosnippet>128</span>        root: <span class="self">Self</span>::Root,
 <span data-nosnippet>129</span>        sender: ComponentSender&lt;<span class="self">Self</span>&gt;,
@@ -468,42 +431,42 @@ for example by <a href="component/struct.Connector.html#method.detach" title="me
 <span data-nosnippet>195</span>    <span class="kw">fn </span>update_view(<span class="kw-2">&amp;</span><span class="self">self</span>, widgets: <span class="kw-2">&amp;mut </span><span class="self">Self</span>::Widgets, sender: ComponentSender&lt;<span class="self">Self</span>&gt;) {
 <span data-nosnippet>196</span>        <span class="kw">if </span><span class="self">self</span>.options.is_empty() &amp;&amp; !widgets.options.is_empty() {
 <span data-nosnippet>197</span>            widgets.list.remove_all();
-<span data-nosnippet>198</span>        } <span class="kw">else if </span><span class="self">self</span>.options.len() != widgets.options.len() {
-<span data-nosnippet>199</span>            <span class="kw">if let </span><span class="prelude-val">Some</span>((description, button_label, id)) = <span class="self">self</span>.options.last() {
-<span data-nosnippet>200</span>                <span class="kw">let </span>id = <span class="kw-2">*</span>id;
-<span data-nosnippet>201</span>                <span class="macro">relm4::view!</span> {
-<span data-nosnippet>202</span>                    widget = gtk::Box {
-<span data-nosnippet>203</span>                        set_orientation: gtk::Orientation::Horizontal,
-<span data-nosnippet>204</span>                        set_margin_start: <span class="number">20</span>,
-<span data-nosnippet>205</span>                        set_margin_end: <span class="number">20</span>,
-<span data-nosnippet>206</span>                        set_margin_top: <span class="number">8</span>,
-<span data-nosnippet>207</span>                        set_margin_bottom: <span class="number">8</span>,
-<span data-nosnippet>208</span>                        set_spacing: <span class="number">24</span>,
-<span data-nosnippet>209</span>
-<span data-nosnippet>210</span>                        append = <span class="kw-2">&amp;</span>gtk::Label {
-<span data-nosnippet>211</span>                            set_label: description,
-<span data-nosnippet>212</span>                            set_halign: gtk::Align::Start,
-<span data-nosnippet>213</span>                            set_hexpand: <span class="bool-val">true</span>,
-<span data-nosnippet>214</span>                            set_valign: gtk::Align::Center,
-<span data-nosnippet>215</span>                            set_ellipsize: gtk::pango::EllipsizeMode::End,
-<span data-nosnippet>216</span>                        },
-<span data-nosnippet>217</span>
-<span data-nosnippet>218</span>                        append: button = <span class="kw-2">&amp;</span>gtk::Button {
-<span data-nosnippet>219</span>                            set_label: button_label,
-<span data-nosnippet>220</span>                            set_size_group: <span class="kw-2">&amp;</span>widgets.button_sg,
-<span data-nosnippet>221</span>
-<span data-nosnippet>222</span>                            connect_clicked[sender] =&gt; <span class="kw">move </span>|<span class="kw">_</span>| {
-<span data-nosnippet>223</span>                                sender.<span class="highlight">output</span>(Output::Clicked(id)).unwrap();
-<span data-nosnippet>224</span>                            }
+<span data-nosnippet>198</span>        } <span class="kw">else if </span><span class="self">self</span>.options.len() != widgets.options.len()
+<span data-nosnippet>199</span>            &amp;&amp; <span class="kw">let </span><span class="prelude-val">Some</span>((description, button_label, id)) = <span class="self">self</span>.options.last()
+<span data-nosnippet>200</span>        {
+<span data-nosnippet>201</span>            <span class="kw">let </span>id = <span class="kw-2">*</span>id;
+<span data-nosnippet>202</span>            <span class="macro">relm4::view!</span> {
+<span data-nosnippet>203</span>                widget = gtk::Box {
+<span data-nosnippet>204</span>                    set_orientation: gtk::Orientation::Horizontal,
+<span data-nosnippet>205</span>                    set_margin_start: <span class="number">20</span>,
+<span data-nosnippet>206</span>                    set_margin_end: <span class="number">20</span>,
+<span data-nosnippet>207</span>                    set_margin_top: <span class="number">8</span>,
+<span data-nosnippet>208</span>                    set_margin_bottom: <span class="number">8</span>,
+<span data-nosnippet>209</span>                    set_spacing: <span class="number">24</span>,
+<span data-nosnippet>210</span>
+<span data-nosnippet>211</span>                    append = <span class="kw-2">&amp;</span>gtk::Label {
+<span data-nosnippet>212</span>                        set_label: description,
+<span data-nosnippet>213</span>                        set_halign: gtk::Align::Start,
+<span data-nosnippet>214</span>                        set_hexpand: <span class="bool-val">true</span>,
+<span data-nosnippet>215</span>                        set_valign: gtk::Align::Center,
+<span data-nosnippet>216</span>                        set_ellipsize: gtk::pango::EllipsizeMode::End,
+<span data-nosnippet>217</span>                    },
+<span data-nosnippet>218</span>
+<span data-nosnippet>219</span>                    append: button = <span class="kw-2">&amp;</span>gtk::Button {
+<span data-nosnippet>220</span>                        set_label: button_label,
+<span data-nosnippet>221</span>                        set_size_group: <span class="kw-2">&amp;</span>widgets.button_sg,
+<span data-nosnippet>222</span>
+<span data-nosnippet>223</span>                        connect_clicked[sender] =&gt; <span class="kw">move </span>|<span class="kw">_</span>| {
+<span data-nosnippet>224</span>                            sender.<span class="highlight">output</span>(Output::Clicked(id)).unwrap();
 <span data-nosnippet>225</span>                        }
 <span data-nosnippet>226</span>                    }
 <span data-nosnippet>227</span>                }
-<span data-nosnippet>228</span>
-<span data-nosnippet>229</span>                widgets.list.append(<span class="kw-2">&amp;</span>widget);
-<span data-nosnippet>230</span>                widgets.options.push(widget);
-<span data-nosnippet>231</span>            }
+<span data-nosnippet>228</span>            }
+<span data-nosnippet>229</span>
+<span data-nosnippet>230</span>            widgets.list.append(<span class="kw-2">&amp;</span>widget);
+<span data-nosnippet>231</span>            widgets.options.push(widget);
 <span data-nosnippet>232</span>        }
-<span data-nosnippet>233</span>    }</code></pre></div></div><div class="scraped-example" data-locs="[[[19,19],&#34;../src/state_management/state_management.rs.html#308&#34;,&#34;line 308&#34;],[[22,22],&#34;../src/state_management/state_management.rs.html#311&#34;,&#34;line 311&#34;],[[26,26],&#34;../src/state_management/state_management.rs.html#315&#34;,&#34;line 315&#34;],[[31,31],&#34;../src/state_management/state_management.rs.html#320&#34;,&#34;line 320&#34;],[[40,40],&#34;../src/state_management/state_management.rs.html#329&#34;,&#34;line 329&#34;],[[45,45],&#34;../src/state_management/state_management.rs.html#334&#34;,&#34;line 334&#34;],[[50,50],&#34;../src/state_management/state_management.rs.html#339&#34;,&#34;line 339&#34;],[[59,59],&#34;../src/state_management/state_management.rs.html#348&#34;,&#34;line 348&#34;],[[66,66],&#34;../src/state_management/state_management.rs.html#355&#34;,&#34;line 355&#34;],[[73,76],&#34;../src/state_management/state_management.rs.html#362-365&#34;,&#34;lines 362-365&#34;]]"><div class="scraped-example-title">relm4/examples/state_management.rs (<a href="../src/state_management/state_management.rs.html#308">line 308</a>)</div><div class="example-wrap digits-3"><pre class="rust"><code><span data-nosnippet>289</span>    <span class="kw">fn </span>update(<span class="kw-2">&amp;mut </span><span class="self">self</span>, input: DocumentInput, sender: ComponentSender&lt;<span class="self">Self</span>&gt;) {
+<span data-nosnippet>233</span>    }</code></pre></div></div><div class="scraped-example" data-locs="[[[20,20],&#34;../src/state_management/state_management.rs.html#309&#34;,&#34;line 309&#34;],[[23,23],&#34;../src/state_management/state_management.rs.html#312&#34;,&#34;line 312&#34;],[[27,27],&#34;../src/state_management/state_management.rs.html#316&#34;,&#34;line 316&#34;],[[31,31],&#34;../src/state_management/state_management.rs.html#320&#34;,&#34;line 320&#34;],[[39,39],&#34;../src/state_management/state_management.rs.html#328&#34;,&#34;line 328&#34;],[[44,44],&#34;../src/state_management/state_management.rs.html#333&#34;,&#34;line 333&#34;],[[49,49],&#34;../src/state_management/state_management.rs.html#338&#34;,&#34;line 338&#34;],[[58,58],&#34;../src/state_management/state_management.rs.html#347&#34;,&#34;line 347&#34;],[[65,65],&#34;../src/state_management/state_management.rs.html#354&#34;,&#34;line 354&#34;],[[72,75],&#34;../src/state_management/state_management.rs.html#361-364&#34;,&#34;lines 361-364&#34;]]"><div class="scraped-example-title">relm4/examples/state_management.rs (<a href="../src/state_management/state_management.rs.html#309">line 309</a>)</div><div class="example-wrap digits-3"><pre class="rust"><code><span data-nosnippet>289</span>    <span class="kw">fn </span>update(<span class="kw-2">&amp;mut </span><span class="self">self</span>, input: DocumentInput, sender: ComponentSender&lt;<span class="self">Self</span>&gt;) {
 <span data-nosnippet>290</span>        <span class="kw">match </span>input {
 <span data-nosnippet>291</span>            DocumentInput::Save(path) =&gt; {
 <span data-nosnippet>292</span>                <span class="macro">println!</span>(<span class="string">"Save as JSON to {path:?}"</span>);
@@ -516,73 +479,72 @@ for example by <a href="component/struct.Connector.html#method.detach" title="me
 <span data-nosnippet>299</span>            DocumentInput::Open(path) =&gt; {
 <span data-nosnippet>300</span>                <span class="macro">println!</span>(<span class="string">"Open tasks document at {path:?}"</span>);
 <span data-nosnippet>301</span>
-<span data-nosnippet>302</span>                <span class="kw">if let </span><span class="prelude-val">Ok</span>(json) = std::fs::read_to_string(path) {
-<span data-nosnippet>303</span>                    <span class="kw">if let </span><span class="prelude-val">Ok</span>(new_model) = serde_json::from_str(<span class="kw-2">&amp;</span>json) {
-<span data-nosnippet>304</span>                        <span class="comment">// update the data model
-<span data-nosnippet>305</span>                        </span><span class="self">self</span>.model = new_model;
-<span data-nosnippet>306</span>
-<span data-nosnippet>307</span>                        <span class="comment">// refresh the view from the data model
-<span data-nosnippet>308</span>                        </span><span class="kw">let _ </span>= sender.<span class="highlight focus">output</span>(DocumentOutput::Cleared);
-<span data-nosnippet>309</span>
-<span data-nosnippet>310</span>                        <span class="kw">for </span>(task_index, task) <span class="kw">in </span><span class="self">self</span>.model.tasks.iter().enumerate() {
-<span data-nosnippet>311</span>                            <span class="kw">let _ </span>= sender.<span class="highlight">output</span>(DocumentOutput::AddedTask);
-<span data-nosnippet>312</span>
-<span data-nosnippet>313</span>                            <span class="kw">let </span>task_name = task.name.clone();
-<span data-nosnippet>314</span>                            <span class="kw">let _ </span>= sender
-<span data-nosnippet>315</span>                                .<span class="highlight">output</span>(DocumentOutput::ChangedTaskName(task_index, task_name));
-<span data-nosnippet>316</span>
-<span data-nosnippet>317</span>                            <span class="kw">for </span>tag <span class="kw">in </span><span class="kw-2">&amp;</span>task.tags {
-<span data-nosnippet>318</span>                                <span class="kw">let </span>tag_name = tag.name.clone();
-<span data-nosnippet>319</span>                                <span class="kw">let _ </span>=
-<span data-nosnippet>320</span>                                    sender.<span class="highlight">output</span>(DocumentOutput::AddedTag(task_index, tag_name));
-<span data-nosnippet>321</span>                            }
-<span data-nosnippet>322</span>                        }
-<span data-nosnippet>323</span>                    }
-<span data-nosnippet>324</span>                }
-<span data-nosnippet>325</span>            }
-<span data-nosnippet>326</span>            DocumentInput::Clear =&gt; {
-<span data-nosnippet>327</span>                <span class="self">self</span>.model.tasks.clear();
-<span data-nosnippet>328</span>
-<span data-nosnippet>329</span>                <span class="kw">let _ </span>= sender.<span class="highlight">output</span>(DocumentOutput::Cleared);
-<span data-nosnippet>330</span>            }
-<span data-nosnippet>331</span>            DocumentInput::AddTask =&gt; {
-<span data-nosnippet>332</span>                <span class="self">self</span>.model.tasks.push(TaskModel::default());
-<span data-nosnippet>333</span>
-<span data-nosnippet>334</span>                <span class="kw">let _ </span>= sender.<span class="highlight">output</span>(DocumentOutput::AddedTask);
-<span data-nosnippet>335</span>            }
-<span data-nosnippet>336</span>            DocumentInput::DeleteTask(index) =&gt; {
-<span data-nosnippet>337</span>                <span class="self">self</span>.model.tasks.remove(index.current_index());
-<span data-nosnippet>338</span>
-<span data-nosnippet>339</span>                <span class="kw">let _ </span>= sender.<span class="highlight">output</span>(DocumentOutput::DeletedTask(index.current_index()));
-<span data-nosnippet>340</span>            }
-<span data-nosnippet>341</span>            DocumentInput::ChangeTaskName(index, name) =&gt; {
-<span data-nosnippet>342</span>                <span class="kw">if let </span><span class="prelude-val">Some</span>(task) = <span class="self">self</span>.model.tasks.get_mut(index.current_index()) {
-<span data-nosnippet>343</span>                    task.name.clone_from(<span class="kw-2">&amp;</span>name);
-<span data-nosnippet>344</span>                }
-<span data-nosnippet>345</span>
-<span data-nosnippet>346</span>                <span class="comment">// We don't technically need to send an event, because gtk::Entry updates itself
-<span data-nosnippet>347</span>                // this is just to make the example consistent.
-<span data-nosnippet>348</span>                </span><span class="kw">let _ </span>= sender.<span class="highlight">output</span>(DocumentOutput::ChangedTaskName(index.current_index(), name));
-<span data-nosnippet>349</span>            }
-<span data-nosnippet>350</span>            DocumentInput::AddTag(task_index, name) =&gt; {
-<span data-nosnippet>351</span>                <span class="kw">if let </span><span class="prelude-val">Some</span>(task) = <span class="self">self</span>.model.tasks.get_mut(task_index.current_index()) {
-<span data-nosnippet>352</span>                    task.tags.push(TagModel { name: name.clone() })
-<span data-nosnippet>353</span>                }
-<span data-nosnippet>354</span>
-<span data-nosnippet>355</span>                <span class="kw">let _ </span>= sender.<span class="highlight">output</span>(DocumentOutput::AddedTag(task_index.current_index(), name));
-<span data-nosnippet>356</span>            }
-<span data-nosnippet>357</span>            DocumentInput::DeleteTag(task_index, tag_index) =&gt; {
-<span data-nosnippet>358</span>                <span class="kw">if let </span><span class="prelude-val">Some</span>(task) = <span class="self">self</span>.model.tasks.get_mut(task_index.current_index()) {
-<span data-nosnippet>359</span>                    task.tags.remove(tag_index.current_index());
-<span data-nosnippet>360</span>                }
-<span data-nosnippet>361</span>
-<span data-nosnippet>362</span>                <span class="kw">let _ </span>= sender.<span class="highlight">output</span>(DocumentOutput::DeletedTag(
-<span data-nosnippet>363</span>                    task_index.current_index(),
-<span data-nosnippet>364</span>                    tag_index.current_index(),
-<span data-nosnippet>365</span>                ));
-<span data-nosnippet>366</span>            }
-<span data-nosnippet>367</span>        }
-<span data-nosnippet>368</span>    }</code></pre></div></div></div></details></div></details><details class="toggle method-toggle" open><summary><section id="method.command" class="method"><a class="src rightside" href="../src/relm4/channel/component.rs.html#255">Source</a><h4 class="code-header">pub fn <a href="#method.command" class="fn">command</a>&lt;Cmd, Fut&gt;(&amp;self, cmd: Cmd)<div class="where">where
+<span data-nosnippet>302</span>                <span class="kw">if let </span><span class="prelude-val">Ok</span>(json) = std::fs::read_to_string(path)
+<span data-nosnippet>303</span>                    &amp;&amp; <span class="kw">let </span><span class="prelude-val">Ok</span>(new_model) = serde_json::from_str(<span class="kw-2">&amp;</span>json)
+<span data-nosnippet>304</span>                {
+<span data-nosnippet>305</span>                    <span class="comment">// update the data model
+<span data-nosnippet>306</span>                    </span><span class="self">self</span>.model = new_model;
+<span data-nosnippet>307</span>
+<span data-nosnippet>308</span>                    <span class="comment">// refresh the view from the data model
+<span data-nosnippet>309</span>                    </span><span class="kw">let _ </span>= sender.<span class="highlight focus">output</span>(DocumentOutput::Cleared);
+<span data-nosnippet>310</span>
+<span data-nosnippet>311</span>                    <span class="kw">for </span>(task_index, task) <span class="kw">in </span><span class="self">self</span>.model.tasks.iter().enumerate() {
+<span data-nosnippet>312</span>                        <span class="kw">let _ </span>= sender.<span class="highlight">output</span>(DocumentOutput::AddedTask);
+<span data-nosnippet>313</span>
+<span data-nosnippet>314</span>                        <span class="kw">let </span>task_name = task.name.clone();
+<span data-nosnippet>315</span>                        <span class="kw">let _ </span>=
+<span data-nosnippet>316</span>                            sender.<span class="highlight">output</span>(DocumentOutput::ChangedTaskName(task_index, task_name));
+<span data-nosnippet>317</span>
+<span data-nosnippet>318</span>                        <span class="kw">for </span>tag <span class="kw">in </span><span class="kw-2">&amp;</span>task.tags {
+<span data-nosnippet>319</span>                            <span class="kw">let </span>tag_name = tag.name.clone();
+<span data-nosnippet>320</span>                            <span class="kw">let _ </span>= sender.<span class="highlight">output</span>(DocumentOutput::AddedTag(task_index, tag_name));
+<span data-nosnippet>321</span>                        }
+<span data-nosnippet>322</span>                    }
+<span data-nosnippet>323</span>                }
+<span data-nosnippet>324</span>            }
+<span data-nosnippet>325</span>            DocumentInput::Clear =&gt; {
+<span data-nosnippet>326</span>                <span class="self">self</span>.model.tasks.clear();
+<span data-nosnippet>327</span>
+<span data-nosnippet>328</span>                <span class="kw">let _ </span>= sender.<span class="highlight">output</span>(DocumentOutput::Cleared);
+<span data-nosnippet>329</span>            }
+<span data-nosnippet>330</span>            DocumentInput::AddTask =&gt; {
+<span data-nosnippet>331</span>                <span class="self">self</span>.model.tasks.push(TaskModel::default());
+<span data-nosnippet>332</span>
+<span data-nosnippet>333</span>                <span class="kw">let _ </span>= sender.<span class="highlight">output</span>(DocumentOutput::AddedTask);
+<span data-nosnippet>334</span>            }
+<span data-nosnippet>335</span>            DocumentInput::DeleteTask(index) =&gt; {
+<span data-nosnippet>336</span>                <span class="self">self</span>.model.tasks.remove(index.current_index());
+<span data-nosnippet>337</span>
+<span data-nosnippet>338</span>                <span class="kw">let _ </span>= sender.<span class="highlight">output</span>(DocumentOutput::DeletedTask(index.current_index()));
+<span data-nosnippet>339</span>            }
+<span data-nosnippet>340</span>            DocumentInput::ChangeTaskName(index, name) =&gt; {
+<span data-nosnippet>341</span>                <span class="kw">if let </span><span class="prelude-val">Some</span>(task) = <span class="self">self</span>.model.tasks.get_mut(index.current_index()) {
+<span data-nosnippet>342</span>                    task.name.clone_from(<span class="kw-2">&amp;</span>name);
+<span data-nosnippet>343</span>                }
+<span data-nosnippet>344</span>
+<span data-nosnippet>345</span>                <span class="comment">// We don't technically need to send an event, because gtk::Entry updates itself
+<span data-nosnippet>346</span>                // this is just to make the example consistent.
+<span data-nosnippet>347</span>                </span><span class="kw">let _ </span>= sender.<span class="highlight">output</span>(DocumentOutput::ChangedTaskName(index.current_index(), name));
+<span data-nosnippet>348</span>            }
+<span data-nosnippet>349</span>            DocumentInput::AddTag(task_index, name) =&gt; {
+<span data-nosnippet>350</span>                <span class="kw">if let </span><span class="prelude-val">Some</span>(task) = <span class="self">self</span>.model.tasks.get_mut(task_index.current_index()) {
+<span data-nosnippet>351</span>                    task.tags.push(TagModel { name: name.clone() })
+<span data-nosnippet>352</span>                }
+<span data-nosnippet>353</span>
+<span data-nosnippet>354</span>                <span class="kw">let _ </span>= sender.<span class="highlight">output</span>(DocumentOutput::AddedTag(task_index.current_index(), name));
+<span data-nosnippet>355</span>            }
+<span data-nosnippet>356</span>            DocumentInput::DeleteTag(task_index, tag_index) =&gt; {
+<span data-nosnippet>357</span>                <span class="kw">if let </span><span class="prelude-val">Some</span>(task) = <span class="self">self</span>.model.tasks.get_mut(task_index.current_index()) {
+<span data-nosnippet>358</span>                    task.tags.remove(tag_index.current_index());
+<span data-nosnippet>359</span>                }
+<span data-nosnippet>360</span>
+<span data-nosnippet>361</span>                <span class="kw">let _ </span>= sender.<span class="highlight">output</span>(DocumentOutput::DeletedTag(
+<span data-nosnippet>362</span>                    task_index.current_index(),
+<span data-nosnippet>363</span>                    tag_index.current_index(),
+<span data-nosnippet>364</span>                ));
+<span data-nosnippet>365</span>            }
+<span data-nosnippet>366</span>        }
+<span data-nosnippet>367</span>    }</code></pre></div></div></div></details></div></details><details class="toggle method-toggle" open><summary><section id="method.command" class="method"><a class="src rightside" href="../src/relm4/channel/component.rs.html#255">Source</a><h4 class="code-header">pub fn <a href="#method.command" class="fn">command</a>&lt;Cmd, Fut&gt;(&amp;self, cmd: Cmd)<div class="where">where
     Cmd: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.FnOnce.html" title="trait core::ops::function::FnOnce">FnOnce</a>(<a class="struct" href="struct.Sender.html" title="struct relm4::Sender">Sender</a>&lt;C::<a class="associatedtype" href="component/trait.Component.html#associatedtype.CommandOutput" title="type relm4::component::Component::CommandOutput">CommandOutput</a>&gt;, <a class="struct" href="struct.ShutdownReceiver.html" title="struct relm4::ShutdownReceiver">ShutdownReceiver</a>) -&gt; Fut + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + 'static,
     Fut: <a class="trait" href="https://doc.rust-lang.org/nightly/core/future/future/trait.Future.html" title="trait core::future::future::Future">Future</a>&lt;Output = <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>&gt; + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a>,</div></h4></section></summary><div class="docblock"><p>Spawns an asynchronous command.
 You can bind the the command to the lifetime of the component
@@ -639,32 +601,32 @@ by using a <a href="struct.ShutdownReceiver.html" title="struct relm4::ShutdownR
 <span data-nosnippet>142</span>                });
 <span data-nosnippet>143</span>            }
 <span data-nosnippet>144</span>        }
-<span data-nosnippet>145</span>    }</code></pre></div></div><div class="scraped-example" data-locs="[[[4,16],&#34;../src/tab_game/tab_game.rs.html#254-266&#34;,&#34;lines 254-266&#34;]]"><div class="scraped-example-title">relm4/examples/tab_game.rs (<a href="../src/tab_game/tab_game.rs.html#254-266">lines 254-266</a>)</div><div class="example-wrap digits-3"><pre class="rust"><code><span data-nosnippet>250</span>    <span class="kw">fn </span>update(<span class="kw-2">&amp;mut </span><span class="self">self</span>, msg: <span class="self">Self</span>::Input, sender: ComponentSender&lt;<span class="self">Self</span>&gt;, _root: <span class="kw-2">&amp;</span><span class="self">Self</span>::Root) {
-<span data-nosnippet>251</span>        <span class="kw">match </span>msg {
-<span data-nosnippet>252</span>            AppMsg::StartGame(index) =&gt; {
-<span data-nosnippet>253</span>                <span class="self">self</span>.start_index = <span class="prelude-val">Some</span>(index);
-<span data-nosnippet>254</span>                sender.<span class="highlight focus">command</span>(|sender, <span class="kw">_</span>| <span class="kw">async move </span>{
-<span data-nosnippet>255</span>                    <span class="kw">for </span>i <span class="kw">in </span>(<span class="number">1</span>..<span class="number">4</span>).rev() {
-<span data-nosnippet>256</span>                        <span class="kw-2">*</span>GAME_STATE.write() = GameState::Countdown(i);
-<span data-nosnippet>257</span>                        relm4::tokio::time::sleep(Duration::from_millis(<span class="number">1000</span>)).<span class="kw">await</span>;
-<span data-nosnippet>258</span>                    }
-<span data-nosnippet>259</span>                    <span class="kw-2">*</span>GAME_STATE.write() = GameState::Running;
-<span data-nosnippet>260</span>                    <span class="kw">for _ in </span><span class="number">0</span>..<span class="number">20 </span>{
-<span data-nosnippet>261</span>                        relm4::tokio::time::sleep(Duration::from_millis(<span class="number">500</span>)).<span class="kw">await</span>;
-<span data-nosnippet>262</span>                        sender.send(<span class="bool-val">false</span>).unwrap();
-<span data-nosnippet>263</span>                    }
-<span data-nosnippet>264</span>                    relm4::tokio::time::sleep(Duration::from_millis(<span class="number">1000</span>)).<span class="kw">await</span>;
-<span data-nosnippet>265</span>                    sender.send(<span class="bool-val">true</span>).unwrap();
-<span data-nosnippet>266</span>                });
-<span data-nosnippet>267</span>            }
-<span data-nosnippet>268</span>            AppMsg::StopGame =&gt; {
-<span data-nosnippet>269</span>                <span class="kw-2">*</span>GAME_STATE.write() = GameState::Guessing;
-<span data-nosnippet>270</span>            }
-<span data-nosnippet>271</span>            AppMsg::SelectedGuess(index) =&gt; {
-<span data-nosnippet>272</span>                <span class="kw-2">*</span>GAME_STATE.write() = GameState::End(index == <span class="self">self</span>.start_index.take().unwrap());
-<span data-nosnippet>273</span>            }
-<span data-nosnippet>274</span>        }
-<span data-nosnippet>275</span>    }</code></pre></div></div></div></details></div></details><details class="toggle method-toggle" open><summary><section id="method.spawn_command" class="method"><a class="src rightside" href="../src/relm4/channel/component.rs.html#255">Source</a><h4 class="code-header">pub fn <a href="#method.spawn_command" class="fn">spawn_command</a>&lt;Cmd&gt;(&amp;self, cmd: Cmd)<div class="where">where
+<span data-nosnippet>145</span>    }</code></pre></div></div><div class="scraped-example" data-locs="[[[4,16],&#34;../src/tab_game/tab_game.rs.html#250-262&#34;,&#34;lines 250-262&#34;]]"><div class="scraped-example-title">relm4/examples/tab_game.rs (<a href="../src/tab_game/tab_game.rs.html#250-262">lines 250-262</a>)</div><div class="example-wrap digits-3"><pre class="rust"><code><span data-nosnippet>246</span>    <span class="kw">fn </span>update(<span class="kw-2">&amp;mut </span><span class="self">self</span>, msg: <span class="self">Self</span>::Input, sender: ComponentSender&lt;<span class="self">Self</span>&gt;, _root: <span class="kw-2">&amp;</span><span class="self">Self</span>::Root) {
+<span data-nosnippet>247</span>        <span class="kw">match </span>msg {
+<span data-nosnippet>248</span>            AppMsg::StartGame(index) =&gt; {
+<span data-nosnippet>249</span>                <span class="self">self</span>.start_index = <span class="prelude-val">Some</span>(index);
+<span data-nosnippet>250</span>                sender.<span class="highlight focus">command</span>(|sender, <span class="kw">_</span>| <span class="kw">async move </span>{
+<span data-nosnippet>251</span>                    <span class="kw">for </span>i <span class="kw">in </span>(<span class="number">1</span>..<span class="number">4</span>).rev() {
+<span data-nosnippet>252</span>                        <span class="kw-2">*</span>GAME_STATE.write() = GameState::Countdown(i);
+<span data-nosnippet>253</span>                        relm4::tokio::time::sleep(Duration::from_millis(<span class="number">1000</span>)).<span class="kw">await</span>;
+<span data-nosnippet>254</span>                    }
+<span data-nosnippet>255</span>                    <span class="kw-2">*</span>GAME_STATE.write() = GameState::Running;
+<span data-nosnippet>256</span>                    <span class="kw">for _ in </span><span class="number">0</span>..<span class="number">20 </span>{
+<span data-nosnippet>257</span>                        relm4::tokio::time::sleep(Duration::from_millis(<span class="number">500</span>)).<span class="kw">await</span>;
+<span data-nosnippet>258</span>                        sender.send(<span class="bool-val">false</span>).unwrap();
+<span data-nosnippet>259</span>                    }
+<span data-nosnippet>260</span>                    relm4::tokio::time::sleep(Duration::from_millis(<span class="number">1000</span>)).<span class="kw">await</span>;
+<span data-nosnippet>261</span>                    sender.send(<span class="bool-val">true</span>).unwrap();
+<span data-nosnippet>262</span>                });
+<span data-nosnippet>263</span>            }
+<span data-nosnippet>264</span>            AppMsg::StopGame =&gt; {
+<span data-nosnippet>265</span>                <span class="kw-2">*</span>GAME_STATE.write() = GameState::Guessing;
+<span data-nosnippet>266</span>            }
+<span data-nosnippet>267</span>            AppMsg::SelectedGuess(index) =&gt; {
+<span data-nosnippet>268</span>                <span class="kw-2">*</span>GAME_STATE.write() = GameState::End(index == <span class="self">self</span>.start_index.take().unwrap());
+<span data-nosnippet>269</span>            }
+<span data-nosnippet>270</span>        }
+<span data-nosnippet>271</span>    }</code></pre></div></div></div></details></div></details><details class="toggle method-toggle" open><summary><section id="method.spawn_command" class="method"><a class="src rightside" href="../src/relm4/channel/component.rs.html#255">Source</a><h4 class="code-header">pub fn <a href="#method.spawn_command" class="fn">spawn_command</a>&lt;Cmd&gt;(&amp;self, cmd: Cmd)<div class="where">where
     Cmd: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.FnOnce.html" title="trait core::ops::function::FnOnce">FnOnce</a>(<a class="struct" href="struct.Sender.html" title="struct relm4::Sender">Sender</a>&lt;C::<a class="associatedtype" href="component/trait.Component.html#associatedtype.CommandOutput" title="type relm4::component::Component::CommandOutput">CommandOutput</a>&gt;) + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + 'static,</div></h4></section></summary><div class="docblock"><p>Spawns a synchronous command.</p>
 <p>This is particularly useful for CPU-intensive background jobs that
 need to run on a thread-pool in the background.</p>

@@ -73,7 +73,7 @@
 <a href=#73 id=73 data-nosnippet>73</a>
 <a href=#74 id=74 data-nosnippet>74</a>        label.set_label(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">"Value: {} "</span>, <span class="self">self</span>.value));
 <a href=#75 id=75 data-nosnippet>75</a>        label2.add_write_only_binding(<span class="kw-2">&amp;</span><span class="self">self</span>.binding, <span class="string">"label"</span>);
-<a href=#76 id=76 data-nosnippet>76</a>        button.set_active(<span class="self">self</span>.value % <span class="number">2 </span>== <span class="number">0</span>);
+<a href=#76 id=76 data-nosnippet>76</a>        button.set_active(<span class="self">self</span>.value.is_multiple_of(<span class="number">2</span>));
 <a href=#77 id=77 data-nosnippet>77</a>    }
 <a href=#78 id=78 data-nosnippet>78</a>}
 <a href=#79 id=79 data-nosnippet>79</a>

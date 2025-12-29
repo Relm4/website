@@ -119,10 +119,10 @@
 <a href=#119 id=119 data-nosnippet>119</a>        };
 <a href=#120 id=120 data-nosnippet>120</a>
 <a href=#121 id=121 data-nosnippet>121</a>        <span class="comment">// Make sure that the name is only defined one.
-<a href=#122 id=122 data-nosnippet>122</a>        </span><span class="kw">if </span>attr.is_local_attr() || template_attr == WidgetTemplateAttr::TemplateChild {
-<a href=#123 id=123 data-nosnippet>123</a>            <span class="kw">if let </span><span class="prelude-val">Some</span>(name) = <span class="kw-2">&amp;</span>new_name {
-<a href=#124 id=124 data-nosnippet>124</a>                <span class="kw">return </span><span class="prelude-val">Err</span>(Error::new(name.span(), <span class="string">"Widget name is specified more than once (attribute, assignment or local attribute)."</span>).into());
-<a href=#125 id=125 data-nosnippet>125</a>            }
+<a href=#122 id=122 data-nosnippet>122</a>        </span><span class="kw">if </span>(attr.is_local_attr() || template_attr == WidgetTemplateAttr::TemplateChild)
+<a href=#123 id=123 data-nosnippet>123</a>            &amp;&amp; <span class="kw">let </span><span class="prelude-val">Some</span>(name) = <span class="kw-2">&amp;</span>new_name
+<a href=#124 id=124 data-nosnippet>124</a>        {
+<a href=#125 id=125 data-nosnippet>125</a>            <span class="kw">return </span><span class="prelude-val">Err</span>(Error::new(name.span(), <span class="string">"Widget name is specified more than once (attribute, assignment or local attribute)."</span>).into());
 <a href=#126 id=126 data-nosnippet>126</a>        }
 <a href=#127 id=127 data-nosnippet>127</a>
 <a href=#128 id=128 data-nosnippet>128</a>        <span class="comment">// Generate a name
@@ -162,16 +162,16 @@
 <a href=#162 id=162 data-nosnippet>162</a>        <span class="comment">// Make sure template_child is only used in a valid context.
 <a href=#163 id=163 data-nosnippet>163</a>        </span><span class="kw">if </span><span class="macro">template_attr !</span>= <span class="kw-2">&amp;</span>WidgetTemplateAttr::Template {
 <a href=#164 id=164 data-nosnippet>164</a>            <span class="kw">for </span>prop <span class="kw">in </span><span class="kw-2">&amp;</span>props.properties {
-<a href=#165 id=165 data-nosnippet>165</a>                <span class="kw">if let </span>PropertyType::Widget(widget) = <span class="kw-2">&amp;</span>prop.ty {
-<a href=#166 id=166 data-nosnippet>166</a>                    <span class="kw">if </span>widget.template_attr == WidgetTemplateAttr::TemplateChild {
-<a href=#167 id=167 data-nosnippet>167</a>                        <span class="kw">return </span><span class="prelude-val">Err</span>(ParseError::Generic(
-<a href=#168 id=168 data-nosnippet>168</a>                            Error::new(
-<a href=#169 id=169 data-nosnippet>169</a>                                widget.name.span(),
-<a href=#170 id=170 data-nosnippet>170</a>                                <span class="string">"You can't use a template child if the parent is not a template."</span>,
-<a href=#171 id=171 data-nosnippet>171</a>                            )
-<a href=#172 id=172 data-nosnippet>172</a>                            .to_compile_error(),
-<a href=#173 id=173 data-nosnippet>173</a>                        ));
-<a href=#174 id=174 data-nosnippet>174</a>                    }
+<a href=#165 id=165 data-nosnippet>165</a>                <span class="kw">if let </span>PropertyType::Widget(widget) = <span class="kw-2">&amp;</span>prop.ty
+<a href=#166 id=166 data-nosnippet>166</a>                    &amp;&amp; widget.template_attr == WidgetTemplateAttr::TemplateChild
+<a href=#167 id=167 data-nosnippet>167</a>                {
+<a href=#168 id=168 data-nosnippet>168</a>                    <span class="kw">return </span><span class="prelude-val">Err</span>(ParseError::Generic(
+<a href=#169 id=169 data-nosnippet>169</a>                        Error::new(
+<a href=#170 id=170 data-nosnippet>170</a>                            widget.name.span(),
+<a href=#171 id=171 data-nosnippet>171</a>                            <span class="string">"You can't use a template child if the parent is not a template."</span>,
+<a href=#172 id=172 data-nosnippet>172</a>                        )
+<a href=#173 id=173 data-nosnippet>173</a>                        .to_compile_error(),
+<a href=#174 id=174 data-nosnippet>174</a>                    ));
 <a href=#175 id=175 data-nosnippet>175</a>                }
 <a href=#176 id=176 data-nosnippet>176</a>            }
 <a href=#177 id=177 data-nosnippet>177</a>        }

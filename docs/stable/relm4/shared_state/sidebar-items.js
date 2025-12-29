@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"struct":["Reducer","SharedState","SharedStateReadGuard","SharedStateWriteGuard"],"trait":["Reducible"]};
+window.SIDEBAR_ITEMS = {"struct":["AsyncReducer","Reducer","SharedState","SharedStateReadGuard","SharedStateWriteGuard"],"trait":["AsyncReducible","Reducible"]};

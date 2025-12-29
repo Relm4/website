@@ -1,11 +1,11 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Second stage of the builder-pattern for building a `FactoryVecDeque`."><title>FactoryVecDequeConnector in relm4::factory - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-80aa586b.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="relm4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.94.0-nightly (21cf7fb3f 2025-12-28)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-7bab91a1.js"></script><script defer src="../../static.files/scrape-examples-2bbcccac.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-ffcac47a.css"></noscript><link rel="icon" href="https://relm4.org/icons/relm4_org.svg"></head><body class="rustdoc struct"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><rustdoc-topbar><h2><a href="#">FactoryVecDequeConnector</a></h2></rustdoc-topbar><nav class="sidebar"><div class="sidebar-crate"><a class="logo-container" href="../../relm4/index.html"><img src="https://relm4.org/icons/relm4_logo.svg" alt="logo"></a><h2><a href="../../relm4/index.html">relm4</a><span class="version">0.10.0</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">Factory<wbr>VecDeque<wbr>Connector</a></h2><h3><a href="#implementations">Methods</a></h3><ul class="block method"><li><a href="#method.detach" title="detach">detach</a></li><li><a href="#method.forward" title="forward">forward</a></li></ul><h3><a href="#trait-implementations">Trait Implementations</a></h3><ul class="block trait-implementation"><li><a href="#impl-Debug-for-FactoryVecDequeConnector%3CC%3E" title="Debug">Debug</a></li></ul><h3><a href="#synthetic-implementations">Auto Trait Implementations</a></h3><ul class="block synthetic-implementation"><li><a href="#impl-Freeze-for-FactoryVecDequeConnector%3CC%3E" title="Freeze">Freeze</a></li><li><a href="#impl-RefUnwindSafe-for-FactoryVecDequeConnector%3CC%3E" title="RefUnwindSafe">RefUnwindSafe</a></li><li><a href="#impl-Send-for-FactoryVecDequeConnector%3CC%3E" title="Send">Send</a></li><li><a href="#impl-Sync-for-FactoryVecDequeConnector%3CC%3E" title="Sync">Sync</a></li><li><a href="#impl-Unpin-for-FactoryVecDequeConnector%3CC%3E" title="Unpin">Unpin</a></li><li><a href="#impl-UnwindSafe-for-FactoryVecDequeConnector%3CC%3E" title="UnwindSafe">UnwindSafe</a></li></ul><h3><a href="#blanket-implementations">Blanket Implementations</a></h3><ul class="block blanket-implementation"><li><a href="#impl-Any-for-T" title="Any">Any</a></li><li><a href="#impl-AsyncPosition%3C()%3E-for-C" title="AsyncPosition&#60;()&#62;">AsyncPosition&#60;()&#62;</a></li><li><a href="#impl-Borrow%3CT%3E-for-T" title="Borrow&#60;T&#62;">Borrow&#60;T&#62;</a></li><li><a href="#impl-BorrowMut%3CT%3E-for-T" title="BorrowMut&#60;T&#62;">BorrowMut&#60;T&#62;</a></li><li><a href="#impl-From%3CT%3E-for-T" title="From&#60;T&#62;">From&#60;T&#62;</a></li><li><a href="#impl-Instrument-for-T" title="Instrument">Instrument</a></li><li><a href="#impl-Into%3CU%3E-for-T" title="Into&#60;U&#62;">Into&#60;U&#62;</a></li><li><a href="#impl-Position%3C(),+I%3E-for-C" title="Position&#60;(), I&#62;">Position&#60;(), I&#62;</a></li><li><a href="#impl-TryFrom%3CU%3E-for-T" title="TryFrom&#60;U&#62;">TryFrom&#60;U&#62;</a></li><li><a href="#impl-TryInto%3CU%3E-for-T" title="TryInto&#60;U&#62;">TryInto&#60;U&#62;</a></li><li><a href="#impl-WithSubscriber-for-T" title="WithSubscriber">WithSubscriber</a></li></ul></section><div id="rustdoc-modnav"><h2><a href="index.html">In relm4::<wbr>factory</a></h2></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../index.html">relm4</a>::<wbr><a href="index.html">factory</a></div><h1>Struct <span class="struct">Factory<wbr>VecDeque<wbr>Connector</span>&nbsp;<button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../src/relm4/factory/sync/collections/vec_deque.rs.html#447-454">Source</a> </span></div><pre class="rust item-decl"><code>pub struct FactoryVecDequeConnector&lt;C&gt;<div class="where">where
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Second stage of the builder-pattern for building a `FactoryVecDeque`."><title>FactoryVecDequeConnector in relm4::factory - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-80aa586b.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="relm4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.94.0-nightly (21cf7fb3f 2025-12-28)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-7bab91a1.js"></script><script defer src="../../static.files/scrape-examples-2bbcccac.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-ffcac47a.css"></noscript><link rel="icon" href="https://relm4.org/icons/relm4_org.svg"></head><body class="rustdoc struct"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><rustdoc-topbar><h2><a href="#">FactoryVecDequeConnector</a></h2></rustdoc-topbar><nav class="sidebar"><div class="sidebar-crate"><a class="logo-container" href="../../relm4/index.html"><img src="https://relm4.org/icons/relm4_logo.svg" alt="logo"></a><h2><a href="../../relm4/index.html">relm4</a><span class="version">0.10.1</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">Factory<wbr>VecDeque<wbr>Connector</a></h2><h3><a href="#implementations">Methods</a></h3><ul class="block method"><li><a href="#method.detach" title="detach">detach</a></li><li><a href="#method.forward" title="forward">forward</a></li></ul><h3><a href="#trait-implementations">Trait Implementations</a></h3><ul class="block trait-implementation"><li><a href="#impl-Debug-for-FactoryVecDequeConnector%3CC%3E" title="Debug">Debug</a></li></ul><h3><a href="#synthetic-implementations">Auto Trait Implementations</a></h3><ul class="block synthetic-implementation"><li><a href="#impl-Freeze-for-FactoryVecDequeConnector%3CC%3E" title="Freeze">Freeze</a></li><li><a href="#impl-RefUnwindSafe-for-FactoryVecDequeConnector%3CC%3E" title="RefUnwindSafe">RefUnwindSafe</a></li><li><a href="#impl-Send-for-FactoryVecDequeConnector%3CC%3E" title="Send">Send</a></li><li><a href="#impl-Sync-for-FactoryVecDequeConnector%3CC%3E" title="Sync">Sync</a></li><li><a href="#impl-Unpin-for-FactoryVecDequeConnector%3CC%3E" title="Unpin">Unpin</a></li><li><a href="#impl-UnwindSafe-for-FactoryVecDequeConnector%3CC%3E" title="UnwindSafe">UnwindSafe</a></li></ul><h3><a href="#blanket-implementations">Blanket Implementations</a></h3><ul class="block blanket-implementation"><li><a href="#impl-Any-for-T" title="Any">Any</a></li><li><a href="#impl-AsyncPosition%3C()%3E-for-C" title="AsyncPosition&#60;()&#62;">AsyncPosition&#60;()&#62;</a></li><li><a href="#impl-Borrow%3CT%3E-for-T" title="Borrow&#60;T&#62;">Borrow&#60;T&#62;</a></li><li><a href="#impl-BorrowMut%3CT%3E-for-T" title="BorrowMut&#60;T&#62;">BorrowMut&#60;T&#62;</a></li><li><a href="#impl-From%3CT%3E-for-T" title="From&#60;T&#62;">From&#60;T&#62;</a></li><li><a href="#impl-Instrument-for-T" title="Instrument">Instrument</a></li><li><a href="#impl-Into%3CU%3E-for-T" title="Into&#60;U&#62;">Into&#60;U&#62;</a></li><li><a href="#impl-Position%3C(),+I%3E-for-C" title="Position&#60;(), I&#62;">Position&#60;(), I&#62;</a></li><li><a href="#impl-TryFrom%3CU%3E-for-T" title="TryFrom&#60;U&#62;">TryFrom&#60;U&#62;</a></li><li><a href="#impl-TryInto%3CU%3E-for-T" title="TryInto&#60;U&#62;">TryInto&#60;U&#62;</a></li><li><a href="#impl-WithSubscriber-for-T" title="WithSubscriber">WithSubscriber</a></li></ul></section><div id="rustdoc-modnav"><h2><a href="index.html">In relm4::<wbr>factory</a></h2></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../index.html">relm4</a>::<wbr><a href="index.html">factory</a></div><h1>Struct <span class="struct">Factory<wbr>VecDeque<wbr>Connector</span>&nbsp;<button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../src/relm4/factory/sync/collections/vec_deque.rs.html#447-454">Source</a> </span></div><pre class="rust item-decl"><code>pub struct FactoryVecDequeConnector&lt;C&gt;<div class="where">where
     C: <a class="trait" href="trait.FactoryComponent.html" title="trait relm4::factory::FactoryComponent">FactoryComponent</a>&lt;Index = <a class="struct" href="struct.DynamicIndex.html" title="struct relm4::factory::DynamicIndex">DynamicIndex</a>&gt;,</div>{ <span class="comment">/* private fields */</span> }</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Second stage of the builder-pattern for building a <a href="struct.FactoryVecDeque.html" title="struct relm4::factory::FactoryVecDeque"><code>FactoryVecDeque</code></a>.</p>
 </div></details><h2 id="implementations" class="section-header">Implementations<a href="#implementations" class="anchor">§</a></h2><div id="implementations-list"><details class="toggle implementors-toggle" open><summary><section id="impl-FactoryVecDequeConnector%3CC%3E" class="impl"><a class="src rightside" href="../../src/relm4/factory/sync/collections/vec_deque.rs.html#456-510">Source</a><a href="#impl-FactoryVecDequeConnector%3CC%3E" class="anchor">§</a><h3 class="code-header">impl&lt;C&gt; <a class="struct" href="struct.FactoryVecDequeConnector.html" title="struct relm4::factory::FactoryVecDequeConnector">FactoryVecDequeConnector</a>&lt;C&gt;<div class="where">where
     C: <a class="trait" href="trait.FactoryComponent.html" title="trait relm4::factory::FactoryComponent">FactoryComponent</a>&lt;Index = <a class="struct" href="struct.DynamicIndex.html" title="struct relm4::factory::DynamicIndex">DynamicIndex</a>&gt;,</div></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.forward" class="method"><a class="src rightside" href="../../src/relm4/factory/sync/collections/vec_deque.rs.html#461-491">Source</a><h4 class="code-header">pub fn <a href="#method.forward" class="fn">forward</a>&lt;F, Msg&gt;(self, sender_: &amp;<a class="struct" href="../struct.Sender.html" title="struct relm4::Sender">Sender</a>&lt;Msg&gt;, f: F) -&gt; <a class="struct" href="struct.FactoryVecDeque.html" title="struct relm4::factory::FactoryVecDeque">FactoryVecDeque</a>&lt;C&gt;<div class="where">where
     F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(C::<a class="associatedtype" href="trait.FactoryComponent.html#associatedtype.Output" title="type relm4::factory::FactoryComponent::Output">Output</a>) -&gt; Msg + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + 'static,
     C::<a class="associatedtype" href="trait.FactoryComponent.html#associatedtype.Output" title="type relm4::factory::FactoryComponent::Output">Output</a>: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a>,
     Msg: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + 'static,</div></h4></section></summary><div class="docblock"><p>Forwards output events from child components to the designated sender.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../../scrape-examples-help.html">?</a></h5><div class="scraped-example" data-locs="[[[3,10],&#34;../../src/state_management/state_management.rs.html#164-171&#34;,&#34;lines 164-171&#34;],[[391,398],&#34;../../src/state_management/state_management.rs.html#552-559&#34;,&#34;lines 552-559&#34;]]"><div class="scraped-example-title">relm4/examples/state_management.rs (<a href="../../src/state_management/state_management.rs.html#164-171">lines 164-171</a>)</div><div class="example-wrap digits-3"><pre class="rust"><code><span data-nosnippet>161</span>    <span class="kw">fn </span>init_model(_name: <span class="self">Self</span>::Init, index: <span class="kw-2">&amp;</span>DynamicIndex, sender: FactorySender&lt;<span class="self">Self</span>&gt;) -&gt; <span class="self">Self </span>{
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../../scrape-examples-help.html">?</a></h5><div class="scraped-example" data-locs="[[[3,10],&#34;../../src/state_management/state_management.rs.html#164-171&#34;,&#34;lines 164-171&#34;],[[390,397],&#34;../../src/state_management/state_management.rs.html#551-558&#34;,&#34;lines 551-558&#34;]]"><div class="scraped-example-title">relm4/examples/state_management.rs (<a href="../../src/state_management/state_management.rs.html#164-171">lines 164-171</a>)</div><div class="example-wrap digits-3"><pre class="rust"><code><span data-nosnippet>161</span>    <span class="kw">fn </span>init_model(_name: <span class="self">Self</span>::Init, index: <span class="kw-2">&amp;</span>DynamicIndex, sender: FactorySender&lt;<span class="self">Self</span>&gt;) -&gt; <span class="self">Self </span>{
 <span data-nosnippet>162</span>        <span class="kw">let </span>task_index = index.clone();
 <span data-nosnippet>163</span>
 <span data-nosnippet>164</span>        <span class="kw">let </span>tags = FactoryVecDeque::builder().launch_default().<span class="highlight focus">forward</span>(
@@ -146,325 +146,324 @@
 <span data-nosnippet>299</span>            DocumentInput::Open(path) =&gt; {
 <span data-nosnippet>300</span>                <span class="macro">println!</span>(<span class="string">"Open tasks document at {path:?}"</span>);
 <span data-nosnippet>301</span>
-<span data-nosnippet>302</span>                <span class="kw">if let </span><span class="prelude-val">Ok</span>(json) = std::fs::read_to_string(path) {
-<span data-nosnippet>303</span>                    <span class="kw">if let </span><span class="prelude-val">Ok</span>(new_model) = serde_json::from_str(<span class="kw-2">&amp;</span>json) {
-<span data-nosnippet>304</span>                        <span class="comment">// update the data model
-<span data-nosnippet>305</span>                        </span><span class="self">self</span>.model = new_model;
-<span data-nosnippet>306</span>
-<span data-nosnippet>307</span>                        <span class="comment">// refresh the view from the data model
-<span data-nosnippet>308</span>                        </span><span class="kw">let _ </span>= sender.output(DocumentOutput::Cleared);
-<span data-nosnippet>309</span>
-<span data-nosnippet>310</span>                        <span class="kw">for </span>(task_index, task) <span class="kw">in </span><span class="self">self</span>.model.tasks.iter().enumerate() {
-<span data-nosnippet>311</span>                            <span class="kw">let _ </span>= sender.output(DocumentOutput::AddedTask);
-<span data-nosnippet>312</span>
-<span data-nosnippet>313</span>                            <span class="kw">let </span>task_name = task.name.clone();
-<span data-nosnippet>314</span>                            <span class="kw">let _ </span>= sender
-<span data-nosnippet>315</span>                                .output(DocumentOutput::ChangedTaskName(task_index, task_name));
-<span data-nosnippet>316</span>
-<span data-nosnippet>317</span>                            <span class="kw">for </span>tag <span class="kw">in </span><span class="kw-2">&amp;</span>task.tags {
-<span data-nosnippet>318</span>                                <span class="kw">let </span>tag_name = tag.name.clone();
-<span data-nosnippet>319</span>                                <span class="kw">let _ </span>=
-<span data-nosnippet>320</span>                                    sender.output(DocumentOutput::AddedTag(task_index, tag_name));
-<span data-nosnippet>321</span>                            }
-<span data-nosnippet>322</span>                        }
-<span data-nosnippet>323</span>                    }
-<span data-nosnippet>324</span>                }
-<span data-nosnippet>325</span>            }
-<span data-nosnippet>326</span>            DocumentInput::Clear =&gt; {
-<span data-nosnippet>327</span>                <span class="self">self</span>.model.tasks.clear();
-<span data-nosnippet>328</span>
-<span data-nosnippet>329</span>                <span class="kw">let _ </span>= sender.output(DocumentOutput::Cleared);
-<span data-nosnippet>330</span>            }
-<span data-nosnippet>331</span>            DocumentInput::AddTask =&gt; {
-<span data-nosnippet>332</span>                <span class="self">self</span>.model.tasks.push(TaskModel::default());
-<span data-nosnippet>333</span>
-<span data-nosnippet>334</span>                <span class="kw">let _ </span>= sender.output(DocumentOutput::AddedTask);
-<span data-nosnippet>335</span>            }
-<span data-nosnippet>336</span>            DocumentInput::DeleteTask(index) =&gt; {
-<span data-nosnippet>337</span>                <span class="self">self</span>.model.tasks.remove(index.current_index());
-<span data-nosnippet>338</span>
-<span data-nosnippet>339</span>                <span class="kw">let _ </span>= sender.output(DocumentOutput::DeletedTask(index.current_index()));
-<span data-nosnippet>340</span>            }
-<span data-nosnippet>341</span>            DocumentInput::ChangeTaskName(index, name) =&gt; {
-<span data-nosnippet>342</span>                <span class="kw">if let </span><span class="prelude-val">Some</span>(task) = <span class="self">self</span>.model.tasks.get_mut(index.current_index()) {
-<span data-nosnippet>343</span>                    task.name.clone_from(<span class="kw-2">&amp;</span>name);
-<span data-nosnippet>344</span>                }
-<span data-nosnippet>345</span>
-<span data-nosnippet>346</span>                <span class="comment">// We don't technically need to send an event, because gtk::Entry updates itself
-<span data-nosnippet>347</span>                // this is just to make the example consistent.
-<span data-nosnippet>348</span>                </span><span class="kw">let _ </span>= sender.output(DocumentOutput::ChangedTaskName(index.current_index(), name));
-<span data-nosnippet>349</span>            }
-<span data-nosnippet>350</span>            DocumentInput::AddTag(task_index, name) =&gt; {
-<span data-nosnippet>351</span>                <span class="kw">if let </span><span class="prelude-val">Some</span>(task) = <span class="self">self</span>.model.tasks.get_mut(task_index.current_index()) {
-<span data-nosnippet>352</span>                    task.tags.push(TagModel { name: name.clone() })
-<span data-nosnippet>353</span>                }
-<span data-nosnippet>354</span>
-<span data-nosnippet>355</span>                <span class="kw">let _ </span>= sender.output(DocumentOutput::AddedTag(task_index.current_index(), name));
-<span data-nosnippet>356</span>            }
-<span data-nosnippet>357</span>            DocumentInput::DeleteTag(task_index, tag_index) =&gt; {
-<span data-nosnippet>358</span>                <span class="kw">if let </span><span class="prelude-val">Some</span>(task) = <span class="self">self</span>.model.tasks.get_mut(task_index.current_index()) {
-<span data-nosnippet>359</span>                    task.tags.remove(tag_index.current_index());
-<span data-nosnippet>360</span>                }
-<span data-nosnippet>361</span>
-<span data-nosnippet>362</span>                <span class="kw">let _ </span>= sender.output(DocumentOutput::DeletedTag(
-<span data-nosnippet>363</span>                    task_index.current_index(),
-<span data-nosnippet>364</span>                    tag_index.current_index(),
-<span data-nosnippet>365</span>                ));
-<span data-nosnippet>366</span>            }
-<span data-nosnippet>367</span>        }
-<span data-nosnippet>368</span>    }
-<span data-nosnippet>369</span>}
-<span data-nosnippet>370</span>
-<span data-nosnippet>371</span><span class="doccomment">/// The App is at the top level.
-<span data-nosnippet>372</span>/// It acts as a bridge between the view and the document, forwarding events between them.
-<span data-nosnippet>373</span></span><span class="kw">struct </span>App {
-<span data-nosnippet>374</span>    view: FactoryVecDeque&lt;Task&gt;,
-<span data-nosnippet>375</span>    document: Controller&lt;Document&gt;,
-<span data-nosnippet>376</span>    save_dialog: Controller&lt;SaveDialog&gt;,
-<span data-nosnippet>377</span>    open_dialog: Controller&lt;OpenDialog&gt;,
-<span data-nosnippet>378</span>}
-<span data-nosnippet>379</span>
-<span data-nosnippet>380</span><span class="attr">#[derive(Debug)]
-<span data-nosnippet>381</span></span><span class="kw">enum </span>AppInput {
-<span data-nosnippet>382</span>    Clear,
-<span data-nosnippet>383</span>    Cleared,
-<span data-nosnippet>384</span>
-<span data-nosnippet>385</span>    AddTask,
-<span data-nosnippet>386</span>    AddedTask,
-<span data-nosnippet>387</span>
-<span data-nosnippet>388</span>    DeleteTask(DynamicIndex),
-<span data-nosnippet>389</span>    DeletedTask(usize),
-<span data-nosnippet>390</span>
-<span data-nosnippet>391</span>    ChangeTaskName(DynamicIndex, String),
-<span data-nosnippet>392</span>    ChangedTaskName(usize, String),
-<span data-nosnippet>393</span>
-<span data-nosnippet>394</span>    AddTag(DynamicIndex, String),
-<span data-nosnippet>395</span>    AddedTag(usize, String),
-<span data-nosnippet>396</span>
-<span data-nosnippet>397</span>    DeleteTag(DynamicIndex, DynamicIndex),
-<span data-nosnippet>398</span>    DeletedTag(usize, usize),
-<span data-nosnippet>399</span>
-<span data-nosnippet>400</span>    <span class="comment">// No-op event for when load/save dialogs result in Cancel
-<span data-nosnippet>401</span>    </span><span class="prelude-val">None</span>,
-<span data-nosnippet>402</span>    Open,
-<span data-nosnippet>403</span>    OpenResponse(PathBuf),
-<span data-nosnippet>404</span>    Save,
-<span data-nosnippet>405</span>    SaveResponse(PathBuf),
-<span data-nosnippet>406</span>}
-<span data-nosnippet>407</span>
-<span data-nosnippet>408</span><span class="attr">#[relm4::component]
-<span data-nosnippet>409</span></span><span class="kw">impl </span>SimpleComponent <span class="kw">for </span>App {
-<span data-nosnippet>410</span>    <span class="kw">type </span>Init = ();
-<span data-nosnippet>411</span>    <span class="kw">type </span>Input = AppInput;
-<span data-nosnippet>412</span>    <span class="kw">type </span>Output = ();
-<span data-nosnippet>413</span>
-<span data-nosnippet>414</span>    <span class="macro">view!</span> {
-<span data-nosnippet>415</span>        main_window = gtk::ApplicationWindow {
-<span data-nosnippet>416</span>            set_width_request: <span class="number">360</span>,
-<span data-nosnippet>417</span>            set_title: <span class="prelude-val">Some</span>(<span class="string">"Tasks"</span>),
-<span data-nosnippet>418</span>
-<span data-nosnippet>419</span>            gtk::Box {
-<span data-nosnippet>420</span>                set_orientation: gtk::Orientation::Vertical,
-<span data-nosnippet>421</span>
-<span data-nosnippet>422</span>                gtk::HeaderBar {
-<span data-nosnippet>423</span>                    set_show_title_buttons: <span class="bool-val">false</span>,
-<span data-nosnippet>424</span>
-<span data-nosnippet>425</span>                    <span class="attr">#[wrap(<span class="prelude-val">Some</span>)]
-<span data-nosnippet>426</span>                    </span>set_title_widget = <span class="kw-2">&amp;</span>gtk::Label {
-<span data-nosnippet>427</span>                        set_text: <span class="string">""
-<span data-nosnippet>428</span>                    </span>},
-<span data-nosnippet>429</span>
-<span data-nosnippet>430</span>                    pack_start = <span class="kw-2">&amp;</span>gtk::Button {
-<span data-nosnippet>431</span>                        set_icon_name: <span class="string">"plus"</span>,
-<span data-nosnippet>432</span>                        set_tooltip: <span class="string">"Add Task"</span>,
-<span data-nosnippet>433</span>
-<span data-nosnippet>434</span>                        connect_clicked[sender] =&gt; <span class="kw">move </span>|<span class="kw">_</span>| {
-<span data-nosnippet>435</span>                            sender.input(AppInput::AddTask);
-<span data-nosnippet>436</span>                        }
-<span data-nosnippet>437</span>                    },
-<span data-nosnippet>438</span>
-<span data-nosnippet>439</span>                    pack_end = <span class="kw-2">&amp;</span>gtk::Button {
-<span data-nosnippet>440</span>                        set_label: <span class="string">"Save"</span>,
-<span data-nosnippet>441</span>                        connect_clicked =&gt; AppInput::Save,
-<span data-nosnippet>442</span>                    },
-<span data-nosnippet>443</span>                    pack_end = <span class="kw-2">&amp;</span>gtk::Button {
-<span data-nosnippet>444</span>                        set_label: <span class="string">"Open"</span>,
-<span data-nosnippet>445</span>                        connect_clicked =&gt; AppInput::Open,
-<span data-nosnippet>446</span>                    },
-<span data-nosnippet>447</span>                },
-<span data-nosnippet>448</span>
-<span data-nosnippet>449</span>                gtk::ScrolledWindow {
-<span data-nosnippet>450</span>                    set_hscrollbar_policy: gtk::PolicyType::Never,
-<span data-nosnippet>451</span>                    set_min_content_height: <span class="number">360</span>,
-<span data-nosnippet>452</span>                    set_vexpand: <span class="bool-val">true</span>,
-<span data-nosnippet>453</span>
-<span data-nosnippet>454</span>                    <span class="attr">#[local_ref]
-<span data-nosnippet>455</span>                    </span>task_list_box -&gt; gtk::ListBox {
-<span data-nosnippet>456</span>                        set_selection_mode: gtk::SelectionMode::None,
-<span data-nosnippet>457</span>                    }
-<span data-nosnippet>458</span>                },
-<span data-nosnippet>459</span>
-<span data-nosnippet>460</span>                gtk::Box {
-<span data-nosnippet>461</span>                    set_hexpand: <span class="bool-val">true</span>,
-<span data-nosnippet>462</span>                    set_spacing: DEFAULT_SPACING,
-<span data-nosnippet>463</span>                    set_orientation: gtk::Orientation::Horizontal,
-<span data-nosnippet>464</span>
-<span data-nosnippet>465</span>                    gtk::Label {
-<span data-nosnippet>466</span>                        set_text: <span class="string">"Press Enter after editing task names"</span>,
-<span data-nosnippet>467</span>                        set_hexpand: <span class="bool-val">true</span>,
-<span data-nosnippet>468</span>                        set_xalign: XALIGN_CENTER,
-<span data-nosnippet>469</span>                    },
-<span data-nosnippet>470</span>
-<span data-nosnippet>471</span>                    gtk::Button {
-<span data-nosnippet>472</span>                        set_icon_name: <span class="string">"edit-delete"</span>,
-<span data-nosnippet>473</span>                        set_tooltip: <span class="string">"Delete All Tasks"</span>,
-<span data-nosnippet>474</span>                        add_css_class: CSS_CLASS_DESTRUCTIVE_ACTION,
-<span data-nosnippet>475</span>
-<span data-nosnippet>476</span>                        connect_clicked[sender] =&gt; <span class="kw">move </span>|<span class="kw">_</span>| {
-<span data-nosnippet>477</span>                            sender.input(AppInput::Clear);
-<span data-nosnippet>478</span>                        }
-<span data-nosnippet>479</span>                    }
-<span data-nosnippet>480</span>                }
-<span data-nosnippet>481</span>            }
-<span data-nosnippet>482</span>        }
-<span data-nosnippet>483</span>    }
-<span data-nosnippet>484</span>
-<span data-nosnippet>485</span>    <span class="kw">fn </span>update(<span class="kw-2">&amp;mut </span><span class="self">self</span>, msg: AppInput, _sender: ComponentSender&lt;<span class="self">Self</span>&gt;) {
-<span data-nosnippet>486</span>        <span class="kw">match </span>msg {
-<span data-nosnippet>487</span>            AppInput::Clear =&gt; {
-<span data-nosnippet>488</span>                <span class="self">self</span>.document.emit(DocumentInput::Clear);
-<span data-nosnippet>489</span>            }
-<span data-nosnippet>490</span>            AppInput::Cleared =&gt; {
-<span data-nosnippet>491</span>                <span class="self">self</span>.view.guard().clear();
-<span data-nosnippet>492</span>            }
-<span data-nosnippet>493</span>            AppInput::AddTask =&gt; {
-<span data-nosnippet>494</span>                <span class="self">self</span>.document.emit(DocumentInput::AddTask);
-<span data-nosnippet>495</span>            }
-<span data-nosnippet>496</span>            AppInput::AddedTask =&gt; {
-<span data-nosnippet>497</span>                <span class="self">self</span>.view.guard().push_back(());
-<span data-nosnippet>498</span>            }
-<span data-nosnippet>499</span>            AppInput::DeleteTask(index) =&gt; {
-<span data-nosnippet>500</span>                <span class="self">self</span>.document.emit(DocumentInput::DeleteTask(index));
-<span data-nosnippet>501</span>            }
-<span data-nosnippet>502</span>            AppInput::DeletedTask(index) =&gt; {
-<span data-nosnippet>503</span>                <span class="self">self</span>.view.guard().remove(index);
-<span data-nosnippet>504</span>            }
-<span data-nosnippet>505</span>            AppInput::ChangeTaskName(index, name) =&gt; {
-<span data-nosnippet>506</span>                <span class="self">self</span>.document
-<span data-nosnippet>507</span>                    .emit(DocumentInput::ChangeTaskName(index, name));
-<span data-nosnippet>508</span>            }
-<span data-nosnippet>509</span>            AppInput::ChangedTaskName(index, name) =&gt; {
-<span data-nosnippet>510</span>                <span class="self">self</span>.view.guard().send(index, TaskInput::ChangedName(name));
-<span data-nosnippet>511</span>            }
-<span data-nosnippet>512</span>            AppInput::AddTag(index, name) =&gt; {
-<span data-nosnippet>513</span>                <span class="self">self</span>.document.emit(DocumentInput::AddTag(index, name));
-<span data-nosnippet>514</span>            }
-<span data-nosnippet>515</span>            AppInput::AddedTag(index, name) =&gt; {
-<span data-nosnippet>516</span>                <span class="self">self</span>.view.guard().send(index, TaskInput::AddedTag(name));
-<span data-nosnippet>517</span>            }
-<span data-nosnippet>518</span>            AppInput::DeleteTag(task_index, tag_index) =&gt; {
-<span data-nosnippet>519</span>                <span class="self">self</span>.document
-<span data-nosnippet>520</span>                    .emit(DocumentInput::DeleteTag(task_index, tag_index));
-<span data-nosnippet>521</span>            }
-<span data-nosnippet>522</span>            AppInput::DeletedTag(task_index, tag_index) =&gt; {
-<span data-nosnippet>523</span>                <span class="self">self</span>.view
-<span data-nosnippet>524</span>                    .guard()
-<span data-nosnippet>525</span>                    .send(task_index, TaskInput::DeletedTag(tag_index));
-<span data-nosnippet>526</span>            }
-<span data-nosnippet>527</span>            AppInput::None =&gt; {}
-<span data-nosnippet>528</span>            AppInput::Save =&gt; {
-<span data-nosnippet>529</span>                <span class="kw">let </span>name = <span class="string">"tasks.json"</span>.into();
-<span data-nosnippet>530</span>                <span class="self">self</span>.save_dialog.emit(SaveDialogMsg::SaveAs(name));
-<span data-nosnippet>531</span>            }
-<span data-nosnippet>532</span>            AppInput::SaveResponse(path) =&gt; {
-<span data-nosnippet>533</span>                <span class="self">self</span>.document.emit(DocumentInput::Save(path));
-<span data-nosnippet>534</span>            }
-<span data-nosnippet>535</span>            AppInput::Open =&gt; {
-<span data-nosnippet>536</span>                <span class="self">self</span>.open_dialog.emit(OpenDialogMsg::Open);
-<span data-nosnippet>537</span>            }
-<span data-nosnippet>538</span>            AppInput::OpenResponse(path) =&gt; {
-<span data-nosnippet>539</span>                <span class="self">self</span>.document.emit(DocumentInput::Open(path));
-<span data-nosnippet>540</span>            }
-<span data-nosnippet>541</span>        }
-<span data-nosnippet>542</span>    }
-<span data-nosnippet>543</span>
-<span data-nosnippet>544</span>    <span class="kw">fn </span>init(
-<span data-nosnippet>545</span>        <span class="kw">_</span>: <span class="self">Self</span>::Init,
-<span data-nosnippet>546</span>        root: <span class="self">Self</span>::Root,
-<span data-nosnippet>547</span>        sender: ComponentSender&lt;<span class="self">Self</span>&gt;,
-<span data-nosnippet>548</span>    ) -&gt; ComponentParts&lt;<span class="self">Self</span>&gt; {
-<span data-nosnippet>549</span>        <span class="kw">let </span>view =
-<span data-nosnippet>550</span>            FactoryVecDeque::builder()
-<span data-nosnippet>551</span>                .launch_default()
-<span data-nosnippet>552</span>                .<span class="highlight">forward</span>(sender.input_sender(), |msg| <span class="kw">match </span>msg {
-<span data-nosnippet>553</span>                    TaskOutput::Delete(index) =&gt; AppInput::DeleteTask(index),
-<span data-nosnippet>554</span>                    TaskOutput::Name(index, name) =&gt; AppInput::ChangeTaskName(index, name),
-<span data-nosnippet>555</span>                    TaskOutput::AddTag(index, name) =&gt; AppInput::AddTag(index, name),
-<span data-nosnippet>556</span>                    TaskOutput::DeleteTag(task_index, tag_index) =&gt; {
-<span data-nosnippet>557</span>                        AppInput::DeleteTag(task_index, tag_index)
-<span data-nosnippet>558</span>                    }
-<span data-nosnippet>559</span>                });
-<span data-nosnippet>560</span>
-<span data-nosnippet>561</span>        <span class="kw">let </span>document =
-<span data-nosnippet>562</span>            Document::builder()
-<span data-nosnippet>563</span>                .launch(())
-<span data-nosnippet>564</span>                .forward(sender.input_sender(), |msg| <span class="kw">match </span>msg {
-<span data-nosnippet>565</span>                    DocumentOutput::Cleared =&gt; AppInput::Cleared,
-<span data-nosnippet>566</span>                    DocumentOutput::DeletedTask(index) =&gt; AppInput::DeletedTask(index),
-<span data-nosnippet>567</span>                    DocumentOutput::DeletedTag(task_index, tag_index) =&gt; {
-<span data-nosnippet>568</span>                        AppInput::DeletedTag(task_index, tag_index)
-<span data-nosnippet>569</span>                    }
-<span data-nosnippet>570</span>                    DocumentOutput::AddedTask =&gt; AppInput::AddedTask,
-<span data-nosnippet>571</span>                    DocumentOutput::AddedTag(index, name) =&gt; AppInput::AddedTag(index, name),
-<span data-nosnippet>572</span>                    DocumentOutput::ChangedTaskName(index, name) =&gt; {
-<span data-nosnippet>573</span>                        AppInput::ChangedTaskName(index, name)
-<span data-nosnippet>574</span>                    }
-<span data-nosnippet>575</span>                });
-<span data-nosnippet>576</span>
-<span data-nosnippet>577</span>        <span class="kw">let </span>save_dialog = SaveDialog::builder()
-<span data-nosnippet>578</span>            .transient_for_native(<span class="kw-2">&amp;</span>root)
-<span data-nosnippet>579</span>            .launch(SaveDialogSettings {
-<span data-nosnippet>580</span>                create_folders: <span class="bool-val">true</span>,
-<span data-nosnippet>581</span>                accept_label: <span class="string">"Save"</span>.into(),
-<span data-nosnippet>582</span>                cancel_label: <span class="string">"Cancel"</span>.into(),
-<span data-nosnippet>583</span>                is_modal: <span class="bool-val">true</span>,
-<span data-nosnippet>584</span>                filters: tasks_filename_filters(),
-<span data-nosnippet>585</span>            })
-<span data-nosnippet>586</span>            .forward(sender.input_sender(), |response| <span class="kw">match </span>response {
-<span data-nosnippet>587</span>                SaveDialogResponse::Accept(path) =&gt; AppInput::SaveResponse(path),
-<span data-nosnippet>588</span>                SaveDialogResponse::Cancel =&gt; AppInput::None,
-<span data-nosnippet>589</span>            });
-<span data-nosnippet>590</span>
-<span data-nosnippet>591</span>        <span class="kw">let </span>open_dialog = OpenDialog::builder()
-<span data-nosnippet>592</span>            .transient_for_native(<span class="kw-2">&amp;</span>root)
-<span data-nosnippet>593</span>            .launch(OpenDialogSettings {
-<span data-nosnippet>594</span>                create_folders: <span class="bool-val">false</span>,
-<span data-nosnippet>595</span>                folder_mode: <span class="bool-val">false</span>,
-<span data-nosnippet>596</span>                cancel_label: <span class="string">"Cancel"</span>.into(),
-<span data-nosnippet>597</span>                accept_label: <span class="string">"Open"</span>.into(),
-<span data-nosnippet>598</span>                is_modal: <span class="bool-val">true</span>,
-<span data-nosnippet>599</span>                filters: tasks_filename_filters(),
-<span data-nosnippet>600</span>            })
-<span data-nosnippet>601</span>            .forward(sender.input_sender(), |response| <span class="kw">match </span>response {
-<span data-nosnippet>602</span>                OpenDialogResponse::Accept(path) =&gt; AppInput::OpenResponse(path),
-<span data-nosnippet>603</span>                OpenDialogResponse::Cancel =&gt; AppInput::None,
-<span data-nosnippet>604</span>            });
-<span data-nosnippet>605</span>
-<span data-nosnippet>606</span>        <span class="kw">let </span>app = App {
-<span data-nosnippet>607</span>            view,
-<span data-nosnippet>608</span>            document,
-<span data-nosnippet>609</span>            open_dialog,
-<span data-nosnippet>610</span>            save_dialog,
-<span data-nosnippet>611</span>        };
-<span data-nosnippet>612</span>
-<span data-nosnippet>613</span>        <span class="kw">let </span>task_list_box = app.view.widget();
-<span data-nosnippet>614</span>        <span class="kw">let </span>widgets = <span class="macro">view_output!</span>();
-<span data-nosnippet>615</span>
-<span data-nosnippet>616</span>        ComponentParts {
-<span data-nosnippet>617</span>            model: app,
-<span data-nosnippet>618</span>            widgets,
-<span data-nosnippet>619</span>        }
-<span data-nosnippet>620</span>    }</code></pre></div></div><details class="toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="scraped-example" data-locs="[[[9,9],&#34;../../src/entry/entry.rs.html#86&#34;,&#34;line 86&#34;]]"><div class="scraped-example-title">relm4/examples/entry.rs (<a href="../../src/entry/entry.rs.html#86">line 86</a>)</div><div class="example-wrap digits-2"><pre class="rust"><code><span data-nosnippet>77</span>    <span class="kw">fn </span>init(
+<span data-nosnippet>302</span>                <span class="kw">if let </span><span class="prelude-val">Ok</span>(json) = std::fs::read_to_string(path)
+<span data-nosnippet>303</span>                    &amp;&amp; <span class="kw">let </span><span class="prelude-val">Ok</span>(new_model) = serde_json::from_str(<span class="kw-2">&amp;</span>json)
+<span data-nosnippet>304</span>                {
+<span data-nosnippet>305</span>                    <span class="comment">// update the data model
+<span data-nosnippet>306</span>                    </span><span class="self">self</span>.model = new_model;
+<span data-nosnippet>307</span>
+<span data-nosnippet>308</span>                    <span class="comment">// refresh the view from the data model
+<span data-nosnippet>309</span>                    </span><span class="kw">let _ </span>= sender.output(DocumentOutput::Cleared);
+<span data-nosnippet>310</span>
+<span data-nosnippet>311</span>                    <span class="kw">for </span>(task_index, task) <span class="kw">in </span><span class="self">self</span>.model.tasks.iter().enumerate() {
+<span data-nosnippet>312</span>                        <span class="kw">let _ </span>= sender.output(DocumentOutput::AddedTask);
+<span data-nosnippet>313</span>
+<span data-nosnippet>314</span>                        <span class="kw">let </span>task_name = task.name.clone();
+<span data-nosnippet>315</span>                        <span class="kw">let _ </span>=
+<span data-nosnippet>316</span>                            sender.output(DocumentOutput::ChangedTaskName(task_index, task_name));
+<span data-nosnippet>317</span>
+<span data-nosnippet>318</span>                        <span class="kw">for </span>tag <span class="kw">in </span><span class="kw-2">&amp;</span>task.tags {
+<span data-nosnippet>319</span>                            <span class="kw">let </span>tag_name = tag.name.clone();
+<span data-nosnippet>320</span>                            <span class="kw">let _ </span>= sender.output(DocumentOutput::AddedTag(task_index, tag_name));
+<span data-nosnippet>321</span>                        }
+<span data-nosnippet>322</span>                    }
+<span data-nosnippet>323</span>                }
+<span data-nosnippet>324</span>            }
+<span data-nosnippet>325</span>            DocumentInput::Clear =&gt; {
+<span data-nosnippet>326</span>                <span class="self">self</span>.model.tasks.clear();
+<span data-nosnippet>327</span>
+<span data-nosnippet>328</span>                <span class="kw">let _ </span>= sender.output(DocumentOutput::Cleared);
+<span data-nosnippet>329</span>            }
+<span data-nosnippet>330</span>            DocumentInput::AddTask =&gt; {
+<span data-nosnippet>331</span>                <span class="self">self</span>.model.tasks.push(TaskModel::default());
+<span data-nosnippet>332</span>
+<span data-nosnippet>333</span>                <span class="kw">let _ </span>= sender.output(DocumentOutput::AddedTask);
+<span data-nosnippet>334</span>            }
+<span data-nosnippet>335</span>            DocumentInput::DeleteTask(index) =&gt; {
+<span data-nosnippet>336</span>                <span class="self">self</span>.model.tasks.remove(index.current_index());
+<span data-nosnippet>337</span>
+<span data-nosnippet>338</span>                <span class="kw">let _ </span>= sender.output(DocumentOutput::DeletedTask(index.current_index()));
+<span data-nosnippet>339</span>            }
+<span data-nosnippet>340</span>            DocumentInput::ChangeTaskName(index, name) =&gt; {
+<span data-nosnippet>341</span>                <span class="kw">if let </span><span class="prelude-val">Some</span>(task) = <span class="self">self</span>.model.tasks.get_mut(index.current_index()) {
+<span data-nosnippet>342</span>                    task.name.clone_from(<span class="kw-2">&amp;</span>name);
+<span data-nosnippet>343</span>                }
+<span data-nosnippet>344</span>
+<span data-nosnippet>345</span>                <span class="comment">// We don't technically need to send an event, because gtk::Entry updates itself
+<span data-nosnippet>346</span>                // this is just to make the example consistent.
+<span data-nosnippet>347</span>                </span><span class="kw">let _ </span>= sender.output(DocumentOutput::ChangedTaskName(index.current_index(), name));
+<span data-nosnippet>348</span>            }
+<span data-nosnippet>349</span>            DocumentInput::AddTag(task_index, name) =&gt; {
+<span data-nosnippet>350</span>                <span class="kw">if let </span><span class="prelude-val">Some</span>(task) = <span class="self">self</span>.model.tasks.get_mut(task_index.current_index()) {
+<span data-nosnippet>351</span>                    task.tags.push(TagModel { name: name.clone() })
+<span data-nosnippet>352</span>                }
+<span data-nosnippet>353</span>
+<span data-nosnippet>354</span>                <span class="kw">let _ </span>= sender.output(DocumentOutput::AddedTag(task_index.current_index(), name));
+<span data-nosnippet>355</span>            }
+<span data-nosnippet>356</span>            DocumentInput::DeleteTag(task_index, tag_index) =&gt; {
+<span data-nosnippet>357</span>                <span class="kw">if let </span><span class="prelude-val">Some</span>(task) = <span class="self">self</span>.model.tasks.get_mut(task_index.current_index()) {
+<span data-nosnippet>358</span>                    task.tags.remove(tag_index.current_index());
+<span data-nosnippet>359</span>                }
+<span data-nosnippet>360</span>
+<span data-nosnippet>361</span>                <span class="kw">let _ </span>= sender.output(DocumentOutput::DeletedTag(
+<span data-nosnippet>362</span>                    task_index.current_index(),
+<span data-nosnippet>363</span>                    tag_index.current_index(),
+<span data-nosnippet>364</span>                ));
+<span data-nosnippet>365</span>            }
+<span data-nosnippet>366</span>        }
+<span data-nosnippet>367</span>    }
+<span data-nosnippet>368</span>}
+<span data-nosnippet>369</span>
+<span data-nosnippet>370</span><span class="doccomment">/// The App is at the top level.
+<span data-nosnippet>371</span>/// It acts as a bridge between the view and the document, forwarding events between them.
+<span data-nosnippet>372</span></span><span class="kw">struct </span>App {
+<span data-nosnippet>373</span>    view: FactoryVecDeque&lt;Task&gt;,
+<span data-nosnippet>374</span>    document: Controller&lt;Document&gt;,
+<span data-nosnippet>375</span>    save_dialog: Controller&lt;SaveDialog&gt;,
+<span data-nosnippet>376</span>    open_dialog: Controller&lt;OpenDialog&gt;,
+<span data-nosnippet>377</span>}
+<span data-nosnippet>378</span>
+<span data-nosnippet>379</span><span class="attr">#[derive(Debug)]
+<span data-nosnippet>380</span></span><span class="kw">enum </span>AppInput {
+<span data-nosnippet>381</span>    Clear,
+<span data-nosnippet>382</span>    Cleared,
+<span data-nosnippet>383</span>
+<span data-nosnippet>384</span>    AddTask,
+<span data-nosnippet>385</span>    AddedTask,
+<span data-nosnippet>386</span>
+<span data-nosnippet>387</span>    DeleteTask(DynamicIndex),
+<span data-nosnippet>388</span>    DeletedTask(usize),
+<span data-nosnippet>389</span>
+<span data-nosnippet>390</span>    ChangeTaskName(DynamicIndex, String),
+<span data-nosnippet>391</span>    ChangedTaskName(usize, String),
+<span data-nosnippet>392</span>
+<span data-nosnippet>393</span>    AddTag(DynamicIndex, String),
+<span data-nosnippet>394</span>    AddedTag(usize, String),
+<span data-nosnippet>395</span>
+<span data-nosnippet>396</span>    DeleteTag(DynamicIndex, DynamicIndex),
+<span data-nosnippet>397</span>    DeletedTag(usize, usize),
+<span data-nosnippet>398</span>
+<span data-nosnippet>399</span>    <span class="comment">// No-op event for when load/save dialogs result in Cancel
+<span data-nosnippet>400</span>    </span><span class="prelude-val">None</span>,
+<span data-nosnippet>401</span>    Open,
+<span data-nosnippet>402</span>    OpenResponse(PathBuf),
+<span data-nosnippet>403</span>    Save,
+<span data-nosnippet>404</span>    SaveResponse(PathBuf),
+<span data-nosnippet>405</span>}
+<span data-nosnippet>406</span>
+<span data-nosnippet>407</span><span class="attr">#[relm4::component]
+<span data-nosnippet>408</span></span><span class="kw">impl </span>SimpleComponent <span class="kw">for </span>App {
+<span data-nosnippet>409</span>    <span class="kw">type </span>Init = ();
+<span data-nosnippet>410</span>    <span class="kw">type </span>Input = AppInput;
+<span data-nosnippet>411</span>    <span class="kw">type </span>Output = ();
+<span data-nosnippet>412</span>
+<span data-nosnippet>413</span>    <span class="macro">view!</span> {
+<span data-nosnippet>414</span>        main_window = gtk::ApplicationWindow {
+<span data-nosnippet>415</span>            set_width_request: <span class="number">360</span>,
+<span data-nosnippet>416</span>            set_title: <span class="prelude-val">Some</span>(<span class="string">"Tasks"</span>),
+<span data-nosnippet>417</span>
+<span data-nosnippet>418</span>            gtk::Box {
+<span data-nosnippet>419</span>                set_orientation: gtk::Orientation::Vertical,
+<span data-nosnippet>420</span>
+<span data-nosnippet>421</span>                gtk::HeaderBar {
+<span data-nosnippet>422</span>                    set_show_title_buttons: <span class="bool-val">false</span>,
+<span data-nosnippet>423</span>
+<span data-nosnippet>424</span>                    <span class="attr">#[wrap(<span class="prelude-val">Some</span>)]
+<span data-nosnippet>425</span>                    </span>set_title_widget = <span class="kw-2">&amp;</span>gtk::Label {
+<span data-nosnippet>426</span>                        set_text: <span class="string">""
+<span data-nosnippet>427</span>                    </span>},
+<span data-nosnippet>428</span>
+<span data-nosnippet>429</span>                    pack_start = <span class="kw-2">&amp;</span>gtk::Button {
+<span data-nosnippet>430</span>                        set_icon_name: <span class="string">"plus"</span>,
+<span data-nosnippet>431</span>                        set_tooltip: <span class="string">"Add Task"</span>,
+<span data-nosnippet>432</span>
+<span data-nosnippet>433</span>                        connect_clicked[sender] =&gt; <span class="kw">move </span>|<span class="kw">_</span>| {
+<span data-nosnippet>434</span>                            sender.input(AppInput::AddTask);
+<span data-nosnippet>435</span>                        }
+<span data-nosnippet>436</span>                    },
+<span data-nosnippet>437</span>
+<span data-nosnippet>438</span>                    pack_end = <span class="kw-2">&amp;</span>gtk::Button {
+<span data-nosnippet>439</span>                        set_label: <span class="string">"Save"</span>,
+<span data-nosnippet>440</span>                        connect_clicked =&gt; AppInput::Save,
+<span data-nosnippet>441</span>                    },
+<span data-nosnippet>442</span>                    pack_end = <span class="kw-2">&amp;</span>gtk::Button {
+<span data-nosnippet>443</span>                        set_label: <span class="string">"Open"</span>,
+<span data-nosnippet>444</span>                        connect_clicked =&gt; AppInput::Open,
+<span data-nosnippet>445</span>                    },
+<span data-nosnippet>446</span>                },
+<span data-nosnippet>447</span>
+<span data-nosnippet>448</span>                gtk::ScrolledWindow {
+<span data-nosnippet>449</span>                    set_hscrollbar_policy: gtk::PolicyType::Never,
+<span data-nosnippet>450</span>                    set_min_content_height: <span class="number">360</span>,
+<span data-nosnippet>451</span>                    set_vexpand: <span class="bool-val">true</span>,
+<span data-nosnippet>452</span>
+<span data-nosnippet>453</span>                    <span class="attr">#[local_ref]
+<span data-nosnippet>454</span>                    </span>task_list_box -&gt; gtk::ListBox {
+<span data-nosnippet>455</span>                        set_selection_mode: gtk::SelectionMode::None,
+<span data-nosnippet>456</span>                    }
+<span data-nosnippet>457</span>                },
+<span data-nosnippet>458</span>
+<span data-nosnippet>459</span>                gtk::Box {
+<span data-nosnippet>460</span>                    set_hexpand: <span class="bool-val">true</span>,
+<span data-nosnippet>461</span>                    set_spacing: DEFAULT_SPACING,
+<span data-nosnippet>462</span>                    set_orientation: gtk::Orientation::Horizontal,
+<span data-nosnippet>463</span>
+<span data-nosnippet>464</span>                    gtk::Label {
+<span data-nosnippet>465</span>                        set_text: <span class="string">"Press Enter after editing task names"</span>,
+<span data-nosnippet>466</span>                        set_hexpand: <span class="bool-val">true</span>,
+<span data-nosnippet>467</span>                        set_xalign: XALIGN_CENTER,
+<span data-nosnippet>468</span>                    },
+<span data-nosnippet>469</span>
+<span data-nosnippet>470</span>                    gtk::Button {
+<span data-nosnippet>471</span>                        set_icon_name: <span class="string">"edit-delete"</span>,
+<span data-nosnippet>472</span>                        set_tooltip: <span class="string">"Delete All Tasks"</span>,
+<span data-nosnippet>473</span>                        add_css_class: CSS_CLASS_DESTRUCTIVE_ACTION,
+<span data-nosnippet>474</span>
+<span data-nosnippet>475</span>                        connect_clicked[sender] =&gt; <span class="kw">move </span>|<span class="kw">_</span>| {
+<span data-nosnippet>476</span>                            sender.input(AppInput::Clear);
+<span data-nosnippet>477</span>                        }
+<span data-nosnippet>478</span>                    }
+<span data-nosnippet>479</span>                }
+<span data-nosnippet>480</span>            }
+<span data-nosnippet>481</span>        }
+<span data-nosnippet>482</span>    }
+<span data-nosnippet>483</span>
+<span data-nosnippet>484</span>    <span class="kw">fn </span>update(<span class="kw-2">&amp;mut </span><span class="self">self</span>, msg: AppInput, _sender: ComponentSender&lt;<span class="self">Self</span>&gt;) {
+<span data-nosnippet>485</span>        <span class="kw">match </span>msg {
+<span data-nosnippet>486</span>            AppInput::Clear =&gt; {
+<span data-nosnippet>487</span>                <span class="self">self</span>.document.emit(DocumentInput::Clear);
+<span data-nosnippet>488</span>            }
+<span data-nosnippet>489</span>            AppInput::Cleared =&gt; {
+<span data-nosnippet>490</span>                <span class="self">self</span>.view.guard().clear();
+<span data-nosnippet>491</span>            }
+<span data-nosnippet>492</span>            AppInput::AddTask =&gt; {
+<span data-nosnippet>493</span>                <span class="self">self</span>.document.emit(DocumentInput::AddTask);
+<span data-nosnippet>494</span>            }
+<span data-nosnippet>495</span>            AppInput::AddedTask =&gt; {
+<span data-nosnippet>496</span>                <span class="self">self</span>.view.guard().push_back(());
+<span data-nosnippet>497</span>            }
+<span data-nosnippet>498</span>            AppInput::DeleteTask(index) =&gt; {
+<span data-nosnippet>499</span>                <span class="self">self</span>.document.emit(DocumentInput::DeleteTask(index));
+<span data-nosnippet>500</span>            }
+<span data-nosnippet>501</span>            AppInput::DeletedTask(index) =&gt; {
+<span data-nosnippet>502</span>                <span class="self">self</span>.view.guard().remove(index);
+<span data-nosnippet>503</span>            }
+<span data-nosnippet>504</span>            AppInput::ChangeTaskName(index, name) =&gt; {
+<span data-nosnippet>505</span>                <span class="self">self</span>.document
+<span data-nosnippet>506</span>                    .emit(DocumentInput::ChangeTaskName(index, name));
+<span data-nosnippet>507</span>            }
+<span data-nosnippet>508</span>            AppInput::ChangedTaskName(index, name) =&gt; {
+<span data-nosnippet>509</span>                <span class="self">self</span>.view.guard().send(index, TaskInput::ChangedName(name));
+<span data-nosnippet>510</span>            }
+<span data-nosnippet>511</span>            AppInput::AddTag(index, name) =&gt; {
+<span data-nosnippet>512</span>                <span class="self">self</span>.document.emit(DocumentInput::AddTag(index, name));
+<span data-nosnippet>513</span>            }
+<span data-nosnippet>514</span>            AppInput::AddedTag(index, name) =&gt; {
+<span data-nosnippet>515</span>                <span class="self">self</span>.view.guard().send(index, TaskInput::AddedTag(name));
+<span data-nosnippet>516</span>            }
+<span data-nosnippet>517</span>            AppInput::DeleteTag(task_index, tag_index) =&gt; {
+<span data-nosnippet>518</span>                <span class="self">self</span>.document
+<span data-nosnippet>519</span>                    .emit(DocumentInput::DeleteTag(task_index, tag_index));
+<span data-nosnippet>520</span>            }
+<span data-nosnippet>521</span>            AppInput::DeletedTag(task_index, tag_index) =&gt; {
+<span data-nosnippet>522</span>                <span class="self">self</span>.view
+<span data-nosnippet>523</span>                    .guard()
+<span data-nosnippet>524</span>                    .send(task_index, TaskInput::DeletedTag(tag_index));
+<span data-nosnippet>525</span>            }
+<span data-nosnippet>526</span>            AppInput::None =&gt; {}
+<span data-nosnippet>527</span>            AppInput::Save =&gt; {
+<span data-nosnippet>528</span>                <span class="kw">let </span>name = <span class="string">"tasks.json"</span>.into();
+<span data-nosnippet>529</span>                <span class="self">self</span>.save_dialog.emit(SaveDialogMsg::SaveAs(name));
+<span data-nosnippet>530</span>            }
+<span data-nosnippet>531</span>            AppInput::SaveResponse(path) =&gt; {
+<span data-nosnippet>532</span>                <span class="self">self</span>.document.emit(DocumentInput::Save(path));
+<span data-nosnippet>533</span>            }
+<span data-nosnippet>534</span>            AppInput::Open =&gt; {
+<span data-nosnippet>535</span>                <span class="self">self</span>.open_dialog.emit(OpenDialogMsg::Open);
+<span data-nosnippet>536</span>            }
+<span data-nosnippet>537</span>            AppInput::OpenResponse(path) =&gt; {
+<span data-nosnippet>538</span>                <span class="self">self</span>.document.emit(DocumentInput::Open(path));
+<span data-nosnippet>539</span>            }
+<span data-nosnippet>540</span>        }
+<span data-nosnippet>541</span>    }
+<span data-nosnippet>542</span>
+<span data-nosnippet>543</span>    <span class="kw">fn </span>init(
+<span data-nosnippet>544</span>        <span class="kw">_</span>: <span class="self">Self</span>::Init,
+<span data-nosnippet>545</span>        root: <span class="self">Self</span>::Root,
+<span data-nosnippet>546</span>        sender: ComponentSender&lt;<span class="self">Self</span>&gt;,
+<span data-nosnippet>547</span>    ) -&gt; ComponentParts&lt;<span class="self">Self</span>&gt; {
+<span data-nosnippet>548</span>        <span class="kw">let </span>view =
+<span data-nosnippet>549</span>            FactoryVecDeque::builder()
+<span data-nosnippet>550</span>                .launch_default()
+<span data-nosnippet>551</span>                .<span class="highlight">forward</span>(sender.input_sender(), |msg| <span class="kw">match </span>msg {
+<span data-nosnippet>552</span>                    TaskOutput::Delete(index) =&gt; AppInput::DeleteTask(index),
+<span data-nosnippet>553</span>                    TaskOutput::Name(index, name) =&gt; AppInput::ChangeTaskName(index, name),
+<span data-nosnippet>554</span>                    TaskOutput::AddTag(index, name) =&gt; AppInput::AddTag(index, name),
+<span data-nosnippet>555</span>                    TaskOutput::DeleteTag(task_index, tag_index) =&gt; {
+<span data-nosnippet>556</span>                        AppInput::DeleteTag(task_index, tag_index)
+<span data-nosnippet>557</span>                    }
+<span data-nosnippet>558</span>                });
+<span data-nosnippet>559</span>
+<span data-nosnippet>560</span>        <span class="kw">let </span>document =
+<span data-nosnippet>561</span>            Document::builder()
+<span data-nosnippet>562</span>                .launch(())
+<span data-nosnippet>563</span>                .forward(sender.input_sender(), |msg| <span class="kw">match </span>msg {
+<span data-nosnippet>564</span>                    DocumentOutput::Cleared =&gt; AppInput::Cleared,
+<span data-nosnippet>565</span>                    DocumentOutput::DeletedTask(index) =&gt; AppInput::DeletedTask(index),
+<span data-nosnippet>566</span>                    DocumentOutput::DeletedTag(task_index, tag_index) =&gt; {
+<span data-nosnippet>567</span>                        AppInput::DeletedTag(task_index, tag_index)
+<span data-nosnippet>568</span>                    }
+<span data-nosnippet>569</span>                    DocumentOutput::AddedTask =&gt; AppInput::AddedTask,
+<span data-nosnippet>570</span>                    DocumentOutput::AddedTag(index, name) =&gt; AppInput::AddedTag(index, name),
+<span data-nosnippet>571</span>                    DocumentOutput::ChangedTaskName(index, name) =&gt; {
+<span data-nosnippet>572</span>                        AppInput::ChangedTaskName(index, name)
+<span data-nosnippet>573</span>                    }
+<span data-nosnippet>574</span>                });
+<span data-nosnippet>575</span>
+<span data-nosnippet>576</span>        <span class="kw">let </span>save_dialog = SaveDialog::builder()
+<span data-nosnippet>577</span>            .transient_for_native(<span class="kw-2">&amp;</span>root)
+<span data-nosnippet>578</span>            .launch(SaveDialogSettings {
+<span data-nosnippet>579</span>                create_folders: <span class="bool-val">true</span>,
+<span data-nosnippet>580</span>                accept_label: <span class="string">"Save"</span>.into(),
+<span data-nosnippet>581</span>                cancel_label: <span class="string">"Cancel"</span>.into(),
+<span data-nosnippet>582</span>                is_modal: <span class="bool-val">true</span>,
+<span data-nosnippet>583</span>                filters: tasks_filename_filters(),
+<span data-nosnippet>584</span>            })
+<span data-nosnippet>585</span>            .forward(sender.input_sender(), |response| <span class="kw">match </span>response {
+<span data-nosnippet>586</span>                SaveDialogResponse::Accept(path) =&gt; AppInput::SaveResponse(path),
+<span data-nosnippet>587</span>                SaveDialogResponse::Cancel =&gt; AppInput::None,
+<span data-nosnippet>588</span>            });
+<span data-nosnippet>589</span>
+<span data-nosnippet>590</span>        <span class="kw">let </span>open_dialog = OpenDialog::builder()
+<span data-nosnippet>591</span>            .transient_for_native(<span class="kw-2">&amp;</span>root)
+<span data-nosnippet>592</span>            .launch(OpenDialogSettings {
+<span data-nosnippet>593</span>                create_folders: <span class="bool-val">false</span>,
+<span data-nosnippet>594</span>                folder_mode: <span class="bool-val">false</span>,
+<span data-nosnippet>595</span>                cancel_label: <span class="string">"Cancel"</span>.into(),
+<span data-nosnippet>596</span>                accept_label: <span class="string">"Open"</span>.into(),
+<span data-nosnippet>597</span>                is_modal: <span class="bool-val">true</span>,
+<span data-nosnippet>598</span>                filters: tasks_filename_filters(),
+<span data-nosnippet>599</span>            })
+<span data-nosnippet>600</span>            .forward(sender.input_sender(), |response| <span class="kw">match </span>response {
+<span data-nosnippet>601</span>                OpenDialogResponse::Accept(path) =&gt; AppInput::OpenResponse(path),
+<span data-nosnippet>602</span>                OpenDialogResponse::Cancel =&gt; AppInput::None,
+<span data-nosnippet>603</span>            });
+<span data-nosnippet>604</span>
+<span data-nosnippet>605</span>        <span class="kw">let </span>app = App {
+<span data-nosnippet>606</span>            view,
+<span data-nosnippet>607</span>            document,
+<span data-nosnippet>608</span>            open_dialog,
+<span data-nosnippet>609</span>            save_dialog,
+<span data-nosnippet>610</span>        };
+<span data-nosnippet>611</span>
+<span data-nosnippet>612</span>        <span class="kw">let </span>task_list_box = app.view.widget();
+<span data-nosnippet>613</span>        <span class="kw">let </span>widgets = <span class="macro">view_output!</span>();
+<span data-nosnippet>614</span>
+<span data-nosnippet>615</span>        ComponentParts {
+<span data-nosnippet>616</span>            model: app,
+<span data-nosnippet>617</span>            widgets,
+<span data-nosnippet>618</span>        }
+<span data-nosnippet>619</span>    }</code></pre></div></div><details class="toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="scraped-example" data-locs="[[[9,9],&#34;../../src/entry/entry.rs.html#86&#34;,&#34;line 86&#34;]]"><div class="scraped-example-title">relm4/examples/entry.rs (<a href="../../src/entry/entry.rs.html#86">line 86</a>)</div><div class="example-wrap digits-2"><pre class="rust"><code><span data-nosnippet>77</span>    <span class="kw">fn </span>init(
 <span data-nosnippet>78</span>        _init: <span class="self">Self</span>::Init,
 <span data-nosnippet>79</span>        root: <span class="self">Self</span>::Root,
 <span data-nosnippet>80</span>        sender: ComponentSender&lt;<span class="self">Self</span>&gt;,
@@ -570,7 +569,7 @@
 <span data-nosnippet>180</span>        <span class="kw">let </span>widgets = <span class="macro">view_output!</span>();
 <span data-nosnippet>181</span>
 <span data-nosnippet>182</span>        ComponentParts { model, widgets }
-<span data-nosnippet>183</span>    }</code></pre></div></div><div class="example-links">Additional examples can be found in:<br><ul><li><a href="../../src/tab_game/tab_game.rs.html#224-227">relm4/examples/tab_game.rs</a></li></ul></div></div></details></div></details><details class="toggle method-toggle" open><summary><section id="method.detach" class="method"><a class="src rightside" href="../../src/relm4/factory/sync/collections/vec_deque.rs.html#494-509">Source</a><h4 class="code-header">pub fn <a href="#method.detach" class="fn">detach</a>(self) -&gt; <a class="struct" href="struct.FactoryVecDeque.html" title="struct relm4::factory::FactoryVecDeque">FactoryVecDeque</a>&lt;C&gt;</h4></section></summary><div class="docblock"><p>Ignore output events from child components and just create the <a href="struct.FactoryVecDeque.html" title="struct relm4::factory::FactoryVecDeque"><code>FactoryVecDeque</code></a>.</p>
+<span data-nosnippet>183</span>    }</code></pre></div></div><div class="example-links">Additional examples can be found in:<br><ul><li><a href="../../src/tab_game/tab_game.rs.html#220-223">relm4/examples/tab_game.rs</a></li></ul></div></div></details></div></details><details class="toggle method-toggle" open><summary><section id="method.detach" class="method"><a class="src rightside" href="../../src/relm4/factory/sync/collections/vec_deque.rs.html#494-509">Source</a><h4 class="code-header">pub fn <a href="#method.detach" class="fn">detach</a>(self) -&gt; <a class="struct" href="struct.FactoryVecDeque.html" title="struct relm4::factory::FactoryVecDeque">FactoryVecDeque</a>&lt;C&gt;</h4></section></summary><div class="docblock"><p>Ignore output events from child components and just create the <a href="struct.FactoryVecDeque.html" title="struct relm4::factory::FactoryVecDeque"><code>FactoryVecDeque</code></a>.</p>
 </div></details></div></details></div><h2 id="trait-implementations" class="section-header">Trait Implementations<a href="#trait-implementations" class="anchor">§</a></h2><div id="trait-implementations-list"><details class="toggle implementors-toggle" open><summary><section id="impl-Debug-for-FactoryVecDequeConnector%3CC%3E" class="impl"><a class="src rightside" href="../../src/relm4/factory/sync/collections/vec_deque.rs.html#445">Source</a><a href="#impl-Debug-for-FactoryVecDequeConnector%3CC%3E" class="anchor">§</a><h3 class="code-header">impl&lt;C&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="struct" href="struct.FactoryVecDequeConnector.html" title="struct relm4::factory::FactoryVecDequeConnector">FactoryVecDequeConnector</a>&lt;C&gt;<div class="where">where
     C: <a class="trait" href="trait.FactoryComponent.html" title="trait relm4::factory::FactoryComponent">FactoryComponent</a>&lt;Index = <a class="struct" href="struct.DynamicIndex.html" title="struct relm4::factory::DynamicIndex">DynamicIndex</a>&gt; + <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a>,
     C::<a class="associatedtype" href="trait.FactoryComponent.html#associatedtype.ParentWidget" title="type relm4::factory::FactoryComponent::ParentWidget">ParentWidget</a>: <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a>,

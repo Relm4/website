@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="A component that is ready for docking and launch."><title>ComponentBuilder in relm4::component - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-80aa586b.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="relm4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.94.0-nightly (21cf7fb3f 2025-12-28)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-7bab91a1.js"></script><script defer src="../../static.files/scrape-examples-2bbcccac.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-ffcac47a.css"></noscript><link rel="icon" href="https://relm4.org/icons/relm4_org.svg"></head><body class="rustdoc struct"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><rustdoc-topbar><h2><a href="#">ComponentBuilder</a></h2></rustdoc-topbar><nav class="sidebar"><div class="sidebar-crate"><a class="logo-container" href="../../relm4/index.html"><img src="https://relm4.org/icons/relm4_logo.svg" alt="logo"></a><h2><a href="../../relm4/index.html">relm4</a><span class="version">0.10.0</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">Component<wbr>Builder</a></h2><h3><a href="#fields">Fields</a></h3><ul class="block structfield"><li><a href="#structfield.root" title="root">root</a></li></ul><h3><a href="#implementations">Methods</a></h3><ul class="block method"><li><a href="#method.attach_to" title="attach_to">attach_to</a></li><li><a href="#method.detach_worker" title="detach_worker">detach_worker</a></li><li><a href="#method.launch" title="launch">launch</a></li><li><a href="#method.launch_with_broker" title="launch_with_broker">launch_with_broker</a></li><li><a href="#method.priority" title="priority">priority</a></li><li><a href="#method.transient_for" title="transient_for">transient_for</a></li><li><a href="#method.transient_for_native" title="transient_for_native">transient_for_native</a></li><li><a href="#method.update_root" title="update_root">update_root</a></li><li><a href="#method.widget" title="widget">widget</a></li></ul><h3><a href="#trait-implementations">Trait Implementations</a></h3><ul class="block trait-implementation"><li><a href="#impl-Debug-for-ComponentBuilder%3CC%3E" title="Debug">Debug</a></li><li><a href="#impl-Default-for-ComponentBuilder%3CC%3E" title="Default">Default</a></li></ul><h3><a href="#synthetic-implementations">Auto Trait Implementations</a></h3><ul class="block synthetic-implementation"><li><a href="#impl-Freeze-for-ComponentBuilder%3CC%3E" title="Freeze">Freeze</a></li><li><a href="#impl-RefUnwindSafe-for-ComponentBuilder%3CC%3E" title="RefUnwindSafe">RefUnwindSafe</a></li><li><a href="#impl-Send-for-ComponentBuilder%3CC%3E" title="Send">Send</a></li><li><a href="#impl-Sync-for-ComponentBuilder%3CC%3E" title="Sync">Sync</a></li><li><a href="#impl-Unpin-for-ComponentBuilder%3CC%3E" title="Unpin">Unpin</a></li><li><a href="#impl-UnwindSafe-for-ComponentBuilder%3CC%3E" title="UnwindSafe">UnwindSafe</a></li></ul><h3><a href="#blanket-implementations">Blanket Implementations</a></h3><ul class="block blanket-implementation"><li><a href="#impl-Any-for-T" title="Any">Any</a></li><li><a href="#impl-AsyncPosition%3C()%3E-for-C" title="AsyncPosition&#60;()&#62;">AsyncPosition&#60;()&#62;</a></li><li><a href="#impl-Borrow%3CT%3E-for-T" title="Borrow&#60;T&#62;">Borrow&#60;T&#62;</a></li><li><a href="#impl-BorrowMut%3CT%3E-for-T" title="BorrowMut&#60;T&#62;">BorrowMut&#60;T&#62;</a></li><li><a href="#impl-From%3CT%3E-for-T" title="From&#60;T&#62;">From&#60;T&#62;</a></li><li><a href="#impl-Instrument-for-T" title="Instrument">Instrument</a></li><li><a href="#impl-Into%3CU%3E-for-T" title="Into&#60;U&#62;">Into&#60;U&#62;</a></li><li><a href="#impl-Position%3C(),+I%3E-for-C" title="Position&#60;(), I&#62;">Position&#60;(), I&#62;</a></li><li><a href="#impl-TryFrom%3CU%3E-for-T" title="TryFrom&#60;U&#62;">TryFrom&#60;U&#62;</a></li><li><a href="#impl-TryInto%3CU%3E-for-T" title="TryInto&#60;U&#62;">TryInto&#60;U&#62;</a></li><li><a href="#impl-WithSubscriber-for-T" title="WithSubscriber">WithSubscriber</a></li></ul></section><div id="rustdoc-modnav"><h2><a href="index.html">In relm4::<wbr>component</a></h2></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../index.html">relm4</a>::<wbr><a href="index.html">component</a></div><h1>Struct <span class="struct">Component<wbr>Builder</span>&nbsp;<button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../src/relm4/component/sync/builder.rs.html#21-27">Source</a> </span></div><pre class="rust item-decl"><code>pub struct ComponentBuilder&lt;C: <a class="trait" href="trait.Component.html" title="trait relm4::component::Component">Component</a>&gt; {
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="A component that is ready for docking and launch."><title>ComponentBuilder in relm4::component - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-80aa586b.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="relm4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.94.0-nightly (21cf7fb3f 2025-12-28)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-7bab91a1.js"></script><script defer src="../../static.files/scrape-examples-2bbcccac.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-ffcac47a.css"></noscript><link rel="icon" href="https://relm4.org/icons/relm4_org.svg"></head><body class="rustdoc struct"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><rustdoc-topbar><h2><a href="#">ComponentBuilder</a></h2></rustdoc-topbar><nav class="sidebar"><div class="sidebar-crate"><a class="logo-container" href="../../relm4/index.html"><img src="https://relm4.org/icons/relm4_logo.svg" alt="logo"></a><h2><a href="../../relm4/index.html">relm4</a><span class="version">0.10.1</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">Component<wbr>Builder</a></h2><h3><a href="#fields">Fields</a></h3><ul class="block structfield"><li><a href="#structfield.root" title="root">root</a></li></ul><h3><a href="#implementations">Methods</a></h3><ul class="block method"><li><a href="#method.attach_to" title="attach_to">attach_to</a></li><li><a href="#method.detach_worker" title="detach_worker">detach_worker</a></li><li><a href="#method.launch" title="launch">launch</a></li><li><a href="#method.launch_with_broker" title="launch_with_broker">launch_with_broker</a></li><li><a href="#method.priority" title="priority">priority</a></li><li><a href="#method.transient_for" title="transient_for">transient_for</a></li><li><a href="#method.transient_for_native" title="transient_for_native">transient_for_native</a></li><li><a href="#method.update_root" title="update_root">update_root</a></li><li><a href="#method.widget" title="widget">widget</a></li></ul><h3><a href="#trait-implementations">Trait Implementations</a></h3><ul class="block trait-implementation"><li><a href="#impl-Debug-for-ComponentBuilder%3CC%3E" title="Debug">Debug</a></li><li><a href="#impl-Default-for-ComponentBuilder%3CC%3E" title="Default">Default</a></li></ul><h3><a href="#synthetic-implementations">Auto Trait Implementations</a></h3><ul class="block synthetic-implementation"><li><a href="#impl-Freeze-for-ComponentBuilder%3CC%3E" title="Freeze">Freeze</a></li><li><a href="#impl-RefUnwindSafe-for-ComponentBuilder%3CC%3E" title="RefUnwindSafe">RefUnwindSafe</a></li><li><a href="#impl-Send-for-ComponentBuilder%3CC%3E" title="Send">Send</a></li><li><a href="#impl-Sync-for-ComponentBuilder%3CC%3E" title="Sync">Sync</a></li><li><a href="#impl-Unpin-for-ComponentBuilder%3CC%3E" title="Unpin">Unpin</a></li><li><a href="#impl-UnwindSafe-for-ComponentBuilder%3CC%3E" title="UnwindSafe">UnwindSafe</a></li></ul><h3><a href="#blanket-implementations">Blanket Implementations</a></h3><ul class="block blanket-implementation"><li><a href="#impl-Any-for-T" title="Any">Any</a></li><li><a href="#impl-AsyncPosition%3C()%3E-for-C" title="AsyncPosition&#60;()&#62;">AsyncPosition&#60;()&#62;</a></li><li><a href="#impl-Borrow%3CT%3E-for-T" title="Borrow&#60;T&#62;">Borrow&#60;T&#62;</a></li><li><a href="#impl-BorrowMut%3CT%3E-for-T" title="BorrowMut&#60;T&#62;">BorrowMut&#60;T&#62;</a></li><li><a href="#impl-From%3CT%3E-for-T" title="From&#60;T&#62;">From&#60;T&#62;</a></li><li><a href="#impl-Instrument-for-T" title="Instrument">Instrument</a></li><li><a href="#impl-Into%3CU%3E-for-T" title="Into&#60;U&#62;">Into&#60;U&#62;</a></li><li><a href="#impl-Position%3C(),+I%3E-for-C" title="Position&#60;(), I&#62;">Position&#60;(), I&#62;</a></li><li><a href="#impl-TryFrom%3CU%3E-for-T" title="TryFrom&#60;U&#62;">TryFrom&#60;U&#62;</a></li><li><a href="#impl-TryInto%3CU%3E-for-T" title="TryInto&#60;U&#62;">TryInto&#60;U&#62;</a></li><li><a href="#impl-WithSubscriber-for-T" title="WithSubscriber">WithSubscriber</a></li></ul></section><div id="rustdoc-modnav"><h2><a href="index.html">In relm4::<wbr>component</a></h2></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../index.html">relm4</a>::<wbr><a href="index.html">component</a></div><h1>Struct <span class="struct">Component<wbr>Builder</span>&nbsp;<button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../src/relm4/component/sync/builder.rs.html#21-27">Source</a> </span></div><pre class="rust item-decl"><code>pub struct ComponentBuilder&lt;C: <a class="trait" href="trait.Component.html" title="trait relm4::component::Component">Component</a>&gt; {
     pub root: C::<a class="associatedtype" href="trait.Component.html#associatedtype.Root" title="type relm4::component::Component::Root">Root</a>,
     <span class="comment">/* private fields */</span>
 }</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>A component that is ready for docking and launch.</p>
@@ -248,83 +248,83 @@ you should use <a href="struct.ComponentBuilder.html#method.transient_for" title
 <span data-nosnippet>126</span>        )));
 <span data-nosnippet>127</span>
 <span data-nosnippet>128</span>        ComponentParts { model, widgets }
-<span data-nosnippet>129</span>    }</code></pre></div></div><details class="toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="scraped-example" data-locs="[[[34,34],&#34;../../src/state_management/state_management.rs.html#578&#34;,&#34;line 578&#34;],[[48,48],&#34;../../src/state_management/state_management.rs.html#592&#34;,&#34;line 592&#34;]]"><div class="scraped-example-title">relm4/examples/state_management.rs (<a href="../../src/state_management/state_management.rs.html#578">line 578</a>)</div><div class="example-wrap digits-3"><pre class="rust"><code><span data-nosnippet>544</span>    <span class="kw">fn </span>init(
-<span data-nosnippet>545</span>        <span class="kw">_</span>: <span class="self">Self</span>::Init,
-<span data-nosnippet>546</span>        root: <span class="self">Self</span>::Root,
-<span data-nosnippet>547</span>        sender: ComponentSender&lt;<span class="self">Self</span>&gt;,
-<span data-nosnippet>548</span>    ) -&gt; ComponentParts&lt;<span class="self">Self</span>&gt; {
-<span data-nosnippet>549</span>        <span class="kw">let </span>view =
-<span data-nosnippet>550</span>            FactoryVecDeque::builder()
-<span data-nosnippet>551</span>                .launch_default()
-<span data-nosnippet>552</span>                .forward(sender.input_sender(), |msg| <span class="kw">match </span>msg {
-<span data-nosnippet>553</span>                    TaskOutput::Delete(index) =&gt; AppInput::DeleteTask(index),
-<span data-nosnippet>554</span>                    TaskOutput::Name(index, name) =&gt; AppInput::ChangeTaskName(index, name),
-<span data-nosnippet>555</span>                    TaskOutput::AddTag(index, name) =&gt; AppInput::AddTag(index, name),
-<span data-nosnippet>556</span>                    TaskOutput::DeleteTag(task_index, tag_index) =&gt; {
-<span data-nosnippet>557</span>                        AppInput::DeleteTag(task_index, tag_index)
-<span data-nosnippet>558</span>                    }
-<span data-nosnippet>559</span>                });
-<span data-nosnippet>560</span>
-<span data-nosnippet>561</span>        <span class="kw">let </span>document =
-<span data-nosnippet>562</span>            Document::builder()
-<span data-nosnippet>563</span>                .launch(())
-<span data-nosnippet>564</span>                .forward(sender.input_sender(), |msg| <span class="kw">match </span>msg {
-<span data-nosnippet>565</span>                    DocumentOutput::Cleared =&gt; AppInput::Cleared,
-<span data-nosnippet>566</span>                    DocumentOutput::DeletedTask(index) =&gt; AppInput::DeletedTask(index),
-<span data-nosnippet>567</span>                    DocumentOutput::DeletedTag(task_index, tag_index) =&gt; {
-<span data-nosnippet>568</span>                        AppInput::DeletedTag(task_index, tag_index)
-<span data-nosnippet>569</span>                    }
-<span data-nosnippet>570</span>                    DocumentOutput::AddedTask =&gt; AppInput::AddedTask,
-<span data-nosnippet>571</span>                    DocumentOutput::AddedTag(index, name) =&gt; AppInput::AddedTag(index, name),
-<span data-nosnippet>572</span>                    DocumentOutput::ChangedTaskName(index, name) =&gt; {
-<span data-nosnippet>573</span>                        AppInput::ChangedTaskName(index, name)
-<span data-nosnippet>574</span>                    }
-<span data-nosnippet>575</span>                });
-<span data-nosnippet>576</span>
-<span data-nosnippet>577</span>        <span class="kw">let </span>save_dialog = SaveDialog::builder()
-<span data-nosnippet>578</span>            .<span class="highlight focus">transient_for_native</span>(<span class="kw-2">&amp;</span>root)
-<span data-nosnippet>579</span>            .launch(SaveDialogSettings {
-<span data-nosnippet>580</span>                create_folders: <span class="bool-val">true</span>,
-<span data-nosnippet>581</span>                accept_label: <span class="string">"Save"</span>.into(),
-<span data-nosnippet>582</span>                cancel_label: <span class="string">"Cancel"</span>.into(),
-<span data-nosnippet>583</span>                is_modal: <span class="bool-val">true</span>,
-<span data-nosnippet>584</span>                filters: tasks_filename_filters(),
-<span data-nosnippet>585</span>            })
-<span data-nosnippet>586</span>            .forward(sender.input_sender(), |response| <span class="kw">match </span>response {
-<span data-nosnippet>587</span>                SaveDialogResponse::Accept(path) =&gt; AppInput::SaveResponse(path),
-<span data-nosnippet>588</span>                SaveDialogResponse::Cancel =&gt; AppInput::None,
-<span data-nosnippet>589</span>            });
-<span data-nosnippet>590</span>
-<span data-nosnippet>591</span>        <span class="kw">let </span>open_dialog = OpenDialog::builder()
-<span data-nosnippet>592</span>            .<span class="highlight">transient_for_native</span>(<span class="kw-2">&amp;</span>root)
-<span data-nosnippet>593</span>            .launch(OpenDialogSettings {
-<span data-nosnippet>594</span>                create_folders: <span class="bool-val">false</span>,
-<span data-nosnippet>595</span>                folder_mode: <span class="bool-val">false</span>,
-<span data-nosnippet>596</span>                cancel_label: <span class="string">"Cancel"</span>.into(),
-<span data-nosnippet>597</span>                accept_label: <span class="string">"Open"</span>.into(),
-<span data-nosnippet>598</span>                is_modal: <span class="bool-val">true</span>,
-<span data-nosnippet>599</span>                filters: tasks_filename_filters(),
-<span data-nosnippet>600</span>            })
-<span data-nosnippet>601</span>            .forward(sender.input_sender(), |response| <span class="kw">match </span>response {
-<span data-nosnippet>602</span>                OpenDialogResponse::Accept(path) =&gt; AppInput::OpenResponse(path),
-<span data-nosnippet>603</span>                OpenDialogResponse::Cancel =&gt; AppInput::None,
-<span data-nosnippet>604</span>            });
-<span data-nosnippet>605</span>
-<span data-nosnippet>606</span>        <span class="kw">let </span>app = App {
-<span data-nosnippet>607</span>            view,
-<span data-nosnippet>608</span>            document,
-<span data-nosnippet>609</span>            open_dialog,
-<span data-nosnippet>610</span>            save_dialog,
-<span data-nosnippet>611</span>        };
-<span data-nosnippet>612</span>
-<span data-nosnippet>613</span>        <span class="kw">let </span>task_list_box = app.view.widget();
-<span data-nosnippet>614</span>        <span class="kw">let </span>widgets = <span class="macro">view_output!</span>();
-<span data-nosnippet>615</span>
-<span data-nosnippet>616</span>        ComponentParts {
-<span data-nosnippet>617</span>            model: app,
-<span data-nosnippet>618</span>            widgets,
-<span data-nosnippet>619</span>        }
-<span data-nosnippet>620</span>    }</code></pre></div></div></div></details></div></details></div></details><details class="toggle implementors-toggle" open><summary><section id="impl-ComponentBuilder%3CC%3E-4" class="impl"><a class="src rightside" href="../../src/relm4/component/sync/builder.rs.html#136-289">Source</a><a href="#impl-ComponentBuilder%3CC%3E-4" class="anchor">§</a><h3 class="code-header">impl&lt;C: <a class="trait" href="trait.Component.html" title="trait relm4::component::Component">Component</a>&gt; <a class="struct" href="struct.ComponentBuilder.html" title="struct relm4::component::ComponentBuilder">ComponentBuilder</a>&lt;C&gt;</h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.launch" class="method"><a class="src rightside" href="../../src/relm4/component/sync/builder.rs.html#138-143">Source</a><h4 class="code-header">pub fn <a href="#method.launch" class="fn">launch</a>(self, payload: C::<a class="associatedtype" href="trait.Component.html#associatedtype.Init" title="type relm4::component::Component::Init">Init</a>) -&gt; <a class="struct" href="struct.Connector.html" title="struct relm4::component::Connector">Connector</a>&lt;C&gt;</h4></section></summary><div class="docblock"><p>Starts the component, passing ownership to a future attached to a <a href="../../glib/auto/main_context/struct.MainContext.html" title="struct glib::auto::main_context::MainContext">gtk::glib::MainContext</a>.</p>
+<span data-nosnippet>129</span>    }</code></pre></div></div><details class="toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="scraped-example" data-locs="[[[34,34],&#34;../../src/state_management/state_management.rs.html#577&#34;,&#34;line 577&#34;],[[48,48],&#34;../../src/state_management/state_management.rs.html#591&#34;,&#34;line 591&#34;]]"><div class="scraped-example-title">relm4/examples/state_management.rs (<a href="../../src/state_management/state_management.rs.html#577">line 577</a>)</div><div class="example-wrap digits-3"><pre class="rust"><code><span data-nosnippet>543</span>    <span class="kw">fn </span>init(
+<span data-nosnippet>544</span>        <span class="kw">_</span>: <span class="self">Self</span>::Init,
+<span data-nosnippet>545</span>        root: <span class="self">Self</span>::Root,
+<span data-nosnippet>546</span>        sender: ComponentSender&lt;<span class="self">Self</span>&gt;,
+<span data-nosnippet>547</span>    ) -&gt; ComponentParts&lt;<span class="self">Self</span>&gt; {
+<span data-nosnippet>548</span>        <span class="kw">let </span>view =
+<span data-nosnippet>549</span>            FactoryVecDeque::builder()
+<span data-nosnippet>550</span>                .launch_default()
+<span data-nosnippet>551</span>                .forward(sender.input_sender(), |msg| <span class="kw">match </span>msg {
+<span data-nosnippet>552</span>                    TaskOutput::Delete(index) =&gt; AppInput::DeleteTask(index),
+<span data-nosnippet>553</span>                    TaskOutput::Name(index, name) =&gt; AppInput::ChangeTaskName(index, name),
+<span data-nosnippet>554</span>                    TaskOutput::AddTag(index, name) =&gt; AppInput::AddTag(index, name),
+<span data-nosnippet>555</span>                    TaskOutput::DeleteTag(task_index, tag_index) =&gt; {
+<span data-nosnippet>556</span>                        AppInput::DeleteTag(task_index, tag_index)
+<span data-nosnippet>557</span>                    }
+<span data-nosnippet>558</span>                });
+<span data-nosnippet>559</span>
+<span data-nosnippet>560</span>        <span class="kw">let </span>document =
+<span data-nosnippet>561</span>            Document::builder()
+<span data-nosnippet>562</span>                .launch(())
+<span data-nosnippet>563</span>                .forward(sender.input_sender(), |msg| <span class="kw">match </span>msg {
+<span data-nosnippet>564</span>                    DocumentOutput::Cleared =&gt; AppInput::Cleared,
+<span data-nosnippet>565</span>                    DocumentOutput::DeletedTask(index) =&gt; AppInput::DeletedTask(index),
+<span data-nosnippet>566</span>                    DocumentOutput::DeletedTag(task_index, tag_index) =&gt; {
+<span data-nosnippet>567</span>                        AppInput::DeletedTag(task_index, tag_index)
+<span data-nosnippet>568</span>                    }
+<span data-nosnippet>569</span>                    DocumentOutput::AddedTask =&gt; AppInput::AddedTask,
+<span data-nosnippet>570</span>                    DocumentOutput::AddedTag(index, name) =&gt; AppInput::AddedTag(index, name),
+<span data-nosnippet>571</span>                    DocumentOutput::ChangedTaskName(index, name) =&gt; {
+<span data-nosnippet>572</span>                        AppInput::ChangedTaskName(index, name)
+<span data-nosnippet>573</span>                    }
+<span data-nosnippet>574</span>                });
+<span data-nosnippet>575</span>
+<span data-nosnippet>576</span>        <span class="kw">let </span>save_dialog = SaveDialog::builder()
+<span data-nosnippet>577</span>            .<span class="highlight focus">transient_for_native</span>(<span class="kw-2">&amp;</span>root)
+<span data-nosnippet>578</span>            .launch(SaveDialogSettings {
+<span data-nosnippet>579</span>                create_folders: <span class="bool-val">true</span>,
+<span data-nosnippet>580</span>                accept_label: <span class="string">"Save"</span>.into(),
+<span data-nosnippet>581</span>                cancel_label: <span class="string">"Cancel"</span>.into(),
+<span data-nosnippet>582</span>                is_modal: <span class="bool-val">true</span>,
+<span data-nosnippet>583</span>                filters: tasks_filename_filters(),
+<span data-nosnippet>584</span>            })
+<span data-nosnippet>585</span>            .forward(sender.input_sender(), |response| <span class="kw">match </span>response {
+<span data-nosnippet>586</span>                SaveDialogResponse::Accept(path) =&gt; AppInput::SaveResponse(path),
+<span data-nosnippet>587</span>                SaveDialogResponse::Cancel =&gt; AppInput::None,
+<span data-nosnippet>588</span>            });
+<span data-nosnippet>589</span>
+<span data-nosnippet>590</span>        <span class="kw">let </span>open_dialog = OpenDialog::builder()
+<span data-nosnippet>591</span>            .<span class="highlight">transient_for_native</span>(<span class="kw-2">&amp;</span>root)
+<span data-nosnippet>592</span>            .launch(OpenDialogSettings {
+<span data-nosnippet>593</span>                create_folders: <span class="bool-val">false</span>,
+<span data-nosnippet>594</span>                folder_mode: <span class="bool-val">false</span>,
+<span data-nosnippet>595</span>                cancel_label: <span class="string">"Cancel"</span>.into(),
+<span data-nosnippet>596</span>                accept_label: <span class="string">"Open"</span>.into(),
+<span data-nosnippet>597</span>                is_modal: <span class="bool-val">true</span>,
+<span data-nosnippet>598</span>                filters: tasks_filename_filters(),
+<span data-nosnippet>599</span>            })
+<span data-nosnippet>600</span>            .forward(sender.input_sender(), |response| <span class="kw">match </span>response {
+<span data-nosnippet>601</span>                OpenDialogResponse::Accept(path) =&gt; AppInput::OpenResponse(path),
+<span data-nosnippet>602</span>                OpenDialogResponse::Cancel =&gt; AppInput::None,
+<span data-nosnippet>603</span>            });
+<span data-nosnippet>604</span>
+<span data-nosnippet>605</span>        <span class="kw">let </span>app = App {
+<span data-nosnippet>606</span>            view,
+<span data-nosnippet>607</span>            document,
+<span data-nosnippet>608</span>            open_dialog,
+<span data-nosnippet>609</span>            save_dialog,
+<span data-nosnippet>610</span>        };
+<span data-nosnippet>611</span>
+<span data-nosnippet>612</span>        <span class="kw">let </span>task_list_box = app.view.widget();
+<span data-nosnippet>613</span>        <span class="kw">let </span>widgets = <span class="macro">view_output!</span>();
+<span data-nosnippet>614</span>
+<span data-nosnippet>615</span>        ComponentParts {
+<span data-nosnippet>616</span>            model: app,
+<span data-nosnippet>617</span>            widgets,
+<span data-nosnippet>618</span>        }
+<span data-nosnippet>619</span>    }</code></pre></div></div></div></details></div></details></div></details><details class="toggle implementors-toggle" open><summary><section id="impl-ComponentBuilder%3CC%3E-4" class="impl"><a class="src rightside" href="../../src/relm4/component/sync/builder.rs.html#136-289">Source</a><a href="#impl-ComponentBuilder%3CC%3E-4" class="anchor">§</a><h3 class="code-header">impl&lt;C: <a class="trait" href="trait.Component.html" title="trait relm4::component::Component">Component</a>&gt; <a class="struct" href="struct.ComponentBuilder.html" title="struct relm4::component::ComponentBuilder">ComponentBuilder</a>&lt;C&gt;</h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.launch" class="method"><a class="src rightside" href="../../src/relm4/component/sync/builder.rs.html#138-143">Source</a><h4 class="code-header">pub fn <a href="#method.launch" class="fn">launch</a>(self, payload: C::<a class="associatedtype" href="trait.Component.html#associatedtype.Init" title="type relm4::component::Component::Init">Init</a>) -&gt; <a class="struct" href="struct.Connector.html" title="struct relm4::component::Connector">Connector</a>&lt;C&gt;</h4></section></summary><div class="docblock"><p>Starts the component, passing ownership to a future attached to a <a href="../../glib/auto/main_context/struct.MainContext.html" title="struct glib::auto::main_context::MainContext">gtk::glib::MainContext</a>.</p>
 </div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-3"><a href="#scraped-examples-3">Examples found in repository</a><a class="scrape-help" href="../../scrape-examples-help.html">?</a></h5><div class="scraped-example" data-locs="[[[6,6],&#34;../../src/transient_dialog/transient_dialog.rs.html#149&#34;,&#34;line 149&#34;]]"><div class="scraped-example-title">relm4/examples/transient_dialog.rs (<a href="../../src/transient_dialog/transient_dialog.rs.html#149">line 149</a>)</div><div class="example-wrap digits-3"><pre class="rust"><code><span data-nosnippet>143</span>    <span class="kw">fn </span>init(
 <span data-nosnippet>144</span>        _init: <span class="self">Self</span>::Init,
 <span data-nosnippet>145</span>        root: <span class="self">Self</span>::Root,
@@ -435,7 +435,7 @@ you should use <a href="struct.ComponentBuilder.html#method.transient_for" title
 <span data-nosnippet>96</span>        <span class="kw">let </span>widgets = <span class="macro">view_output!</span>();
 <span data-nosnippet>97</span>
 <span data-nosnippet>98</span>        ComponentParts { model, widgets }
-<span data-nosnippet>99</span>    }</code></pre></div></div><div class="example-links">Additional examples can be found in:<br><ul><li><a href="../../src/multi_window/multi_window.rs.html#88">relm4/examples/multi_window.rs</a></li><li><a href="../../src/components/components.rs.html#183">relm4/examples/components.rs</a></li><li><a href="../../src/navigation_splitview_with_stack/navigation_splitview_with_stack.rs.html#94">relm4/examples/navigation_splitview_with_stack.rs</a></li><li><a href="../../src/file_dialogs/file_dialogs.rs.html#100">relm4-components/examples/file_dialogs.rs</a></li><li><a href="../../src/message_stream/message_stream.rs.html#148">relm4/examples/message_stream.rs</a></li><li><a href="../../src/drop_sub_components/drop_sub_components.rs.html#74">relm4/examples/drop_sub_components.rs</a></li><li><a href="../../src/alert/alert.rs.html#108-119">relm4-components/examples/alert.rs</a></li><li><a href="../../src/settings_list/settings_list.rs.html#27">relm4/examples/settings_list.rs</a></li><li><a href="../../src/state_management/state_management.rs.html#563">relm4/examples/state_management.rs</a></li></ul></div></div></details></div></details><details class="toggle method-toggle" open><summary><section id="method.launch_with_broker" class="method"><a class="src rightside" href="../../src/relm4/component/sync/builder.rs.html#150-161">Source</a><h4 class="code-header">pub fn <a href="#method.launch_with_broker" class="fn">launch_with_broker</a>(
+<span data-nosnippet>99</span>    }</code></pre></div></div><div class="example-links">Additional examples can be found in:<br><ul><li><a href="../../src/multi_window/multi_window.rs.html#88">relm4/examples/multi_window.rs</a></li><li><a href="../../src/components/components.rs.html#183">relm4/examples/components.rs</a></li><li><a href="../../src/navigation_splitview_with_stack/navigation_splitview_with_stack.rs.html#94">relm4/examples/navigation_splitview_with_stack.rs</a></li><li><a href="../../src/file_dialogs/file_dialogs.rs.html#100">relm4-components/examples/file_dialogs.rs</a></li><li><a href="../../src/message_stream/message_stream.rs.html#148">relm4/examples/message_stream.rs</a></li><li><a href="../../src/drop_sub_components/drop_sub_components.rs.html#74">relm4/examples/drop_sub_components.rs</a></li><li><a href="../../src/alert/alert.rs.html#108-119">relm4-components/examples/alert.rs</a></li><li><a href="../../src/settings_list/settings_list.rs.html#27">relm4/examples/settings_list.rs</a></li><li><a href="../../src/state_management/state_management.rs.html#562">relm4/examples/state_management.rs</a></li></ul></div></div></details></div></details><details class="toggle method-toggle" open><summary><section id="method.launch_with_broker" class="method"><a class="src rightside" href="../../src/relm4/component/sync/builder.rs.html#150-161">Source</a><h4 class="code-header">pub fn <a href="#method.launch_with_broker" class="fn">launch_with_broker</a>(
     self,
     payload: C::<a class="associatedtype" href="trait.Component.html#associatedtype.Init" title="type relm4::component::Component::Init">Init</a>,
     broker: &amp;<a class="struct" href="struct.MessageBroker.html" title="struct relm4::component::MessageBroker">MessageBroker</a>&lt;C::<a class="associatedtype" href="trait.Component.html#associatedtype.Input" title="type relm4::component::Component::Input">Input</a>&gt;,

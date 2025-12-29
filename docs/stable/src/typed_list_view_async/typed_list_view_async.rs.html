@@ -100,7 +100,7 @@
 <a href=#100 id=100 data-nosnippet>100</a>
 <a href=#101 id=101 data-nosnippet>101</a>        label.set_label(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">"Value: {} "</span>, <span class="self">self</span>.value));
 <a href=#102 id=102 data-nosnippet>102</a>        label2.add_write_only_binding(<span class="kw-2">&amp;</span><span class="self">self</span>.binding, <span class="string">"label"</span>);
-<a href=#103 id=103 data-nosnippet>103</a>        button.set_active(<span class="self">self</span>.value % <span class="number">2 </span>== <span class="number">0</span>);
+<a href=#103 id=103 data-nosnippet>103</a>        button.set_active(<span class="self">self</span>.value.is_multiple_of(<span class="number">2</span>));
 <a href=#104 id=104 data-nosnippet>104</a>    }
 <a href=#105 id=105 data-nosnippet>105</a>
 <a href=#106 id=106 data-nosnippet>106</a>    <span class="kw">fn </span>unbind(<span class="kw-2">&amp;mut </span><span class="self">self</span>, _widgets: <span class="kw-2">&amp;mut </span><span class="self">Self</span>::Widgets, _root: <span class="kw-2">&amp;mut </span><span class="self">Self</span>::Root) {

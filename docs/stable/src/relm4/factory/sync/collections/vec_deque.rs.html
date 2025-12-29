@@ -178,10 +178,10 @@
 <a href=#178 id=178 data-nosnippet>178</a>            states.index.decrement();
 <a href=#179 id=179 data-nosnippet>179</a>        }
 <a href=#180 id=180 data-nosnippet>180</a>
-<a href=#181 id=181 data-nosnippet>181</a>        <span class="kw">if let </span><span class="prelude-val">Some</span>(comp) = <span class="kw-2">&amp;</span>component {
-<a href=#182 id=182 data-nosnippet>182</a>            <span class="kw">if let </span><span class="prelude-val">Some</span>(widget) = <span class="kw-2">&amp;</span>comp.returned_widget() {
-<a href=#183 id=183 data-nosnippet>183</a>                <span class="self">self</span>.widget.factory_remove(widget);
-<a href=#184 id=184 data-nosnippet>184</a>            }
+<a href=#181 id=181 data-nosnippet>181</a>        <span class="kw">if let </span><span class="prelude-val">Some</span>(comp) = <span class="kw-2">&amp;</span>component
+<a href=#182 id=182 data-nosnippet>182</a>            &amp;&amp; <span class="kw">let </span><span class="prelude-val">Some</span>(widget) = <span class="kw-2">&amp;</span>comp.returned_widget()
+<a href=#183 id=183 data-nosnippet>183</a>        {
+<a href=#184 id=184 data-nosnippet>184</a>            <span class="self">self</span>.widget.factory_remove(widget);
 <a href=#185 id=185 data-nosnippet>185</a>        }
 <a href=#186 id=186 data-nosnippet>186</a>
 <a href=#187 id=187 data-nosnippet>187</a>        component.map(ComponentStorage::extract)
