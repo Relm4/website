@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"struct":["BindingGuard","BoolBinding","F32Binding","F64Binding","I32Binding","I64Binding","I8Binding","StringBinding","U32Binding","U64Binding","U8Binding"],"trait":["Binding","ConnectBinding","ConnectBindingExt"]};

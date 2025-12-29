@@ -1,0 +1,9 @@
+(function() {
+    const implementors = Object.fromEntries([["icons",[["impl <a class=\"trait\" href=\"relm4/component/sync/traits/trait.SimpleComponent.html\" title=\"trait relm4::component::sync::traits::SimpleComponent\">SimpleComponent</a> for <a class=\"struct\" href=\"icons/struct.App.html\" title=\"struct icons::App\">App</a>",0]]],["relm4",[]],["relm4_components",[["impl <a class=\"trait\" href=\"relm4/component/sync/traits/trait.SimpleComponent.html\" title=\"trait relm4::component::sync::traits::SimpleComponent\">SimpleComponent</a> for <a class=\"struct\" href=\"relm4_components/open_button/struct.OpenButton.html\" title=\"struct relm4_components::open_button::OpenButton\">OpenButton</a>",0],["impl <a class=\"trait\" href=\"relm4/component/sync/traits/trait.SimpleComponent.html\" title=\"trait relm4::component::sync::traits::SimpleComponent\">SimpleComponent</a> for <a class=\"struct\" href=\"relm4_components/save_dialog/struct.SaveDialog.html\" title=\"struct relm4_components::save_dialog::SaveDialog\">SaveDialog</a>",0],["impl&lt;S: <a class=\"trait\" href=\"relm4_components/open_dialog/trait.Select.html\" title=\"trait relm4_components::open_dialog::Select\">Select</a> + 'static&gt; <a class=\"trait\" href=\"relm4/component/sync/traits/trait.SimpleComponent.html\" title=\"trait relm4::component::sync::traits::SimpleComponent\">SimpleComponent</a> for <a class=\"struct\" href=\"relm4_components/open_dialog/struct.OpenDialogInner.html\" title=\"struct relm4_components::open_dialog::OpenDialogInner\">OpenDialogInner</a>&lt;S&gt;",0]]]]);
+    if (window.register_implementors) {
+        window.register_implementors(implementors);
+    } else {
+        window.pending_implementors = implementors;
+    }
+})()
+//{"start":59,"fragment_lengths":[280,13,1218]}

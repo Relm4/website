@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"enum":["AlertMsg"],"struct":["AlertModel","AlertSettings","AlertWidgets"],"trait":["AlertConfig","AlertParent"]};
+window.SIDEBAR_ITEMS = {"enum":["AlertMsg","AlertResponse"],"struct":["Alert","AlertSettings","AlertWidgets"]};

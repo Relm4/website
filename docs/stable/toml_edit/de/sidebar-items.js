@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"fn":["from_document","from_slice","from_str"],"struct":["Deserializer","Error","ValueDeserializer"]};
+window.SIDEBAR_ITEMS = {"enum":["VisitMap"],"fn":["is_datetime"],"struct":["DatetimeDeserializer"]};

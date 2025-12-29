@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":["GRESOURCE_BYTES","RESOURCE_PREFIX"],"mod":["custom","shipped"]};

@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"enum":["ErrMode","ErrorKind","Needed","VerboseErrorKind"],"fn":["convert_error"],"struct":["Error","VerboseError"],"trait":["ContextError","ErrorConvert","FinishIResult","FromExternalError","ParseError"],"type":["IResult"]};
+window.SIDEBAR_ITEMS = {"enum":["ErrMode","Needed","StrContext","StrContextValue","TreeError","TreeErrorFrame"],"struct":["ContextError","EmptyError","InputError","ParseError","TreeErrorBase","TreeErrorContext"],"trait":["AddContext","ErrorConvert","FromExternalError","ModalError","ParserError"],"type":["ModalResult","Result"]};

@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["Msg"],"fn":["main"],"mod":["icon_names"],"struct":["App","AppWidgets"]};

@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"enum":["Error"],"fn":["to_document","to_string","to_string_pretty","to_vec"],"struct":["ValueSerializer"]};
+window.SIDEBAR_ITEMS = {"enum":["SerializerError"],"fn":["is_datetime"],"struct":["DatetimeSerializer"]};

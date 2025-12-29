@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"attr":["factory_prototype","micro_widget","widget"],"derive":["Components"],"macro":["menu","view"]};
+window.SIDEBAR_ITEMS = {"attr":["component","factory","widget_template"],"macro":["menu","view"]};

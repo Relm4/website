@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"struct":["List","ListIter","PtrSlice","SList","SListIter","Slice"]};
+window.SIDEBAR_ITEMS = {"mod":["list","ptr_slice","slice","slist","strv"]};

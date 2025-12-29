@@ -1,0 +1,9 @@
+(function() {
+    const implementors = Object.fromEntries([["serde",[]],["serde_core",[]],["toml_datetime",[["impl&lt;'de&gt; <a class=\"trait\" href=\"serde_core/de/trait.Deserialize.html\" title=\"trait serde_core::de::Deserialize\">Deserialize</a>&lt;'de&gt; for <a class=\"struct\" href=\"toml_datetime/struct.Date.html\" title=\"struct toml_datetime::Date\">Date</a>",0],["impl&lt;'de&gt; <a class=\"trait\" href=\"serde_core/de/trait.Deserialize.html\" title=\"trait serde_core::de::Deserialize\">Deserialize</a>&lt;'de&gt; for <a class=\"struct\" href=\"toml_datetime/struct.Datetime.html\" title=\"struct toml_datetime::Datetime\">Datetime</a>",0],["impl&lt;'de&gt; <a class=\"trait\" href=\"serde_core/de/trait.Deserialize.html\" title=\"trait serde_core::de::Deserialize\">Deserialize</a>&lt;'de&gt; for <a class=\"struct\" href=\"toml_datetime/struct.Time.html\" title=\"struct toml_datetime::Time\">Time</a>",0]]],["url",[["impl&lt;'de&gt; <a class=\"trait\" href=\"serde_core/de/trait.Deserialize.html\" title=\"trait serde_core::de::Deserialize\">Deserialize</a>&lt;'de&gt; for <a class=\"struct\" href=\"url/struct.Url.html\" title=\"struct url::Url\">Url</a>",0],["impl&lt;'de, S&gt; <a class=\"trait\" href=\"serde_core/de/trait.Deserialize.html\" title=\"trait serde_core::de::Deserialize\">Deserialize</a>&lt;'de&gt; for <a class=\"enum\" href=\"url/enum.Host.html\" title=\"enum url::Host\">Host</a>&lt;S&gt;<div class=\"where\">where\n    S: <a class=\"trait\" href=\"serde_core/de/trait.Deserialize.html\" title=\"trait serde_core::de::Deserialize\">Deserialize</a>&lt;'de&gt;,</div>",0]]]]);
+    if (window.register_implementors) {
+        window.register_implementors(implementors);
+    } else {
+        window.pending_implementors = implementors;
+    }
+})()
+//{"start":59,"fragment_lengths":[12,18,836,686]}

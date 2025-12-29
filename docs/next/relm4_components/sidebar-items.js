@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"mod":["alert","open_button","open_dialog","save_dialog","simple_combo_box","web_image"]};
+window.SIDEBAR_ITEMS = {"mod":["alert","open_button","open_dialog","save_dialog","simple_adw_combo_row","simple_combo_box","web_image"]};

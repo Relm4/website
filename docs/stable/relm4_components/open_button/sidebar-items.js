@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"struct":["OpenButtonComponents","OpenButtonModel","OpenButtonSettings","OpenButtonWidgets"],"trait":["OpenButtonConfig","OpenButtonParent"]};
+window.SIDEBAR_ITEMS = {"struct":["OpenButton","OpenButtonSettings","OpenButtonWidgets"]};

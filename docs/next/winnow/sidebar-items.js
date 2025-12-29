@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"macro":["dispatch"],"mod":["bits","branch","bytes","character","combinator","error","multi","number","prelude","sequence","stream","trace"],"trait":["Parser"]};
+window.SIDEBAR_ITEMS = {"mod":["ascii","binary","combinator","error","prelude","stream","token"],"trait":["ModalParser","Parser"]};

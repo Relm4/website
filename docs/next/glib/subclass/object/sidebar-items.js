@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"trait":["ObjectClassSubclassExt","ObjectImpl","ObjectImplExt"]};
+window.SIDEBAR_ITEMS = {"trait":["DerivedObjectProperties","ObjectClassSubclassExt","ObjectImpl","ObjectImplExt"]};

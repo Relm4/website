@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"fn":["init","is_animations_enabled","is_initialized","lerp","major_version","micro_version","minor_version"]};

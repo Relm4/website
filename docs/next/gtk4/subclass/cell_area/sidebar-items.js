@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"struct":["CellCallback","CellCallbackAllocate"],"trait":["CellAreaClassSubclassExt","CellAreaImpl","CellAreaImplExt"]};
+window.SIDEBAR_ITEMS = {"struct":["CellCallback","CellCallbackAllocate"],"trait":["CellAreaClassExt","CellAreaImpl","CellAreaImplExt"]};

@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"trait":["BuilderScopeImpl","BuilderScopeImplExt"]};
+window.SIDEBAR_ITEMS = {"trait":["BuilderCScopeImpl","BuilderScopeImpl","BuilderScopeImplExt"]};

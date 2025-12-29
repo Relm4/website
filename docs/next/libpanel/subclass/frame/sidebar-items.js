@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"trait":["PanelFrameImpl"]};
+window.SIDEBAR_ITEMS = {"trait":["PanelFrameImpl","PanelFrameImplExt"]};

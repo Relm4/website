@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"trait":["PanelOmniBarImpl"]};
+window.SIDEBAR_ITEMS = {"trait":["OmniBarImpl"]};

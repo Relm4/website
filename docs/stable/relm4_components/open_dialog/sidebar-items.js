@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"enum":["OpenDialogMsg"],"struct":["OpenDialogModel","OpenDialogSettings","OpenDialogWidgets"],"trait":["OpenDialogConfig","OpenDialogParent"]};
+window.SIDEBAR_ITEMS = {"enum":["OpenDialogMsg","OpenDialogResponse"],"struct":["MultiSelection","OpenDialogInner","OpenDialogInnerWidgets","OpenDialogSettings","SingleSelection"],"trait":["Select"],"type":["OpenDialog","OpenDialogMulti"]};

@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"mod":["action_row","application","application_window","bin","combo_row","expander_row","preferences_group","preferences_page","preferences_row","preferences_window","prelude","swipeable","window"]};
+window.SIDEBAR_ITEMS = {"mod":["action_row","alert_dialog","application","application_window","bin","breakpoint_bin","combo_row","dialog","entry_row","expander_row","navigation_page","preferences_dialog","preferences_group","preferences_page","preferences_row","preferences_window","prelude","spin_row","swipeable","window"]};

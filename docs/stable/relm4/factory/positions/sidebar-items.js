@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"struct":["FixedPosition","GridPosition","StackPageInfo","TabPageInfo"]};
+window.SIDEBAR_ITEMS = {"struct":["FixedPosition","GridPosition"]};

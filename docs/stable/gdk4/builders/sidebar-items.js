@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"struct":["ContentFormatsBuilder","CursorBuilder","RGBABuilder"]};
+window.SIDEBAR_ITEMS = {"struct":["CursorBuilder","RGBABuilder"]};

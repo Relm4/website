@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":["column","grid","list"],"struct":["TypedIterator","TypedListItem"],"type":["OrdFn"]};

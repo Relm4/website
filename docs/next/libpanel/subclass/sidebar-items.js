@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"mod":["dock","frame","frame_header","grid","omni_bar","prelude","save_delegate","widget"]};
+window.SIDEBAR_ITEMS = {"mod":["application","dock","document_workspace","frame","frame_header","grid","omni_bar","prelude","save_delegate","widget","workbench","workspace"]};

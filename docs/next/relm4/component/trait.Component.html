@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="The fundamental building block of a Relm4 application."><title>Component in relm4::component - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-fbd14db5c88ed452.css" id="mainThemeStyle"><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="relm4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.70.0-nightly (5e1d3299a 2023-03-31)" data-search-js="search-bc5a112813b5d712.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" data-theme-light-css="light-db279b6232be9c13.css" data-theme-dark-css="dark-cf923f49f397b216.css" data-theme-ayu-css="ayu-be46fdc453a55015.css" ></div><script src="../../static.files/storage-d4a1a279bad1a0c0.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-8e6affb8c73a5ff1.js"></script><script defer src="../../static.files/scrape-examples-ef1e698c1d417c0c.js"></script><noscript><link rel="stylesheet" media="(prefers-color-scheme:light)" href="../../static.files/light-db279b6232be9c13.css"><link rel="stylesheet" media="(prefers-color-scheme:dark)" href="../../static.files/dark-cf923f49f397b216.css"><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="icon" href="https://relm4.org/icons/relm4_org.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="logo-container" href="../../relm4/index.html"><img src="https://relm4.org/icons/relm4_logo.svg" alt="logo"></a><h2></h2></nav><nav class="sidebar"><a class="logo-container" href="../../relm4/index.html"><img src="https://relm4.org/icons/relm4_logo.svg" alt="logo"></a><h2 class="location"><a href="#">Component</a></h2><div class="sidebar-elems"><section><h3><a href="#required-associated-types">Required Associated Types</a></h3><ul class="block"><li><a href="#associatedtype.CommandOutput">CommandOutput</a></li><li><a href="#associatedtype.Init">Init</a></li><li><a href="#associatedtype.Input">Input</a></li><li><a href="#associatedtype.Output">Output</a></li><li><a href="#associatedtype.Root">Root</a></li><li><a href="#associatedtype.Widgets">Widgets</a></li></ul><h3><a href="#required-methods">Required Methods</a></h3><ul class="block"><li><a href="#tymethod.init">init</a></li><li><a href="#tymethod.init_root">init_root</a></li></ul><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.builder">builder</a></li><li><a href="#method.id">id</a></li><li><a href="#method.shutdown">shutdown</a></li><li><a href="#method.update">update</a></li><li><a href="#method.update_cmd">update_cmd</a></li><li><a href="#method.update_cmd_with_view">update_cmd_with_view</a></li><li><a href="#method.update_view">update_view</a></li><li><a href="#method.update_with_view">update_with_view</a></li></ul><h3><a href="#implementors">Implementors</a></h3></section><h2><a href="index.html">In relm4::component</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Trait <a href="../index.html">relm4</a>::<wbr><a href="index.html">component</a>::<wbr><a class="trait" href="#">Component</a><button id="copy-path" title="Copy item path to clipboard"><img src="../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="srclink" href="../../src/relm4/component/sync/traits.rs.html#18-132">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><pre class="rust item-decl"><code>pub trait Component: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html" title="trait core::marker::Sized">Sized</a> + 'static {
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="The fundamental building block of a Relm4 application."><title>Component in relm4::component - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-80aa586b.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="relm4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.94.0-nightly (21cf7fb3f 2025-12-28)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../../static.files/storage-e2aeef58.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-7bab91a1.js"></script><script defer src="../../static.files/scrape-examples-2bbcccac.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-ffcac47a.css"></noscript><link rel="icon" href="https://relm4.org/icons/relm4_org.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><rustdoc-topbar><h2><a href="#">Component</a></h2></rustdoc-topbar><nav class="sidebar"><div class="sidebar-crate"><a class="logo-container" href="../../relm4/index.html"><img src="https://relm4.org/icons/relm4_logo.svg" alt="logo"></a><h2><a href="../../relm4/index.html">relm4</a><span class="version">0.10.0</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">Component</a></h2><h3><a href="#required-associated-types">Required Associated Types</a></h3><ul class="block"><li><a href="#associatedtype.CommandOutput" title="CommandOutput">CommandOutput</a></li><li><a href="#associatedtype.Init" title="Init">Init</a></li><li><a href="#associatedtype.Input" title="Input">Input</a></li><li><a href="#associatedtype.Output" title="Output">Output</a></li><li><a href="#associatedtype.Root" title="Root">Root</a></li><li><a href="#associatedtype.Widgets" title="Widgets">Widgets</a></li></ul><h3><a href="#required-methods">Required Methods</a></h3><ul class="block"><li><a href="#tymethod.init" title="init">init</a></li><li><a href="#tymethod.init_root" title="init_root">init_root</a></li></ul><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.builder" title="builder">builder</a></li><li><a href="#method.id" title="id">id</a></li><li><a href="#method.shutdown" title="shutdown">shutdown</a></li><li><a href="#method.update" title="update">update</a></li><li><a href="#method.update_cmd" title="update_cmd">update_cmd</a></li><li><a href="#method.update_cmd_with_view" title="update_cmd_with_view">update_cmd_with_view</a></li><li><a href="#method.update_view" title="update_view">update_view</a></li><li><a href="#method.update_with_view" title="update_with_view">update_with_view</a></li></ul><h3><a href="#dyn-compatibility">Dyn Compatibility</a></h3><h3><a href="#implementors">Implementors</a></h3></section><div id="rustdoc-modnav"><h2><a href="index.html">In relm4::<wbr>component</a></h2></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../index.html">relm4</a>::<wbr><a href="index.html">component</a></div><h1>Trait <span class="trait">Component</span>&nbsp;<button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../src/relm4/component/sync/traits.rs.html#18-132">Source</a> </span></div><pre class="rust item-decl"><code>pub trait Component: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html" title="trait core::marker::Sized">Sized</a> + 'static {
     type <a href="#associatedtype.CommandOutput" class="associatedtype">CommandOutput</a>: <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + 'static;
     type <a href="#associatedtype.Input" class="associatedtype">Input</a>: <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> + 'static;
     type <a href="#associatedtype.Output" class="associatedtype">Output</a>: <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> + 'static;
@@ -10,8 +10,8 @@
     fn <a href="#tymethod.init_root" class="fn">init_root</a>() -&gt; Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Root" title="type relm4::component::Component::Root">Root</a>;
 <span class="item-spacer"></span>    fn <a href="#tymethod.init" class="fn">init</a>(
         init: Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Init" title="type relm4::component::Component::Init">Init</a>,
-        root: &amp;Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Root" title="type relm4::component::Component::Root">Root</a>,
-        sender: <a class="struct" href="../prelude/struct.ComponentSender.html" title="struct relm4::prelude::ComponentSender">ComponentSender</a>&lt;Self&gt;
+        root: Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Root" title="type relm4::component::Component::Root">Root</a>,
+        sender: <a class="struct" href="../struct.ComponentSender.html" title="struct relm4::ComponentSender">ComponentSender</a>&lt;Self&gt;,
     ) -&gt; <a class="struct" href="struct.ComponentParts.html" title="struct relm4::component::ComponentParts">ComponentParts</a>&lt;Self&gt;;
 
     // Provided methods
@@ -19,38 +19,38 @@
 <span class="item-spacer"></span>    fn <a href="#method.update" class="fn">update</a>(
         &amp;mut self,
         message: Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Input" title="type relm4::component::Component::Input">Input</a>,
-        sender: <a class="struct" href="../prelude/struct.ComponentSender.html" title="struct relm4::prelude::ComponentSender">ComponentSender</a>&lt;Self&gt;,
-        root: &amp;Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Root" title="type relm4::component::Component::Root">Root</a>
+        sender: <a class="struct" href="../struct.ComponentSender.html" title="struct relm4::ComponentSender">ComponentSender</a>&lt;Self&gt;,
+        root: &amp;Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Root" title="type relm4::component::Component::Root">Root</a>,
     ) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.update_cmd" class="fn">update_cmd</a>(
         &amp;mut self,
         message: Self::<a class="associatedtype" href="trait.Component.html#associatedtype.CommandOutput" title="type relm4::component::Component::CommandOutput">CommandOutput</a>,
-        sender: <a class="struct" href="../prelude/struct.ComponentSender.html" title="struct relm4::prelude::ComponentSender">ComponentSender</a>&lt;Self&gt;,
-        root: &amp;Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Root" title="type relm4::component::Component::Root">Root</a>
+        sender: <a class="struct" href="../struct.ComponentSender.html" title="struct relm4::ComponentSender">ComponentSender</a>&lt;Self&gt;,
+        root: &amp;Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Root" title="type relm4::component::Component::Root">Root</a>,
     ) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.update_cmd_with_view" class="fn">update_cmd_with_view</a>(
         &amp;mut self,
         widgets: &amp;mut Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Widgets" title="type relm4::component::Component::Widgets">Widgets</a>,
         message: Self::<a class="associatedtype" href="trait.Component.html#associatedtype.CommandOutput" title="type relm4::component::Component::CommandOutput">CommandOutput</a>,
-        sender: <a class="struct" href="../prelude/struct.ComponentSender.html" title="struct relm4::prelude::ComponentSender">ComponentSender</a>&lt;Self&gt;,
-        root: &amp;Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Root" title="type relm4::component::Component::Root">Root</a>
+        sender: <a class="struct" href="../struct.ComponentSender.html" title="struct relm4::ComponentSender">ComponentSender</a>&lt;Self&gt;,
+        root: &amp;Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Root" title="type relm4::component::Component::Root">Root</a>,
     ) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.update_view" class="fn">update_view</a>(
         &amp;self,
         widgets: &amp;mut Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Widgets" title="type relm4::component::Component::Widgets">Widgets</a>,
-        sender: <a class="struct" href="../prelude/struct.ComponentSender.html" title="struct relm4::prelude::ComponentSender">ComponentSender</a>&lt;Self&gt;
+        sender: <a class="struct" href="../struct.ComponentSender.html" title="struct relm4::ComponentSender">ComponentSender</a>&lt;Self&gt;,
     ) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.update_with_view" class="fn">update_with_view</a>(
         &amp;mut self,
         widgets: &amp;mut Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Widgets" title="type relm4::component::Component::Widgets">Widgets</a>,
         message: Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Input" title="type relm4::component::Component::Input">Input</a>,
-        sender: <a class="struct" href="../prelude/struct.ComponentSender.html" title="struct relm4::prelude::ComponentSender">ComponentSender</a>&lt;Self&gt;,
-        root: &amp;Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Root" title="type relm4::component::Component::Root">Root</a>
+        sender: <a class="struct" href="../struct.ComponentSender.html" title="struct relm4::ComponentSender">ComponentSender</a>&lt;Self&gt;,
+        root: &amp;Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Root" title="type relm4::component::Component::Root">Root</a>,
     ) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.shutdown" class="fn">shutdown</a>(
         &amp;mut self,
         widgets: &amp;mut Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Widgets" title="type relm4::component::Component::Widgets">Widgets</a>,
-        output: <a class="struct" href="../struct.Sender.html" title="struct relm4::Sender">Sender</a>&lt;Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Output" title="type relm4::component::Component::Output">Output</a>&gt;
+        output: <a class="struct" href="../struct.Sender.html" title="struct relm4::Sender">Sender</a>&lt;Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Output" title="type relm4::component::Component::Output">Output</a>&gt;,
     ) { ... }
 <span class="item-spacer"></span>    fn <a href="#method.id" class="fn">id</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a> { ... }
 }</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>The fundamental building block of a Relm4 application.</p>
@@ -60,335 +60,177 @@ communication as a modular unit.</p>
 convenience trait will suffice. <a href="trait.SimpleComponent.html" title="trait relm4::component::SimpleComponent"><code>SimpleComponent</code></a> enforces separation between model and view
 updates, and provides no-op implementations for advanced features that are not relevant for most
 use-cases.</p>
-</div></details><h2 id="required-associated-types" class="small-section-header">Required Associated Types<a href="#required-associated-types" class="anchor">§</a></h2><div class="methods"><details class="toggle" open><summary><section id="associatedtype.CommandOutput" class="method"><a class="srclink rightside" href="../../src/relm4/component/sync/traits.rs.html#20">source</a><h4 class="code-header">type <a href="#associatedtype.CommandOutput" class="associatedtype">CommandOutput</a>: <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + 'static</h4></section></summary><div class="docblock"><p>Messages which are received from commands executing in the background.</p>
-</div></details><details class="toggle" open><summary><section id="associatedtype.Input" class="method"><a class="srclink rightside" href="../../src/relm4/component/sync/traits.rs.html#23">source</a><h4 class="code-header">type <a href="#associatedtype.Input" class="associatedtype">Input</a>: <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> + 'static</h4></section></summary><div class="docblock"><p>The message type that the component accepts as inputs.</p>
-</div></details><details class="toggle" open><summary><section id="associatedtype.Output" class="method"><a class="srclink rightside" href="../../src/relm4/component/sync/traits.rs.html#26">source</a><h4 class="code-header">type <a href="#associatedtype.Output" class="associatedtype">Output</a>: <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> + 'static</h4></section></summary><div class="docblock"><p>The message type that the component provides as outputs.</p>
-</div></details><details class="toggle" open><summary><section id="associatedtype.Init" class="method"><a class="srclink rightside" href="../../src/relm4/component/sync/traits.rs.html#29">source</a><h4 class="code-header">type <a href="#associatedtype.Init" class="associatedtype">Init</a></h4></section></summary><div class="docblock"><p>The parameter used to initialize the component.</p>
-</div></details><details class="toggle" open><summary><section id="associatedtype.Root" class="method"><a class="srclink rightside" href="../../src/relm4/component/sync/traits.rs.html#32">source</a><h4 class="code-header">type <a href="#associatedtype.Root" class="associatedtype">Root</a>: <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a></h4></section></summary><div class="docblock"><p>The widget that was constructed by the component.</p>
-</div></details><details class="toggle" open><summary><section id="associatedtype.Widgets" class="method"><a class="srclink rightside" href="../../src/relm4/component/sync/traits.rs.html#35">source</a><h4 class="code-header">type <a href="#associatedtype.Widgets" class="associatedtype">Widgets</a>: 'static</h4></section></summary><div class="docblock"><p>The type that’s used for storing widgets created for this component.</p>
-</div></details></div><h2 id="required-methods" class="small-section-header">Required Methods<a href="#required-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="tymethod.init_root" class="method"><a class="srclink rightside" href="../../src/relm4/component/sync/traits.rs.html#44">source</a><h4 class="code-header">fn <a href="#tymethod.init_root" class="fn">init_root</a>() -&gt; Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Root" title="type relm4::component::Component::Root">Root</a></h4></section></summary><div class="docblock"><p>Initializes the root widget.</p>
-</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.init" class="method"><a class="srclink rightside" href="../../src/relm4/component/sync/traits.rs.html#47-51">source</a><h4 class="code-header">fn <a href="#tymethod.init" class="fn">init</a>(
+</div></details><h2 id="required-associated-types" class="section-header">Required Associated Types<a href="#required-associated-types" class="anchor">§</a></h2><div class="methods"><details class="toggle" open><summary><section id="associatedtype.CommandOutput" class="method"><a class="src rightside" href="../../src/relm4/component/sync/traits.rs.html#20">Source</a><h4 class="code-header">type <a href="#associatedtype.CommandOutput" class="associatedtype">CommandOutput</a>: <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + 'static</h4></section></summary><div class="docblock"><p>Messages which are received from commands executing in the background.</p>
+</div></details><details class="toggle" open><summary><section id="associatedtype.Input" class="method"><a class="src rightside" href="../../src/relm4/component/sync/traits.rs.html#23">Source</a><h4 class="code-header">type <a href="#associatedtype.Input" class="associatedtype">Input</a>: <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> + 'static</h4></section></summary><div class="docblock"><p>The message type that the component accepts as inputs.</p>
+</div></details><details class="toggle" open><summary><section id="associatedtype.Output" class="method"><a class="src rightside" href="../../src/relm4/component/sync/traits.rs.html#26">Source</a><h4 class="code-header">type <a href="#associatedtype.Output" class="associatedtype">Output</a>: <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> + 'static</h4></section></summary><div class="docblock"><p>The message type that the component provides as outputs.</p>
+</div></details><details class="toggle" open><summary><section id="associatedtype.Init" class="method"><a class="src rightside" href="../../src/relm4/component/sync/traits.rs.html#29">Source</a><h4 class="code-header">type <a href="#associatedtype.Init" class="associatedtype">Init</a></h4></section></summary><div class="docblock"><p>The parameter used to initialize the component.</p>
+</div></details><details class="toggle" open><summary><section id="associatedtype.Root" class="method"><a class="src rightside" href="../../src/relm4/component/sync/traits.rs.html#32">Source</a><h4 class="code-header">type <a href="#associatedtype.Root" class="associatedtype">Root</a>: <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a></h4></section></summary><div class="docblock"><p>The top-level widget of the component.</p>
+</div></details><details class="toggle" open><summary><section id="associatedtype.Widgets" class="method"><a class="src rightside" href="../../src/relm4/component/sync/traits.rs.html#35">Source</a><h4 class="code-header">type <a href="#associatedtype.Widgets" class="associatedtype">Widgets</a>: 'static</h4></section></summary><div class="docblock"><p>The type that’s used for storing widgets created for this component.</p>
+</div></details></div><h2 id="required-methods" class="section-header">Required Methods<a href="#required-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="tymethod.init_root" class="method"><a class="src rightside" href="../../src/relm4/component/sync/traits.rs.html#44">Source</a><h4 class="code-header">fn <a href="#tymethod.init_root" class="fn">init_root</a>() -&gt; Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Root" title="type relm4::component::Component::Root">Root</a></h4></section></summary><div class="docblock"><p>Initializes the root widget.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.init" class="method"><a class="src rightside" href="../../src/relm4/component/sync/traits.rs.html#47-51">Source</a><h4 class="code-header">fn <a href="#tymethod.init" class="fn">init</a>(
     init: Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Init" title="type relm4::component::Component::Init">Init</a>,
-    root: &amp;Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Root" title="type relm4::component::Component::Root">Root</a>,
-    sender: <a class="struct" href="../prelude/struct.ComponentSender.html" title="struct relm4::prelude::ComponentSender">ComponentSender</a>&lt;Self&gt;
+    root: Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Root" title="type relm4::component::Component::Root">Root</a>,
+    sender: <a class="struct" href="../struct.ComponentSender.html" title="struct relm4::ComponentSender">ComponentSender</a>&lt;Self&gt;,
 ) -&gt; <a class="struct" href="struct.ComponentParts.html" title="struct relm4::component::ComponentParts">ComponentParts</a>&lt;Self&gt;</h4></section></summary><div class="docblock"><p>Creates the initial model and view, docking it into the component.</p>
-</div></details></div><h2 id="provided-methods" class="small-section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="method.builder" class="method"><a class="srclink rightside" href="../../src/relm4/component/sync/traits.rs.html#39-41">source</a><h4 class="code-header">fn <a href="#method.builder" class="fn">builder</a>() -&gt; <a class="struct" href="struct.ComponentBuilder.html" title="struct relm4::component::ComponentBuilder">ComponentBuilder</a>&lt;Self&gt;</h4></section></summary><div class="docblock"><p>Create a builder for this component.</p>
-</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[5,5],&quot;../../src/web_image/web_image.rs.html#71&quot;,&quot;line 71&quot;]]"><div class="scraped-example-title">relm4-components/examples/web_image.rs (<a href="../../src/web_image/web_image.rs.html#71">line 71</a>)</div><div class="code-wrapper"><div class="example-wrap"><pre class="src-line-numbers"><span>66</span>
-<span>67</span>
-<span>68</span>
-<span>69</span>
-<span>70</span>
-<span>71</span>
-<span>72</span>
-<span>73</span>
-<span>74</span>
-<span>75</span>
-<span>76</span>
-<span>77</span>
-<span>78</span>
-</pre><pre class="rust"><code><button class="expand">&varr;</button>    <span class="kw">fn </span>init(
-        <span class="kw">_</span>: <span class="self">Self</span>::Init,
-        root: <span class="kw-2">&amp;</span><span class="self">Self</span>::Root,
-        sender: ComponentSender&lt;<span class="self">Self</span>&gt;,
-    ) -&gt; ComponentParts&lt;<span class="self">Self</span>&gt; {
-        <span class="kw">let </span>image = <span class="highlight focus">WebImage::builder</span>().launch(IMAGES[<span class="number">0</span>].to_owned()).detach();
-        <span class="kw">let </span>model = App { image, idx: <span class="number">0 </span>};
-
-        <span class="kw">let </span>image = model.image.widget();
-        <span class="kw">let </span>widgets = <span class="macro">view_output!</span>();
-
-        ComponentParts { model, widgets }
-    }</code></pre></div></div></div><details class="toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="scraped-example " data-locs="[[[7,7],&quot;../../src/worker/worker.rs.html#95&quot;,&quot;line 95&quot;]]"><div class="scraped-example-title">relm4/examples/worker.rs (<a href="../../src/worker/worker.rs.html#95">line 95</a>)</div><div class="code-wrapper"><div class="example-wrap"><pre class="src-line-numbers"><span>88</span>
-<span>89</span>
-<span>90</span>
-<span>91</span>
-<span>92</span>
-<span>93</span>
-<span>94</span>
-<span>95</span>
-<span>96</span>
-<span>97</span>
-<span>98</span>
-<span>99</span>
-<span>100</span>
-<span>101</span>
-<span>102</span>
-<span>103</span>
-</pre><pre class="rust"><code><button class="expand">&varr;</button>    <span class="kw">fn </span>init(
-        <span class="kw">_</span>: <span class="self">Self</span>::Init,
-        root: <span class="kw-2">&amp;</span><span class="self">Self</span>::Root,
-        sender: ComponentSender&lt;<span class="self">Self</span>&gt;,
-    ) -&gt; ComponentParts&lt;<span class="self">Self</span>&gt; {
-        <span class="kw">let </span>model = App {
-            counter: <span class="number">0</span>,
-            worker: <span class="highlight focus">AsyncHandler::builder</span>()
-                .detach_worker(())
-                .forward(sender.input_sender(), identity),
-        };
-
-        <span class="kw">let </span>widgets = <span class="macro">view_output!</span>();
-
-        ComponentParts { model, widgets }
-    }</code></pre></div></div></div><div class="scraped-example " data-locs="[[[5,5],&quot;../../src/message_broker/message_broker.rs.html#187&quot;,&quot;line 187&quot;],[[9,9],&quot;../../src/message_broker/message_broker.rs.html#191&quot;,&quot;line 191&quot;]]"><div class="scraped-example-title">relm4/examples/message_broker.rs (<a href="../../src/message_broker/message_broker.rs.html#187">line 187</a>)</div><div class="code-wrapper"><button class="prev">&pr;</button> <button class="next">&sc;</button><div class="example-wrap"><pre class="src-line-numbers"><span>182</span>
-<span>183</span>
-<span>184</span>
-<span>185</span>
-<span>186</span>
-<span>187</span>
-<span>188</span>
-<span>189</span>
-<span>190</span>
-<span>191</span>
-<span>192</span>
-<span>193</span>
-<span>194</span>
-<span>195</span>
-<span>196</span>
-<span>197</span>
-<span>198</span>
-<span>199</span>
-<span>200</span>
-<span>201</span>
-<span>202</span>
-<span>203</span>
-<span>204</span>
-</pre><pre class="rust"><code><button class="expand">&varr;</button>    <span class="kw">fn </span>init(
-        _init: <span class="self">Self</span>::Init,
-        root: <span class="kw-2">&amp;</span><span class="self">Self</span>::Root,
-        sender: ComponentSender&lt;<span class="self">Self</span>&gt;,
-    ) -&gt; ComponentParts&lt;<span class="self">Self</span>&gt; {
-        <span class="kw">let </span>header = <span class="highlight focus">Header::builder</span>()
-            .launch_with_broker((), <span class="kw-2">&amp;</span>HEADER_BROKER)
-            .forward(sender.input_sender(), identity);
-
-        <span class="kw">let </span>dialog = <span class="highlight">Dialog::builder</span>()
-            .launch(root.clone().upcast())
-            .forward(sender.input_sender(), identity);
-
-        <span class="kw">let </span>model = App {
-            mode: AppMode::View,
-            header,
-            dialog,
-        };
-
-        <span class="kw">let </span>widgets = <span class="macro">view_output!</span>();
-
-        ComponentParts { model, widgets }
-    }</code></pre></div></div></div><div class="scraped-example " data-locs="[[[5,5],&quot;../../src/open_button/open_button.rs.html#50&quot;,&quot;line 50&quot;]]"><div class="scraped-example-title">relm4-components/examples/open_button.rs (<a href="../../src/open_button/open_button.rs.html#50">line 50</a>)</div><div class="code-wrapper"><div class="example-wrap"><pre class="src-line-numbers"><span>45</span>
-<span>46</span>
-<span>47</span>
-<span>48</span>
-<span>49</span>
-<span>50</span>
-<span>51</span>
-<span>52</span>
-<span>53</span>
-<span>54</span>
-<span>55</span>
-<span>56</span>
-<span>57</span>
-<span>58</span>
-<span>59</span>
-<span>60</span>
-<span>61</span>
-<span>62</span>
-<span>63</span>
-</pre><pre class="rust"><code><button class="expand">&varr;</button>    <span class="kw">fn </span>init(
-        <span class="kw">_</span>: <span class="self">Self</span>::Init,
-        root: <span class="kw-2">&amp;</span><span class="self">Self</span>::Root,
-        sender: ComponentSender&lt;<span class="self">Self</span>&gt;,
-    ) -&gt; ComponentParts&lt;<span class="self">Self</span>&gt; {
-        <span class="kw">let </span>open_button = <span class="highlight focus">OpenButton::builder</span>()
-            .launch(OpenButtonSettings {
-                dialog_settings: OpenDialogSettings::default(),
-                text: <span class="string">&quot;Open file&quot;</span>,
-                recently_opened_files: <span class="prelude-val">Some</span>(<span class="string">&quot;.recent_files&quot;</span>),
-                max_recent_files: <span class="number">10</span>,
-            })
-            .forward(sender.input_sender(), AppMsg::Open);
-        <span class="kw">let </span>model = App { open_button };
-
-        <span class="kw">let </span>widgets = <span class="macro">view_output!</span>();
-
-        ComponentParts { model, widgets }
-    }</code></pre></div></div></div><div class="scraped-example " data-locs="[[[9,9],&quot;../../src/transient_dialog/transient_dialog.rs.html#105&quot;,&quot;line 105&quot;],[[47,47],&quot;../../src/transient_dialog/transient_dialog.rs.html#143&quot;,&quot;line 143&quot;]]"><div class="scraped-example-title">relm4/examples/transient_dialog.rs (<a href="../../src/transient_dialog/transient_dialog.rs.html#105">line 105</a>)</div><div class="code-wrapper"><button class="prev">&pr;</button> <button class="next">&sc;</button><div class="example-wrap"><pre class="src-line-numbers"><span>96</span>
-<span>97</span>
-<span>98</span>
-<span>99</span>
-<span>100</span>
-<span>101</span>
-<span>102</span>
-<span>103</span>
-<span>104</span>
-<span>105</span>
-<span>106</span>
-<span>107</span>
-<span>108</span>
-<span>109</span>
-<span>110</span>
-<span>111</span>
-<span>112</span>
-<span>113</span>
-<span>114</span>
-<span>115</span>
-<span>116</span>
-<span>117</span>
-<span>118</span>
-<span>119</span>
-<span>120</span>
-<span>121</span>
-<span>122</span>
-<span>123</span>
-<span>124</span>
-<span>125</span>
-<span>126</span>
-<span>127</span>
-<span>128</span>
-<span>129</span>
-<span>130</span>
-<span>131</span>
-<span>132</span>
-<span>133</span>
-<span>134</span>
-<span>135</span>
-<span>136</span>
-<span>137</span>
-<span>138</span>
-<span>139</span>
-<span>140</span>
-<span>141</span>
-<span>142</span>
-<span>143</span>
-<span>144</span>
-<span>145</span>
-<span>146</span>
-<span>147</span>
-<span>148</span>
-<span>149</span>
-</pre><pre class="rust"><code><button class="expand">&varr;</button>    <span class="kw">fn </span>init(
-        _init: <span class="self">Self</span>::Init,
-        root: <span class="kw-2">&amp;</span><span class="self">Self</span>::Root,
-        sender: ComponentSender&lt;<span class="self">Self</span>&gt;,
-    ) -&gt; ComponentParts&lt;<span class="self">Self</span>&gt; {
-        <span class="comment">// We don&#39;t have access to the parent window from here
-        // but we can just use the button to set the transient window for the dialog.
-        // Relm4 will get the window later by calling [`WidgetExt::root()`]
-        // on the button once all widgets are connected.
-        </span><span class="kw">let </span>dialog = <span class="highlight focus">Dialog::builder</span>()
-            .transient_for(root)
-            .launch_with_broker((), <span class="kw-2">&amp;</span>DIALOG_BROKER)
-            .forward(sender.input_sender(), identity);
-
-        <span class="kw">let </span>model = Button { dialog };
-        <span class="kw">let </span>widgets = <span class="macro">view_output!</span>();
-        ComponentParts { model, widgets }
-    }
-
-    <span class="kw">fn </span>update(<span class="kw-2">&amp;mut </span><span class="self">self</span>, _msg: <span class="self">Self</span>::Input, _sender: ComponentSender&lt;<span class="self">Self</span>&gt;) {}
-}
-
-<span class="attr">#[derive(Debug)]
-</span><span class="kw">enum </span>AppMsg {}
-
-<span class="kw">struct </span>App {
-    button: Controller&lt;Button&gt;,
-}
-
-<span class="attr">#[relm4::component]
-</span><span class="kw">impl </span>SimpleComponent <span class="kw">for </span>App {
-    <span class="kw">type </span>Init = ();
-    <span class="kw">type </span>Input = AppMsg;
-    <span class="kw">type </span>Output = ();
-
-    <span class="macro">view! </span>{
-        main_window = gtk::ApplicationWindow {
-            set_default_size: (<span class="number">500</span>, <span class="number">250</span>),
-            set_child: <span class="prelude-val">Some</span>(model.button.widget()),
-        }
-    }
-
-    <span class="kw">fn </span>init(
-        _init: <span class="self">Self</span>::Init,
-        root: <span class="kw-2">&amp;</span><span class="self">Self</span>::Root,
-        sender: ComponentSender&lt;<span class="self">Self</span>&gt;,
-    ) -&gt; ComponentParts&lt;<span class="self">Self</span>&gt; {
-        <span class="kw">let </span>button = <span class="highlight">Button::builder</span>()
-            .launch(())
-            .forward(sender.input_sender(), identity);
-        <span class="kw">let </span>model = App { button };
-        <span class="kw">let </span>widgets = <span class="macro">view_output!</span>();
-        ComponentParts { model, widgets }
-    }</code></pre></div></div></div><div class="scraped-example " data-locs="[[[5,5],&quot;../../src/components/components.rs.html#178&quot;,&quot;line 178&quot;],[[8,8],&quot;../../src/components/components.rs.html#181&quot;,&quot;line 181&quot;]]"><div class="scraped-example-title">relm4/examples/components.rs (<a href="../../src/components/components.rs.html#178">line 178</a>)</div><div class="code-wrapper"><button class="prev">&pr;</button> <button class="next">&sc;</button><div class="example-wrap"><pre class="src-line-numbers"><span>173</span>
-<span>174</span>
-<span>175</span>
-<span>176</span>
-<span>177</span>
-<span>178</span>
-<span>179</span>
-<span>180</span>
-<span>181</span>
-<span>182</span>
-<span>183</span>
-<span>184</span>
-<span>185</span>
-<span>186</span>
-<span>187</span>
-<span>188</span>
-<span>189</span>
-<span>190</span>
-<span>191</span>
-<span>192</span>
-<span>193</span>
-<span>194</span>
-<span>195</span>
-<span>196</span>
-<span>197</span>
-<span>198</span>
-<span>199</span>
-</pre><pre class="rust"><code><button class="expand">&varr;</button>    <span class="kw">fn </span>init(
-        <span class="kw">_</span>: <span class="self">Self</span>::Init,
-        root: <span class="kw-2">&amp;</span><span class="self">Self</span>::Root,
-        sender: ComponentSender&lt;<span class="self">Self</span>&gt;,
-    ) -&gt; ComponentParts&lt;<span class="self">Self</span>&gt; {
-        <span class="kw">let </span>header = <span class="highlight focus">Header::builder</span>()
-            .launch(())
-            .forward(sender.input_sender(), identity);
-        <span class="kw">let </span>dialog = <span class="highlight">Dialog::builder</span>()
-            .transient_for(root)
-            .launch(DialogInit {
-                text: <span class="string">&quot;Do you want to close before saving?&quot;</span>.to_string(),
-                secondary_text: <span class="prelude-val">Some</span>(<span class="string">&quot;All unsaved changes will be lost&quot;</span>.to_string()),
-                accept_text: <span class="string">&quot;Close&quot;</span>.to_string(),
-                cancel_text: <span class="string">&quot;Cancel&quot;</span>.to_string(),
-            })
-            .forward(sender.input_sender(), identity);
-
-        <span class="kw">let </span>model = App {
-            mode: AppMode::View,
-            header,
-            dialog,
-        };
-        <span class="kw">let </span>widgets = <span class="macro">view_output!</span>();
-
-        ComponentParts { model, widgets }
-    }</code></pre></div></div></div><div class="example-links">Additional examples can be found in:<br><ul><li><a href="../../src/file_dialogs/file_dialogs.rs.html#96">relm4-components/examples/file_dialogs.rs</a></li><li><a href="../../src/message_stream/message_stream.rs.html#142">relm4/examples/message_stream.rs</a></li><li><a href="../../src/alert/alert.rs.html#105">relm4-components/examples/alert.rs</a></li><li><a href="../../src/settings_list/settings_list.rs.html#23">relm4/examples/settings_list.rs</a></li></ul></div></div></details></div></details><details class="toggle method-toggle" open><summary><section id="method.update" class="method"><a class="srclink rightside" href="../../src/relm4/component/sync/traits.rs.html#55">source</a><h4 class="code-header">fn <a href="#method.update" class="fn">update</a>(
+</div></details></div><h2 id="provided-methods" class="section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="method.builder" class="method"><a class="src rightside" href="../../src/relm4/component/sync/traits.rs.html#39-41">Source</a><h4 class="code-header">fn <a href="#method.builder" class="fn">builder</a>() -&gt; <a class="struct" href="struct.ComponentBuilder.html" title="struct relm4::component::ComponentBuilder">ComponentBuilder</a>&lt;Self&gt;</h4></section></summary><div class="docblock"><p>Create a builder for this component.</p>
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../../scrape-examples-help.html">?</a></h5><div class="scraped-example" data-locs="[[[5,5],&#34;../../src/web_image/web_image.rs.html#71&#34;,&#34;line 71&#34;]]"><div class="scraped-example-title">relm4-components/examples/web_image.rs (<a href="../../src/web_image/web_image.rs.html#71">line 71</a>)</div><div class="example-wrap digits-2"><pre class="rust"><code><span data-nosnippet>66</span>    <span class="kw">fn </span>init(
+<span data-nosnippet>67</span>        <span class="kw">_</span>: <span class="self">Self</span>::Init,
+<span data-nosnippet>68</span>        root: <span class="self">Self</span>::Root,
+<span data-nosnippet>69</span>        sender: ComponentSender&lt;<span class="self">Self</span>&gt;,
+<span data-nosnippet>70</span>    ) -&gt; ComponentParts&lt;<span class="self">Self</span>&gt; {
+<span data-nosnippet>71</span>        <span class="kw">let </span>image = <span class="highlight focus">WebImage::builder</span>().launch(IMAGES[<span class="number">0</span>].to_owned()).detach();
+<span data-nosnippet>72</span>        <span class="kw">let </span>model = App { image, idx: <span class="number">0 </span>};
+<span data-nosnippet>73</span>
+<span data-nosnippet>74</span>        <span class="kw">let </span>image = model.image.widget();
+<span data-nosnippet>75</span>        <span class="kw">let </span>widgets = <span class="macro">view_output!</span>();
+<span data-nosnippet>76</span>
+<span data-nosnippet>77</span>        ComponentParts { model, widgets }
+<span data-nosnippet>78</span>    }</code></pre></div></div><details class="toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="scraped-example" data-locs="[[[7,7],&#34;../../src/worker/worker.rs.html#95&#34;,&#34;line 95&#34;]]"><div class="scraped-example-title">relm4/examples/worker.rs (<a href="../../src/worker/worker.rs.html#95">line 95</a>)</div><div class="example-wrap digits-3"><pre class="rust"><code><span data-nosnippet>88</span>    <span class="kw">fn </span>init(
+<span data-nosnippet>89</span>        <span class="kw">_</span>: <span class="self">Self</span>::Init,
+<span data-nosnippet>90</span>        root: <span class="self">Self</span>::Root,
+<span data-nosnippet>91</span>        sender: ComponentSender&lt;<span class="self">Self</span>&gt;,
+<span data-nosnippet>92</span>    ) -&gt; ComponentParts&lt;<span class="self">Self</span>&gt; {
+<span data-nosnippet>93</span>        <span class="kw">let </span>model = App {
+<span data-nosnippet>94</span>            counter: <span class="number">0</span>,
+<span data-nosnippet>95</span>            worker: <span class="highlight focus">AsyncHandler::builder</span>()
+<span data-nosnippet>96</span>                .detach_worker(())
+<span data-nosnippet>97</span>                .forward(sender.input_sender(), identity),
+<span data-nosnippet>98</span>        };
+<span data-nosnippet>99</span>
+<span data-nosnippet>100</span>        <span class="kw">let </span>widgets = <span class="macro">view_output!</span>();
+<span data-nosnippet>101</span>
+<span data-nosnippet>102</span>        ComponentParts { model, widgets }
+<span data-nosnippet>103</span>    }</code></pre></div></div><div class="scraped-example" data-locs="[[[6,6],&#34;../../src/adw_combo_row/adw_combo_row.rs.html#68&#34;,&#34;line 68&#34;]]"><div class="scraped-example-title">relm4-components/examples/adw_combo_row.rs (<a href="../../src/adw_combo_row/adw_combo_row.rs.html#68">line 68</a>)</div><div class="example-wrap digits-2"><pre class="rust"><code><span data-nosnippet>62</span>    <span class="kw">fn </span>init(
+<span data-nosnippet>63</span>        <span class="kw">_</span>: <span class="self">Self</span>::Init,
+<span data-nosnippet>64</span>        root: <span class="self">Self</span>::Root,
+<span data-nosnippet>65</span>        sender: ComponentSender&lt;<span class="self">Self</span>&gt;,
+<span data-nosnippet>66</span>    ) -&gt; ComponentParts&lt;<span class="self">Self</span>&gt; {
+<span data-nosnippet>67</span>        <span class="kw">let </span>model = App {
+<span data-nosnippet>68</span>            combo_row: <span class="highlight focus">SimpleComboRow::builder</span>()
+<span data-nosnippet>69</span>                .launch(SimpleComboRow {
+<span data-nosnippet>70</span>                    variants: <span class="macro">vec!</span>[<span class="string">"Variant 1"</span>, <span class="string">"Variant 2"</span>],
+<span data-nosnippet>71</span>                    active_index: <span class="prelude-val">None</span>,
+<span data-nosnippet>72</span>                })
+<span data-nosnippet>73</span>                .forward(sender.input_sender(), AppMsg::Selected),
+<span data-nosnippet>74</span>            selected_variant: <span class="number">0</span>,
+<span data-nosnippet>75</span>        };
+<span data-nosnippet>76</span>
+<span data-nosnippet>77</span>        <span class="kw">let </span>combo_row = model.combo_row.widget();
+<span data-nosnippet>78</span>        <span class="kw">let </span>widgets = <span class="macro">view_output!</span>();
+<span data-nosnippet>79</span>
+<span data-nosnippet>80</span>        ComponentParts { model, widgets }
+<span data-nosnippet>81</span>    }</code></pre></div></div><div class="scraped-example" data-locs="[[[5,5],&#34;../../src/message_broker/message_broker.rs.html#191&#34;,&#34;line 191&#34;],[[9,9],&#34;../../src/message_broker/message_broker.rs.html#195&#34;,&#34;line 195&#34;]]"><div class="scraped-example-title">relm4/examples/message_broker.rs (<a href="../../src/message_broker/message_broker.rs.html#191">line 191</a>)</div><div class="example-wrap digits-3"><pre class="rust"><code><span data-nosnippet>186</span>    <span class="kw">fn </span>init(
+<span data-nosnippet>187</span>        _init: <span class="self">Self</span>::Init,
+<span data-nosnippet>188</span>        root: <span class="self">Self</span>::Root,
+<span data-nosnippet>189</span>        sender: ComponentSender&lt;<span class="self">Self</span>&gt;,
+<span data-nosnippet>190</span>    ) -&gt; ComponentParts&lt;<span class="self">Self</span>&gt; {
+<span data-nosnippet>191</span>        <span class="kw">let </span>header = <span class="highlight focus">Header::builder</span>()
+<span data-nosnippet>192</span>            .launch_with_broker((), <span class="kw-2">&amp;</span>HEADER_BROKER)
+<span data-nosnippet>193</span>            .forward(sender.input_sender(), identity);
+<span data-nosnippet>194</span>
+<span data-nosnippet>195</span>        <span class="kw">let </span>dialog = <span class="highlight">Dialog::builder</span>()
+<span data-nosnippet>196</span>            .launch(root.clone().upcast())
+<span data-nosnippet>197</span>            .forward(sender.input_sender(), identity);
+<span data-nosnippet>198</span>
+<span data-nosnippet>199</span>        <span class="kw">let </span>model = App {
+<span data-nosnippet>200</span>            mode: AppMode::View,
+<span data-nosnippet>201</span>            header,
+<span data-nosnippet>202</span>            dialog,
+<span data-nosnippet>203</span>        };
+<span data-nosnippet>204</span>
+<span data-nosnippet>205</span>        <span class="kw">let </span>widgets = <span class="macro">view_output!</span>();
+<span data-nosnippet>206</span>
+<span data-nosnippet>207</span>        ComponentParts { model, widgets }
+<span data-nosnippet>208</span>    }</code></pre></div></div><div class="scraped-example" data-locs="[[[5,5],&#34;../../src/open_button/open_button.rs.html#50&#34;,&#34;line 50&#34;]]"><div class="scraped-example-title">relm4-components/examples/open_button.rs (<a href="../../src/open_button/open_button.rs.html#50">line 50</a>)</div><div class="example-wrap digits-2"><pre class="rust"><code><span data-nosnippet>45</span>    <span class="kw">fn </span>init(
+<span data-nosnippet>46</span>        <span class="kw">_</span>: <span class="self">Self</span>::Init,
+<span data-nosnippet>47</span>        root: <span class="self">Self</span>::Root,
+<span data-nosnippet>48</span>        sender: ComponentSender&lt;<span class="self">Self</span>&gt;,
+<span data-nosnippet>49</span>    ) -&gt; ComponentParts&lt;<span class="self">Self</span>&gt; {
+<span data-nosnippet>50</span>        <span class="kw">let </span>open_button = <span class="highlight focus">OpenButton::builder</span>()
+<span data-nosnippet>51</span>            .launch(OpenButtonSettings {
+<span data-nosnippet>52</span>                dialog_settings: OpenDialogSettings::default(),
+<span data-nosnippet>53</span>                icon: <span class="prelude-val">None</span>,
+<span data-nosnippet>54</span>                text: <span class="string">"Open file"</span>,
+<span data-nosnippet>55</span>                recently_opened_files: <span class="prelude-val">Some</span>(<span class="string">".recent_files"</span>),
+<span data-nosnippet>56</span>                max_recent_files: <span class="number">10</span>,
+<span data-nosnippet>57</span>            })
+<span data-nosnippet>58</span>            .forward(sender.input_sender(), AppMsg::Open);
+<span data-nosnippet>59</span>        <span class="kw">let </span>model = App { open_button };
+<span data-nosnippet>60</span>
+<span data-nosnippet>61</span>        <span class="kw">let </span>widgets = <span class="macro">view_output!</span>();
+<span data-nosnippet>62</span>
+<span data-nosnippet>63</span>        ComponentParts { model, widgets }
+<span data-nosnippet>64</span>    }</code></pre></div></div><div class="scraped-example" data-locs="[[[9,9],&#34;../../src/transient_dialog/transient_dialog.rs.html#110&#34;,&#34;line 110&#34;],[[47,47],&#34;../../src/transient_dialog/transient_dialog.rs.html#148&#34;,&#34;line 148&#34;]]"><div class="scraped-example-title">relm4/examples/transient_dialog.rs (<a href="../../src/transient_dialog/transient_dialog.rs.html#110">line 110</a>)</div><div class="example-wrap digits-3"><pre class="rust"><code><span data-nosnippet>101</span>    <span class="kw">fn </span>init(
+<span data-nosnippet>102</span>        _init: <span class="self">Self</span>::Init,
+<span data-nosnippet>103</span>        root: <span class="self">Self</span>::Root,
+<span data-nosnippet>104</span>        sender: ComponentSender&lt;<span class="self">Self</span>&gt;,
+<span data-nosnippet>105</span>    ) -&gt; ComponentParts&lt;<span class="self">Self</span>&gt; {
+<span data-nosnippet>106</span>        <span class="comment">// We don't have access to the parent window from here
+<span data-nosnippet>107</span>        // but we can just use the button to set the transient window for the dialog.
+<span data-nosnippet>108</span>        // Relm4 will get the window later by calling [`WidgetExt::root()`]
+<span data-nosnippet>109</span>        // on the button once all widgets are connected.
+<span data-nosnippet>110</span>        </span><span class="kw">let </span>dialog = <span class="highlight focus">Dialog::builder</span>()
+<span data-nosnippet>111</span>            .transient_for(<span class="kw-2">&amp;</span>root)
+<span data-nosnippet>112</span>            .launch_with_broker((), <span class="kw-2">&amp;</span>DIALOG_BROKER)
+<span data-nosnippet>113</span>            .forward(sender.input_sender(), identity);
+<span data-nosnippet>114</span>
+<span data-nosnippet>115</span>        <span class="kw">let </span>model = Button { dialog };
+<span data-nosnippet>116</span>        <span class="kw">let </span>widgets = <span class="macro">view_output!</span>();
+<span data-nosnippet>117</span>        ComponentParts { model, widgets }
+<span data-nosnippet>118</span>    }
+<span data-nosnippet>119</span>
+<span data-nosnippet>120</span>    <span class="kw">fn </span>update(<span class="kw-2">&amp;mut </span><span class="self">self</span>, _msg: <span class="self">Self</span>::Input, _sender: ComponentSender&lt;<span class="self">Self</span>&gt;) {}
+<span data-nosnippet>121</span>}
+<span data-nosnippet>122</span>
+<span data-nosnippet>123</span><span class="attr">#[derive(Debug)]
+<span data-nosnippet>124</span></span><span class="kw">enum </span>AppMsg {}
+<span data-nosnippet>125</span>
+<span data-nosnippet>126</span><span class="kw">struct </span>App {
+<span data-nosnippet>127</span>    button: Controller&lt;Button&gt;,
+<span data-nosnippet>128</span>}
+<span data-nosnippet>129</span>
+<span data-nosnippet>130</span><span class="attr">#[relm4::component]
+<span data-nosnippet>131</span></span><span class="kw">impl </span>SimpleComponent <span class="kw">for </span>App {
+<span data-nosnippet>132</span>    <span class="kw">type </span>Init = ();
+<span data-nosnippet>133</span>    <span class="kw">type </span>Input = AppMsg;
+<span data-nosnippet>134</span>    <span class="kw">type </span>Output = ();
+<span data-nosnippet>135</span>
+<span data-nosnippet>136</span>    <span class="macro">view!</span> {
+<span data-nosnippet>137</span>        main_window = gtk::ApplicationWindow {
+<span data-nosnippet>138</span>            set_default_size: (<span class="number">500</span>, <span class="number">250</span>),
+<span data-nosnippet>139</span>            set_child: <span class="prelude-val">Some</span>(model.button.widget()),
+<span data-nosnippet>140</span>        }
+<span data-nosnippet>141</span>    }
+<span data-nosnippet>142</span>
+<span data-nosnippet>143</span>    <span class="kw">fn </span>init(
+<span data-nosnippet>144</span>        _init: <span class="self">Self</span>::Init,
+<span data-nosnippet>145</span>        root: <span class="self">Self</span>::Root,
+<span data-nosnippet>146</span>        sender: ComponentSender&lt;<span class="self">Self</span>&gt;,
+<span data-nosnippet>147</span>    ) -&gt; ComponentParts&lt;<span class="self">Self</span>&gt; {
+<span data-nosnippet>148</span>        <span class="kw">let </span>button = <span class="highlight">Button::builder</span>()
+<span data-nosnippet>149</span>            .launch(())
+<span data-nosnippet>150</span>            .forward(sender.input_sender(), identity);
+<span data-nosnippet>151</span>        <span class="kw">let </span>model = App { button };
+<span data-nosnippet>152</span>        <span class="kw">let </span>widgets = <span class="macro">view_output!</span>();
+<span data-nosnippet>153</span>        ComponentParts { model, widgets }
+<span data-nosnippet>154</span>    }</code></pre></div></div><div class="example-links">Additional examples can be found in:<br><ul><li><a href="../../src/combo_box/combo_box.rs.html#83">relm4-components/examples/combo_box.rs</a></li><li><a href="../../src/multi_window/multi_window.rs.html#81">relm4/examples/multi_window.rs</a></li><li><a href="../../src/components/components.rs.html#182">relm4/examples/components.rs</a></li><li><a href="../../src/navigation_splitview_with_stack/navigation_splitview_with_stack.rs.html#93">relm4/examples/navigation_splitview_with_stack.rs</a></li><li><a href="../../src/file_dialogs/file_dialogs.rs.html#98">relm4-components/examples/file_dialogs.rs</a></li><li><a href="../../src/message_stream/message_stream.rs.html#146">relm4/examples/message_stream.rs</a></li><li><a href="../../src/drop_sub_components/drop_sub_components.rs.html#73">relm4/examples/drop_sub_components.rs</a></li><li><a href="../../src/alert/alert.rs.html#106">relm4-components/examples/alert.rs</a></li><li><a href="../../src/settings_list/settings_list.rs.html#23">relm4/examples/settings_list.rs</a></li><li><a href="../../src/state_management/state_management.rs.html#561">relm4/examples/state_management.rs</a></li></ul></div></div></details></div></details><details class="toggle method-toggle" open><summary><section id="method.update" class="method"><a class="src rightside" href="../../src/relm4/component/sync/traits.rs.html#55">Source</a><h4 class="code-header">fn <a href="#method.update" class="fn">update</a>(
     &amp;mut self,
     message: Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Input" title="type relm4::component::Component::Input">Input</a>,
-    sender: <a class="struct" href="../prelude/struct.ComponentSender.html" title="struct relm4::prelude::ComponentSender">ComponentSender</a>&lt;Self&gt;,
-    root: &amp;Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Root" title="type relm4::component::Component::Root">Root</a>
+    sender: <a class="struct" href="../struct.ComponentSender.html" title="struct relm4::ComponentSender">ComponentSender</a>&lt;Self&gt;,
+    root: &amp;Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Root" title="type relm4::component::Component::Root">Root</a>,
 )</h4></section></summary><div class="docblock"><p>Processes inputs received by the component.</p>
-</div></details><details class="toggle method-toggle" open><summary><section id="method.update_cmd" class="method"><a class="srclink rightside" href="../../src/relm4/component/sync/traits.rs.html#59-65">source</a><h4 class="code-header">fn <a href="#method.update_cmd" class="fn">update_cmd</a>(
+</div></details><details class="toggle method-toggle" open><summary><section id="method.update_cmd" class="method"><a class="src rightside" href="../../src/relm4/component/sync/traits.rs.html#59-65">Source</a><h4 class="code-header">fn <a href="#method.update_cmd" class="fn">update_cmd</a>(
     &amp;mut self,
     message: Self::<a class="associatedtype" href="trait.Component.html#associatedtype.CommandOutput" title="type relm4::component::Component::CommandOutput">CommandOutput</a>,
-    sender: <a class="struct" href="../prelude/struct.ComponentSender.html" title="struct relm4::prelude::ComponentSender">ComponentSender</a>&lt;Self&gt;,
-    root: &amp;Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Root" title="type relm4::component::Component::Root">Root</a>
+    sender: <a class="struct" href="../struct.ComponentSender.html" title="struct relm4::ComponentSender">ComponentSender</a>&lt;Self&gt;,
+    root: &amp;Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Root" title="type relm4::component::Component::Root">Root</a>,
 )</h4></section></summary><div class="docblock"><p>Defines how the component should respond to command updates.</p>
-</div></details><details class="toggle method-toggle" open><summary><section id="method.update_cmd_with_view" class="method"><a class="srclink rightside" href="../../src/relm4/component/sync/traits.rs.html#80-89">source</a><h4 class="code-header">fn <a href="#method.update_cmd_with_view" class="fn">update_cmd_with_view</a>(
+</div></details><details class="toggle method-toggle" open><summary><section id="method.update_cmd_with_view" class="method"><a class="src rightside" href="../../src/relm4/component/sync/traits.rs.html#80-89">Source</a><h4 class="code-header">fn <a href="#method.update_cmd_with_view" class="fn">update_cmd_with_view</a>(
     &amp;mut self,
     widgets: &amp;mut Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Widgets" title="type relm4::component::Component::Widgets">Widgets</a>,
     message: Self::<a class="associatedtype" href="trait.Component.html#associatedtype.CommandOutput" title="type relm4::component::Component::CommandOutput">CommandOutput</a>,
-    sender: <a class="struct" href="../prelude/struct.ComponentSender.html" title="struct relm4::prelude::ComponentSender">ComponentSender</a>&lt;Self&gt;,
-    root: &amp;Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Root" title="type relm4::component::Component::Root">Root</a>
+    sender: <a class="struct" href="../struct.ComponentSender.html" title="struct relm4::ComponentSender">ComponentSender</a>&lt;Self&gt;,
+    root: &amp;Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Root" title="type relm4::component::Component::Root">Root</a>,
 )</h4></section></summary><div class="docblock"><p>Updates the model and view upon completion of a command.</p>
 <p>Overriding this method is helpful if you need access to the widgets while processing a
 command output.</p>
@@ -396,17 +238,17 @@ command output.</p>
 If you override this method while using the <a href="../attr.component.html" title="attr relm4::component"><code>component</code></a> macro, you must remember to call
 <a href="trait.Component.html#method.update_view"><code>update_view</code></a> in your implementation. Otherwise, the view will not reflect the updated
 model.</p>
-</div></details><details class="toggle method-toggle" open><summary><section id="method.update_view" class="method"><a class="srclink rightside" href="../../src/relm4/component/sync/traits.rs.html#93">source</a><h4 class="code-header">fn <a href="#method.update_view" class="fn">update_view</a>(
+</div></details><details class="toggle method-toggle" open><summary><section id="method.update_view" class="method"><a class="src rightside" href="../../src/relm4/component/sync/traits.rs.html#93">Source</a><h4 class="code-header">fn <a href="#method.update_view" class="fn">update_view</a>(
     &amp;self,
     widgets: &amp;mut Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Widgets" title="type relm4::component::Component::Widgets">Widgets</a>,
-    sender: <a class="struct" href="../prelude/struct.ComponentSender.html" title="struct relm4::prelude::ComponentSender">ComponentSender</a>&lt;Self&gt;
+    sender: <a class="struct" href="../struct.ComponentSender.html" title="struct relm4::ComponentSender">ComponentSender</a>&lt;Self&gt;,
 )</h4></section></summary><div class="docblock"><p>Updates the view after the model has been updated.</p>
-</div></details><details class="toggle method-toggle" open><summary><section id="method.update_with_view" class="method"><a class="srclink rightside" href="../../src/relm4/component/sync/traits.rs.html#108-117">source</a><h4 class="code-header">fn <a href="#method.update_with_view" class="fn">update_with_view</a>(
+</div></details><details class="toggle method-toggle" open><summary><section id="method.update_with_view" class="method"><a class="src rightside" href="../../src/relm4/component/sync/traits.rs.html#108-117">Source</a><h4 class="code-header">fn <a href="#method.update_with_view" class="fn">update_with_view</a>(
     &amp;mut self,
     widgets: &amp;mut Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Widgets" title="type relm4::component::Component::Widgets">Widgets</a>,
     message: Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Input" title="type relm4::component::Component::Input">Input</a>,
-    sender: <a class="struct" href="../prelude/struct.ComponentSender.html" title="struct relm4::prelude::ComponentSender">ComponentSender</a>&lt;Self&gt;,
-    root: &amp;Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Root" title="type relm4::component::Component::Root">Root</a>
+    sender: <a class="struct" href="../struct.ComponentSender.html" title="struct relm4::ComponentSender">ComponentSender</a>&lt;Self&gt;,
+    root: &amp;Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Root" title="type relm4::component::Component::Root">Root</a>,
 )</h4></section></summary><div class="docblock"><p>Updates the model and view when a new input is received.</p>
 <p>Overriding this method is helpful if you need access to the widgets while processing an
 input.</p>
@@ -414,14 +256,23 @@ input.</p>
 you override this method while using the <a href="../attr.component.html" title="attr relm4::component"><code>component</code></a> macro, you must remember to
 call <a href="trait.Component.html#method.update_view"><code>update_view</code></a> in your implementation. Otherwise, the view will not reflect the
 updated model.</p>
-</div></details><details class="toggle method-toggle" open><summary><section id="method.shutdown" class="method"><a class="srclink rightside" href="../../src/relm4/component/sync/traits.rs.html#123">source</a><h4 class="code-header">fn <a href="#method.shutdown" class="fn">shutdown</a>(
+</div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-1"><a href="#scraped-examples-1">Examples found in repository</a><a class="scrape-help" href="../../scrape-examples-help.html">?</a></h5><div class="scraped-example expanded" data-locs="[[[7,7],&#34;../../src/drop_sub_components/drop_sub_components.rs.html#58&#34;,&#34;line 58&#34;]]"><div class="scraped-example-title">relm4/examples/drop_sub_components.rs (<a href="../../src/drop_sub_components/drop_sub_components.rs.html#58">line 58</a>)</div><div class="example-wrap digits-2"><pre class="rust"><code><span data-nosnippet>51</span>    <span class="kw">fn </span>init(
+<span data-nosnippet>52</span>        _init: <span class="self">Self</span>::Init,
+<span data-nosnippet>53</span>        root: <span class="self">Self</span>::Root,
+<span data-nosnippet>54</span>        sender: ComponentSender&lt;<span class="self">Self</span>&gt;,
+<span data-nosnippet>55</span>    ) -&gt; ComponentParts&lt;<span class="self">Self</span>&gt; {
+<span data-nosnippet>56</span>        <span class="kw">let </span><span class="kw-2">mut </span>model = <span class="self">Self </span>{ mode: <span class="prelude-val">None </span>};
+<span data-nosnippet>57</span>        <span class="kw">let </span><span class="kw-2">mut </span>widgets = <span class="macro">view_output!</span>();
+<span data-nosnippet>58</span>        model.<span class="highlight focus">update_with_view</span>(<span class="kw-2">&amp;mut </span>widgets, Msg::ShowInitialScreen, sender, <span class="kw-2">&amp;</span>root);
+<span data-nosnippet>59</span>        ComponentParts { model, widgets }
+<span data-nosnippet>60</span>    }</code></pre></div></div></div></details><details class="toggle method-toggle" open><summary><section id="method.shutdown" class="method"><a class="src rightside" href="../../src/relm4/component/sync/traits.rs.html#123">Source</a><h4 class="code-header">fn <a href="#method.shutdown" class="fn">shutdown</a>(
     &amp;mut self,
     widgets: &amp;mut Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Widgets" title="type relm4::component::Component::Widgets">Widgets</a>,
-    output: <a class="struct" href="../struct.Sender.html" title="struct relm4::Sender">Sender</a>&lt;Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Output" title="type relm4::component::Component::Output">Output</a>&gt;
+    output: <a class="struct" href="../struct.Sender.html" title="struct relm4::Sender">Sender</a>&lt;Self::<a class="associatedtype" href="trait.Component.html#associatedtype.Output" title="type relm4::component::Component::Output">Output</a>&gt;,
 )</h4></section></summary><div class="docblock"><p>Last method called before a component is shut down.</p>
 <p>This method is guaranteed to be called even when the entire application is shut down.</p>
-</div></details><details class="toggle method-toggle" open><summary><section id="method.id" class="method"><a class="srclink rightside" href="../../src/relm4/component/sync/traits.rs.html#129-131">source</a><h4 class="code-header">fn <a href="#method.id" class="fn">id</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a></h4></section></summary><div class="docblock"><p>An identifier for the component used for debug logging.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.id" class="method"><a class="src rightside" href="../../src/relm4/component/sync/traits.rs.html#129-131">Source</a><h4 class="code-header">fn <a href="#method.id" class="fn">id</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a></h4></section></summary><div class="docblock"><p>An identifier for the component used for debug logging.</p>
 <p>The default implementation of this method uses the address of the component, but
 implementations are free to provide more meaningful identifiers.</p>
-</div></details></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><details class="toggle implementors-toggle"><summary><section id="impl-Component-for-C" class="impl"><a class="srclink rightside" href="../../src/relm4/component/sync/traits.rs.html#180-215">source</a><a href="#impl-Component-for-C" class="anchor">§</a><h3 class="code-header">impl&lt;C&gt; <a class="trait" href="trait.Component.html" title="trait relm4::component::Component">Component</a> for C<span class="where fmt-newline">where
-    C: <a class="trait" href="trait.SimpleComponent.html" title="trait relm4::component::SimpleComponent">SimpleComponent</a>,</span></h3></section></summary><div class="impl-items"><section id="associatedtype.Init-1" class="associatedtype trait-impl"><a href="#associatedtype.Init-1" class="anchor">§</a><h4 class="code-header">type <a href="#associatedtype.Init" class="associatedtype">Init</a> = &lt;C as <a class="trait" href="trait.SimpleComponent.html" title="trait relm4::component::SimpleComponent">SimpleComponent</a>&gt;::<a class="associatedtype" href="trait.SimpleComponent.html#associatedtype.Init" title="type relm4::component::SimpleComponent::Init">Init</a></h4></section><section id="associatedtype.Input-1" class="associatedtype trait-impl"><a href="#associatedtype.Input-1" class="anchor">§</a><h4 class="code-header">type <a href="#associatedtype.Input" class="associatedtype">Input</a> = &lt;C as <a class="trait" href="trait.SimpleComponent.html" title="trait relm4::component::SimpleComponent">SimpleComponent</a>&gt;::<a class="associatedtype" href="trait.SimpleComponent.html#associatedtype.Input" title="type relm4::component::SimpleComponent::Input">Input</a></h4></section><section id="associatedtype.Output-1" class="associatedtype trait-impl"><a href="#associatedtype.Output-1" class="anchor">§</a><h4 class="code-header">type <a href="#associatedtype.Output" class="associatedtype">Output</a> = &lt;C as <a class="trait" href="trait.SimpleComponent.html" title="trait relm4::component::SimpleComponent">SimpleComponent</a>&gt;::<a class="associatedtype" href="trait.SimpleComponent.html#associatedtype.Output" title="type relm4::component::SimpleComponent::Output">Output</a></h4></section><section id="associatedtype.Root-1" class="associatedtype trait-impl"><a href="#associatedtype.Root-1" class="anchor">§</a><h4 class="code-header">type <a href="#associatedtype.Root" class="associatedtype">Root</a> = &lt;C as <a class="trait" href="trait.SimpleComponent.html" title="trait relm4::component::SimpleComponent">SimpleComponent</a>&gt;::<a class="associatedtype" href="trait.SimpleComponent.html#associatedtype.Root" title="type relm4::component::SimpleComponent::Root">Root</a></h4></section><section id="associatedtype.Widgets-1" class="associatedtype trait-impl"><a href="#associatedtype.Widgets-1" class="anchor">§</a><h4 class="code-header">type <a href="#associatedtype.Widgets" class="associatedtype">Widgets</a> = &lt;C as <a class="trait" href="trait.SimpleComponent.html" title="trait relm4::component::SimpleComponent">SimpleComponent</a>&gt;::<a class="associatedtype" href="trait.SimpleComponent.html#associatedtype.Widgets" title="type relm4::component::SimpleComponent::Widgets">Widgets</a></h4></section><section id="associatedtype.CommandOutput-1" class="associatedtype trait-impl"><a href="#associatedtype.CommandOutput-1" class="anchor">§</a><h4 class="code-header">type <a href="#associatedtype.CommandOutput" class="associatedtype">CommandOutput</a> = <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a></h4></section></div></details></div><script src="../../implementors/relm4/component/sync/traits/trait.Component.js" async></script></section></div></main></body></html>
+</div></details></div><h2 id="dyn-compatibility" class="section-header">Dyn Compatibility<a href="#dyn-compatibility" class="anchor">§</a></h2><div class="dyn-compatibility-info"><p>This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#dyn-compatibility">dyn compatible</a>.</p><p><i>In older versions of Rust, dyn compatibility was called "object safety", so this trait is not object safe.</i></p></div><h2 id="implementors" class="section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><div class="negative-marker"></div><details class="toggle implementors-toggle"><summary><section id="impl-Component-for-C" class="impl"><a class="src rightside" href="../../src/relm4/component/sync/traits.rs.html#180-215">Source</a><a href="#impl-Component-for-C" class="anchor">§</a><h3 class="code-header">impl&lt;C&gt; <a class="trait" href="trait.Component.html" title="trait relm4::component::Component">Component</a> for C<div class="where">where
+    C: <a class="trait" href="trait.SimpleComponent.html" title="trait relm4::component::SimpleComponent">SimpleComponent</a>,</div></h3></section></summary><div class="impl-items"><section id="associatedtype.Init-1" class="associatedtype trait-impl"><a class="src rightside" href="../../src/relm4/component/sync/traits.rs.html#184">Source</a><a href="#associatedtype.Init-1" class="anchor">§</a><h4 class="code-header">type <a href="#associatedtype.Init" class="associatedtype">Init</a> = &lt;C as <a class="trait" href="trait.SimpleComponent.html" title="trait relm4::component::SimpleComponent">SimpleComponent</a>&gt;::<a class="associatedtype" href="trait.SimpleComponent.html#associatedtype.Init" title="type relm4::component::SimpleComponent::Init">Init</a></h4></section><section id="associatedtype.Input-1" class="associatedtype trait-impl"><a class="src rightside" href="../../src/relm4/component/sync/traits.rs.html#185">Source</a><a href="#associatedtype.Input-1" class="anchor">§</a><h4 class="code-header">type <a href="#associatedtype.Input" class="associatedtype">Input</a> = &lt;C as <a class="trait" href="trait.SimpleComponent.html" title="trait relm4::component::SimpleComponent">SimpleComponent</a>&gt;::<a class="associatedtype" href="trait.SimpleComponent.html#associatedtype.Input" title="type relm4::component::SimpleComponent::Input">Input</a></h4></section><section id="associatedtype.Output-1" class="associatedtype trait-impl"><a class="src rightside" href="../../src/relm4/component/sync/traits.rs.html#186">Source</a><a href="#associatedtype.Output-1" class="anchor">§</a><h4 class="code-header">type <a href="#associatedtype.Output" class="associatedtype">Output</a> = &lt;C as <a class="trait" href="trait.SimpleComponent.html" title="trait relm4::component::SimpleComponent">SimpleComponent</a>&gt;::<a class="associatedtype" href="trait.SimpleComponent.html#associatedtype.Output" title="type relm4::component::SimpleComponent::Output">Output</a></h4></section><section id="associatedtype.Root-1" class="associatedtype trait-impl"><a class="src rightside" href="../../src/relm4/component/sync/traits.rs.html#187">Source</a><a href="#associatedtype.Root-1" class="anchor">§</a><h4 class="code-header">type <a href="#associatedtype.Root" class="associatedtype">Root</a> = &lt;C as <a class="trait" href="trait.SimpleComponent.html" title="trait relm4::component::SimpleComponent">SimpleComponent</a>&gt;::<a class="associatedtype" href="trait.SimpleComponent.html#associatedtype.Root" title="type relm4::component::SimpleComponent::Root">Root</a></h4></section><section id="associatedtype.Widgets-1" class="associatedtype trait-impl"><a class="src rightside" href="../../src/relm4/component/sync/traits.rs.html#188">Source</a><a href="#associatedtype.Widgets-1" class="anchor">§</a><h4 class="code-header">type <a href="#associatedtype.Widgets" class="associatedtype">Widgets</a> = &lt;C as <a class="trait" href="trait.SimpleComponent.html" title="trait relm4::component::SimpleComponent">SimpleComponent</a>&gt;::<a class="associatedtype" href="trait.SimpleComponent.html#associatedtype.Widgets" title="type relm4::component::SimpleComponent::Widgets">Widgets</a></h4></section><section id="associatedtype.CommandOutput-1" class="associatedtype trait-impl"><a class="src rightside" href="../../src/relm4/component/sync/traits.rs.html#190">Source</a><a href="#associatedtype.CommandOutput-1" class="anchor">§</a><h4 class="code-header">type <a href="#associatedtype.CommandOutput" class="associatedtype">CommandOutput</a> = <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a></h4></section></div></details></div><script src="../../trait.impl/relm4/component/sync/traits/trait.Component.js" async></script></section></div></main></body></html>
